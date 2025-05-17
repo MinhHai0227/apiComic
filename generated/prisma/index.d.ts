@@ -1,0 +1,23131 @@
+
+/**
+ * Client
+**/
+
+import * as runtime from './runtime/library.js';
+import $Types = runtime.Types // general types
+import $Public = runtime.Types.Public
+import $Utils = runtime.Types.Utils
+import $Extensions = runtime.Types.Extensions
+import $Result = runtime.Types.Result
+
+export type PrismaPromise<T> = $Public.PrismaPromise<T>
+
+
+/**
+ * Model User
+ * 
+ */
+export type User = $Result.DefaultSelection<Prisma.$UserPayload>
+/**
+ * Model Coin
+ * 
+ */
+export type Coin = $Result.DefaultSelection<Prisma.$CoinPayload>
+/**
+ * Model Transaction
+ * 
+ */
+export type Transaction = $Result.DefaultSelection<Prisma.$TransactionPayload>
+/**
+ * Model Country
+ * 
+ */
+export type Country = $Result.DefaultSelection<Prisma.$CountryPayload>
+/**
+ * Model Comic
+ * 
+ */
+export type Comic = $Result.DefaultSelection<Prisma.$ComicPayload>
+/**
+ * Model Category
+ * 
+ */
+export type Category = $Result.DefaultSelection<Prisma.$CategoryPayload>
+/**
+ * Model Chapter
+ * 
+ */
+export type Chapter = $Result.DefaultSelection<Prisma.$ChapterPayload>
+/**
+ * Model chapter_image
+ * 
+ */
+export type chapter_image = $Result.DefaultSelection<Prisma.$chapter_imagePayload>
+/**
+ * Model chapter_unlock
+ * 
+ */
+export type chapter_unlock = $Result.DefaultSelection<Prisma.$chapter_unlockPayload>
+/**
+ * Model Notification
+ * 
+ */
+export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
+/**
+ * Model comic_follower
+ * 
+ */
+export type comic_follower = $Result.DefaultSelection<Prisma.$comic_followerPayload>
+/**
+ * Model comic_history
+ * 
+ */
+export type comic_history = $Result.DefaultSelection<Prisma.$comic_historyPayload>
+/**
+ * Model comment
+ * 
+ */
+export type comment = $Result.DefaultSelection<Prisma.$commentPayload>
+
+/**
+ * Enums
+ */
+export namespace $Enums {
+  export const userRole: {
+  admin: 'admin',
+  editor: 'editor',
+  user: 'user'
+};
+
+export type userRole = (typeof userRole)[keyof typeof userRole]
+
+
+export const transactionStatus: {
+  pending: 'pending',
+  completed: 'completed',
+  failed: 'failed'
+};
+
+export type transactionStatus = (typeof transactionStatus)[keyof typeof transactionStatus]
+
+
+export const comicStatus: {
+  onGoing: 'onGoing',
+  complete: 'complete'
+};
+
+export type comicStatus = (typeof comicStatus)[keyof typeof comicStatus]
+
+
+export const notifiType: {
+  payment: 'payment',
+  unlock: 'unlock',
+  reply: 'reply'
+};
+
+export type notifiType = (typeof notifiType)[keyof typeof notifiType]
+
+}
+
+export type userRole = $Enums.userRole
+
+export const userRole: typeof $Enums.userRole
+
+export type transactionStatus = $Enums.transactionStatus
+
+export const transactionStatus: typeof $Enums.transactionStatus
+
+export type comicStatus = $Enums.comicStatus
+
+export const comicStatus: typeof $Enums.comicStatus
+
+export type notifiType = $Enums.notifiType
+
+export const notifiType: typeof $Enums.notifiType
+
+/**
+ * ##  Prisma Client ʲˢ
+ *
+ * Type-safe database client for TypeScript & Node.js
+ * @example
+ * ```
+ * const prisma = new PrismaClient()
+ * // Fetch zero or more Users
+ * const users = await prisma.user.findMany()
+ * ```
+ *
+ *
+ * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+ */
+export class PrismaClient<
+  ClientOptions extends Prisma.PrismaClientOptions = Prisma.PrismaClientOptions,
+  U = 'log' extends keyof ClientOptions ? ClientOptions['log'] extends Array<Prisma.LogLevel | Prisma.LogDefinition> ? Prisma.GetEvents<ClientOptions['log']> : never : never,
+  ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs
+> {
+  [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['other'] }
+
+    /**
+   * ##  Prisma Client ʲˢ
+   *
+   * Type-safe database client for TypeScript & Node.js
+   * @example
+   * ```
+   * const prisma = new PrismaClient()
+   * // Fetch zero or more Users
+   * const users = await prisma.user.findMany()
+   * ```
+   *
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client).
+   */
+
+  constructor(optionsArg ?: Prisma.Subset<ClientOptions, Prisma.PrismaClientOptions>);
+  $on<V extends U>(eventType: V, callback: (event: V extends 'query' ? Prisma.QueryEvent : Prisma.LogEvent) => void): PrismaClient;
+
+  /**
+   * Connect with the database
+   */
+  $connect(): $Utils.JsPromise<void>;
+
+  /**
+   * Disconnect from the database
+   */
+  $disconnect(): $Utils.JsPromise<void>;
+
+  /**
+   * Add a middleware
+   * @deprecated since 4.16.0. For new code, prefer client extensions instead.
+   * @see https://pris.ly/d/extensions
+   */
+  $use(cb: Prisma.Middleware): void
+
+/**
+   * Executes a prepared raw query and returns the number of affected rows.
+   * @example
+   * ```
+   * const result = await prisma.$executeRaw`UPDATE User SET cool = ${true} WHERE email = ${'user@email.com'};`
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $executeRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<number>;
+
+  /**
+   * Executes a raw query and returns the number of affected rows.
+   * Susceptible to SQL injections, see documentation.
+   * @example
+   * ```
+   * const result = await prisma.$executeRawUnsafe('UPDATE User SET cool = $1 WHERE email = $2 ;', true, 'user@email.com')
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $executeRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<number>;
+
+  /**
+   * Performs a prepared raw query and returns the `SELECT` data.
+   * @example
+   * ```
+   * const result = await prisma.$queryRaw`SELECT * FROM User WHERE id = ${1} OR email = ${'user@email.com'};`
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $queryRaw<T = unknown>(query: TemplateStringsArray | Prisma.Sql, ...values: any[]): Prisma.PrismaPromise<T>;
+
+  /**
+   * Performs a raw query and returns the `SELECT` data.
+   * Susceptible to SQL injections, see documentation.
+   * @example
+   * ```
+   * const result = await prisma.$queryRawUnsafe('SELECT * FROM User WHERE id = $1 OR email = $2;', 1, 'user@email.com')
+   * ```
+   *
+   * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/raw-database-access).
+   */
+  $queryRawUnsafe<T = unknown>(query: string, ...values: any[]): Prisma.PrismaPromise<T>;
+
+
+  /**
+   * Allows the running of a sequence of read/write operations that are guaranteed to either succeed or fail as a whole.
+   * @example
+   * ```
+   * const [george, bob, alice] = await prisma.$transaction([
+   *   prisma.user.create({ data: { name: 'George' } }),
+   *   prisma.user.create({ data: { name: 'Bob' } }),
+   *   prisma.user.create({ data: { name: 'Alice' } }),
+   * ])
+   * ```
+   * 
+   * Read more in our [docs](https://www.prisma.io/docs/concepts/components/prisma-client/transactions).
+   */
+  $transaction<P extends Prisma.PrismaPromise<any>[]>(arg: [...P], options?: { isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<runtime.Types.Utils.UnwrapTuple<P>>
+
+  $transaction<R>(fn: (prisma: Omit<PrismaClient, runtime.ITXClientDenyList>) => $Utils.JsPromise<R>, options?: { maxWait?: number, timeout?: number, isolationLevel?: Prisma.TransactionIsolationLevel }): $Utils.JsPromise<R>
+
+
+  $extends: $Extensions.ExtendsHook<"extends", Prisma.TypeMapCb<ClientOptions>, ExtArgs, $Utils.Call<Prisma.TypeMapCb<ClientOptions>, {
+    extArgs: ExtArgs
+  }>>
+
+      /**
+   * `prisma.user`: Exposes CRUD operations for the **User** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Users
+    * const users = await prisma.user.findMany()
+    * ```
+    */
+  get user(): Prisma.UserDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.coin`: Exposes CRUD operations for the **Coin** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Coins
+    * const coins = await prisma.coin.findMany()
+    * ```
+    */
+  get coin(): Prisma.CoinDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.transaction`: Exposes CRUD operations for the **Transaction** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Transactions
+    * const transactions = await prisma.transaction.findMany()
+    * ```
+    */
+  get transaction(): Prisma.TransactionDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.country`: Exposes CRUD operations for the **Country** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Countries
+    * const countries = await prisma.country.findMany()
+    * ```
+    */
+  get country(): Prisma.CountryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.comic`: Exposes CRUD operations for the **Comic** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Comics
+    * const comics = await prisma.comic.findMany()
+    * ```
+    */
+  get comic(): Prisma.ComicDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.category`: Exposes CRUD operations for the **Category** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Categories
+    * const categories = await prisma.category.findMany()
+    * ```
+    */
+  get category(): Prisma.CategoryDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.chapter`: Exposes CRUD operations for the **Chapter** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Chapters
+    * const chapters = await prisma.chapter.findMany()
+    * ```
+    */
+  get chapter(): Prisma.ChapterDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.chapter_image`: Exposes CRUD operations for the **chapter_image** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Chapter_images
+    * const chapter_images = await prisma.chapter_image.findMany()
+    * ```
+    */
+  get chapter_image(): Prisma.chapter_imageDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.chapter_unlock`: Exposes CRUD operations for the **chapter_unlock** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Chapter_unlocks
+    * const chapter_unlocks = await prisma.chapter_unlock.findMany()
+    * ```
+    */
+  get chapter_unlock(): Prisma.chapter_unlockDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.notification`: Exposes CRUD operations for the **Notification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Notifications
+    * const notifications = await prisma.notification.findMany()
+    * ```
+    */
+  get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.comic_follower`: Exposes CRUD operations for the **comic_follower** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Comic_followers
+    * const comic_followers = await prisma.comic_follower.findMany()
+    * ```
+    */
+  get comic_follower(): Prisma.comic_followerDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.comic_history`: Exposes CRUD operations for the **comic_history** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Comic_histories
+    * const comic_histories = await prisma.comic_history.findMany()
+    * ```
+    */
+  get comic_history(): Prisma.comic_historyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.comment`: Exposes CRUD operations for the **comment** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more Comments
+    * const comments = await prisma.comment.findMany()
+    * ```
+    */
+  get comment(): Prisma.commentDelegate<ExtArgs, ClientOptions>;
+}
+
+export namespace Prisma {
+  export import DMMF = runtime.DMMF
+
+  export type PrismaPromise<T> = $Public.PrismaPromise<T>
+
+  /**
+   * Validator
+   */
+  export import validator = runtime.Public.validator
+
+  /**
+   * Prisma Errors
+   */
+  export import PrismaClientKnownRequestError = runtime.PrismaClientKnownRequestError
+  export import PrismaClientUnknownRequestError = runtime.PrismaClientUnknownRequestError
+  export import PrismaClientRustPanicError = runtime.PrismaClientRustPanicError
+  export import PrismaClientInitializationError = runtime.PrismaClientInitializationError
+  export import PrismaClientValidationError = runtime.PrismaClientValidationError
+
+  /**
+   * Re-export of sql-template-tag
+   */
+  export import sql = runtime.sqltag
+  export import empty = runtime.empty
+  export import join = runtime.join
+  export import raw = runtime.raw
+  export import Sql = runtime.Sql
+
+
+
+  /**
+   * Decimal.js
+   */
+  export import Decimal = runtime.Decimal
+
+  export type DecimalJsLike = runtime.DecimalJsLike
+
+  /**
+   * Metrics
+   */
+  export type Metrics = runtime.Metrics
+  export type Metric<T> = runtime.Metric<T>
+  export type MetricHistogram = runtime.MetricHistogram
+  export type MetricHistogramBucket = runtime.MetricHistogramBucket
+
+  /**
+  * Extensions
+  */
+  export import Extension = $Extensions.UserArgs
+  export import getExtensionContext = runtime.Extensions.getExtensionContext
+  export import Args = $Public.Args
+  export import Payload = $Public.Payload
+  export import Result = $Public.Result
+  export import Exact = $Public.Exact
+
+  /**
+   * Prisma Client JS version: 6.6.0
+   * Query Engine version: f676762280b54cd07c770017ed3711ddde35f37a
+   */
+  export type PrismaVersion = {
+    client: string
+  }
+
+  export const prismaVersion: PrismaVersion
+
+  /**
+   * Utility Types
+   */
+
+
+  export import JsonObject = runtime.JsonObject
+  export import JsonArray = runtime.JsonArray
+  export import JsonValue = runtime.JsonValue
+  export import InputJsonObject = runtime.InputJsonObject
+  export import InputJsonArray = runtime.InputJsonArray
+  export import InputJsonValue = runtime.InputJsonValue
+
+  /**
+   * Types of the values used to represent different kinds of `null` values when working with JSON fields.
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  namespace NullTypes {
+    /**
+    * Type of `Prisma.DbNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.DbNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class DbNull {
+      private DbNull: never
+      private constructor()
+    }
+
+    /**
+    * Type of `Prisma.JsonNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.JsonNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class JsonNull {
+      private JsonNull: never
+      private constructor()
+    }
+
+    /**
+    * Type of `Prisma.AnyNull`.
+    *
+    * You cannot use other instances of this class. Please use the `Prisma.AnyNull` value.
+    *
+    * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+    */
+    class AnyNull {
+      private AnyNull: never
+      private constructor()
+    }
+  }
+
+  /**
+   * Helper for filtering JSON entries that have `null` on the database (empty on the db)
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const DbNull: NullTypes.DbNull
+
+  /**
+   * Helper for filtering JSON entries that have JSON `null` values (not empty on the db)
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const JsonNull: NullTypes.JsonNull
+
+  /**
+   * Helper for filtering JSON entries that are `Prisma.DbNull` or `Prisma.JsonNull`
+   *
+   * @see https://www.prisma.io/docs/concepts/components/prisma-client/working-with-fields/working-with-json-fields#filtering-on-a-json-field
+   */
+  export const AnyNull: NullTypes.AnyNull
+
+  type SelectAndInclude = {
+    select: any
+    include: any
+  }
+
+  type SelectAndOmit = {
+    select: any
+    omit: any
+  }
+
+  /**
+   * Get the type of the value, that the Promise holds.
+   */
+  export type PromiseType<T extends PromiseLike<any>> = T extends PromiseLike<infer U> ? U : T;
+
+  /**
+   * Get the return type of a function which returns a Promise.
+   */
+  export type PromiseReturnType<T extends (...args: any) => $Utils.JsPromise<any>> = PromiseType<ReturnType<T>>
+
+  /**
+   * From T, pick a set of properties whose keys are in the union K
+   */
+  type Prisma__Pick<T, K extends keyof T> = {
+      [P in K]: T[P];
+  };
+
+
+  export type Enumerable<T> = T | Array<T>;
+
+  export type RequiredKeys<T> = {
+    [K in keyof T]-?: {} extends Prisma__Pick<T, K> ? never : K
+  }[keyof T]
+
+  export type TruthyKeys<T> = keyof {
+    [K in keyof T as T[K] extends false | undefined | null ? never : K]: K
+  }
+
+  export type TrueKeys<T> = TruthyKeys<Prisma__Pick<T, RequiredKeys<T>>>
+
+  /**
+   * Subset
+   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection
+   */
+  export type Subset<T, U> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never;
+  };
+
+  /**
+   * SelectSubset
+   * @desc From `T` pick properties that exist in `U`. Simple version of Intersection.
+   * Additionally, it validates, if both select and include are present. If the case, it errors.
+   */
+  export type SelectSubset<T, U> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    (T extends SelectAndInclude
+      ? 'Please either choose `select` or `include`.'
+      : T extends SelectAndOmit
+        ? 'Please either choose `select` or `omit`.'
+        : {})
+
+  /**
+   * Subset + Intersection
+   * @desc From `T` pick properties that exist in `U` and intersect `K`
+   */
+  export type SubsetIntersection<T, U, K> = {
+    [key in keyof T]: key extends keyof U ? T[key] : never
+  } &
+    K
+
+  type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never };
+
+  /**
+   * XOR is needed to have a real mutually exclusive union type
+   * https://stackoverflow.com/questions/42123407/does-typescript-support-mutually-exclusive-types
+   */
+  type XOR<T, U> =
+    T extends object ?
+    U extends object ?
+      (Without<T, U> & U) | (Without<U, T> & T)
+    : U : T
+
+
+  /**
+   * Is T a Record?
+   */
+  type IsObject<T extends any> = T extends Array<any>
+  ? False
+  : T extends Date
+  ? False
+  : T extends Uint8Array
+  ? False
+  : T extends BigInt
+  ? False
+  : T extends object
+  ? True
+  : False
+
+
+  /**
+   * If it's T[], return T
+   */
+  export type UnEnumerate<T extends unknown> = T extends Array<infer U> ? U : T
+
+  /**
+   * From ts-toolbelt
+   */
+
+  type __Either<O extends object, K extends Key> = Omit<O, K> &
+    {
+      // Merge all but K
+      [P in K]: Prisma__Pick<O, P & keyof O> // With K possibilities
+    }[K]
+
+  type EitherStrict<O extends object, K extends Key> = Strict<__Either<O, K>>
+
+  type EitherLoose<O extends object, K extends Key> = ComputeRaw<__Either<O, K>>
+
+  type _Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean
+  > = {
+    1: EitherStrict<O, K>
+    0: EitherLoose<O, K>
+  }[strict]
+
+  type Either<
+    O extends object,
+    K extends Key,
+    strict extends Boolean = 1
+  > = O extends unknown ? _Either<O, K, strict> : never
+
+  export type Union = any
+
+  type PatchUndefined<O extends object, O1 extends object> = {
+    [K in keyof O]: O[K] extends undefined ? At<O1, K> : O[K]
+  } & {}
+
+  /** Helper Types for "Merge" **/
+  export type IntersectOf<U extends Union> = (
+    U extends unknown ? (k: U) => void : never
+  ) extends (k: infer I) => void
+    ? I
+    : never
+
+  export type Overwrite<O extends object, O1 extends object> = {
+      [K in keyof O]: K extends keyof O1 ? O1[K] : O[K];
+  } & {};
+
+  type _Merge<U extends object> = IntersectOf<Overwrite<U, {
+      [K in keyof U]-?: At<U, K>;
+  }>>;
+
+  type Key = string | number | symbol;
+  type AtBasic<O extends object, K extends Key> = K extends keyof O ? O[K] : never;
+  type AtStrict<O extends object, K extends Key> = O[K & keyof O];
+  type AtLoose<O extends object, K extends Key> = O extends unknown ? AtStrict<O, K> : never;
+  export type At<O extends object, K extends Key, strict extends Boolean = 1> = {
+      1: AtStrict<O, K>;
+      0: AtLoose<O, K>;
+  }[strict];
+
+  export type ComputeRaw<A extends any> = A extends Function ? A : {
+    [K in keyof A]: A[K];
+  } & {};
+
+  export type OptionalFlat<O> = {
+    [K in keyof O]?: O[K];
+  } & {};
+
+  type _Record<K extends keyof any, T> = {
+    [P in K]: T;
+  };
+
+  // cause typescript not to expand types and preserve names
+  type NoExpand<T> = T extends unknown ? T : never;
+
+  // this type assumes the passed object is entirely optional
+  type AtLeast<O extends object, K extends string> = NoExpand<
+    O extends unknown
+    ? | (K extends keyof O ? { [P in K]: O[P] } & O : O)
+      | {[P in keyof O as P extends K ? P : never]-?: O[P]} & O
+    : never>;
+
+  type _Strict<U, _U = U> = U extends unknown ? U & OptionalFlat<_Record<Exclude<Keys<_U>, keyof U>, never>> : never;
+
+  export type Strict<U extends object> = ComputeRaw<_Strict<U>>;
+  /** End Helper Types for "Merge" **/
+
+  export type Merge<U extends object> = ComputeRaw<_Merge<Strict<U>>>;
+
+  /**
+  A [[Boolean]]
+  */
+  export type Boolean = True | False
+
+  // /**
+  // 1
+  // */
+  export type True = 1
+
+  /**
+  0
+  */
+  export type False = 0
+
+  export type Not<B extends Boolean> = {
+    0: 1
+    1: 0
+  }[B]
+
+  export type Extends<A1 extends any, A2 extends any> = [A1] extends [never]
+    ? 0 // anything `never` is false
+    : A1 extends A2
+    ? 1
+    : 0
+
+  export type Has<U extends Union, U1 extends Union> = Not<
+    Extends<Exclude<U1, U>, U1>
+  >
+
+  export type Or<B1 extends Boolean, B2 extends Boolean> = {
+    0: {
+      0: 0
+      1: 1
+    }
+    1: {
+      0: 1
+      1: 1
+    }
+  }[B1][B2]
+
+  export type Keys<U extends Union> = U extends unknown ? keyof U : never
+
+  type Cast<A, B> = A extends B ? A : B;
+
+  export const type: unique symbol;
+
+
+
+  /**
+   * Used by group by
+   */
+
+  export type GetScalarType<T, O> = O extends object ? {
+    [P in keyof T]: P extends keyof O
+      ? O[P]
+      : never
+  } : never
+
+  type FieldPaths<
+    T,
+    U = Omit<T, '_avg' | '_sum' | '_count' | '_min' | '_max'>
+  > = IsObject<T> extends True ? U : T
+
+  type GetHavingFields<T> = {
+    [K in keyof T]: Or<
+      Or<Extends<'OR', K>, Extends<'AND', K>>,
+      Extends<'NOT', K>
+    > extends True
+      ? // infer is only needed to not hit TS limit
+        // based on the brilliant idea of Pierre-Antoine Mills
+        // https://github.com/microsoft/TypeScript/issues/30188#issuecomment-478938437
+        T[K] extends infer TK
+        ? GetHavingFields<UnEnumerate<TK> extends object ? Merge<UnEnumerate<TK>> : never>
+        : never
+      : {} extends FieldPaths<T[K]>
+      ? never
+      : K
+  }[keyof T]
+
+  /**
+   * Convert tuple to union
+   */
+  type _TupleToUnion<T> = T extends (infer E)[] ? E : never
+  type TupleToUnion<K extends readonly any[]> = _TupleToUnion<K>
+  type MaybeTupleToUnion<T> = T extends any[] ? TupleToUnion<T> : T
+
+  /**
+   * Like `Pick`, but additionally can also accept an array of keys
+   */
+  type PickEnumerable<T, K extends Enumerable<keyof T> | keyof T> = Prisma__Pick<T, MaybeTupleToUnion<K>>
+
+  /**
+   * Exclude all keys with underscores
+   */
+  type ExcludeUnderscoreKeys<T extends string> = T extends `_${string}` ? never : T
+
+
+  export type FieldRef<Model, FieldType> = runtime.FieldRef<Model, FieldType>
+
+  type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRef<Model, FieldType>
+
+
+  export const ModelName: {
+    User: 'User',
+    Coin: 'Coin',
+    Transaction: 'Transaction',
+    Country: 'Country',
+    Comic: 'Comic',
+    Category: 'Category',
+    Chapter: 'Chapter',
+    chapter_image: 'chapter_image',
+    chapter_unlock: 'chapter_unlock',
+    Notification: 'Notification',
+    comic_follower: 'comic_follower',
+    comic_history: 'comic_history',
+    comment: 'comment'
+  };
+
+  export type ModelName = (typeof ModelName)[keyof typeof ModelName]
+
+
+  export type Datasources = {
+    db?: Datasource
+  }
+
+  interface TypeMapCb<ClientOptions = {}> extends $Utils.Fn<{extArgs: $Extensions.InternalArgs }, $Utils.Record<string, any>> {
+    returns: Prisma.TypeMap<this['params']['extArgs'], ClientOptions extends { omit: infer OmitOptions } ? OmitOptions : {}>
+  }
+
+  export type TypeMap<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> = {
+    globalOmitOptions: {
+      omit: GlobalOmitOptions
+    }
+    meta: {
+      modelProps: "user" | "coin" | "transaction" | "country" | "comic" | "category" | "chapter" | "chapter_image" | "chapter_unlock" | "notification" | "comic_follower" | "comic_history" | "comment"
+      txIsolationLevel: Prisma.TransactionIsolationLevel
+    }
+    model: {
+      User: {
+        payload: Prisma.$UserPayload<ExtArgs>
+        fields: Prisma.UserFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.UserFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.UserFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findFirst: {
+            args: Prisma.UserFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.UserFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          findMany: {
+            args: Prisma.UserFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>[]
+          }
+          create: {
+            args: Prisma.UserCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          createMany: {
+            args: Prisma.UserCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.UserDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          update: {
+            args: Prisma.UserUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          deleteMany: {
+            args: Prisma.UserDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.UserUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.UserUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$UserPayload>
+          }
+          aggregate: {
+            args: Prisma.UserAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateUser>
+          }
+          groupBy: {
+            args: Prisma.UserGroupByArgs<ExtArgs>
+            result: $Utils.Optional<UserGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.UserCountArgs<ExtArgs>
+            result: $Utils.Optional<UserCountAggregateOutputType> | number
+          }
+        }
+      }
+      Coin: {
+        payload: Prisma.$CoinPayload<ExtArgs>
+        fields: Prisma.CoinFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CoinFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoinPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CoinFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoinPayload>
+          }
+          findFirst: {
+            args: Prisma.CoinFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoinPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CoinFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoinPayload>
+          }
+          findMany: {
+            args: Prisma.CoinFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoinPayload>[]
+          }
+          create: {
+            args: Prisma.CoinCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoinPayload>
+          }
+          createMany: {
+            args: Prisma.CoinCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CoinDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoinPayload>
+          }
+          update: {
+            args: Prisma.CoinUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoinPayload>
+          }
+          deleteMany: {
+            args: Prisma.CoinDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CoinUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CoinUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CoinPayload>
+          }
+          aggregate: {
+            args: Prisma.CoinAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCoin>
+          }
+          groupBy: {
+            args: Prisma.CoinGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CoinGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CoinCountArgs<ExtArgs>
+            result: $Utils.Optional<CoinCountAggregateOutputType> | number
+          }
+        }
+      }
+      Transaction: {
+        payload: Prisma.$TransactionPayload<ExtArgs>
+        fields: Prisma.TransactionFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.TransactionFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.TransactionFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          findFirst: {
+            args: Prisma.TransactionFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.TransactionFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          findMany: {
+            args: Prisma.TransactionFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>[]
+          }
+          create: {
+            args: Prisma.TransactionCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          createMany: {
+            args: Prisma.TransactionCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.TransactionDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          update: {
+            args: Prisma.TransactionUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          deleteMany: {
+            args: Prisma.TransactionDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.TransactionUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.TransactionUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$TransactionPayload>
+          }
+          aggregate: {
+            args: Prisma.TransactionAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateTransaction>
+          }
+          groupBy: {
+            args: Prisma.TransactionGroupByArgs<ExtArgs>
+            result: $Utils.Optional<TransactionGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.TransactionCountArgs<ExtArgs>
+            result: $Utils.Optional<TransactionCountAggregateOutputType> | number
+          }
+        }
+      }
+      Country: {
+        payload: Prisma.$CountryPayload<ExtArgs>
+        fields: Prisma.CountryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CountryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CountryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CountryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CountryPayload>
+          }
+          findFirst: {
+            args: Prisma.CountryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CountryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CountryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CountryPayload>
+          }
+          findMany: {
+            args: Prisma.CountryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CountryPayload>[]
+          }
+          create: {
+            args: Prisma.CountryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CountryPayload>
+          }
+          createMany: {
+            args: Prisma.CountryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CountryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CountryPayload>
+          }
+          update: {
+            args: Prisma.CountryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CountryPayload>
+          }
+          deleteMany: {
+            args: Prisma.CountryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CountryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CountryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CountryPayload>
+          }
+          aggregate: {
+            args: Prisma.CountryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCountry>
+          }
+          groupBy: {
+            args: Prisma.CountryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CountryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CountryCountArgs<ExtArgs>
+            result: $Utils.Optional<CountryCountAggregateOutputType> | number
+          }
+        }
+      }
+      Comic: {
+        payload: Prisma.$ComicPayload<ExtArgs>
+        fields: Prisma.ComicFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ComicFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComicPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ComicFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComicPayload>
+          }
+          findFirst: {
+            args: Prisma.ComicFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComicPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ComicFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComicPayload>
+          }
+          findMany: {
+            args: Prisma.ComicFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComicPayload>[]
+          }
+          create: {
+            args: Prisma.ComicCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComicPayload>
+          }
+          createMany: {
+            args: Prisma.ComicCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ComicDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComicPayload>
+          }
+          update: {
+            args: Prisma.ComicUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComicPayload>
+          }
+          deleteMany: {
+            args: Prisma.ComicDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ComicUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ComicUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ComicPayload>
+          }
+          aggregate: {
+            args: Prisma.ComicAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateComic>
+          }
+          groupBy: {
+            args: Prisma.ComicGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ComicGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ComicCountArgs<ExtArgs>
+            result: $Utils.Optional<ComicCountAggregateOutputType> | number
+          }
+        }
+      }
+      Category: {
+        payload: Prisma.$CategoryPayload<ExtArgs>
+        fields: Prisma.CategoryFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.CategoryFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.CategoryFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          findFirst: {
+            args: Prisma.CategoryFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.CategoryFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          findMany: {
+            args: Prisma.CategoryFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>[]
+          }
+          create: {
+            args: Prisma.CategoryCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          createMany: {
+            args: Prisma.CategoryCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.CategoryDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          update: {
+            args: Prisma.CategoryUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          deleteMany: {
+            args: Prisma.CategoryDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.CategoryUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.CategoryUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$CategoryPayload>
+          }
+          aggregate: {
+            args: Prisma.CategoryAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateCategory>
+          }
+          groupBy: {
+            args: Prisma.CategoryGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CategoryGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.CategoryCountArgs<ExtArgs>
+            result: $Utils.Optional<CategoryCountAggregateOutputType> | number
+          }
+        }
+      }
+      Chapter: {
+        payload: Prisma.$ChapterPayload<ExtArgs>
+        fields: Prisma.ChapterFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ChapterFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChapterPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ChapterFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChapterPayload>
+          }
+          findFirst: {
+            args: Prisma.ChapterFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChapterPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ChapterFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChapterPayload>
+          }
+          findMany: {
+            args: Prisma.ChapterFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChapterPayload>[]
+          }
+          create: {
+            args: Prisma.ChapterCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChapterPayload>
+          }
+          createMany: {
+            args: Prisma.ChapterCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ChapterDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChapterPayload>
+          }
+          update: {
+            args: Prisma.ChapterUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChapterPayload>
+          }
+          deleteMany: {
+            args: Prisma.ChapterDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ChapterUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ChapterUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ChapterPayload>
+          }
+          aggregate: {
+            args: Prisma.ChapterAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChapter>
+          }
+          groupBy: {
+            args: Prisma.ChapterGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ChapterGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ChapterCountArgs<ExtArgs>
+            result: $Utils.Optional<ChapterCountAggregateOutputType> | number
+          }
+        }
+      }
+      chapter_image: {
+        payload: Prisma.$chapter_imagePayload<ExtArgs>
+        fields: Prisma.chapter_imageFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.chapter_imageFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_imagePayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.chapter_imageFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_imagePayload>
+          }
+          findFirst: {
+            args: Prisma.chapter_imageFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_imagePayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.chapter_imageFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_imagePayload>
+          }
+          findMany: {
+            args: Prisma.chapter_imageFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_imagePayload>[]
+          }
+          create: {
+            args: Prisma.chapter_imageCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_imagePayload>
+          }
+          createMany: {
+            args: Prisma.chapter_imageCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.chapter_imageDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_imagePayload>
+          }
+          update: {
+            args: Prisma.chapter_imageUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_imagePayload>
+          }
+          deleteMany: {
+            args: Prisma.chapter_imageDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.chapter_imageUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.chapter_imageUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_imagePayload>
+          }
+          aggregate: {
+            args: Prisma.Chapter_imageAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChapter_image>
+          }
+          groupBy: {
+            args: Prisma.chapter_imageGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Chapter_imageGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.chapter_imageCountArgs<ExtArgs>
+            result: $Utils.Optional<Chapter_imageCountAggregateOutputType> | number
+          }
+        }
+      }
+      chapter_unlock: {
+        payload: Prisma.$chapter_unlockPayload<ExtArgs>
+        fields: Prisma.chapter_unlockFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.chapter_unlockFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_unlockPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.chapter_unlockFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_unlockPayload>
+          }
+          findFirst: {
+            args: Prisma.chapter_unlockFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_unlockPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.chapter_unlockFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_unlockPayload>
+          }
+          findMany: {
+            args: Prisma.chapter_unlockFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_unlockPayload>[]
+          }
+          create: {
+            args: Prisma.chapter_unlockCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_unlockPayload>
+          }
+          createMany: {
+            args: Prisma.chapter_unlockCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.chapter_unlockDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_unlockPayload>
+          }
+          update: {
+            args: Prisma.chapter_unlockUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_unlockPayload>
+          }
+          deleteMany: {
+            args: Prisma.chapter_unlockDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.chapter_unlockUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.chapter_unlockUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$chapter_unlockPayload>
+          }
+          aggregate: {
+            args: Prisma.Chapter_unlockAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateChapter_unlock>
+          }
+          groupBy: {
+            args: Prisma.chapter_unlockGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Chapter_unlockGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.chapter_unlockCountArgs<ExtArgs>
+            result: $Utils.Optional<Chapter_unlockCountAggregateOutputType> | number
+          }
+        }
+      }
+      Notification: {
+        payload: Prisma.$NotificationPayload<ExtArgs>
+        fields: Prisma.NotificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.NotificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.NotificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findFirst: {
+            args: Prisma.NotificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.NotificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          findMany: {
+            args: Prisma.NotificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>[]
+          }
+          create: {
+            args: Prisma.NotificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          createMany: {
+            args: Prisma.NotificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.NotificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          update: {
+            args: Prisma.NotificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.NotificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.NotificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.NotificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$NotificationPayload>
+          }
+          aggregate: {
+            args: Prisma.NotificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateNotification>
+          }
+          groupBy: {
+            args: Prisma.NotificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<NotificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.NotificationCountArgs<ExtArgs>
+            result: $Utils.Optional<NotificationCountAggregateOutputType> | number
+          }
+        }
+      }
+      comic_follower: {
+        payload: Prisma.$comic_followerPayload<ExtArgs>
+        fields: Prisma.comic_followerFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.comic_followerFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_followerPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.comic_followerFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_followerPayload>
+          }
+          findFirst: {
+            args: Prisma.comic_followerFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_followerPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.comic_followerFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_followerPayload>
+          }
+          findMany: {
+            args: Prisma.comic_followerFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_followerPayload>[]
+          }
+          create: {
+            args: Prisma.comic_followerCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_followerPayload>
+          }
+          createMany: {
+            args: Prisma.comic_followerCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.comic_followerDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_followerPayload>
+          }
+          update: {
+            args: Prisma.comic_followerUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_followerPayload>
+          }
+          deleteMany: {
+            args: Prisma.comic_followerDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.comic_followerUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.comic_followerUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_followerPayload>
+          }
+          aggregate: {
+            args: Prisma.Comic_followerAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateComic_follower>
+          }
+          groupBy: {
+            args: Prisma.comic_followerGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Comic_followerGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.comic_followerCountArgs<ExtArgs>
+            result: $Utils.Optional<Comic_followerCountAggregateOutputType> | number
+          }
+        }
+      }
+      comic_history: {
+        payload: Prisma.$comic_historyPayload<ExtArgs>
+        fields: Prisma.comic_historyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.comic_historyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_historyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.comic_historyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_historyPayload>
+          }
+          findFirst: {
+            args: Prisma.comic_historyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_historyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.comic_historyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_historyPayload>
+          }
+          findMany: {
+            args: Prisma.comic_historyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_historyPayload>[]
+          }
+          create: {
+            args: Prisma.comic_historyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_historyPayload>
+          }
+          createMany: {
+            args: Prisma.comic_historyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.comic_historyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_historyPayload>
+          }
+          update: {
+            args: Prisma.comic_historyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_historyPayload>
+          }
+          deleteMany: {
+            args: Prisma.comic_historyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.comic_historyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.comic_historyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$comic_historyPayload>
+          }
+          aggregate: {
+            args: Prisma.Comic_historyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateComic_history>
+          }
+          groupBy: {
+            args: Prisma.comic_historyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<Comic_historyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.comic_historyCountArgs<ExtArgs>
+            result: $Utils.Optional<Comic_historyCountAggregateOutputType> | number
+          }
+        }
+      }
+      comment: {
+        payload: Prisma.$commentPayload<ExtArgs>
+        fields: Prisma.commentFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.commentFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$commentPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.commentFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$commentPayload>
+          }
+          findFirst: {
+            args: Prisma.commentFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$commentPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.commentFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$commentPayload>
+          }
+          findMany: {
+            args: Prisma.commentFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$commentPayload>[]
+          }
+          create: {
+            args: Prisma.commentCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$commentPayload>
+          }
+          createMany: {
+            args: Prisma.commentCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.commentDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$commentPayload>
+          }
+          update: {
+            args: Prisma.commentUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$commentPayload>
+          }
+          deleteMany: {
+            args: Prisma.commentDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.commentUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.commentUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$commentPayload>
+          }
+          aggregate: {
+            args: Prisma.CommentAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateComment>
+          }
+          groupBy: {
+            args: Prisma.commentGroupByArgs<ExtArgs>
+            result: $Utils.Optional<CommentGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.commentCountArgs<ExtArgs>
+            result: $Utils.Optional<CommentCountAggregateOutputType> | number
+          }
+        }
+      }
+    }
+  } & {
+    other: {
+      payload: any
+      operations: {
+        $executeRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
+        $executeRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+        $queryRaw: {
+          args: [query: TemplateStringsArray | Prisma.Sql, ...values: any[]],
+          result: any
+        }
+        $queryRawUnsafe: {
+          args: [query: string, ...values: any[]],
+          result: any
+        }
+      }
+    }
+  }
+  export const defineExtension: $Extensions.ExtendsHook<"define", Prisma.TypeMapCb, $Extensions.DefaultArgs>
+  export type DefaultPrismaClient = PrismaClient
+  export type ErrorFormat = 'pretty' | 'colorless' | 'minimal'
+  export interface PrismaClientOptions {
+    /**
+     * Overwrites the datasource url from your schema.prisma file
+     */
+    datasources?: Datasources
+    /**
+     * Overwrites the datasource url from your schema.prisma file
+     */
+    datasourceUrl?: string
+    /**
+     * @default "colorless"
+     */
+    errorFormat?: ErrorFormat
+    /**
+     * @example
+     * ```
+     * // Defaults to stdout
+     * log: ['query', 'info', 'warn', 'error']
+     * 
+     * // Emit as events
+     * log: [
+     *   { emit: 'stdout', level: 'query' },
+     *   { emit: 'stdout', level: 'info' },
+     *   { emit: 'stdout', level: 'warn' }
+     *   { emit: 'stdout', level: 'error' }
+     * ]
+     * ```
+     * Read more in our [docs](https://www.prisma.io/docs/reference/tools-and-interfaces/prisma-client/logging#the-log-option).
+     */
+    log?: (LogLevel | LogDefinition)[]
+    /**
+     * The default values for transactionOptions
+     * maxWait ?= 2000
+     * timeout ?= 5000
+     */
+    transactionOptions?: {
+      maxWait?: number
+      timeout?: number
+      isolationLevel?: Prisma.TransactionIsolationLevel
+    }
+    /**
+     * Global configuration for omitting model fields by default.
+     * 
+     * @example
+     * ```
+     * const prisma = new PrismaClient({
+     *   omit: {
+     *     user: {
+     *       password: true
+     *     }
+     *   }
+     * })
+     * ```
+     */
+    omit?: Prisma.GlobalOmitConfig
+  }
+  export type GlobalOmitConfig = {
+    user?: UserOmit
+    coin?: CoinOmit
+    transaction?: TransactionOmit
+    country?: CountryOmit
+    comic?: ComicOmit
+    category?: CategoryOmit
+    chapter?: ChapterOmit
+    chapter_image?: chapter_imageOmit
+    chapter_unlock?: chapter_unlockOmit
+    notification?: NotificationOmit
+    comic_follower?: comic_followerOmit
+    comic_history?: comic_historyOmit
+    comment?: commentOmit
+  }
+
+  /* Types for Logging */
+  export type LogLevel = 'info' | 'query' | 'warn' | 'error'
+  export type LogDefinition = {
+    level: LogLevel
+    emit: 'stdout' | 'event'
+  }
+
+  export type GetLogType<T extends LogLevel | LogDefinition> = T extends LogDefinition ? T['emit'] extends 'event' ? T['level'] : never : never
+  export type GetEvents<T extends any> = T extends Array<LogLevel | LogDefinition> ?
+    GetLogType<T[0]> | GetLogType<T[1]> | GetLogType<T[2]> | GetLogType<T[3]>
+    : never
+
+  export type QueryEvent = {
+    timestamp: Date
+    query: string
+    params: string
+    duration: number
+    target: string
+  }
+
+  export type LogEvent = {
+    timestamp: Date
+    message: string
+    target: string
+  }
+  /* End Types for Logging */
+
+
+  export type PrismaAction =
+    | 'findUnique'
+    | 'findUniqueOrThrow'
+    | 'findMany'
+    | 'findFirst'
+    | 'findFirstOrThrow'
+    | 'create'
+    | 'createMany'
+    | 'createManyAndReturn'
+    | 'update'
+    | 'updateMany'
+    | 'updateManyAndReturn'
+    | 'upsert'
+    | 'delete'
+    | 'deleteMany'
+    | 'executeRaw'
+    | 'queryRaw'
+    | 'aggregate'
+    | 'count'
+    | 'runCommandRaw'
+    | 'findRaw'
+    | 'groupBy'
+
+  /**
+   * These options are being passed into the middleware as "params"
+   */
+  export type MiddlewareParams = {
+    model?: ModelName
+    action: PrismaAction
+    args: any
+    dataPath: string[]
+    runInTransaction: boolean
+  }
+
+  /**
+   * The `T` type makes sure, that the `return proceed` is not forgotten in the middleware implementation
+   */
+  export type Middleware<T = any> = (
+    params: MiddlewareParams,
+    next: (params: MiddlewareParams) => $Utils.JsPromise<T>,
+  ) => $Utils.JsPromise<T>
+
+  // tested in getLogLevel.test.ts
+  export function getLogLevel(log: Array<LogLevel | LogDefinition>): LogLevel | undefined;
+
+  /**
+   * `PrismaClient` proxy available in interactive transactions.
+   */
+  export type TransactionClient = Omit<Prisma.DefaultPrismaClient, runtime.ITXClientDenyList>
+
+  export type Datasource = {
+    url?: string
+  }
+
+  /**
+   * Count Types
+   */
+
+
+  /**
+   * Count Type UserCountOutputType
+   */
+
+  export type UserCountOutputType = {
+    transactions: number
+    chapterUnlocks: number
+    notifications: number
+    comicFollower: number
+    comicHistory: number
+    comments: number
+  }
+
+  export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transactions?: boolean | UserCountOutputTypeCountTransactionsArgs
+    chapterUnlocks?: boolean | UserCountOutputTypeCountChapterUnlocksArgs
+    notifications?: boolean | UserCountOutputTypeCountNotificationsArgs
+    comicFollower?: boolean | UserCountOutputTypeCountComicFollowerArgs
+    comicHistory?: boolean | UserCountOutputTypeCountComicHistoryArgs
+    comments?: boolean | UserCountOutputTypeCountCommentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the UserCountOutputType
+     */
+    select?: UserCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountChapterUnlocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: chapter_unlockWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountNotificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountComicFollowerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: comic_followerWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountComicHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: comic_historyWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: commentWhereInput
+  }
+
+
+  /**
+   * Count Type CoinCountOutputType
+   */
+
+  export type CoinCountOutputType = {
+    transactions: number
+  }
+
+  export type CoinCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transactions?: boolean | CoinCountOutputTypeCountTransactionsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CoinCountOutputType without action
+   */
+  export type CoinCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CoinCountOutputType
+     */
+    select?: CoinCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CoinCountOutputType without action
+   */
+  export type CoinCountOutputTypeCountTransactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionWhereInput
+  }
+
+
+  /**
+   * Count Type CountryCountOutputType
+   */
+
+  export type CountryCountOutputType = {
+    comics: number
+  }
+
+  export type CountryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    comics?: boolean | CountryCountOutputTypeCountComicsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CountryCountOutputType without action
+   */
+  export type CountryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CountryCountOutputType
+     */
+    select?: CountryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CountryCountOutputType without action
+   */
+  export type CountryCountOutputTypeCountComicsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComicWhereInput
+  }
+
+
+  /**
+   * Count Type ComicCountOutputType
+   */
+
+  export type ComicCountOutputType = {
+    categories: number
+    chapters: number
+    comicFollower: number
+    comicHistory: number
+    comments: number
+  }
+
+  export type ComicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    categories?: boolean | ComicCountOutputTypeCountCategoriesArgs
+    chapters?: boolean | ComicCountOutputTypeCountChaptersArgs
+    comicFollower?: boolean | ComicCountOutputTypeCountComicFollowerArgs
+    comicHistory?: boolean | ComicCountOutputTypeCountComicHistoryArgs
+    comments?: boolean | ComicCountOutputTypeCountCommentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ComicCountOutputType without action
+   */
+  export type ComicCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ComicCountOutputType
+     */
+    select?: ComicCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ComicCountOutputType without action
+   */
+  export type ComicCountOutputTypeCountCategoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
+  }
+
+  /**
+   * ComicCountOutputType without action
+   */
+  export type ComicCountOutputTypeCountChaptersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChapterWhereInput
+  }
+
+  /**
+   * ComicCountOutputType without action
+   */
+  export type ComicCountOutputTypeCountComicFollowerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: comic_followerWhereInput
+  }
+
+  /**
+   * ComicCountOutputType without action
+   */
+  export type ComicCountOutputTypeCountComicHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: comic_historyWhereInput
+  }
+
+  /**
+   * ComicCountOutputType without action
+   */
+  export type ComicCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: commentWhereInput
+  }
+
+
+  /**
+   * Count Type CategoryCountOutputType
+   */
+
+  export type CategoryCountOutputType = {
+    comics: number
+  }
+
+  export type CategoryCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    comics?: boolean | CategoryCountOutputTypeCountComicsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CategoryCountOutputType
+     */
+    select?: CategoryCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CategoryCountOutputType without action
+   */
+  export type CategoryCountOutputTypeCountComicsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComicWhereInput
+  }
+
+
+  /**
+   * Count Type ChapterCountOutputType
+   */
+
+  export type ChapterCountOutputType = {
+    chapterImages: number
+    chapterUnlocks: number
+    comicHistory: number
+    comments: number
+  }
+
+  export type ChapterCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chapterImages?: boolean | ChapterCountOutputTypeCountChapterImagesArgs
+    chapterUnlocks?: boolean | ChapterCountOutputTypeCountChapterUnlocksArgs
+    comicHistory?: boolean | ChapterCountOutputTypeCountComicHistoryArgs
+    comments?: boolean | ChapterCountOutputTypeCountCommentsArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * ChapterCountOutputType without action
+   */
+  export type ChapterCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ChapterCountOutputType
+     */
+    select?: ChapterCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * ChapterCountOutputType without action
+   */
+  export type ChapterCountOutputTypeCountChapterImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: chapter_imageWhereInput
+  }
+
+  /**
+   * ChapterCountOutputType without action
+   */
+  export type ChapterCountOutputTypeCountChapterUnlocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: chapter_unlockWhereInput
+  }
+
+  /**
+   * ChapterCountOutputType without action
+   */
+  export type ChapterCountOutputTypeCountComicHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: comic_historyWhereInput
+  }
+
+  /**
+   * ChapterCountOutputType without action
+   */
+  export type ChapterCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: commentWhereInput
+  }
+
+
+  /**
+   * Count Type CommentCountOutputType
+   */
+
+  export type CommentCountOutputType = {
+    replies: number
+  }
+
+  export type CommentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    replies?: boolean | CommentCountOutputTypeCountRepliesArgs
+  }
+
+  // Custom InputTypes
+  /**
+   * CommentCountOutputType without action
+   */
+  export type CommentCountOutputTypeDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the CommentCountOutputType
+     */
+    select?: CommentCountOutputTypeSelect<ExtArgs> | null
+  }
+
+  /**
+   * CommentCountOutputType without action
+   */
+  export type CommentCountOutputTypeCountRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: commentWhereInput
+  }
+
+
+  /**
+   * Models
+   */
+
+  /**
+   * Model User
+   */
+
+  export type AggregateUser = {
+    _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  export type UserAvgAggregateOutputType = {
+    id: number | null
+    total_coin: number | null
+  }
+
+  export type UserSumAggregateOutputType = {
+    id: number | null
+    total_coin: number | null
+  }
+
+  export type UserMinAggregateOutputType = {
+    id: number | null
+    username: string | null
+    email: string | null
+    password: string | null
+    avatar: string | null
+    role: $Enums.userRole | null
+    total_coin: number | null
+    refresh_token: string | null
+    create_at: Date | null
+    update_at: Date | null
+  }
+
+  export type UserMaxAggregateOutputType = {
+    id: number | null
+    username: string | null
+    email: string | null
+    password: string | null
+    avatar: string | null
+    role: $Enums.userRole | null
+    total_coin: number | null
+    refresh_token: string | null
+    create_at: Date | null
+    update_at: Date | null
+  }
+
+  export type UserCountAggregateOutputType = {
+    id: number
+    username: number
+    email: number
+    password: number
+    avatar: number
+    role: number
+    total_coin: number
+    refresh_token: number
+    create_at: number
+    update_at: number
+    _all: number
+  }
+
+
+  export type UserAvgAggregateInputType = {
+    id?: true
+    total_coin?: true
+  }
+
+  export type UserSumAggregateInputType = {
+    id?: true
+    total_coin?: true
+  }
+
+  export type UserMinAggregateInputType = {
+    id?: true
+    username?: true
+    email?: true
+    password?: true
+    avatar?: true
+    role?: true
+    total_coin?: true
+    refresh_token?: true
+    create_at?: true
+    update_at?: true
+  }
+
+  export type UserMaxAggregateInputType = {
+    id?: true
+    username?: true
+    email?: true
+    password?: true
+    avatar?: true
+    role?: true
+    total_coin?: true
+    refresh_token?: true
+    create_at?: true
+    update_at?: true
+  }
+
+  export type UserCountAggregateInputType = {
+    id?: true
+    username?: true
+    email?: true
+    password?: true
+    avatar?: true
+    role?: true
+    total_coin?: true
+    refresh_token?: true
+    create_at?: true
+    update_at?: true
+    _all?: true
+  }
+
+  export type UserAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which User to aggregate.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Users
+    **/
+    _count?: true | UserCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: UserAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: UserSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: UserMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type GetUserAggregateType<T extends UserAggregateArgs> = {
+        [P in keyof T & keyof AggregateUser]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateUser[P]>
+      : GetScalarType<T[P], AggregateUser[P]>
+  }
+
+
+
+
+  export type UserGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: UserWhereInput
+    orderBy?: UserOrderByWithAggregationInput | UserOrderByWithAggregationInput[]
+    by: UserScalarFieldEnum[] | UserScalarFieldEnum
+    having?: UserScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: UserCountAggregateInputType | true
+    _avg?: UserAvgAggregateInputType
+    _sum?: UserSumAggregateInputType
+    _min?: UserMinAggregateInputType
+    _max?: UserMaxAggregateInputType
+  }
+
+  export type UserGroupByOutputType = {
+    id: number
+    username: string
+    email: string
+    password: string
+    avatar: string | null
+    role: $Enums.userRole
+    total_coin: number
+    refresh_token: string | null
+    create_at: Date
+    update_at: Date
+    _count: UserCountAggregateOutputType | null
+    _avg: UserAvgAggregateOutputType | null
+    _sum: UserSumAggregateOutputType | null
+    _min: UserMinAggregateOutputType | null
+    _max: UserMaxAggregateOutputType | null
+  }
+
+  type GetUserGroupByPayload<T extends UserGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<UserGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof UserGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], UserGroupByOutputType[P]>
+            : GetScalarType<T[P], UserGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type UserSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    username?: boolean
+    email?: boolean
+    password?: boolean
+    avatar?: boolean
+    role?: boolean
+    total_coin?: boolean
+    refresh_token?: boolean
+    create_at?: boolean
+    update_at?: boolean
+    transactions?: boolean | User$transactionsArgs<ExtArgs>
+    chapterUnlocks?: boolean | User$chapterUnlocksArgs<ExtArgs>
+    notifications?: boolean | User$notificationsArgs<ExtArgs>
+    comicFollower?: boolean | User$comicFollowerArgs<ExtArgs>
+    comicHistory?: boolean | User$comicHistoryArgs<ExtArgs>
+    comments?: boolean | User$commentsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["user"]>
+
+
+
+  export type UserSelectScalar = {
+    id?: boolean
+    username?: boolean
+    email?: boolean
+    password?: boolean
+    avatar?: boolean
+    role?: boolean
+    total_coin?: boolean
+    refresh_token?: boolean
+    create_at?: boolean
+    update_at?: boolean
+  }
+
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "avatar" | "role" | "total_coin" | "refresh_token" | "create_at" | "update_at", ExtArgs["result"]["user"]>
+  export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transactions?: boolean | User$transactionsArgs<ExtArgs>
+    chapterUnlocks?: boolean | User$chapterUnlocksArgs<ExtArgs>
+    notifications?: boolean | User$notificationsArgs<ExtArgs>
+    comicFollower?: boolean | User$comicFollowerArgs<ExtArgs>
+    comicHistory?: boolean | User$comicHistoryArgs<ExtArgs>
+    comments?: boolean | User$commentsArgs<ExtArgs>
+    _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $UserPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "User"
+    objects: {
+      transactions: Prisma.$TransactionPayload<ExtArgs>[]
+      chapterUnlocks: Prisma.$chapter_unlockPayload<ExtArgs>[]
+      notifications: Prisma.$NotificationPayload<ExtArgs>[]
+      comicFollower: Prisma.$comic_followerPayload<ExtArgs>[]
+      comicHistory: Prisma.$comic_historyPayload<ExtArgs>[]
+      comments: Prisma.$commentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      username: string
+      email: string
+      password: string
+      avatar: string | null
+      role: $Enums.userRole
+      total_coin: number
+      refresh_token: string | null
+      create_at: Date
+      update_at: Date
+    }, ExtArgs["result"]["user"]>
+    composites: {}
+  }
+
+  type UserGetPayload<S extends boolean | null | undefined | UserDefaultArgs> = $Result.GetResult<Prisma.$UserPayload, S>
+
+  type UserCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<UserFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: UserCountAggregateInputType | true
+    }
+
+  export interface UserDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['User'], meta: { name: 'User' } }
+    /**
+     * Find zero or one User that matches the filter.
+     * @param {UserFindUniqueArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends UserFindUniqueArgs>(args: SelectSubset<T, UserFindUniqueArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one User that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {UserFindUniqueOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends UserFindUniqueOrThrowArgs>(args: SelectSubset<T, UserFindUniqueOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends UserFindFirstArgs>(args?: SelectSubset<T, UserFindFirstArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first User that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindFirstOrThrowArgs} args - Arguments to find a User
+     * @example
+     * // Get one User
+     * const user = await prisma.user.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends UserFindFirstOrThrowArgs>(args?: SelectSubset<T, UserFindFirstOrThrowArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Users that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Users
+     * const users = await prisma.user.findMany()
+     * 
+     * // Get first 10 Users
+     * const users = await prisma.user.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const userWithIdOnly = await prisma.user.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends UserFindManyArgs>(args?: SelectSubset<T, UserFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a User.
+     * @param {UserCreateArgs} args - Arguments to create a User.
+     * @example
+     * // Create one User
+     * const User = await prisma.user.create({
+     *   data: {
+     *     // ... data to create a User
+     *   }
+     * })
+     * 
+     */
+    create<T extends UserCreateArgs>(args: SelectSubset<T, UserCreateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Users.
+     * @param {UserCreateManyArgs} args - Arguments to create many Users.
+     * @example
+     * // Create many Users
+     * const user = await prisma.user.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends UserCreateManyArgs>(args?: SelectSubset<T, UserCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a User.
+     * @param {UserDeleteArgs} args - Arguments to delete one User.
+     * @example
+     * // Delete one User
+     * const User = await prisma.user.delete({
+     *   where: {
+     *     // ... filter to delete one User
+     *   }
+     * })
+     * 
+     */
+    delete<T extends UserDeleteArgs>(args: SelectSubset<T, UserDeleteArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one User.
+     * @param {UserUpdateArgs} args - Arguments to update one User.
+     * @example
+     * // Update one User
+     * const user = await prisma.user.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends UserUpdateArgs>(args: SelectSubset<T, UserUpdateArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Users.
+     * @param {UserDeleteManyArgs} args - Arguments to filter Users to delete.
+     * @example
+     * // Delete a few Users
+     * const { count } = await prisma.user.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends UserDeleteManyArgs>(args?: SelectSubset<T, UserDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Users
+     * const user = await prisma.user.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends UserUpdateManyArgs>(args: SelectSubset<T, UserUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one User.
+     * @param {UserUpsertArgs} args - Arguments to update or create a User.
+     * @example
+     * // Update or create a User
+     * const user = await prisma.user.upsert({
+     *   create: {
+     *     // ... data to create a User
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the User we want to update
+     *   }
+     * })
+     */
+    upsert<T extends UserUpsertArgs>(args: SelectSubset<T, UserUpsertArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Users.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserCountArgs} args - Arguments to filter Users to count.
+     * @example
+     * // Count the number of Users
+     * const count = await prisma.user.count({
+     *   where: {
+     *     // ... the filter for the Users we want to count
+     *   }
+     * })
+    **/
+    count<T extends UserCountArgs>(
+      args?: Subset<T, UserCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], UserCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends UserAggregateArgs>(args: Subset<T, UserAggregateArgs>): Prisma.PrismaPromise<GetUserAggregateType<T>>
+
+    /**
+     * Group by User.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {UserGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends UserGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: UserGroupByArgs['orderBy'] }
+        : { orderBy?: UserGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, UserGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetUserGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the User model
+   */
+  readonly fields: UserFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for User.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__UserClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    transactions<T extends User$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, User$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    chapterUnlocks<T extends User$chapterUnlocksArgs<ExtArgs> = {}>(args?: Subset<T, User$chapterUnlocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    notifications<T extends User$notificationsArgs<ExtArgs> = {}>(args?: Subset<T, User$notificationsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comicFollower<T extends User$comicFollowerArgs<ExtArgs> = {}>(args?: Subset<T, User$comicFollowerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comicHistory<T extends User$comicHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$comicHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the User model
+   */
+  interface UserFieldRefs {
+    readonly id: FieldRef<"User", 'Int'>
+    readonly username: FieldRef<"User", 'String'>
+    readonly email: FieldRef<"User", 'String'>
+    readonly password: FieldRef<"User", 'String'>
+    readonly avatar: FieldRef<"User", 'String'>
+    readonly role: FieldRef<"User", 'userRole'>
+    readonly total_coin: FieldRef<"User", 'Int'>
+    readonly refresh_token: FieldRef<"User", 'String'>
+    readonly create_at: FieldRef<"User", 'DateTime'>
+    readonly update_at: FieldRef<"User", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * User findUnique
+   */
+  export type UserFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User findUniqueOrThrow
+   */
+  export type UserFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User findFirst
+   */
+  export type UserFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User findFirstOrThrow
+   */
+  export type UserFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which User to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Users.
+     */
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User findMany
+   */
+  export type UserFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter, which Users to fetch.
+     */
+    where?: UserWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Users to fetch.
+     */
+    orderBy?: UserOrderByWithRelationInput | UserOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Users.
+     */
+    cursor?: UserWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Users from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Users.
+     */
+    skip?: number
+    distinct?: UserScalarFieldEnum | UserScalarFieldEnum[]
+  }
+
+  /**
+   * User create
+   */
+  export type UserCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to create a User.
+     */
+    data: XOR<UserCreateInput, UserUncheckedCreateInput>
+  }
+
+  /**
+   * User createMany
+   */
+  export type UserCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Users.
+     */
+    data: UserCreateManyInput | UserCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * User update
+   */
+  export type UserUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The data needed to update a User.
+     */
+    data: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+    /**
+     * Choose, which User to update.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User updateMany
+   */
+  export type UserUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Users.
+     */
+    data: XOR<UserUpdateManyMutationInput, UserUncheckedUpdateManyInput>
+    /**
+     * Filter which Users to update
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * User upsert
+   */
+  export type UserUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * The filter to search for the User to update in case it exists.
+     */
+    where: UserWhereUniqueInput
+    /**
+     * In case the User found by the `where` argument doesn't exist, create a new User with this data.
+     */
+    create: XOR<UserCreateInput, UserUncheckedCreateInput>
+    /**
+     * In case the User was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<UserUpdateInput, UserUncheckedUpdateInput>
+  }
+
+  /**
+   * User delete
+   */
+  export type UserDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+    /**
+     * Filter which User to delete.
+     */
+    where: UserWhereUniqueInput
+  }
+
+  /**
+   * User deleteMany
+   */
+  export type UserDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Users to delete
+     */
+    where?: UserWhereInput
+    /**
+     * Limit how many Users to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * User.transactions
+   */
+  export type User$transactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    where?: TransactionWhereInput
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    cursor?: TransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * User.chapterUnlocks
+   */
+  export type User$chapterUnlocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    where?: chapter_unlockWhereInput
+    orderBy?: chapter_unlockOrderByWithRelationInput | chapter_unlockOrderByWithRelationInput[]
+    cursor?: chapter_unlockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Chapter_unlockScalarFieldEnum | Chapter_unlockScalarFieldEnum[]
+  }
+
+  /**
+   * User.notifications
+   */
+  export type User$notificationsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    cursor?: NotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * User.comicFollower
+   */
+  export type User$comicFollowerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    where?: comic_followerWhereInput
+    orderBy?: comic_followerOrderByWithRelationInput | comic_followerOrderByWithRelationInput[]
+    cursor?: comic_followerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Comic_followerScalarFieldEnum | Comic_followerScalarFieldEnum[]
+  }
+
+  /**
+   * User.comicHistory
+   */
+  export type User$comicHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    where?: comic_historyWhereInput
+    orderBy?: comic_historyOrderByWithRelationInput | comic_historyOrderByWithRelationInput[]
+    cursor?: comic_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Comic_historyScalarFieldEnum | Comic_historyScalarFieldEnum[]
+  }
+
+  /**
+   * User.comments
+   */
+  export type User$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    where?: commentWhereInput
+    orderBy?: commentOrderByWithRelationInput | commentOrderByWithRelationInput[]
+    cursor?: commentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * User without action
+   */
+  export type UserDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the User
+     */
+    select?: UserSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the User
+     */
+    omit?: UserOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: UserInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Coin
+   */
+
+  export type AggregateCoin = {
+    _count: CoinCountAggregateOutputType | null
+    _avg: CoinAvgAggregateOutputType | null
+    _sum: CoinSumAggregateOutputType | null
+    _min: CoinMinAggregateOutputType | null
+    _max: CoinMaxAggregateOutputType | null
+  }
+
+  export type CoinAvgAggregateOutputType = {
+    id: number | null
+    coin_amount: number | null
+    price: number | null
+  }
+
+  export type CoinSumAggregateOutputType = {
+    id: number | null
+    coin_amount: number | null
+    price: number | null
+  }
+
+  export type CoinMinAggregateOutputType = {
+    id: number | null
+    coin_amount: number | null
+    price: number | null
+    create_at: Date | null
+  }
+
+  export type CoinMaxAggregateOutputType = {
+    id: number | null
+    coin_amount: number | null
+    price: number | null
+    create_at: Date | null
+  }
+
+  export type CoinCountAggregateOutputType = {
+    id: number
+    coin_amount: number
+    price: number
+    create_at: number
+    _all: number
+  }
+
+
+  export type CoinAvgAggregateInputType = {
+    id?: true
+    coin_amount?: true
+    price?: true
+  }
+
+  export type CoinSumAggregateInputType = {
+    id?: true
+    coin_amount?: true
+    price?: true
+  }
+
+  export type CoinMinAggregateInputType = {
+    id?: true
+    coin_amount?: true
+    price?: true
+    create_at?: true
+  }
+
+  export type CoinMaxAggregateInputType = {
+    id?: true
+    coin_amount?: true
+    price?: true
+    create_at?: true
+  }
+
+  export type CoinCountAggregateInputType = {
+    id?: true
+    coin_amount?: true
+    price?: true
+    create_at?: true
+    _all?: true
+  }
+
+  export type CoinAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Coin to aggregate.
+     */
+    where?: CoinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Coins to fetch.
+     */
+    orderBy?: CoinOrderByWithRelationInput | CoinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CoinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Coins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Coins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Coins
+    **/
+    _count?: true | CoinCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CoinAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CoinSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CoinMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CoinMaxAggregateInputType
+  }
+
+  export type GetCoinAggregateType<T extends CoinAggregateArgs> = {
+        [P in keyof T & keyof AggregateCoin]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCoin[P]>
+      : GetScalarType<T[P], AggregateCoin[P]>
+  }
+
+
+
+
+  export type CoinGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CoinWhereInput
+    orderBy?: CoinOrderByWithAggregationInput | CoinOrderByWithAggregationInput[]
+    by: CoinScalarFieldEnum[] | CoinScalarFieldEnum
+    having?: CoinScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CoinCountAggregateInputType | true
+    _avg?: CoinAvgAggregateInputType
+    _sum?: CoinSumAggregateInputType
+    _min?: CoinMinAggregateInputType
+    _max?: CoinMaxAggregateInputType
+  }
+
+  export type CoinGroupByOutputType = {
+    id: number
+    coin_amount: number
+    price: number
+    create_at: Date
+    _count: CoinCountAggregateOutputType | null
+    _avg: CoinAvgAggregateOutputType | null
+    _sum: CoinSumAggregateOutputType | null
+    _min: CoinMinAggregateOutputType | null
+    _max: CoinMaxAggregateOutputType | null
+  }
+
+  type GetCoinGroupByPayload<T extends CoinGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CoinGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CoinGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CoinGroupByOutputType[P]>
+            : GetScalarType<T[P], CoinGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CoinSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    coin_amount?: boolean
+    price?: boolean
+    create_at?: boolean
+    transactions?: boolean | Coin$transactionsArgs<ExtArgs>
+    _count?: boolean | CoinCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["coin"]>
+
+
+
+  export type CoinSelectScalar = {
+    id?: boolean
+    coin_amount?: boolean
+    price?: boolean
+    create_at?: boolean
+  }
+
+  export type CoinOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "coin_amount" | "price" | "create_at", ExtArgs["result"]["coin"]>
+  export type CoinInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    transactions?: boolean | Coin$transactionsArgs<ExtArgs>
+    _count?: boolean | CoinCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $CoinPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Coin"
+    objects: {
+      transactions: Prisma.$TransactionPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      coin_amount: number
+      price: number
+      create_at: Date
+    }, ExtArgs["result"]["coin"]>
+    composites: {}
+  }
+
+  type CoinGetPayload<S extends boolean | null | undefined | CoinDefaultArgs> = $Result.GetResult<Prisma.$CoinPayload, S>
+
+  type CoinCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CoinFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CoinCountAggregateInputType | true
+    }
+
+  export interface CoinDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Coin'], meta: { name: 'Coin' } }
+    /**
+     * Find zero or one Coin that matches the filter.
+     * @param {CoinFindUniqueArgs} args - Arguments to find a Coin
+     * @example
+     * // Get one Coin
+     * const coin = await prisma.coin.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CoinFindUniqueArgs>(args: SelectSubset<T, CoinFindUniqueArgs<ExtArgs>>): Prisma__CoinClient<$Result.GetResult<Prisma.$CoinPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Coin that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CoinFindUniqueOrThrowArgs} args - Arguments to find a Coin
+     * @example
+     * // Get one Coin
+     * const coin = await prisma.coin.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CoinFindUniqueOrThrowArgs>(args: SelectSubset<T, CoinFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CoinClient<$Result.GetResult<Prisma.$CoinPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Coin that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoinFindFirstArgs} args - Arguments to find a Coin
+     * @example
+     * // Get one Coin
+     * const coin = await prisma.coin.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CoinFindFirstArgs>(args?: SelectSubset<T, CoinFindFirstArgs<ExtArgs>>): Prisma__CoinClient<$Result.GetResult<Prisma.$CoinPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Coin that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoinFindFirstOrThrowArgs} args - Arguments to find a Coin
+     * @example
+     * // Get one Coin
+     * const coin = await prisma.coin.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CoinFindFirstOrThrowArgs>(args?: SelectSubset<T, CoinFindFirstOrThrowArgs<ExtArgs>>): Prisma__CoinClient<$Result.GetResult<Prisma.$CoinPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Coins that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoinFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Coins
+     * const coins = await prisma.coin.findMany()
+     * 
+     * // Get first 10 Coins
+     * const coins = await prisma.coin.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const coinWithIdOnly = await prisma.coin.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CoinFindManyArgs>(args?: SelectSubset<T, CoinFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CoinPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Coin.
+     * @param {CoinCreateArgs} args - Arguments to create a Coin.
+     * @example
+     * // Create one Coin
+     * const Coin = await prisma.coin.create({
+     *   data: {
+     *     // ... data to create a Coin
+     *   }
+     * })
+     * 
+     */
+    create<T extends CoinCreateArgs>(args: SelectSubset<T, CoinCreateArgs<ExtArgs>>): Prisma__CoinClient<$Result.GetResult<Prisma.$CoinPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Coins.
+     * @param {CoinCreateManyArgs} args - Arguments to create many Coins.
+     * @example
+     * // Create many Coins
+     * const coin = await prisma.coin.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CoinCreateManyArgs>(args?: SelectSubset<T, CoinCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Coin.
+     * @param {CoinDeleteArgs} args - Arguments to delete one Coin.
+     * @example
+     * // Delete one Coin
+     * const Coin = await prisma.coin.delete({
+     *   where: {
+     *     // ... filter to delete one Coin
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CoinDeleteArgs>(args: SelectSubset<T, CoinDeleteArgs<ExtArgs>>): Prisma__CoinClient<$Result.GetResult<Prisma.$CoinPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Coin.
+     * @param {CoinUpdateArgs} args - Arguments to update one Coin.
+     * @example
+     * // Update one Coin
+     * const coin = await prisma.coin.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CoinUpdateArgs>(args: SelectSubset<T, CoinUpdateArgs<ExtArgs>>): Prisma__CoinClient<$Result.GetResult<Prisma.$CoinPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Coins.
+     * @param {CoinDeleteManyArgs} args - Arguments to filter Coins to delete.
+     * @example
+     * // Delete a few Coins
+     * const { count } = await prisma.coin.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CoinDeleteManyArgs>(args?: SelectSubset<T, CoinDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Coins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoinUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Coins
+     * const coin = await prisma.coin.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CoinUpdateManyArgs>(args: SelectSubset<T, CoinUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Coin.
+     * @param {CoinUpsertArgs} args - Arguments to update or create a Coin.
+     * @example
+     * // Update or create a Coin
+     * const coin = await prisma.coin.upsert({
+     *   create: {
+     *     // ... data to create a Coin
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Coin we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CoinUpsertArgs>(args: SelectSubset<T, CoinUpsertArgs<ExtArgs>>): Prisma__CoinClient<$Result.GetResult<Prisma.$CoinPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Coins.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoinCountArgs} args - Arguments to filter Coins to count.
+     * @example
+     * // Count the number of Coins
+     * const count = await prisma.coin.count({
+     *   where: {
+     *     // ... the filter for the Coins we want to count
+     *   }
+     * })
+    **/
+    count<T extends CoinCountArgs>(
+      args?: Subset<T, CoinCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CoinCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Coin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoinAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CoinAggregateArgs>(args: Subset<T, CoinAggregateArgs>): Prisma.PrismaPromise<GetCoinAggregateType<T>>
+
+    /**
+     * Group by Coin.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CoinGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CoinGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CoinGroupByArgs['orderBy'] }
+        : { orderBy?: CoinGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CoinGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCoinGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Coin model
+   */
+  readonly fields: CoinFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Coin.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CoinClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    transactions<T extends Coin$transactionsArgs<ExtArgs> = {}>(args?: Subset<T, Coin$transactionsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Coin model
+   */
+  interface CoinFieldRefs {
+    readonly id: FieldRef<"Coin", 'Int'>
+    readonly coin_amount: FieldRef<"Coin", 'Int'>
+    readonly price: FieldRef<"Coin", 'Float'>
+    readonly create_at: FieldRef<"Coin", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Coin findUnique
+   */
+  export type CoinFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coin
+     */
+    select?: CoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coin
+     */
+    omit?: CoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoinInclude<ExtArgs> | null
+    /**
+     * Filter, which Coin to fetch.
+     */
+    where: CoinWhereUniqueInput
+  }
+
+  /**
+   * Coin findUniqueOrThrow
+   */
+  export type CoinFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coin
+     */
+    select?: CoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coin
+     */
+    omit?: CoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoinInclude<ExtArgs> | null
+    /**
+     * Filter, which Coin to fetch.
+     */
+    where: CoinWhereUniqueInput
+  }
+
+  /**
+   * Coin findFirst
+   */
+  export type CoinFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coin
+     */
+    select?: CoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coin
+     */
+    omit?: CoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoinInclude<ExtArgs> | null
+    /**
+     * Filter, which Coin to fetch.
+     */
+    where?: CoinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Coins to fetch.
+     */
+    orderBy?: CoinOrderByWithRelationInput | CoinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Coins.
+     */
+    cursor?: CoinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Coins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Coins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Coins.
+     */
+    distinct?: CoinScalarFieldEnum | CoinScalarFieldEnum[]
+  }
+
+  /**
+   * Coin findFirstOrThrow
+   */
+  export type CoinFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coin
+     */
+    select?: CoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coin
+     */
+    omit?: CoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoinInclude<ExtArgs> | null
+    /**
+     * Filter, which Coin to fetch.
+     */
+    where?: CoinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Coins to fetch.
+     */
+    orderBy?: CoinOrderByWithRelationInput | CoinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Coins.
+     */
+    cursor?: CoinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Coins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Coins.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Coins.
+     */
+    distinct?: CoinScalarFieldEnum | CoinScalarFieldEnum[]
+  }
+
+  /**
+   * Coin findMany
+   */
+  export type CoinFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coin
+     */
+    select?: CoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coin
+     */
+    omit?: CoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoinInclude<ExtArgs> | null
+    /**
+     * Filter, which Coins to fetch.
+     */
+    where?: CoinWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Coins to fetch.
+     */
+    orderBy?: CoinOrderByWithRelationInput | CoinOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Coins.
+     */
+    cursor?: CoinWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Coins from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Coins.
+     */
+    skip?: number
+    distinct?: CoinScalarFieldEnum | CoinScalarFieldEnum[]
+  }
+
+  /**
+   * Coin create
+   */
+  export type CoinCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coin
+     */
+    select?: CoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coin
+     */
+    omit?: CoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoinInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Coin.
+     */
+    data: XOR<CoinCreateInput, CoinUncheckedCreateInput>
+  }
+
+  /**
+   * Coin createMany
+   */
+  export type CoinCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Coins.
+     */
+    data: CoinCreateManyInput | CoinCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Coin update
+   */
+  export type CoinUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coin
+     */
+    select?: CoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coin
+     */
+    omit?: CoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoinInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Coin.
+     */
+    data: XOR<CoinUpdateInput, CoinUncheckedUpdateInput>
+    /**
+     * Choose, which Coin to update.
+     */
+    where: CoinWhereUniqueInput
+  }
+
+  /**
+   * Coin updateMany
+   */
+  export type CoinUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Coins.
+     */
+    data: XOR<CoinUpdateManyMutationInput, CoinUncheckedUpdateManyInput>
+    /**
+     * Filter which Coins to update
+     */
+    where?: CoinWhereInput
+    /**
+     * Limit how many Coins to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Coin upsert
+   */
+  export type CoinUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coin
+     */
+    select?: CoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coin
+     */
+    omit?: CoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoinInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Coin to update in case it exists.
+     */
+    where: CoinWhereUniqueInput
+    /**
+     * In case the Coin found by the `where` argument doesn't exist, create a new Coin with this data.
+     */
+    create: XOR<CoinCreateInput, CoinUncheckedCreateInput>
+    /**
+     * In case the Coin was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CoinUpdateInput, CoinUncheckedUpdateInput>
+  }
+
+  /**
+   * Coin delete
+   */
+  export type CoinDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coin
+     */
+    select?: CoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coin
+     */
+    omit?: CoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoinInclude<ExtArgs> | null
+    /**
+     * Filter which Coin to delete.
+     */
+    where: CoinWhereUniqueInput
+  }
+
+  /**
+   * Coin deleteMany
+   */
+  export type CoinDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Coins to delete
+     */
+    where?: CoinWhereInput
+    /**
+     * Limit how many Coins to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Coin.transactions
+   */
+  export type Coin$transactionsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    where?: TransactionWhereInput
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    cursor?: TransactionWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Coin without action
+   */
+  export type CoinDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Coin
+     */
+    select?: CoinSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Coin
+     */
+    omit?: CoinOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CoinInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Transaction
+   */
+
+  export type AggregateTransaction = {
+    _count: TransactionCountAggregateOutputType | null
+    _avg: TransactionAvgAggregateOutputType | null
+    _sum: TransactionSumAggregateOutputType | null
+    _min: TransactionMinAggregateOutputType | null
+    _max: TransactionMaxAggregateOutputType | null
+  }
+
+  export type TransactionAvgAggregateOutputType = {
+    id: number | null
+    coin_amount: number | null
+    price: number | null
+    userId: number | null
+    coinId: number | null
+  }
+
+  export type TransactionSumAggregateOutputType = {
+    id: number | null
+    coin_amount: number | null
+    price: number | null
+    userId: number | null
+    coinId: number | null
+  }
+
+  export type TransactionMinAggregateOutputType = {
+    id: number | null
+    coin_amount: number | null
+    price: number | null
+    status: $Enums.transactionStatus | null
+    create_at: Date | null
+    userId: number | null
+    coinId: number | null
+  }
+
+  export type TransactionMaxAggregateOutputType = {
+    id: number | null
+    coin_amount: number | null
+    price: number | null
+    status: $Enums.transactionStatus | null
+    create_at: Date | null
+    userId: number | null
+    coinId: number | null
+  }
+
+  export type TransactionCountAggregateOutputType = {
+    id: number
+    coin_amount: number
+    price: number
+    status: number
+    create_at: number
+    userId: number
+    coinId: number
+    _all: number
+  }
+
+
+  export type TransactionAvgAggregateInputType = {
+    id?: true
+    coin_amount?: true
+    price?: true
+    userId?: true
+    coinId?: true
+  }
+
+  export type TransactionSumAggregateInputType = {
+    id?: true
+    coin_amount?: true
+    price?: true
+    userId?: true
+    coinId?: true
+  }
+
+  export type TransactionMinAggregateInputType = {
+    id?: true
+    coin_amount?: true
+    price?: true
+    status?: true
+    create_at?: true
+    userId?: true
+    coinId?: true
+  }
+
+  export type TransactionMaxAggregateInputType = {
+    id?: true
+    coin_amount?: true
+    price?: true
+    status?: true
+    create_at?: true
+    userId?: true
+    coinId?: true
+  }
+
+  export type TransactionCountAggregateInputType = {
+    id?: true
+    coin_amount?: true
+    price?: true
+    status?: true
+    create_at?: true
+    userId?: true
+    coinId?: true
+    _all?: true
+  }
+
+  export type TransactionAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Transaction to aggregate.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Transactions
+    **/
+    _count?: true | TransactionCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: TransactionAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: TransactionSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: TransactionMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: TransactionMaxAggregateInputType
+  }
+
+  export type GetTransactionAggregateType<T extends TransactionAggregateArgs> = {
+        [P in keyof T & keyof AggregateTransaction]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateTransaction[P]>
+      : GetScalarType<T[P], AggregateTransaction[P]>
+  }
+
+
+
+
+  export type TransactionGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: TransactionWhereInput
+    orderBy?: TransactionOrderByWithAggregationInput | TransactionOrderByWithAggregationInput[]
+    by: TransactionScalarFieldEnum[] | TransactionScalarFieldEnum
+    having?: TransactionScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: TransactionCountAggregateInputType | true
+    _avg?: TransactionAvgAggregateInputType
+    _sum?: TransactionSumAggregateInputType
+    _min?: TransactionMinAggregateInputType
+    _max?: TransactionMaxAggregateInputType
+  }
+
+  export type TransactionGroupByOutputType = {
+    id: number
+    coin_amount: number
+    price: number
+    status: $Enums.transactionStatus
+    create_at: Date
+    userId: number
+    coinId: number
+    _count: TransactionCountAggregateOutputType | null
+    _avg: TransactionAvgAggregateOutputType | null
+    _sum: TransactionSumAggregateOutputType | null
+    _min: TransactionMinAggregateOutputType | null
+    _max: TransactionMaxAggregateOutputType | null
+  }
+
+  type GetTransactionGroupByPayload<T extends TransactionGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<TransactionGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof TransactionGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], TransactionGroupByOutputType[P]>
+            : GetScalarType<T[P], TransactionGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type TransactionSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    coin_amount?: boolean
+    price?: boolean
+    status?: boolean
+    create_at?: boolean
+    userId?: boolean
+    coinId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coin?: boolean | CoinDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["transaction"]>
+
+
+
+  export type TransactionSelectScalar = {
+    id?: boolean
+    coin_amount?: boolean
+    price?: boolean
+    status?: boolean
+    create_at?: boolean
+    userId?: boolean
+    coinId?: boolean
+  }
+
+  export type TransactionOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "coin_amount" | "price" | "status" | "create_at" | "userId" | "coinId", ExtArgs["result"]["transaction"]>
+  export type TransactionInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    coin?: boolean | CoinDefaultArgs<ExtArgs>
+  }
+
+  export type $TransactionPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Transaction"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      coin: Prisma.$CoinPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      coin_amount: number
+      price: number
+      status: $Enums.transactionStatus
+      create_at: Date
+      userId: number
+      coinId: number
+    }, ExtArgs["result"]["transaction"]>
+    composites: {}
+  }
+
+  type TransactionGetPayload<S extends boolean | null | undefined | TransactionDefaultArgs> = $Result.GetResult<Prisma.$TransactionPayload, S>
+
+  type TransactionCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<TransactionFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: TransactionCountAggregateInputType | true
+    }
+
+  export interface TransactionDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Transaction'], meta: { name: 'Transaction' } }
+    /**
+     * Find zero or one Transaction that matches the filter.
+     * @param {TransactionFindUniqueArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends TransactionFindUniqueArgs>(args: SelectSubset<T, TransactionFindUniqueArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Transaction that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {TransactionFindUniqueOrThrowArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends TransactionFindUniqueOrThrowArgs>(args: SelectSubset<T, TransactionFindUniqueOrThrowArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Transaction that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionFindFirstArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends TransactionFindFirstArgs>(args?: SelectSubset<T, TransactionFindFirstArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Transaction that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionFindFirstOrThrowArgs} args - Arguments to find a Transaction
+     * @example
+     * // Get one Transaction
+     * const transaction = await prisma.transaction.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends TransactionFindFirstOrThrowArgs>(args?: SelectSubset<T, TransactionFindFirstOrThrowArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Transactions that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Transactions
+     * const transactions = await prisma.transaction.findMany()
+     * 
+     * // Get first 10 Transactions
+     * const transactions = await prisma.transaction.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const transactionWithIdOnly = await prisma.transaction.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends TransactionFindManyArgs>(args?: SelectSubset<T, TransactionFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Transaction.
+     * @param {TransactionCreateArgs} args - Arguments to create a Transaction.
+     * @example
+     * // Create one Transaction
+     * const Transaction = await prisma.transaction.create({
+     *   data: {
+     *     // ... data to create a Transaction
+     *   }
+     * })
+     * 
+     */
+    create<T extends TransactionCreateArgs>(args: SelectSubset<T, TransactionCreateArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Transactions.
+     * @param {TransactionCreateManyArgs} args - Arguments to create many Transactions.
+     * @example
+     * // Create many Transactions
+     * const transaction = await prisma.transaction.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends TransactionCreateManyArgs>(args?: SelectSubset<T, TransactionCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Transaction.
+     * @param {TransactionDeleteArgs} args - Arguments to delete one Transaction.
+     * @example
+     * // Delete one Transaction
+     * const Transaction = await prisma.transaction.delete({
+     *   where: {
+     *     // ... filter to delete one Transaction
+     *   }
+     * })
+     * 
+     */
+    delete<T extends TransactionDeleteArgs>(args: SelectSubset<T, TransactionDeleteArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Transaction.
+     * @param {TransactionUpdateArgs} args - Arguments to update one Transaction.
+     * @example
+     * // Update one Transaction
+     * const transaction = await prisma.transaction.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends TransactionUpdateArgs>(args: SelectSubset<T, TransactionUpdateArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Transactions.
+     * @param {TransactionDeleteManyArgs} args - Arguments to filter Transactions to delete.
+     * @example
+     * // Delete a few Transactions
+     * const { count } = await prisma.transaction.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends TransactionDeleteManyArgs>(args?: SelectSubset<T, TransactionDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Transactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Transactions
+     * const transaction = await prisma.transaction.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends TransactionUpdateManyArgs>(args: SelectSubset<T, TransactionUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Transaction.
+     * @param {TransactionUpsertArgs} args - Arguments to update or create a Transaction.
+     * @example
+     * // Update or create a Transaction
+     * const transaction = await prisma.transaction.upsert({
+     *   create: {
+     *     // ... data to create a Transaction
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Transaction we want to update
+     *   }
+     * })
+     */
+    upsert<T extends TransactionUpsertArgs>(args: SelectSubset<T, TransactionUpsertArgs<ExtArgs>>): Prisma__TransactionClient<$Result.GetResult<Prisma.$TransactionPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Transactions.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionCountArgs} args - Arguments to filter Transactions to count.
+     * @example
+     * // Count the number of Transactions
+     * const count = await prisma.transaction.count({
+     *   where: {
+     *     // ... the filter for the Transactions we want to count
+     *   }
+     * })
+    **/
+    count<T extends TransactionCountArgs>(
+      args?: Subset<T, TransactionCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], TransactionCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Transaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends TransactionAggregateArgs>(args: Subset<T, TransactionAggregateArgs>): Prisma.PrismaPromise<GetTransactionAggregateType<T>>
+
+    /**
+     * Group by Transaction.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {TransactionGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends TransactionGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: TransactionGroupByArgs['orderBy'] }
+        : { orderBy?: TransactionGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, TransactionGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetTransactionGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Transaction model
+   */
+  readonly fields: TransactionFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Transaction.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__TransactionClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    coin<T extends CoinDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CoinDefaultArgs<ExtArgs>>): Prisma__CoinClient<$Result.GetResult<Prisma.$CoinPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Transaction model
+   */
+  interface TransactionFieldRefs {
+    readonly id: FieldRef<"Transaction", 'Int'>
+    readonly coin_amount: FieldRef<"Transaction", 'Int'>
+    readonly price: FieldRef<"Transaction", 'Float'>
+    readonly status: FieldRef<"Transaction", 'transactionStatus'>
+    readonly create_at: FieldRef<"Transaction", 'DateTime'>
+    readonly userId: FieldRef<"Transaction", 'Int'>
+    readonly coinId: FieldRef<"Transaction", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Transaction findUnique
+   */
+  export type TransactionFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction findUniqueOrThrow
+   */
+  export type TransactionFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction findFirst
+   */
+  export type TransactionFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Transactions.
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Transactions.
+     */
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Transaction findFirstOrThrow
+   */
+  export type TransactionFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transaction to fetch.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Transactions.
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Transactions.
+     */
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Transaction findMany
+   */
+  export type TransactionFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter, which Transactions to fetch.
+     */
+    where?: TransactionWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Transactions to fetch.
+     */
+    orderBy?: TransactionOrderByWithRelationInput | TransactionOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Transactions.
+     */
+    cursor?: TransactionWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Transactions from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Transactions.
+     */
+    skip?: number
+    distinct?: TransactionScalarFieldEnum | TransactionScalarFieldEnum[]
+  }
+
+  /**
+   * Transaction create
+   */
+  export type TransactionCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Transaction.
+     */
+    data: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
+  }
+
+  /**
+   * Transaction createMany
+   */
+  export type TransactionCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Transactions.
+     */
+    data: TransactionCreateManyInput | TransactionCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Transaction update
+   */
+  export type TransactionUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Transaction.
+     */
+    data: XOR<TransactionUpdateInput, TransactionUncheckedUpdateInput>
+    /**
+     * Choose, which Transaction to update.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction updateMany
+   */
+  export type TransactionUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Transactions.
+     */
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyInput>
+    /**
+     * Filter which Transactions to update
+     */
+    where?: TransactionWhereInput
+    /**
+     * Limit how many Transactions to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Transaction upsert
+   */
+  export type TransactionUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Transaction to update in case it exists.
+     */
+    where: TransactionWhereUniqueInput
+    /**
+     * In case the Transaction found by the `where` argument doesn't exist, create a new Transaction with this data.
+     */
+    create: XOR<TransactionCreateInput, TransactionUncheckedCreateInput>
+    /**
+     * In case the Transaction was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<TransactionUpdateInput, TransactionUncheckedUpdateInput>
+  }
+
+  /**
+   * Transaction delete
+   */
+  export type TransactionDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+    /**
+     * Filter which Transaction to delete.
+     */
+    where: TransactionWhereUniqueInput
+  }
+
+  /**
+   * Transaction deleteMany
+   */
+  export type TransactionDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Transactions to delete
+     */
+    where?: TransactionWhereInput
+    /**
+     * Limit how many Transactions to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Transaction without action
+   */
+  export type TransactionDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Transaction
+     */
+    select?: TransactionSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Transaction
+     */
+    omit?: TransactionOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: TransactionInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Country
+   */
+
+  export type AggregateCountry = {
+    _count: CountryCountAggregateOutputType | null
+    _avg: CountryAvgAggregateOutputType | null
+    _sum: CountrySumAggregateOutputType | null
+    _min: CountryMinAggregateOutputType | null
+    _max: CountryMaxAggregateOutputType | null
+  }
+
+  export type CountryAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CountrySumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CountryMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    create_at: Date | null
+    update_at: Date | null
+  }
+
+  export type CountryMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    create_at: Date | null
+    update_at: Date | null
+  }
+
+  export type CountryCountAggregateOutputType = {
+    id: number
+    name: number
+    create_at: number
+    update_at: number
+    _all: number
+  }
+
+
+  export type CountryAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type CountrySumAggregateInputType = {
+    id?: true
+  }
+
+  export type CountryMinAggregateInputType = {
+    id?: true
+    name?: true
+    create_at?: true
+    update_at?: true
+  }
+
+  export type CountryMaxAggregateInputType = {
+    id?: true
+    name?: true
+    create_at?: true
+    update_at?: true
+  }
+
+  export type CountryCountAggregateInputType = {
+    id?: true
+    name?: true
+    create_at?: true
+    update_at?: true
+    _all?: true
+  }
+
+  export type CountryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Country to aggregate.
+     */
+    where?: CountryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Countries to fetch.
+     */
+    orderBy?: CountryOrderByWithRelationInput | CountryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CountryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Countries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Countries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Countries
+    **/
+    _count?: true | CountryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CountryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CountrySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CountryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CountryMaxAggregateInputType
+  }
+
+  export type GetCountryAggregateType<T extends CountryAggregateArgs> = {
+        [P in keyof T & keyof AggregateCountry]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCountry[P]>
+      : GetScalarType<T[P], AggregateCountry[P]>
+  }
+
+
+
+
+  export type CountryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CountryWhereInput
+    orderBy?: CountryOrderByWithAggregationInput | CountryOrderByWithAggregationInput[]
+    by: CountryScalarFieldEnum[] | CountryScalarFieldEnum
+    having?: CountryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CountryCountAggregateInputType | true
+    _avg?: CountryAvgAggregateInputType
+    _sum?: CountrySumAggregateInputType
+    _min?: CountryMinAggregateInputType
+    _max?: CountryMaxAggregateInputType
+  }
+
+  export type CountryGroupByOutputType = {
+    id: number
+    name: string
+    create_at: Date
+    update_at: Date
+    _count: CountryCountAggregateOutputType | null
+    _avg: CountryAvgAggregateOutputType | null
+    _sum: CountrySumAggregateOutputType | null
+    _min: CountryMinAggregateOutputType | null
+    _max: CountryMaxAggregateOutputType | null
+  }
+
+  type GetCountryGroupByPayload<T extends CountryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CountryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CountryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CountryGroupByOutputType[P]>
+            : GetScalarType<T[P], CountryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CountrySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    create_at?: boolean
+    update_at?: boolean
+    comics?: boolean | Country$comicsArgs<ExtArgs>
+    _count?: boolean | CountryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["country"]>
+
+
+
+  export type CountrySelectScalar = {
+    id?: boolean
+    name?: boolean
+    create_at?: boolean
+    update_at?: boolean
+  }
+
+  export type CountryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "create_at" | "update_at", ExtArgs["result"]["country"]>
+  export type CountryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    comics?: boolean | Country$comicsArgs<ExtArgs>
+    _count?: boolean | CountryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $CountryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Country"
+    objects: {
+      comics: Prisma.$ComicPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      create_at: Date
+      update_at: Date
+    }, ExtArgs["result"]["country"]>
+    composites: {}
+  }
+
+  type CountryGetPayload<S extends boolean | null | undefined | CountryDefaultArgs> = $Result.GetResult<Prisma.$CountryPayload, S>
+
+  type CountryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CountryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CountryCountAggregateInputType | true
+    }
+
+  export interface CountryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Country'], meta: { name: 'Country' } }
+    /**
+     * Find zero or one Country that matches the filter.
+     * @param {CountryFindUniqueArgs} args - Arguments to find a Country
+     * @example
+     * // Get one Country
+     * const country = await prisma.country.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CountryFindUniqueArgs>(args: SelectSubset<T, CountryFindUniqueArgs<ExtArgs>>): Prisma__CountryClient<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Country that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CountryFindUniqueOrThrowArgs} args - Arguments to find a Country
+     * @example
+     * // Get one Country
+     * const country = await prisma.country.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CountryFindUniqueOrThrowArgs>(args: SelectSubset<T, CountryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CountryClient<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Country that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CountryFindFirstArgs} args - Arguments to find a Country
+     * @example
+     * // Get one Country
+     * const country = await prisma.country.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CountryFindFirstArgs>(args?: SelectSubset<T, CountryFindFirstArgs<ExtArgs>>): Prisma__CountryClient<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Country that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CountryFindFirstOrThrowArgs} args - Arguments to find a Country
+     * @example
+     * // Get one Country
+     * const country = await prisma.country.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CountryFindFirstOrThrowArgs>(args?: SelectSubset<T, CountryFindFirstOrThrowArgs<ExtArgs>>): Prisma__CountryClient<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Countries that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CountryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Countries
+     * const countries = await prisma.country.findMany()
+     * 
+     * // Get first 10 Countries
+     * const countries = await prisma.country.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const countryWithIdOnly = await prisma.country.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CountryFindManyArgs>(args?: SelectSubset<T, CountryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Country.
+     * @param {CountryCreateArgs} args - Arguments to create a Country.
+     * @example
+     * // Create one Country
+     * const Country = await prisma.country.create({
+     *   data: {
+     *     // ... data to create a Country
+     *   }
+     * })
+     * 
+     */
+    create<T extends CountryCreateArgs>(args: SelectSubset<T, CountryCreateArgs<ExtArgs>>): Prisma__CountryClient<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Countries.
+     * @param {CountryCreateManyArgs} args - Arguments to create many Countries.
+     * @example
+     * // Create many Countries
+     * const country = await prisma.country.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CountryCreateManyArgs>(args?: SelectSubset<T, CountryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Country.
+     * @param {CountryDeleteArgs} args - Arguments to delete one Country.
+     * @example
+     * // Delete one Country
+     * const Country = await prisma.country.delete({
+     *   where: {
+     *     // ... filter to delete one Country
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CountryDeleteArgs>(args: SelectSubset<T, CountryDeleteArgs<ExtArgs>>): Prisma__CountryClient<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Country.
+     * @param {CountryUpdateArgs} args - Arguments to update one Country.
+     * @example
+     * // Update one Country
+     * const country = await prisma.country.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CountryUpdateArgs>(args: SelectSubset<T, CountryUpdateArgs<ExtArgs>>): Prisma__CountryClient<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Countries.
+     * @param {CountryDeleteManyArgs} args - Arguments to filter Countries to delete.
+     * @example
+     * // Delete a few Countries
+     * const { count } = await prisma.country.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CountryDeleteManyArgs>(args?: SelectSubset<T, CountryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Countries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CountryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Countries
+     * const country = await prisma.country.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CountryUpdateManyArgs>(args: SelectSubset<T, CountryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Country.
+     * @param {CountryUpsertArgs} args - Arguments to update or create a Country.
+     * @example
+     * // Update or create a Country
+     * const country = await prisma.country.upsert({
+     *   create: {
+     *     // ... data to create a Country
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Country we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CountryUpsertArgs>(args: SelectSubset<T, CountryUpsertArgs<ExtArgs>>): Prisma__CountryClient<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Countries.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CountryCountArgs} args - Arguments to filter Countries to count.
+     * @example
+     * // Count the number of Countries
+     * const count = await prisma.country.count({
+     *   where: {
+     *     // ... the filter for the Countries we want to count
+     *   }
+     * })
+    **/
+    count<T extends CountryCountArgs>(
+      args?: Subset<T, CountryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CountryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Country.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CountryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CountryAggregateArgs>(args: Subset<T, CountryAggregateArgs>): Prisma.PrismaPromise<GetCountryAggregateType<T>>
+
+    /**
+     * Group by Country.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CountryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CountryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CountryGroupByArgs['orderBy'] }
+        : { orderBy?: CountryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CountryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCountryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Country model
+   */
+  readonly fields: CountryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Country.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CountryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    comics<T extends Country$comicsArgs<ExtArgs> = {}>(args?: Subset<T, Country$comicsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Country model
+   */
+  interface CountryFieldRefs {
+    readonly id: FieldRef<"Country", 'Int'>
+    readonly name: FieldRef<"Country", 'String'>
+    readonly create_at: FieldRef<"Country", 'DateTime'>
+    readonly update_at: FieldRef<"Country", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Country findUnique
+   */
+  export type CountryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Country
+     */
+    select?: CountrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Country
+     */
+    omit?: CountryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CountryInclude<ExtArgs> | null
+    /**
+     * Filter, which Country to fetch.
+     */
+    where: CountryWhereUniqueInput
+  }
+
+  /**
+   * Country findUniqueOrThrow
+   */
+  export type CountryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Country
+     */
+    select?: CountrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Country
+     */
+    omit?: CountryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CountryInclude<ExtArgs> | null
+    /**
+     * Filter, which Country to fetch.
+     */
+    where: CountryWhereUniqueInput
+  }
+
+  /**
+   * Country findFirst
+   */
+  export type CountryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Country
+     */
+    select?: CountrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Country
+     */
+    omit?: CountryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CountryInclude<ExtArgs> | null
+    /**
+     * Filter, which Country to fetch.
+     */
+    where?: CountryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Countries to fetch.
+     */
+    orderBy?: CountryOrderByWithRelationInput | CountryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Countries.
+     */
+    cursor?: CountryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Countries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Countries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Countries.
+     */
+    distinct?: CountryScalarFieldEnum | CountryScalarFieldEnum[]
+  }
+
+  /**
+   * Country findFirstOrThrow
+   */
+  export type CountryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Country
+     */
+    select?: CountrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Country
+     */
+    omit?: CountryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CountryInclude<ExtArgs> | null
+    /**
+     * Filter, which Country to fetch.
+     */
+    where?: CountryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Countries to fetch.
+     */
+    orderBy?: CountryOrderByWithRelationInput | CountryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Countries.
+     */
+    cursor?: CountryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Countries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Countries.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Countries.
+     */
+    distinct?: CountryScalarFieldEnum | CountryScalarFieldEnum[]
+  }
+
+  /**
+   * Country findMany
+   */
+  export type CountryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Country
+     */
+    select?: CountrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Country
+     */
+    omit?: CountryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CountryInclude<ExtArgs> | null
+    /**
+     * Filter, which Countries to fetch.
+     */
+    where?: CountryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Countries to fetch.
+     */
+    orderBy?: CountryOrderByWithRelationInput | CountryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Countries.
+     */
+    cursor?: CountryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Countries from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Countries.
+     */
+    skip?: number
+    distinct?: CountryScalarFieldEnum | CountryScalarFieldEnum[]
+  }
+
+  /**
+   * Country create
+   */
+  export type CountryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Country
+     */
+    select?: CountrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Country
+     */
+    omit?: CountryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CountryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Country.
+     */
+    data: XOR<CountryCreateInput, CountryUncheckedCreateInput>
+  }
+
+  /**
+   * Country createMany
+   */
+  export type CountryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Countries.
+     */
+    data: CountryCreateManyInput | CountryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Country update
+   */
+  export type CountryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Country
+     */
+    select?: CountrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Country
+     */
+    omit?: CountryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CountryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Country.
+     */
+    data: XOR<CountryUpdateInput, CountryUncheckedUpdateInput>
+    /**
+     * Choose, which Country to update.
+     */
+    where: CountryWhereUniqueInput
+  }
+
+  /**
+   * Country updateMany
+   */
+  export type CountryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Countries.
+     */
+    data: XOR<CountryUpdateManyMutationInput, CountryUncheckedUpdateManyInput>
+    /**
+     * Filter which Countries to update
+     */
+    where?: CountryWhereInput
+    /**
+     * Limit how many Countries to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Country upsert
+   */
+  export type CountryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Country
+     */
+    select?: CountrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Country
+     */
+    omit?: CountryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CountryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Country to update in case it exists.
+     */
+    where: CountryWhereUniqueInput
+    /**
+     * In case the Country found by the `where` argument doesn't exist, create a new Country with this data.
+     */
+    create: XOR<CountryCreateInput, CountryUncheckedCreateInput>
+    /**
+     * In case the Country was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CountryUpdateInput, CountryUncheckedUpdateInput>
+  }
+
+  /**
+   * Country delete
+   */
+  export type CountryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Country
+     */
+    select?: CountrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Country
+     */
+    omit?: CountryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CountryInclude<ExtArgs> | null
+    /**
+     * Filter which Country to delete.
+     */
+    where: CountryWhereUniqueInput
+  }
+
+  /**
+   * Country deleteMany
+   */
+  export type CountryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Countries to delete
+     */
+    where?: CountryWhereInput
+    /**
+     * Limit how many Countries to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Country.comics
+   */
+  export type Country$comicsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    where?: ComicWhereInput
+    orderBy?: ComicOrderByWithRelationInput | ComicOrderByWithRelationInput[]
+    cursor?: ComicWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ComicScalarFieldEnum | ComicScalarFieldEnum[]
+  }
+
+  /**
+   * Country without action
+   */
+  export type CountryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Country
+     */
+    select?: CountrySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Country
+     */
+    omit?: CountryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CountryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Comic
+   */
+
+  export type AggregateComic = {
+    _count: ComicCountAggregateOutputType | null
+    _avg: ComicAvgAggregateOutputType | null
+    _sum: ComicSumAggregateOutputType | null
+    _min: ComicMinAggregateOutputType | null
+    _max: ComicMaxAggregateOutputType | null
+  }
+
+  export type ComicAvgAggregateOutputType = {
+    id: number | null
+    views: number | null
+    countryId: number | null
+  }
+
+  export type ComicSumAggregateOutputType = {
+    id: number | null
+    views: number | null
+    countryId: number | null
+  }
+
+  export type ComicMinAggregateOutputType = {
+    id: number | null
+    title: string | null
+    title_eng: string | null
+    slug: string | null
+    description: string | null
+    author: string | null
+    status: $Enums.comicStatus | null
+    cover_image: string | null
+    views: number | null
+    is_active: boolean | null
+    create_at: Date | null
+    update_at: Date | null
+    countryId: number | null
+  }
+
+  export type ComicMaxAggregateOutputType = {
+    id: number | null
+    title: string | null
+    title_eng: string | null
+    slug: string | null
+    description: string | null
+    author: string | null
+    status: $Enums.comicStatus | null
+    cover_image: string | null
+    views: number | null
+    is_active: boolean | null
+    create_at: Date | null
+    update_at: Date | null
+    countryId: number | null
+  }
+
+  export type ComicCountAggregateOutputType = {
+    id: number
+    title: number
+    title_eng: number
+    slug: number
+    description: number
+    author: number
+    status: number
+    cover_image: number
+    views: number
+    is_active: number
+    create_at: number
+    update_at: number
+    countryId: number
+    _all: number
+  }
+
+
+  export type ComicAvgAggregateInputType = {
+    id?: true
+    views?: true
+    countryId?: true
+  }
+
+  export type ComicSumAggregateInputType = {
+    id?: true
+    views?: true
+    countryId?: true
+  }
+
+  export type ComicMinAggregateInputType = {
+    id?: true
+    title?: true
+    title_eng?: true
+    slug?: true
+    description?: true
+    author?: true
+    status?: true
+    cover_image?: true
+    views?: true
+    is_active?: true
+    create_at?: true
+    update_at?: true
+    countryId?: true
+  }
+
+  export type ComicMaxAggregateInputType = {
+    id?: true
+    title?: true
+    title_eng?: true
+    slug?: true
+    description?: true
+    author?: true
+    status?: true
+    cover_image?: true
+    views?: true
+    is_active?: true
+    create_at?: true
+    update_at?: true
+    countryId?: true
+  }
+
+  export type ComicCountAggregateInputType = {
+    id?: true
+    title?: true
+    title_eng?: true
+    slug?: true
+    description?: true
+    author?: true
+    status?: true
+    cover_image?: true
+    views?: true
+    is_active?: true
+    create_at?: true
+    update_at?: true
+    countryId?: true
+    _all?: true
+  }
+
+  export type ComicAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Comic to aggregate.
+     */
+    where?: ComicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comics to fetch.
+     */
+    orderBy?: ComicOrderByWithRelationInput | ComicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ComicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Comics
+    **/
+    _count?: true | ComicCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ComicAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ComicSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ComicMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ComicMaxAggregateInputType
+  }
+
+  export type GetComicAggregateType<T extends ComicAggregateArgs> = {
+        [P in keyof T & keyof AggregateComic]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateComic[P]>
+      : GetScalarType<T[P], AggregateComic[P]>
+  }
+
+
+
+
+  export type ComicGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ComicWhereInput
+    orderBy?: ComicOrderByWithAggregationInput | ComicOrderByWithAggregationInput[]
+    by: ComicScalarFieldEnum[] | ComicScalarFieldEnum
+    having?: ComicScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ComicCountAggregateInputType | true
+    _avg?: ComicAvgAggregateInputType
+    _sum?: ComicSumAggregateInputType
+    _min?: ComicMinAggregateInputType
+    _max?: ComicMaxAggregateInputType
+  }
+
+  export type ComicGroupByOutputType = {
+    id: number
+    title: string
+    title_eng: string | null
+    slug: string
+    description: string
+    author: string
+    status: $Enums.comicStatus
+    cover_image: string
+    views: number
+    is_active: boolean
+    create_at: Date
+    update_at: Date
+    countryId: number
+    _count: ComicCountAggregateOutputType | null
+    _avg: ComicAvgAggregateOutputType | null
+    _sum: ComicSumAggregateOutputType | null
+    _min: ComicMinAggregateOutputType | null
+    _max: ComicMaxAggregateOutputType | null
+  }
+
+  type GetComicGroupByPayload<T extends ComicGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ComicGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ComicGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ComicGroupByOutputType[P]>
+            : GetScalarType<T[P], ComicGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ComicSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    title?: boolean
+    title_eng?: boolean
+    slug?: boolean
+    description?: boolean
+    author?: boolean
+    status?: boolean
+    cover_image?: boolean
+    views?: boolean
+    is_active?: boolean
+    create_at?: boolean
+    update_at?: boolean
+    countryId?: boolean
+    country?: boolean | CountryDefaultArgs<ExtArgs>
+    categories?: boolean | Comic$categoriesArgs<ExtArgs>
+    chapters?: boolean | Comic$chaptersArgs<ExtArgs>
+    comicFollower?: boolean | Comic$comicFollowerArgs<ExtArgs>
+    comicHistory?: boolean | Comic$comicHistoryArgs<ExtArgs>
+    comments?: boolean | Comic$commentsArgs<ExtArgs>
+    _count?: boolean | ComicCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["comic"]>
+
+
+
+  export type ComicSelectScalar = {
+    id?: boolean
+    title?: boolean
+    title_eng?: boolean
+    slug?: boolean
+    description?: boolean
+    author?: boolean
+    status?: boolean
+    cover_image?: boolean
+    views?: boolean
+    is_active?: boolean
+    create_at?: boolean
+    update_at?: boolean
+    countryId?: boolean
+  }
+
+  export type ComicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "title_eng" | "slug" | "description" | "author" | "status" | "cover_image" | "views" | "is_active" | "create_at" | "update_at" | "countryId", ExtArgs["result"]["comic"]>
+  export type ComicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    country?: boolean | CountryDefaultArgs<ExtArgs>
+    categories?: boolean | Comic$categoriesArgs<ExtArgs>
+    chapters?: boolean | Comic$chaptersArgs<ExtArgs>
+    comicFollower?: boolean | Comic$comicFollowerArgs<ExtArgs>
+    comicHistory?: boolean | Comic$comicHistoryArgs<ExtArgs>
+    comments?: boolean | Comic$commentsArgs<ExtArgs>
+    _count?: boolean | ComicCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $ComicPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Comic"
+    objects: {
+      country: Prisma.$CountryPayload<ExtArgs>
+      categories: Prisma.$CategoryPayload<ExtArgs>[]
+      chapters: Prisma.$ChapterPayload<ExtArgs>[]
+      comicFollower: Prisma.$comic_followerPayload<ExtArgs>[]
+      comicHistory: Prisma.$comic_historyPayload<ExtArgs>[]
+      comments: Prisma.$commentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      title: string
+      title_eng: string | null
+      slug: string
+      description: string
+      author: string
+      status: $Enums.comicStatus
+      cover_image: string
+      views: number
+      is_active: boolean
+      create_at: Date
+      update_at: Date
+      countryId: number
+    }, ExtArgs["result"]["comic"]>
+    composites: {}
+  }
+
+  type ComicGetPayload<S extends boolean | null | undefined | ComicDefaultArgs> = $Result.GetResult<Prisma.$ComicPayload, S>
+
+  type ComicCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ComicFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ComicCountAggregateInputType | true
+    }
+
+  export interface ComicDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Comic'], meta: { name: 'Comic' } }
+    /**
+     * Find zero or one Comic that matches the filter.
+     * @param {ComicFindUniqueArgs} args - Arguments to find a Comic
+     * @example
+     * // Get one Comic
+     * const comic = await prisma.comic.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ComicFindUniqueArgs>(args: SelectSubset<T, ComicFindUniqueArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Comic that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ComicFindUniqueOrThrowArgs} args - Arguments to find a Comic
+     * @example
+     * // Get one Comic
+     * const comic = await prisma.comic.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ComicFindUniqueOrThrowArgs>(args: SelectSubset<T, ComicFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comic that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComicFindFirstArgs} args - Arguments to find a Comic
+     * @example
+     * // Get one Comic
+     * const comic = await prisma.comic.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ComicFindFirstArgs>(args?: SelectSubset<T, ComicFindFirstArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comic that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComicFindFirstOrThrowArgs} args - Arguments to find a Comic
+     * @example
+     * // Get one Comic
+     * const comic = await prisma.comic.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ComicFindFirstOrThrowArgs>(args?: SelectSubset<T, ComicFindFirstOrThrowArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Comics that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComicFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Comics
+     * const comics = await prisma.comic.findMany()
+     * 
+     * // Get first 10 Comics
+     * const comics = await prisma.comic.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const comicWithIdOnly = await prisma.comic.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ComicFindManyArgs>(args?: SelectSubset<T, ComicFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Comic.
+     * @param {ComicCreateArgs} args - Arguments to create a Comic.
+     * @example
+     * // Create one Comic
+     * const Comic = await prisma.comic.create({
+     *   data: {
+     *     // ... data to create a Comic
+     *   }
+     * })
+     * 
+     */
+    create<T extends ComicCreateArgs>(args: SelectSubset<T, ComicCreateArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Comics.
+     * @param {ComicCreateManyArgs} args - Arguments to create many Comics.
+     * @example
+     * // Create many Comics
+     * const comic = await prisma.comic.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ComicCreateManyArgs>(args?: SelectSubset<T, ComicCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Comic.
+     * @param {ComicDeleteArgs} args - Arguments to delete one Comic.
+     * @example
+     * // Delete one Comic
+     * const Comic = await prisma.comic.delete({
+     *   where: {
+     *     // ... filter to delete one Comic
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ComicDeleteArgs>(args: SelectSubset<T, ComicDeleteArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Comic.
+     * @param {ComicUpdateArgs} args - Arguments to update one Comic.
+     * @example
+     * // Update one Comic
+     * const comic = await prisma.comic.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ComicUpdateArgs>(args: SelectSubset<T, ComicUpdateArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Comics.
+     * @param {ComicDeleteManyArgs} args - Arguments to filter Comics to delete.
+     * @example
+     * // Delete a few Comics
+     * const { count } = await prisma.comic.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ComicDeleteManyArgs>(args?: SelectSubset<T, ComicDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Comics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComicUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Comics
+     * const comic = await prisma.comic.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ComicUpdateManyArgs>(args: SelectSubset<T, ComicUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Comic.
+     * @param {ComicUpsertArgs} args - Arguments to update or create a Comic.
+     * @example
+     * // Update or create a Comic
+     * const comic = await prisma.comic.upsert({
+     *   create: {
+     *     // ... data to create a Comic
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Comic we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ComicUpsertArgs>(args: SelectSubset<T, ComicUpsertArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Comics.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComicCountArgs} args - Arguments to filter Comics to count.
+     * @example
+     * // Count the number of Comics
+     * const count = await prisma.comic.count({
+     *   where: {
+     *     // ... the filter for the Comics we want to count
+     *   }
+     * })
+    **/
+    count<T extends ComicCountArgs>(
+      args?: Subset<T, ComicCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ComicCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Comic.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComicAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ComicAggregateArgs>(args: Subset<T, ComicAggregateArgs>): Prisma.PrismaPromise<GetComicAggregateType<T>>
+
+    /**
+     * Group by Comic.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ComicGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ComicGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ComicGroupByArgs['orderBy'] }
+        : { orderBy?: ComicGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ComicGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetComicGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Comic model
+   */
+  readonly fields: ComicFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Comic.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ComicClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    country<T extends CountryDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CountryDefaultArgs<ExtArgs>>): Prisma__CountryClient<$Result.GetResult<Prisma.$CountryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    categories<T extends Comic$categoriesArgs<ExtArgs> = {}>(args?: Subset<T, Comic$categoriesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    chapters<T extends Comic$chaptersArgs<ExtArgs> = {}>(args?: Subset<T, Comic$chaptersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comicFollower<T extends Comic$comicFollowerArgs<ExtArgs> = {}>(args?: Subset<T, Comic$comicFollowerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comicHistory<T extends Comic$comicHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Comic$comicHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comments<T extends Comic$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Comic$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Comic model
+   */
+  interface ComicFieldRefs {
+    readonly id: FieldRef<"Comic", 'Int'>
+    readonly title: FieldRef<"Comic", 'String'>
+    readonly title_eng: FieldRef<"Comic", 'String'>
+    readonly slug: FieldRef<"Comic", 'String'>
+    readonly description: FieldRef<"Comic", 'String'>
+    readonly author: FieldRef<"Comic", 'String'>
+    readonly status: FieldRef<"Comic", 'comicStatus'>
+    readonly cover_image: FieldRef<"Comic", 'String'>
+    readonly views: FieldRef<"Comic", 'Int'>
+    readonly is_active: FieldRef<"Comic", 'Boolean'>
+    readonly create_at: FieldRef<"Comic", 'DateTime'>
+    readonly update_at: FieldRef<"Comic", 'DateTime'>
+    readonly countryId: FieldRef<"Comic", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Comic findUnique
+   */
+  export type ComicFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    /**
+     * Filter, which Comic to fetch.
+     */
+    where: ComicWhereUniqueInput
+  }
+
+  /**
+   * Comic findUniqueOrThrow
+   */
+  export type ComicFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    /**
+     * Filter, which Comic to fetch.
+     */
+    where: ComicWhereUniqueInput
+  }
+
+  /**
+   * Comic findFirst
+   */
+  export type ComicFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    /**
+     * Filter, which Comic to fetch.
+     */
+    where?: ComicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comics to fetch.
+     */
+    orderBy?: ComicOrderByWithRelationInput | ComicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Comics.
+     */
+    cursor?: ComicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Comics.
+     */
+    distinct?: ComicScalarFieldEnum | ComicScalarFieldEnum[]
+  }
+
+  /**
+   * Comic findFirstOrThrow
+   */
+  export type ComicFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    /**
+     * Filter, which Comic to fetch.
+     */
+    where?: ComicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comics to fetch.
+     */
+    orderBy?: ComicOrderByWithRelationInput | ComicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Comics.
+     */
+    cursor?: ComicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comics.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Comics.
+     */
+    distinct?: ComicScalarFieldEnum | ComicScalarFieldEnum[]
+  }
+
+  /**
+   * Comic findMany
+   */
+  export type ComicFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    /**
+     * Filter, which Comics to fetch.
+     */
+    where?: ComicWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Comics to fetch.
+     */
+    orderBy?: ComicOrderByWithRelationInput | ComicOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Comics.
+     */
+    cursor?: ComicWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Comics from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Comics.
+     */
+    skip?: number
+    distinct?: ComicScalarFieldEnum | ComicScalarFieldEnum[]
+  }
+
+  /**
+   * Comic create
+   */
+  export type ComicCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Comic.
+     */
+    data: XOR<ComicCreateInput, ComicUncheckedCreateInput>
+  }
+
+  /**
+   * Comic createMany
+   */
+  export type ComicCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Comics.
+     */
+    data: ComicCreateManyInput | ComicCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Comic update
+   */
+  export type ComicUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Comic.
+     */
+    data: XOR<ComicUpdateInput, ComicUncheckedUpdateInput>
+    /**
+     * Choose, which Comic to update.
+     */
+    where: ComicWhereUniqueInput
+  }
+
+  /**
+   * Comic updateMany
+   */
+  export type ComicUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Comics.
+     */
+    data: XOR<ComicUpdateManyMutationInput, ComicUncheckedUpdateManyInput>
+    /**
+     * Filter which Comics to update
+     */
+    where?: ComicWhereInput
+    /**
+     * Limit how many Comics to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Comic upsert
+   */
+  export type ComicUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Comic to update in case it exists.
+     */
+    where: ComicWhereUniqueInput
+    /**
+     * In case the Comic found by the `where` argument doesn't exist, create a new Comic with this data.
+     */
+    create: XOR<ComicCreateInput, ComicUncheckedCreateInput>
+    /**
+     * In case the Comic was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ComicUpdateInput, ComicUncheckedUpdateInput>
+  }
+
+  /**
+   * Comic delete
+   */
+  export type ComicDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    /**
+     * Filter which Comic to delete.
+     */
+    where: ComicWhereUniqueInput
+  }
+
+  /**
+   * Comic deleteMany
+   */
+  export type ComicDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Comics to delete
+     */
+    where?: ComicWhereInput
+    /**
+     * Limit how many Comics to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Comic.categories
+   */
+  export type Comic$categoriesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    cursor?: CategoryWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Comic.chapters
+   */
+  export type Comic$chaptersArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    where?: ChapterWhereInput
+    orderBy?: ChapterOrderByWithRelationInput | ChapterOrderByWithRelationInput[]
+    cursor?: ChapterWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ChapterScalarFieldEnum | ChapterScalarFieldEnum[]
+  }
+
+  /**
+   * Comic.comicFollower
+   */
+  export type Comic$comicFollowerArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    where?: comic_followerWhereInput
+    orderBy?: comic_followerOrderByWithRelationInput | comic_followerOrderByWithRelationInput[]
+    cursor?: comic_followerWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Comic_followerScalarFieldEnum | Comic_followerScalarFieldEnum[]
+  }
+
+  /**
+   * Comic.comicHistory
+   */
+  export type Comic$comicHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    where?: comic_historyWhereInput
+    orderBy?: comic_historyOrderByWithRelationInput | comic_historyOrderByWithRelationInput[]
+    cursor?: comic_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Comic_historyScalarFieldEnum | Comic_historyScalarFieldEnum[]
+  }
+
+  /**
+   * Comic.comments
+   */
+  export type Comic$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    where?: commentWhereInput
+    orderBy?: commentOrderByWithRelationInput | commentOrderByWithRelationInput[]
+    cursor?: commentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * Comic without action
+   */
+  export type ComicDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Category
+   */
+
+  export type AggregateCategory = {
+    _count: CategoryCountAggregateOutputType | null
+    _avg: CategoryAvgAggregateOutputType | null
+    _sum: CategorySumAggregateOutputType | null
+    _min: CategoryMinAggregateOutputType | null
+    _max: CategoryMaxAggregateOutputType | null
+  }
+
+  export type CategoryAvgAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CategorySumAggregateOutputType = {
+    id: number | null
+  }
+
+  export type CategoryMinAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+    description: string | null
+    create_at: Date | null
+    update_at: Date | null
+  }
+
+  export type CategoryMaxAggregateOutputType = {
+    id: number | null
+    name: string | null
+    slug: string | null
+    description: string | null
+    create_at: Date | null
+    update_at: Date | null
+  }
+
+  export type CategoryCountAggregateOutputType = {
+    id: number
+    name: number
+    slug: number
+    description: number
+    create_at: number
+    update_at: number
+    _all: number
+  }
+
+
+  export type CategoryAvgAggregateInputType = {
+    id?: true
+  }
+
+  export type CategorySumAggregateInputType = {
+    id?: true
+  }
+
+  export type CategoryMinAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+    create_at?: true
+    update_at?: true
+  }
+
+  export type CategoryMaxAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+    create_at?: true
+    update_at?: true
+  }
+
+  export type CategoryCountAggregateInputType = {
+    id?: true
+    name?: true
+    slug?: true
+    description?: true
+    create_at?: true
+    update_at?: true
+    _all?: true
+  }
+
+  export type CategoryAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Category to aggregate.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Categories
+    **/
+    _count?: true | CategoryCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CategoryAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CategorySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CategoryMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CategoryMaxAggregateInputType
+  }
+
+  export type GetCategoryAggregateType<T extends CategoryAggregateArgs> = {
+        [P in keyof T & keyof AggregateCategory]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateCategory[P]>
+      : GetScalarType<T[P], AggregateCategory[P]>
+  }
+
+
+
+
+  export type CategoryGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: CategoryWhereInput
+    orderBy?: CategoryOrderByWithAggregationInput | CategoryOrderByWithAggregationInput[]
+    by: CategoryScalarFieldEnum[] | CategoryScalarFieldEnum
+    having?: CategoryScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CategoryCountAggregateInputType | true
+    _avg?: CategoryAvgAggregateInputType
+    _sum?: CategorySumAggregateInputType
+    _min?: CategoryMinAggregateInputType
+    _max?: CategoryMaxAggregateInputType
+  }
+
+  export type CategoryGroupByOutputType = {
+    id: number
+    name: string
+    slug: string
+    description: string
+    create_at: Date
+    update_at: Date
+    _count: CategoryCountAggregateOutputType | null
+    _avg: CategoryAvgAggregateOutputType | null
+    _sum: CategorySumAggregateOutputType | null
+    _min: CategoryMinAggregateOutputType | null
+    _max: CategoryMaxAggregateOutputType | null
+  }
+
+  type GetCategoryGroupByPayload<T extends CategoryGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CategoryGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CategoryGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+            : GetScalarType<T[P], CategoryGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type CategorySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    create_at?: boolean
+    update_at?: boolean
+    comics?: boolean | Category$comicsArgs<ExtArgs>
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["category"]>
+
+
+
+  export type CategorySelectScalar = {
+    id?: boolean
+    name?: boolean
+    slug?: boolean
+    description?: boolean
+    create_at?: boolean
+    update_at?: boolean
+  }
+
+  export type CategoryOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "create_at" | "update_at", ExtArgs["result"]["category"]>
+  export type CategoryInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    comics?: boolean | Category$comicsArgs<ExtArgs>
+    _count?: boolean | CategoryCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $CategoryPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Category"
+    objects: {
+      comics: Prisma.$ComicPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      name: string
+      slug: string
+      description: string
+      create_at: Date
+      update_at: Date
+    }, ExtArgs["result"]["category"]>
+    composites: {}
+  }
+
+  type CategoryGetPayload<S extends boolean | null | undefined | CategoryDefaultArgs> = $Result.GetResult<Prisma.$CategoryPayload, S>
+
+  type CategoryCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<CategoryFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CategoryCountAggregateInputType | true
+    }
+
+  export interface CategoryDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Category'], meta: { name: 'Category' } }
+    /**
+     * Find zero or one Category that matches the filter.
+     * @param {CategoryFindUniqueArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends CategoryFindUniqueArgs>(args: SelectSubset<T, CategoryFindUniqueArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Category that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {CategoryFindUniqueOrThrowArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends CategoryFindUniqueOrThrowArgs>(args: SelectSubset<T, CategoryFindUniqueOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Category that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindFirstArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends CategoryFindFirstArgs>(args?: SelectSubset<T, CategoryFindFirstArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Category that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindFirstOrThrowArgs} args - Arguments to find a Category
+     * @example
+     * // Get one Category
+     * const category = await prisma.category.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends CategoryFindFirstOrThrowArgs>(args?: SelectSubset<T, CategoryFindFirstOrThrowArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Categories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Categories
+     * const categories = await prisma.category.findMany()
+     * 
+     * // Get first 10 Categories
+     * const categories = await prisma.category.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const categoryWithIdOnly = await prisma.category.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends CategoryFindManyArgs>(args?: SelectSubset<T, CategoryFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Category.
+     * @param {CategoryCreateArgs} args - Arguments to create a Category.
+     * @example
+     * // Create one Category
+     * const Category = await prisma.category.create({
+     *   data: {
+     *     // ... data to create a Category
+     *   }
+     * })
+     * 
+     */
+    create<T extends CategoryCreateArgs>(args: SelectSubset<T, CategoryCreateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Categories.
+     * @param {CategoryCreateManyArgs} args - Arguments to create many Categories.
+     * @example
+     * // Create many Categories
+     * const category = await prisma.category.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends CategoryCreateManyArgs>(args?: SelectSubset<T, CategoryCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Category.
+     * @param {CategoryDeleteArgs} args - Arguments to delete one Category.
+     * @example
+     * // Delete one Category
+     * const Category = await prisma.category.delete({
+     *   where: {
+     *     // ... filter to delete one Category
+     *   }
+     * })
+     * 
+     */
+    delete<T extends CategoryDeleteArgs>(args: SelectSubset<T, CategoryDeleteArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Category.
+     * @param {CategoryUpdateArgs} args - Arguments to update one Category.
+     * @example
+     * // Update one Category
+     * const category = await prisma.category.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends CategoryUpdateArgs>(args: SelectSubset<T, CategoryUpdateArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Categories.
+     * @param {CategoryDeleteManyArgs} args - Arguments to filter Categories to delete.
+     * @example
+     * // Delete a few Categories
+     * const { count } = await prisma.category.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends CategoryDeleteManyArgs>(args?: SelectSubset<T, CategoryDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Categories
+     * const category = await prisma.category.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends CategoryUpdateManyArgs>(args: SelectSubset<T, CategoryUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Category.
+     * @param {CategoryUpsertArgs} args - Arguments to update or create a Category.
+     * @example
+     * // Update or create a Category
+     * const category = await prisma.category.upsert({
+     *   create: {
+     *     // ... data to create a Category
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Category we want to update
+     *   }
+     * })
+     */
+    upsert<T extends CategoryUpsertArgs>(args: SelectSubset<T, CategoryUpsertArgs<ExtArgs>>): Prisma__CategoryClient<$Result.GetResult<Prisma.$CategoryPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Categories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryCountArgs} args - Arguments to filter Categories to count.
+     * @example
+     * // Count the number of Categories
+     * const count = await prisma.category.count({
+     *   where: {
+     *     // ... the filter for the Categories we want to count
+     *   }
+     * })
+    **/
+    count<T extends CategoryCountArgs>(
+      args?: Subset<T, CategoryCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CategoryCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Category.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CategoryAggregateArgs>(args: Subset<T, CategoryAggregateArgs>): Prisma.PrismaPromise<GetCategoryAggregateType<T>>
+
+    /**
+     * Group by Category.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CategoryGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends CategoryGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: CategoryGroupByArgs['orderBy'] }
+        : { orderBy?: CategoryGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, CategoryGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCategoryGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Category model
+   */
+  readonly fields: CategoryFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Category.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__CategoryClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    comics<T extends Category$comicsArgs<ExtArgs> = {}>(args?: Subset<T, Category$comicsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Category model
+   */
+  interface CategoryFieldRefs {
+    readonly id: FieldRef<"Category", 'Int'>
+    readonly name: FieldRef<"Category", 'String'>
+    readonly slug: FieldRef<"Category", 'String'>
+    readonly description: FieldRef<"Category", 'String'>
+    readonly create_at: FieldRef<"Category", 'DateTime'>
+    readonly update_at: FieldRef<"Category", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Category findUnique
+   */
+  export type CategoryFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category findUniqueOrThrow
+   */
+  export type CategoryFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category findFirst
+   */
+  export type CategoryFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category findFirstOrThrow
+   */
+  export type CategoryFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Category to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Categories.
+     */
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category findMany
+   */
+  export type CategoryFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter, which Categories to fetch.
+     */
+    where?: CategoryWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Categories to fetch.
+     */
+    orderBy?: CategoryOrderByWithRelationInput | CategoryOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Categories.
+     */
+    cursor?: CategoryWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Categories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Categories.
+     */
+    skip?: number
+    distinct?: CategoryScalarFieldEnum | CategoryScalarFieldEnum[]
+  }
+
+  /**
+   * Category create
+   */
+  export type CategoryCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Category.
+     */
+    data: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+  }
+
+  /**
+   * Category createMany
+   */
+  export type CategoryCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Categories.
+     */
+    data: CategoryCreateManyInput | CategoryCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Category update
+   */
+  export type CategoryUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Category.
+     */
+    data: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
+    /**
+     * Choose, which Category to update.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category updateMany
+   */
+  export type CategoryUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Categories.
+     */
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyInput>
+    /**
+     * Filter which Categories to update
+     */
+    where?: CategoryWhereInput
+    /**
+     * Limit how many Categories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Category upsert
+   */
+  export type CategoryUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Category to update in case it exists.
+     */
+    where: CategoryWhereUniqueInput
+    /**
+     * In case the Category found by the `where` argument doesn't exist, create a new Category with this data.
+     */
+    create: XOR<CategoryCreateInput, CategoryUncheckedCreateInput>
+    /**
+     * In case the Category was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<CategoryUpdateInput, CategoryUncheckedUpdateInput>
+  }
+
+  /**
+   * Category delete
+   */
+  export type CategoryDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+    /**
+     * Filter which Category to delete.
+     */
+    where: CategoryWhereUniqueInput
+  }
+
+  /**
+   * Category deleteMany
+   */
+  export type CategoryDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Categories to delete
+     */
+    where?: CategoryWhereInput
+    /**
+     * Limit how many Categories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Category.comics
+   */
+  export type Category$comicsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    where?: ComicWhereInput
+    orderBy?: ComicOrderByWithRelationInput | ComicOrderByWithRelationInput[]
+    cursor?: ComicWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ComicScalarFieldEnum | ComicScalarFieldEnum[]
+  }
+
+  /**
+   * Category without action
+   */
+  export type CategoryDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Category
+     */
+    select?: CategorySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Category
+     */
+    omit?: CategoryOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: CategoryInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Chapter
+   */
+
+  export type AggregateChapter = {
+    _count: ChapterCountAggregateOutputType | null
+    _avg: ChapterAvgAggregateOutputType | null
+    _sum: ChapterSumAggregateOutputType | null
+    _min: ChapterMinAggregateOutputType | null
+    _max: ChapterMaxAggregateOutputType | null
+  }
+
+  export type ChapterAvgAggregateOutputType = {
+    id: number | null
+    price_xu: number | null
+    views: number | null
+    comicId: number | null
+  }
+
+  export type ChapterSumAggregateOutputType = {
+    id: number | null
+    price_xu: number | null
+    views: number | null
+    comicId: number | null
+  }
+
+  export type ChapterMinAggregateOutputType = {
+    id: number | null
+    chapter_name: string | null
+    chapter_title: string | null
+    slug: string | null
+    is_locked: boolean | null
+    price_xu: number | null
+    auto_unlock_time: Date | null
+    views: number | null
+    chapter_image_url: string | null
+    create_at: Date | null
+    update_at: Date | null
+    comicId: number | null
+  }
+
+  export type ChapterMaxAggregateOutputType = {
+    id: number | null
+    chapter_name: string | null
+    chapter_title: string | null
+    slug: string | null
+    is_locked: boolean | null
+    price_xu: number | null
+    auto_unlock_time: Date | null
+    views: number | null
+    chapter_image_url: string | null
+    create_at: Date | null
+    update_at: Date | null
+    comicId: number | null
+  }
+
+  export type ChapterCountAggregateOutputType = {
+    id: number
+    chapter_name: number
+    chapter_title: number
+    slug: number
+    is_locked: number
+    price_xu: number
+    auto_unlock_time: number
+    views: number
+    chapter_image_url: number
+    create_at: number
+    update_at: number
+    comicId: number
+    _all: number
+  }
+
+
+  export type ChapterAvgAggregateInputType = {
+    id?: true
+    price_xu?: true
+    views?: true
+    comicId?: true
+  }
+
+  export type ChapterSumAggregateInputType = {
+    id?: true
+    price_xu?: true
+    views?: true
+    comicId?: true
+  }
+
+  export type ChapterMinAggregateInputType = {
+    id?: true
+    chapter_name?: true
+    chapter_title?: true
+    slug?: true
+    is_locked?: true
+    price_xu?: true
+    auto_unlock_time?: true
+    views?: true
+    chapter_image_url?: true
+    create_at?: true
+    update_at?: true
+    comicId?: true
+  }
+
+  export type ChapterMaxAggregateInputType = {
+    id?: true
+    chapter_name?: true
+    chapter_title?: true
+    slug?: true
+    is_locked?: true
+    price_xu?: true
+    auto_unlock_time?: true
+    views?: true
+    chapter_image_url?: true
+    create_at?: true
+    update_at?: true
+    comicId?: true
+  }
+
+  export type ChapterCountAggregateInputType = {
+    id?: true
+    chapter_name?: true
+    chapter_title?: true
+    slug?: true
+    is_locked?: true
+    price_xu?: true
+    auto_unlock_time?: true
+    views?: true
+    chapter_image_url?: true
+    create_at?: true
+    update_at?: true
+    comicId?: true
+    _all?: true
+  }
+
+  export type ChapterAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Chapter to aggregate.
+     */
+    where?: ChapterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Chapters to fetch.
+     */
+    orderBy?: ChapterOrderByWithRelationInput | ChapterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ChapterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Chapters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Chapters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Chapters
+    **/
+    _count?: true | ChapterCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ChapterAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ChapterSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ChapterMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ChapterMaxAggregateInputType
+  }
+
+  export type GetChapterAggregateType<T extends ChapterAggregateArgs> = {
+        [P in keyof T & keyof AggregateChapter]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateChapter[P]>
+      : GetScalarType<T[P], AggregateChapter[P]>
+  }
+
+
+
+
+  export type ChapterGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ChapterWhereInput
+    orderBy?: ChapterOrderByWithAggregationInput | ChapterOrderByWithAggregationInput[]
+    by: ChapterScalarFieldEnum[] | ChapterScalarFieldEnum
+    having?: ChapterScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ChapterCountAggregateInputType | true
+    _avg?: ChapterAvgAggregateInputType
+    _sum?: ChapterSumAggregateInputType
+    _min?: ChapterMinAggregateInputType
+    _max?: ChapterMaxAggregateInputType
+  }
+
+  export type ChapterGroupByOutputType = {
+    id: number
+    chapter_name: string
+    chapter_title: string | null
+    slug: string
+    is_locked: boolean
+    price_xu: number
+    auto_unlock_time: Date
+    views: number
+    chapter_image_url: string | null
+    create_at: Date
+    update_at: Date
+    comicId: number
+    _count: ChapterCountAggregateOutputType | null
+    _avg: ChapterAvgAggregateOutputType | null
+    _sum: ChapterSumAggregateOutputType | null
+    _min: ChapterMinAggregateOutputType | null
+    _max: ChapterMaxAggregateOutputType | null
+  }
+
+  type GetChapterGroupByPayload<T extends ChapterGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ChapterGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ChapterGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ChapterGroupByOutputType[P]>
+            : GetScalarType<T[P], ChapterGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ChapterSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    chapter_name?: boolean
+    chapter_title?: boolean
+    slug?: boolean
+    is_locked?: boolean
+    price_xu?: boolean
+    auto_unlock_time?: boolean
+    views?: boolean
+    chapter_image_url?: boolean
+    create_at?: boolean
+    update_at?: boolean
+    comicId?: boolean
+    comic?: boolean | ComicDefaultArgs<ExtArgs>
+    chapterImages?: boolean | Chapter$chapterImagesArgs<ExtArgs>
+    chapterUnlocks?: boolean | Chapter$chapterUnlocksArgs<ExtArgs>
+    comicHistory?: boolean | Chapter$comicHistoryArgs<ExtArgs>
+    comments?: boolean | Chapter$commentsArgs<ExtArgs>
+    _count?: boolean | ChapterCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["chapter"]>
+
+
+
+  export type ChapterSelectScalar = {
+    id?: boolean
+    chapter_name?: boolean
+    chapter_title?: boolean
+    slug?: boolean
+    is_locked?: boolean
+    price_xu?: boolean
+    auto_unlock_time?: boolean
+    views?: boolean
+    chapter_image_url?: boolean
+    create_at?: boolean
+    update_at?: boolean
+    comicId?: boolean
+  }
+
+  export type ChapterOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "chapter_name" | "chapter_title" | "slug" | "is_locked" | "price_xu" | "auto_unlock_time" | "views" | "chapter_image_url" | "create_at" | "update_at" | "comicId", ExtArgs["result"]["chapter"]>
+  export type ChapterInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    comic?: boolean | ComicDefaultArgs<ExtArgs>
+    chapterImages?: boolean | Chapter$chapterImagesArgs<ExtArgs>
+    chapterUnlocks?: boolean | Chapter$chapterUnlocksArgs<ExtArgs>
+    comicHistory?: boolean | Chapter$comicHistoryArgs<ExtArgs>
+    comments?: boolean | Chapter$commentsArgs<ExtArgs>
+    _count?: boolean | ChapterCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $ChapterPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Chapter"
+    objects: {
+      comic: Prisma.$ComicPayload<ExtArgs>
+      chapterImages: Prisma.$chapter_imagePayload<ExtArgs>[]
+      chapterUnlocks: Prisma.$chapter_unlockPayload<ExtArgs>[]
+      comicHistory: Prisma.$comic_historyPayload<ExtArgs>[]
+      comments: Prisma.$commentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      chapter_name: string
+      chapter_title: string | null
+      slug: string
+      is_locked: boolean
+      price_xu: number
+      auto_unlock_time: Date
+      views: number
+      chapter_image_url: string | null
+      create_at: Date
+      update_at: Date
+      comicId: number
+    }, ExtArgs["result"]["chapter"]>
+    composites: {}
+  }
+
+  type ChapterGetPayload<S extends boolean | null | undefined | ChapterDefaultArgs> = $Result.GetResult<Prisma.$ChapterPayload, S>
+
+  type ChapterCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ChapterFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ChapterCountAggregateInputType | true
+    }
+
+  export interface ChapterDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Chapter'], meta: { name: 'Chapter' } }
+    /**
+     * Find zero or one Chapter that matches the filter.
+     * @param {ChapterFindUniqueArgs} args - Arguments to find a Chapter
+     * @example
+     * // Get one Chapter
+     * const chapter = await prisma.chapter.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ChapterFindUniqueArgs>(args: SelectSubset<T, ChapterFindUniqueArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Chapter that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ChapterFindUniqueOrThrowArgs} args - Arguments to find a Chapter
+     * @example
+     * // Get one Chapter
+     * const chapter = await prisma.chapter.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ChapterFindUniqueOrThrowArgs>(args: SelectSubset<T, ChapterFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Chapter that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChapterFindFirstArgs} args - Arguments to find a Chapter
+     * @example
+     * // Get one Chapter
+     * const chapter = await prisma.chapter.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ChapterFindFirstArgs>(args?: SelectSubset<T, ChapterFindFirstArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Chapter that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChapterFindFirstOrThrowArgs} args - Arguments to find a Chapter
+     * @example
+     * // Get one Chapter
+     * const chapter = await prisma.chapter.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ChapterFindFirstOrThrowArgs>(args?: SelectSubset<T, ChapterFindFirstOrThrowArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Chapters that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChapterFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Chapters
+     * const chapters = await prisma.chapter.findMany()
+     * 
+     * // Get first 10 Chapters
+     * const chapters = await prisma.chapter.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const chapterWithIdOnly = await prisma.chapter.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ChapterFindManyArgs>(args?: SelectSubset<T, ChapterFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Chapter.
+     * @param {ChapterCreateArgs} args - Arguments to create a Chapter.
+     * @example
+     * // Create one Chapter
+     * const Chapter = await prisma.chapter.create({
+     *   data: {
+     *     // ... data to create a Chapter
+     *   }
+     * })
+     * 
+     */
+    create<T extends ChapterCreateArgs>(args: SelectSubset<T, ChapterCreateArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Chapters.
+     * @param {ChapterCreateManyArgs} args - Arguments to create many Chapters.
+     * @example
+     * // Create many Chapters
+     * const chapter = await prisma.chapter.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ChapterCreateManyArgs>(args?: SelectSubset<T, ChapterCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Chapter.
+     * @param {ChapterDeleteArgs} args - Arguments to delete one Chapter.
+     * @example
+     * // Delete one Chapter
+     * const Chapter = await prisma.chapter.delete({
+     *   where: {
+     *     // ... filter to delete one Chapter
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ChapterDeleteArgs>(args: SelectSubset<T, ChapterDeleteArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Chapter.
+     * @param {ChapterUpdateArgs} args - Arguments to update one Chapter.
+     * @example
+     * // Update one Chapter
+     * const chapter = await prisma.chapter.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ChapterUpdateArgs>(args: SelectSubset<T, ChapterUpdateArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Chapters.
+     * @param {ChapterDeleteManyArgs} args - Arguments to filter Chapters to delete.
+     * @example
+     * // Delete a few Chapters
+     * const { count } = await prisma.chapter.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ChapterDeleteManyArgs>(args?: SelectSubset<T, ChapterDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Chapters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChapterUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Chapters
+     * const chapter = await prisma.chapter.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ChapterUpdateManyArgs>(args: SelectSubset<T, ChapterUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Chapter.
+     * @param {ChapterUpsertArgs} args - Arguments to update or create a Chapter.
+     * @example
+     * // Update or create a Chapter
+     * const chapter = await prisma.chapter.upsert({
+     *   create: {
+     *     // ... data to create a Chapter
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Chapter we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ChapterUpsertArgs>(args: SelectSubset<T, ChapterUpsertArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Chapters.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChapterCountArgs} args - Arguments to filter Chapters to count.
+     * @example
+     * // Count the number of Chapters
+     * const count = await prisma.chapter.count({
+     *   where: {
+     *     // ... the filter for the Chapters we want to count
+     *   }
+     * })
+    **/
+    count<T extends ChapterCountArgs>(
+      args?: Subset<T, ChapterCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ChapterCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Chapter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChapterAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ChapterAggregateArgs>(args: Subset<T, ChapterAggregateArgs>): Prisma.PrismaPromise<GetChapterAggregateType<T>>
+
+    /**
+     * Group by Chapter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ChapterGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ChapterGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ChapterGroupByArgs['orderBy'] }
+        : { orderBy?: ChapterGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ChapterGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChapterGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Chapter model
+   */
+  readonly fields: ChapterFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Chapter.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ChapterClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    comic<T extends ComicDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComicDefaultArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    chapterImages<T extends Chapter$chapterImagesArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$chapterImagesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$chapter_imagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    chapterUnlocks<T extends Chapter$chapterUnlocksArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$chapterUnlocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comicHistory<T extends Chapter$comicHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$comicHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    comments<T extends Chapter$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Chapter model
+   */
+  interface ChapterFieldRefs {
+    readonly id: FieldRef<"Chapter", 'Int'>
+    readonly chapter_name: FieldRef<"Chapter", 'String'>
+    readonly chapter_title: FieldRef<"Chapter", 'String'>
+    readonly slug: FieldRef<"Chapter", 'String'>
+    readonly is_locked: FieldRef<"Chapter", 'Boolean'>
+    readonly price_xu: FieldRef<"Chapter", 'Int'>
+    readonly auto_unlock_time: FieldRef<"Chapter", 'DateTime'>
+    readonly views: FieldRef<"Chapter", 'Int'>
+    readonly chapter_image_url: FieldRef<"Chapter", 'String'>
+    readonly create_at: FieldRef<"Chapter", 'DateTime'>
+    readonly update_at: FieldRef<"Chapter", 'DateTime'>
+    readonly comicId: FieldRef<"Chapter", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Chapter findUnique
+   */
+  export type ChapterFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    /**
+     * Filter, which Chapter to fetch.
+     */
+    where: ChapterWhereUniqueInput
+  }
+
+  /**
+   * Chapter findUniqueOrThrow
+   */
+  export type ChapterFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    /**
+     * Filter, which Chapter to fetch.
+     */
+    where: ChapterWhereUniqueInput
+  }
+
+  /**
+   * Chapter findFirst
+   */
+  export type ChapterFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    /**
+     * Filter, which Chapter to fetch.
+     */
+    where?: ChapterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Chapters to fetch.
+     */
+    orderBy?: ChapterOrderByWithRelationInput | ChapterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Chapters.
+     */
+    cursor?: ChapterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Chapters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Chapters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Chapters.
+     */
+    distinct?: ChapterScalarFieldEnum | ChapterScalarFieldEnum[]
+  }
+
+  /**
+   * Chapter findFirstOrThrow
+   */
+  export type ChapterFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    /**
+     * Filter, which Chapter to fetch.
+     */
+    where?: ChapterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Chapters to fetch.
+     */
+    orderBy?: ChapterOrderByWithRelationInput | ChapterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Chapters.
+     */
+    cursor?: ChapterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Chapters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Chapters.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Chapters.
+     */
+    distinct?: ChapterScalarFieldEnum | ChapterScalarFieldEnum[]
+  }
+
+  /**
+   * Chapter findMany
+   */
+  export type ChapterFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    /**
+     * Filter, which Chapters to fetch.
+     */
+    where?: ChapterWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Chapters to fetch.
+     */
+    orderBy?: ChapterOrderByWithRelationInput | ChapterOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Chapters.
+     */
+    cursor?: ChapterWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Chapters from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Chapters.
+     */
+    skip?: number
+    distinct?: ChapterScalarFieldEnum | ChapterScalarFieldEnum[]
+  }
+
+  /**
+   * Chapter create
+   */
+  export type ChapterCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Chapter.
+     */
+    data: XOR<ChapterCreateInput, ChapterUncheckedCreateInput>
+  }
+
+  /**
+   * Chapter createMany
+   */
+  export type ChapterCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Chapters.
+     */
+    data: ChapterCreateManyInput | ChapterCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Chapter update
+   */
+  export type ChapterUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Chapter.
+     */
+    data: XOR<ChapterUpdateInput, ChapterUncheckedUpdateInput>
+    /**
+     * Choose, which Chapter to update.
+     */
+    where: ChapterWhereUniqueInput
+  }
+
+  /**
+   * Chapter updateMany
+   */
+  export type ChapterUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Chapters.
+     */
+    data: XOR<ChapterUpdateManyMutationInput, ChapterUncheckedUpdateManyInput>
+    /**
+     * Filter which Chapters to update
+     */
+    where?: ChapterWhereInput
+    /**
+     * Limit how many Chapters to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Chapter upsert
+   */
+  export type ChapterUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Chapter to update in case it exists.
+     */
+    where: ChapterWhereUniqueInput
+    /**
+     * In case the Chapter found by the `where` argument doesn't exist, create a new Chapter with this data.
+     */
+    create: XOR<ChapterCreateInput, ChapterUncheckedCreateInput>
+    /**
+     * In case the Chapter was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ChapterUpdateInput, ChapterUncheckedUpdateInput>
+  }
+
+  /**
+   * Chapter delete
+   */
+  export type ChapterDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    /**
+     * Filter which Chapter to delete.
+     */
+    where: ChapterWhereUniqueInput
+  }
+
+  /**
+   * Chapter deleteMany
+   */
+  export type ChapterDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Chapters to delete
+     */
+    where?: ChapterWhereInput
+    /**
+     * Limit how many Chapters to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Chapter.chapterImages
+   */
+  export type Chapter$chapterImagesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+    where?: chapter_imageWhereInput
+    orderBy?: chapter_imageOrderByWithRelationInput | chapter_imageOrderByWithRelationInput[]
+    cursor?: chapter_imageWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Chapter_imageScalarFieldEnum | Chapter_imageScalarFieldEnum[]
+  }
+
+  /**
+   * Chapter.chapterUnlocks
+   */
+  export type Chapter$chapterUnlocksArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    where?: chapter_unlockWhereInput
+    orderBy?: chapter_unlockOrderByWithRelationInput | chapter_unlockOrderByWithRelationInput[]
+    cursor?: chapter_unlockWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Chapter_unlockScalarFieldEnum | Chapter_unlockScalarFieldEnum[]
+  }
+
+  /**
+   * Chapter.comicHistory
+   */
+  export type Chapter$comicHistoryArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    where?: comic_historyWhereInput
+    orderBy?: comic_historyOrderByWithRelationInput | comic_historyOrderByWithRelationInput[]
+    cursor?: comic_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: Comic_historyScalarFieldEnum | Comic_historyScalarFieldEnum[]
+  }
+
+  /**
+   * Chapter.comments
+   */
+  export type Chapter$commentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    where?: commentWhereInput
+    orderBy?: commentOrderByWithRelationInput | commentOrderByWithRelationInput[]
+    cursor?: commentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * Chapter without action
+   */
+  export type ChapterDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model chapter_image
+   */
+
+  export type AggregateChapter_image = {
+    _count: Chapter_imageCountAggregateOutputType | null
+    _avg: Chapter_imageAvgAggregateOutputType | null
+    _sum: Chapter_imageSumAggregateOutputType | null
+    _min: Chapter_imageMinAggregateOutputType | null
+    _max: Chapter_imageMaxAggregateOutputType | null
+  }
+
+  export type Chapter_imageAvgAggregateOutputType = {
+    id: number | null
+    chapterId: number | null
+  }
+
+  export type Chapter_imageSumAggregateOutputType = {
+    id: number | null
+    chapterId: number | null
+  }
+
+  export type Chapter_imageMinAggregateOutputType = {
+    id: number | null
+    image_url: string | null
+    chapterId: number | null
+  }
+
+  export type Chapter_imageMaxAggregateOutputType = {
+    id: number | null
+    image_url: string | null
+    chapterId: number | null
+  }
+
+  export type Chapter_imageCountAggregateOutputType = {
+    id: number
+    image_url: number
+    chapterId: number
+    _all: number
+  }
+
+
+  export type Chapter_imageAvgAggregateInputType = {
+    id?: true
+    chapterId?: true
+  }
+
+  export type Chapter_imageSumAggregateInputType = {
+    id?: true
+    chapterId?: true
+  }
+
+  export type Chapter_imageMinAggregateInputType = {
+    id?: true
+    image_url?: true
+    chapterId?: true
+  }
+
+  export type Chapter_imageMaxAggregateInputType = {
+    id?: true
+    image_url?: true
+    chapterId?: true
+  }
+
+  export type Chapter_imageCountAggregateInputType = {
+    id?: true
+    image_url?: true
+    chapterId?: true
+    _all?: true
+  }
+
+  export type Chapter_imageAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which chapter_image to aggregate.
+     */
+    where?: chapter_imageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of chapter_images to fetch.
+     */
+    orderBy?: chapter_imageOrderByWithRelationInput | chapter_imageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: chapter_imageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` chapter_images from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` chapter_images.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned chapter_images
+    **/
+    _count?: true | Chapter_imageCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Chapter_imageAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Chapter_imageSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Chapter_imageMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Chapter_imageMaxAggregateInputType
+  }
+
+  export type GetChapter_imageAggregateType<T extends Chapter_imageAggregateArgs> = {
+        [P in keyof T & keyof AggregateChapter_image]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateChapter_image[P]>
+      : GetScalarType<T[P], AggregateChapter_image[P]>
+  }
+
+
+
+
+  export type chapter_imageGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: chapter_imageWhereInput
+    orderBy?: chapter_imageOrderByWithAggregationInput | chapter_imageOrderByWithAggregationInput[]
+    by: Chapter_imageScalarFieldEnum[] | Chapter_imageScalarFieldEnum
+    having?: chapter_imageScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Chapter_imageCountAggregateInputType | true
+    _avg?: Chapter_imageAvgAggregateInputType
+    _sum?: Chapter_imageSumAggregateInputType
+    _min?: Chapter_imageMinAggregateInputType
+    _max?: Chapter_imageMaxAggregateInputType
+  }
+
+  export type Chapter_imageGroupByOutputType = {
+    id: number
+    image_url: string
+    chapterId: number
+    _count: Chapter_imageCountAggregateOutputType | null
+    _avg: Chapter_imageAvgAggregateOutputType | null
+    _sum: Chapter_imageSumAggregateOutputType | null
+    _min: Chapter_imageMinAggregateOutputType | null
+    _max: Chapter_imageMaxAggregateOutputType | null
+  }
+
+  type GetChapter_imageGroupByPayload<T extends chapter_imageGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Chapter_imageGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Chapter_imageGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Chapter_imageGroupByOutputType[P]>
+            : GetScalarType<T[P], Chapter_imageGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type chapter_imageSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    image_url?: boolean
+    chapterId?: boolean
+    chapter?: boolean | ChapterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["chapter_image"]>
+
+
+
+  export type chapter_imageSelectScalar = {
+    id?: boolean
+    image_url?: boolean
+    chapterId?: boolean
+  }
+
+  export type chapter_imageOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "image_url" | "chapterId", ExtArgs["result"]["chapter_image"]>
+  export type chapter_imageInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    chapter?: boolean | ChapterDefaultArgs<ExtArgs>
+  }
+
+  export type $chapter_imagePayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "chapter_image"
+    objects: {
+      chapter: Prisma.$ChapterPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      image_url: string
+      chapterId: number
+    }, ExtArgs["result"]["chapter_image"]>
+    composites: {}
+  }
+
+  type chapter_imageGetPayload<S extends boolean | null | undefined | chapter_imageDefaultArgs> = $Result.GetResult<Prisma.$chapter_imagePayload, S>
+
+  type chapter_imageCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<chapter_imageFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Chapter_imageCountAggregateInputType | true
+    }
+
+  export interface chapter_imageDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['chapter_image'], meta: { name: 'chapter_image' } }
+    /**
+     * Find zero or one Chapter_image that matches the filter.
+     * @param {chapter_imageFindUniqueArgs} args - Arguments to find a Chapter_image
+     * @example
+     * // Get one Chapter_image
+     * const chapter_image = await prisma.chapter_image.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends chapter_imageFindUniqueArgs>(args: SelectSubset<T, chapter_imageFindUniqueArgs<ExtArgs>>): Prisma__chapter_imageClient<$Result.GetResult<Prisma.$chapter_imagePayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Chapter_image that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {chapter_imageFindUniqueOrThrowArgs} args - Arguments to find a Chapter_image
+     * @example
+     * // Get one Chapter_image
+     * const chapter_image = await prisma.chapter_image.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends chapter_imageFindUniqueOrThrowArgs>(args: SelectSubset<T, chapter_imageFindUniqueOrThrowArgs<ExtArgs>>): Prisma__chapter_imageClient<$Result.GetResult<Prisma.$chapter_imagePayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Chapter_image that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_imageFindFirstArgs} args - Arguments to find a Chapter_image
+     * @example
+     * // Get one Chapter_image
+     * const chapter_image = await prisma.chapter_image.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends chapter_imageFindFirstArgs>(args?: SelectSubset<T, chapter_imageFindFirstArgs<ExtArgs>>): Prisma__chapter_imageClient<$Result.GetResult<Prisma.$chapter_imagePayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Chapter_image that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_imageFindFirstOrThrowArgs} args - Arguments to find a Chapter_image
+     * @example
+     * // Get one Chapter_image
+     * const chapter_image = await prisma.chapter_image.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends chapter_imageFindFirstOrThrowArgs>(args?: SelectSubset<T, chapter_imageFindFirstOrThrowArgs<ExtArgs>>): Prisma__chapter_imageClient<$Result.GetResult<Prisma.$chapter_imagePayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Chapter_images that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_imageFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Chapter_images
+     * const chapter_images = await prisma.chapter_image.findMany()
+     * 
+     * // Get first 10 Chapter_images
+     * const chapter_images = await prisma.chapter_image.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const chapter_imageWithIdOnly = await prisma.chapter_image.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends chapter_imageFindManyArgs>(args?: SelectSubset<T, chapter_imageFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$chapter_imagePayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Chapter_image.
+     * @param {chapter_imageCreateArgs} args - Arguments to create a Chapter_image.
+     * @example
+     * // Create one Chapter_image
+     * const Chapter_image = await prisma.chapter_image.create({
+     *   data: {
+     *     // ... data to create a Chapter_image
+     *   }
+     * })
+     * 
+     */
+    create<T extends chapter_imageCreateArgs>(args: SelectSubset<T, chapter_imageCreateArgs<ExtArgs>>): Prisma__chapter_imageClient<$Result.GetResult<Prisma.$chapter_imagePayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Chapter_images.
+     * @param {chapter_imageCreateManyArgs} args - Arguments to create many Chapter_images.
+     * @example
+     * // Create many Chapter_images
+     * const chapter_image = await prisma.chapter_image.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends chapter_imageCreateManyArgs>(args?: SelectSubset<T, chapter_imageCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Chapter_image.
+     * @param {chapter_imageDeleteArgs} args - Arguments to delete one Chapter_image.
+     * @example
+     * // Delete one Chapter_image
+     * const Chapter_image = await prisma.chapter_image.delete({
+     *   where: {
+     *     // ... filter to delete one Chapter_image
+     *   }
+     * })
+     * 
+     */
+    delete<T extends chapter_imageDeleteArgs>(args: SelectSubset<T, chapter_imageDeleteArgs<ExtArgs>>): Prisma__chapter_imageClient<$Result.GetResult<Prisma.$chapter_imagePayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Chapter_image.
+     * @param {chapter_imageUpdateArgs} args - Arguments to update one Chapter_image.
+     * @example
+     * // Update one Chapter_image
+     * const chapter_image = await prisma.chapter_image.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends chapter_imageUpdateArgs>(args: SelectSubset<T, chapter_imageUpdateArgs<ExtArgs>>): Prisma__chapter_imageClient<$Result.GetResult<Prisma.$chapter_imagePayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Chapter_images.
+     * @param {chapter_imageDeleteManyArgs} args - Arguments to filter Chapter_images to delete.
+     * @example
+     * // Delete a few Chapter_images
+     * const { count } = await prisma.chapter_image.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends chapter_imageDeleteManyArgs>(args?: SelectSubset<T, chapter_imageDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Chapter_images.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_imageUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Chapter_images
+     * const chapter_image = await prisma.chapter_image.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends chapter_imageUpdateManyArgs>(args: SelectSubset<T, chapter_imageUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Chapter_image.
+     * @param {chapter_imageUpsertArgs} args - Arguments to update or create a Chapter_image.
+     * @example
+     * // Update or create a Chapter_image
+     * const chapter_image = await prisma.chapter_image.upsert({
+     *   create: {
+     *     // ... data to create a Chapter_image
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Chapter_image we want to update
+     *   }
+     * })
+     */
+    upsert<T extends chapter_imageUpsertArgs>(args: SelectSubset<T, chapter_imageUpsertArgs<ExtArgs>>): Prisma__chapter_imageClient<$Result.GetResult<Prisma.$chapter_imagePayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Chapter_images.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_imageCountArgs} args - Arguments to filter Chapter_images to count.
+     * @example
+     * // Count the number of Chapter_images
+     * const count = await prisma.chapter_image.count({
+     *   where: {
+     *     // ... the filter for the Chapter_images we want to count
+     *   }
+     * })
+    **/
+    count<T extends chapter_imageCountArgs>(
+      args?: Subset<T, chapter_imageCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Chapter_imageCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Chapter_image.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Chapter_imageAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Chapter_imageAggregateArgs>(args: Subset<T, Chapter_imageAggregateArgs>): Prisma.PrismaPromise<GetChapter_imageAggregateType<T>>
+
+    /**
+     * Group by Chapter_image.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_imageGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends chapter_imageGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: chapter_imageGroupByArgs['orderBy'] }
+        : { orderBy?: chapter_imageGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, chapter_imageGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChapter_imageGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the chapter_image model
+   */
+  readonly fields: chapter_imageFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for chapter_image.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__chapter_imageClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    chapter<T extends ChapterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ChapterDefaultArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the chapter_image model
+   */
+  interface chapter_imageFieldRefs {
+    readonly id: FieldRef<"chapter_image", 'Int'>
+    readonly image_url: FieldRef<"chapter_image", 'String'>
+    readonly chapterId: FieldRef<"chapter_image", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * chapter_image findUnique
+   */
+  export type chapter_imageFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+    /**
+     * Filter, which chapter_image to fetch.
+     */
+    where: chapter_imageWhereUniqueInput
+  }
+
+  /**
+   * chapter_image findUniqueOrThrow
+   */
+  export type chapter_imageFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+    /**
+     * Filter, which chapter_image to fetch.
+     */
+    where: chapter_imageWhereUniqueInput
+  }
+
+  /**
+   * chapter_image findFirst
+   */
+  export type chapter_imageFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+    /**
+     * Filter, which chapter_image to fetch.
+     */
+    where?: chapter_imageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of chapter_images to fetch.
+     */
+    orderBy?: chapter_imageOrderByWithRelationInput | chapter_imageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for chapter_images.
+     */
+    cursor?: chapter_imageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` chapter_images from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` chapter_images.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of chapter_images.
+     */
+    distinct?: Chapter_imageScalarFieldEnum | Chapter_imageScalarFieldEnum[]
+  }
+
+  /**
+   * chapter_image findFirstOrThrow
+   */
+  export type chapter_imageFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+    /**
+     * Filter, which chapter_image to fetch.
+     */
+    where?: chapter_imageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of chapter_images to fetch.
+     */
+    orderBy?: chapter_imageOrderByWithRelationInput | chapter_imageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for chapter_images.
+     */
+    cursor?: chapter_imageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` chapter_images from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` chapter_images.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of chapter_images.
+     */
+    distinct?: Chapter_imageScalarFieldEnum | Chapter_imageScalarFieldEnum[]
+  }
+
+  /**
+   * chapter_image findMany
+   */
+  export type chapter_imageFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+    /**
+     * Filter, which chapter_images to fetch.
+     */
+    where?: chapter_imageWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of chapter_images to fetch.
+     */
+    orderBy?: chapter_imageOrderByWithRelationInput | chapter_imageOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing chapter_images.
+     */
+    cursor?: chapter_imageWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` chapter_images from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` chapter_images.
+     */
+    skip?: number
+    distinct?: Chapter_imageScalarFieldEnum | Chapter_imageScalarFieldEnum[]
+  }
+
+  /**
+   * chapter_image create
+   */
+  export type chapter_imageCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+    /**
+     * The data needed to create a chapter_image.
+     */
+    data: XOR<chapter_imageCreateInput, chapter_imageUncheckedCreateInput>
+  }
+
+  /**
+   * chapter_image createMany
+   */
+  export type chapter_imageCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many chapter_images.
+     */
+    data: chapter_imageCreateManyInput | chapter_imageCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * chapter_image update
+   */
+  export type chapter_imageUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+    /**
+     * The data needed to update a chapter_image.
+     */
+    data: XOR<chapter_imageUpdateInput, chapter_imageUncheckedUpdateInput>
+    /**
+     * Choose, which chapter_image to update.
+     */
+    where: chapter_imageWhereUniqueInput
+  }
+
+  /**
+   * chapter_image updateMany
+   */
+  export type chapter_imageUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update chapter_images.
+     */
+    data: XOR<chapter_imageUpdateManyMutationInput, chapter_imageUncheckedUpdateManyInput>
+    /**
+     * Filter which chapter_images to update
+     */
+    where?: chapter_imageWhereInput
+    /**
+     * Limit how many chapter_images to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * chapter_image upsert
+   */
+  export type chapter_imageUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+    /**
+     * The filter to search for the chapter_image to update in case it exists.
+     */
+    where: chapter_imageWhereUniqueInput
+    /**
+     * In case the chapter_image found by the `where` argument doesn't exist, create a new chapter_image with this data.
+     */
+    create: XOR<chapter_imageCreateInput, chapter_imageUncheckedCreateInput>
+    /**
+     * In case the chapter_image was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<chapter_imageUpdateInput, chapter_imageUncheckedUpdateInput>
+  }
+
+  /**
+   * chapter_image delete
+   */
+  export type chapter_imageDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+    /**
+     * Filter which chapter_image to delete.
+     */
+    where: chapter_imageWhereUniqueInput
+  }
+
+  /**
+   * chapter_image deleteMany
+   */
+  export type chapter_imageDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which chapter_images to delete
+     */
+    where?: chapter_imageWhereInput
+    /**
+     * Limit how many chapter_images to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * chapter_image without action
+   */
+  export type chapter_imageDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_image
+     */
+    select?: chapter_imageSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_image
+     */
+    omit?: chapter_imageOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_imageInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model chapter_unlock
+   */
+
+  export type AggregateChapter_unlock = {
+    _count: Chapter_unlockCountAggregateOutputType | null
+    _avg: Chapter_unlockAvgAggregateOutputType | null
+    _sum: Chapter_unlockSumAggregateOutputType | null
+    _min: Chapter_unlockMinAggregateOutputType | null
+    _max: Chapter_unlockMaxAggregateOutputType | null
+  }
+
+  export type Chapter_unlockAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    chapterId: number | null
+  }
+
+  export type Chapter_unlockSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    chapterId: number | null
+  }
+
+  export type Chapter_unlockMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    chapterId: number | null
+    unlock_time: Date | null
+  }
+
+  export type Chapter_unlockMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    chapterId: number | null
+    unlock_time: Date | null
+  }
+
+  export type Chapter_unlockCountAggregateOutputType = {
+    id: number
+    userId: number
+    chapterId: number
+    unlock_time: number
+    _all: number
+  }
+
+
+  export type Chapter_unlockAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    chapterId?: true
+  }
+
+  export type Chapter_unlockSumAggregateInputType = {
+    id?: true
+    userId?: true
+    chapterId?: true
+  }
+
+  export type Chapter_unlockMinAggregateInputType = {
+    id?: true
+    userId?: true
+    chapterId?: true
+    unlock_time?: true
+  }
+
+  export type Chapter_unlockMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    chapterId?: true
+    unlock_time?: true
+  }
+
+  export type Chapter_unlockCountAggregateInputType = {
+    id?: true
+    userId?: true
+    chapterId?: true
+    unlock_time?: true
+    _all?: true
+  }
+
+  export type Chapter_unlockAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which chapter_unlock to aggregate.
+     */
+    where?: chapter_unlockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of chapter_unlocks to fetch.
+     */
+    orderBy?: chapter_unlockOrderByWithRelationInput | chapter_unlockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: chapter_unlockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` chapter_unlocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` chapter_unlocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned chapter_unlocks
+    **/
+    _count?: true | Chapter_unlockCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Chapter_unlockAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Chapter_unlockSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Chapter_unlockMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Chapter_unlockMaxAggregateInputType
+  }
+
+  export type GetChapter_unlockAggregateType<T extends Chapter_unlockAggregateArgs> = {
+        [P in keyof T & keyof AggregateChapter_unlock]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateChapter_unlock[P]>
+      : GetScalarType<T[P], AggregateChapter_unlock[P]>
+  }
+
+
+
+
+  export type chapter_unlockGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: chapter_unlockWhereInput
+    orderBy?: chapter_unlockOrderByWithAggregationInput | chapter_unlockOrderByWithAggregationInput[]
+    by: Chapter_unlockScalarFieldEnum[] | Chapter_unlockScalarFieldEnum
+    having?: chapter_unlockScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Chapter_unlockCountAggregateInputType | true
+    _avg?: Chapter_unlockAvgAggregateInputType
+    _sum?: Chapter_unlockSumAggregateInputType
+    _min?: Chapter_unlockMinAggregateInputType
+    _max?: Chapter_unlockMaxAggregateInputType
+  }
+
+  export type Chapter_unlockGroupByOutputType = {
+    id: number
+    userId: number
+    chapterId: number
+    unlock_time: Date
+    _count: Chapter_unlockCountAggregateOutputType | null
+    _avg: Chapter_unlockAvgAggregateOutputType | null
+    _sum: Chapter_unlockSumAggregateOutputType | null
+    _min: Chapter_unlockMinAggregateOutputType | null
+    _max: Chapter_unlockMaxAggregateOutputType | null
+  }
+
+  type GetChapter_unlockGroupByPayload<T extends chapter_unlockGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Chapter_unlockGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Chapter_unlockGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Chapter_unlockGroupByOutputType[P]>
+            : GetScalarType<T[P], Chapter_unlockGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type chapter_unlockSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    chapterId?: boolean
+    unlock_time?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    chapter?: boolean | ChapterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["chapter_unlock"]>
+
+
+
+  export type chapter_unlockSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    chapterId?: boolean
+    unlock_time?: boolean
+  }
+
+  export type chapter_unlockOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "chapterId" | "unlock_time", ExtArgs["result"]["chapter_unlock"]>
+  export type chapter_unlockInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    chapter?: boolean | ChapterDefaultArgs<ExtArgs>
+  }
+
+  export type $chapter_unlockPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "chapter_unlock"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      chapter: Prisma.$ChapterPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      chapterId: number
+      unlock_time: Date
+    }, ExtArgs["result"]["chapter_unlock"]>
+    composites: {}
+  }
+
+  type chapter_unlockGetPayload<S extends boolean | null | undefined | chapter_unlockDefaultArgs> = $Result.GetResult<Prisma.$chapter_unlockPayload, S>
+
+  type chapter_unlockCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<chapter_unlockFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Chapter_unlockCountAggregateInputType | true
+    }
+
+  export interface chapter_unlockDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['chapter_unlock'], meta: { name: 'chapter_unlock' } }
+    /**
+     * Find zero or one Chapter_unlock that matches the filter.
+     * @param {chapter_unlockFindUniqueArgs} args - Arguments to find a Chapter_unlock
+     * @example
+     * // Get one Chapter_unlock
+     * const chapter_unlock = await prisma.chapter_unlock.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends chapter_unlockFindUniqueArgs>(args: SelectSubset<T, chapter_unlockFindUniqueArgs<ExtArgs>>): Prisma__chapter_unlockClient<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Chapter_unlock that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {chapter_unlockFindUniqueOrThrowArgs} args - Arguments to find a Chapter_unlock
+     * @example
+     * // Get one Chapter_unlock
+     * const chapter_unlock = await prisma.chapter_unlock.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends chapter_unlockFindUniqueOrThrowArgs>(args: SelectSubset<T, chapter_unlockFindUniqueOrThrowArgs<ExtArgs>>): Prisma__chapter_unlockClient<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Chapter_unlock that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_unlockFindFirstArgs} args - Arguments to find a Chapter_unlock
+     * @example
+     * // Get one Chapter_unlock
+     * const chapter_unlock = await prisma.chapter_unlock.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends chapter_unlockFindFirstArgs>(args?: SelectSubset<T, chapter_unlockFindFirstArgs<ExtArgs>>): Prisma__chapter_unlockClient<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Chapter_unlock that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_unlockFindFirstOrThrowArgs} args - Arguments to find a Chapter_unlock
+     * @example
+     * // Get one Chapter_unlock
+     * const chapter_unlock = await prisma.chapter_unlock.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends chapter_unlockFindFirstOrThrowArgs>(args?: SelectSubset<T, chapter_unlockFindFirstOrThrowArgs<ExtArgs>>): Prisma__chapter_unlockClient<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Chapter_unlocks that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_unlockFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Chapter_unlocks
+     * const chapter_unlocks = await prisma.chapter_unlock.findMany()
+     * 
+     * // Get first 10 Chapter_unlocks
+     * const chapter_unlocks = await prisma.chapter_unlock.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const chapter_unlockWithIdOnly = await prisma.chapter_unlock.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends chapter_unlockFindManyArgs>(args?: SelectSubset<T, chapter_unlockFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Chapter_unlock.
+     * @param {chapter_unlockCreateArgs} args - Arguments to create a Chapter_unlock.
+     * @example
+     * // Create one Chapter_unlock
+     * const Chapter_unlock = await prisma.chapter_unlock.create({
+     *   data: {
+     *     // ... data to create a Chapter_unlock
+     *   }
+     * })
+     * 
+     */
+    create<T extends chapter_unlockCreateArgs>(args: SelectSubset<T, chapter_unlockCreateArgs<ExtArgs>>): Prisma__chapter_unlockClient<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Chapter_unlocks.
+     * @param {chapter_unlockCreateManyArgs} args - Arguments to create many Chapter_unlocks.
+     * @example
+     * // Create many Chapter_unlocks
+     * const chapter_unlock = await prisma.chapter_unlock.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends chapter_unlockCreateManyArgs>(args?: SelectSubset<T, chapter_unlockCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Chapter_unlock.
+     * @param {chapter_unlockDeleteArgs} args - Arguments to delete one Chapter_unlock.
+     * @example
+     * // Delete one Chapter_unlock
+     * const Chapter_unlock = await prisma.chapter_unlock.delete({
+     *   where: {
+     *     // ... filter to delete one Chapter_unlock
+     *   }
+     * })
+     * 
+     */
+    delete<T extends chapter_unlockDeleteArgs>(args: SelectSubset<T, chapter_unlockDeleteArgs<ExtArgs>>): Prisma__chapter_unlockClient<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Chapter_unlock.
+     * @param {chapter_unlockUpdateArgs} args - Arguments to update one Chapter_unlock.
+     * @example
+     * // Update one Chapter_unlock
+     * const chapter_unlock = await prisma.chapter_unlock.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends chapter_unlockUpdateArgs>(args: SelectSubset<T, chapter_unlockUpdateArgs<ExtArgs>>): Prisma__chapter_unlockClient<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Chapter_unlocks.
+     * @param {chapter_unlockDeleteManyArgs} args - Arguments to filter Chapter_unlocks to delete.
+     * @example
+     * // Delete a few Chapter_unlocks
+     * const { count } = await prisma.chapter_unlock.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends chapter_unlockDeleteManyArgs>(args?: SelectSubset<T, chapter_unlockDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Chapter_unlocks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_unlockUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Chapter_unlocks
+     * const chapter_unlock = await prisma.chapter_unlock.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends chapter_unlockUpdateManyArgs>(args: SelectSubset<T, chapter_unlockUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Chapter_unlock.
+     * @param {chapter_unlockUpsertArgs} args - Arguments to update or create a Chapter_unlock.
+     * @example
+     * // Update or create a Chapter_unlock
+     * const chapter_unlock = await prisma.chapter_unlock.upsert({
+     *   create: {
+     *     // ... data to create a Chapter_unlock
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Chapter_unlock we want to update
+     *   }
+     * })
+     */
+    upsert<T extends chapter_unlockUpsertArgs>(args: SelectSubset<T, chapter_unlockUpsertArgs<ExtArgs>>): Prisma__chapter_unlockClient<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Chapter_unlocks.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_unlockCountArgs} args - Arguments to filter Chapter_unlocks to count.
+     * @example
+     * // Count the number of Chapter_unlocks
+     * const count = await prisma.chapter_unlock.count({
+     *   where: {
+     *     // ... the filter for the Chapter_unlocks we want to count
+     *   }
+     * })
+    **/
+    count<T extends chapter_unlockCountArgs>(
+      args?: Subset<T, chapter_unlockCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Chapter_unlockCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Chapter_unlock.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Chapter_unlockAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Chapter_unlockAggregateArgs>(args: Subset<T, Chapter_unlockAggregateArgs>): Prisma.PrismaPromise<GetChapter_unlockAggregateType<T>>
+
+    /**
+     * Group by Chapter_unlock.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {chapter_unlockGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends chapter_unlockGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: chapter_unlockGroupByArgs['orderBy'] }
+        : { orderBy?: chapter_unlockGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, chapter_unlockGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetChapter_unlockGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the chapter_unlock model
+   */
+  readonly fields: chapter_unlockFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for chapter_unlock.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__chapter_unlockClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    chapter<T extends ChapterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ChapterDefaultArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the chapter_unlock model
+   */
+  interface chapter_unlockFieldRefs {
+    readonly id: FieldRef<"chapter_unlock", 'Int'>
+    readonly userId: FieldRef<"chapter_unlock", 'Int'>
+    readonly chapterId: FieldRef<"chapter_unlock", 'Int'>
+    readonly unlock_time: FieldRef<"chapter_unlock", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * chapter_unlock findUnique
+   */
+  export type chapter_unlockFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    /**
+     * Filter, which chapter_unlock to fetch.
+     */
+    where: chapter_unlockWhereUniqueInput
+  }
+
+  /**
+   * chapter_unlock findUniqueOrThrow
+   */
+  export type chapter_unlockFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    /**
+     * Filter, which chapter_unlock to fetch.
+     */
+    where: chapter_unlockWhereUniqueInput
+  }
+
+  /**
+   * chapter_unlock findFirst
+   */
+  export type chapter_unlockFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    /**
+     * Filter, which chapter_unlock to fetch.
+     */
+    where?: chapter_unlockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of chapter_unlocks to fetch.
+     */
+    orderBy?: chapter_unlockOrderByWithRelationInput | chapter_unlockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for chapter_unlocks.
+     */
+    cursor?: chapter_unlockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` chapter_unlocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` chapter_unlocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of chapter_unlocks.
+     */
+    distinct?: Chapter_unlockScalarFieldEnum | Chapter_unlockScalarFieldEnum[]
+  }
+
+  /**
+   * chapter_unlock findFirstOrThrow
+   */
+  export type chapter_unlockFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    /**
+     * Filter, which chapter_unlock to fetch.
+     */
+    where?: chapter_unlockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of chapter_unlocks to fetch.
+     */
+    orderBy?: chapter_unlockOrderByWithRelationInput | chapter_unlockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for chapter_unlocks.
+     */
+    cursor?: chapter_unlockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` chapter_unlocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` chapter_unlocks.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of chapter_unlocks.
+     */
+    distinct?: Chapter_unlockScalarFieldEnum | Chapter_unlockScalarFieldEnum[]
+  }
+
+  /**
+   * chapter_unlock findMany
+   */
+  export type chapter_unlockFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    /**
+     * Filter, which chapter_unlocks to fetch.
+     */
+    where?: chapter_unlockWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of chapter_unlocks to fetch.
+     */
+    orderBy?: chapter_unlockOrderByWithRelationInput | chapter_unlockOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing chapter_unlocks.
+     */
+    cursor?: chapter_unlockWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` chapter_unlocks from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` chapter_unlocks.
+     */
+    skip?: number
+    distinct?: Chapter_unlockScalarFieldEnum | Chapter_unlockScalarFieldEnum[]
+  }
+
+  /**
+   * chapter_unlock create
+   */
+  export type chapter_unlockCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    /**
+     * The data needed to create a chapter_unlock.
+     */
+    data: XOR<chapter_unlockCreateInput, chapter_unlockUncheckedCreateInput>
+  }
+
+  /**
+   * chapter_unlock createMany
+   */
+  export type chapter_unlockCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many chapter_unlocks.
+     */
+    data: chapter_unlockCreateManyInput | chapter_unlockCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * chapter_unlock update
+   */
+  export type chapter_unlockUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    /**
+     * The data needed to update a chapter_unlock.
+     */
+    data: XOR<chapter_unlockUpdateInput, chapter_unlockUncheckedUpdateInput>
+    /**
+     * Choose, which chapter_unlock to update.
+     */
+    where: chapter_unlockWhereUniqueInput
+  }
+
+  /**
+   * chapter_unlock updateMany
+   */
+  export type chapter_unlockUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update chapter_unlocks.
+     */
+    data: XOR<chapter_unlockUpdateManyMutationInput, chapter_unlockUncheckedUpdateManyInput>
+    /**
+     * Filter which chapter_unlocks to update
+     */
+    where?: chapter_unlockWhereInput
+    /**
+     * Limit how many chapter_unlocks to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * chapter_unlock upsert
+   */
+  export type chapter_unlockUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    /**
+     * The filter to search for the chapter_unlock to update in case it exists.
+     */
+    where: chapter_unlockWhereUniqueInput
+    /**
+     * In case the chapter_unlock found by the `where` argument doesn't exist, create a new chapter_unlock with this data.
+     */
+    create: XOR<chapter_unlockCreateInput, chapter_unlockUncheckedCreateInput>
+    /**
+     * In case the chapter_unlock was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<chapter_unlockUpdateInput, chapter_unlockUncheckedUpdateInput>
+  }
+
+  /**
+   * chapter_unlock delete
+   */
+  export type chapter_unlockDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+    /**
+     * Filter which chapter_unlock to delete.
+     */
+    where: chapter_unlockWhereUniqueInput
+  }
+
+  /**
+   * chapter_unlock deleteMany
+   */
+  export type chapter_unlockDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which chapter_unlocks to delete
+     */
+    where?: chapter_unlockWhereInput
+    /**
+     * Limit how many chapter_unlocks to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * chapter_unlock without action
+   */
+  export type chapter_unlockDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the chapter_unlock
+     */
+    select?: chapter_unlockSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the chapter_unlock
+     */
+    omit?: chapter_unlockOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: chapter_unlockInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model Notification
+   */
+
+  export type AggregateNotification = {
+    _count: NotificationCountAggregateOutputType | null
+    _avg: NotificationAvgAggregateOutputType | null
+    _sum: NotificationSumAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  export type NotificationAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type NotificationSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+  }
+
+  export type NotificationMinAggregateOutputType = {
+    id: number | null
+    message: string | null
+    seen: boolean | null
+    type: $Enums.notifiType | null
+    create_at: Date | null
+    userId: number | null
+  }
+
+  export type NotificationMaxAggregateOutputType = {
+    id: number | null
+    message: string | null
+    seen: boolean | null
+    type: $Enums.notifiType | null
+    create_at: Date | null
+    userId: number | null
+  }
+
+  export type NotificationCountAggregateOutputType = {
+    id: number
+    message: number
+    seen: number
+    type: number
+    create_at: number
+    userId: number
+    _all: number
+  }
+
+
+  export type NotificationAvgAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type NotificationSumAggregateInputType = {
+    id?: true
+    userId?: true
+  }
+
+  export type NotificationMinAggregateInputType = {
+    id?: true
+    message?: true
+    seen?: true
+    type?: true
+    create_at?: true
+    userId?: true
+  }
+
+  export type NotificationMaxAggregateInputType = {
+    id?: true
+    message?: true
+    seen?: true
+    type?: true
+    create_at?: true
+    userId?: true
+  }
+
+  export type NotificationCountAggregateInputType = {
+    id?: true
+    message?: true
+    seen?: true
+    type?: true
+    create_at?: true
+    userId?: true
+    _all?: true
+  }
+
+  export type NotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notification to aggregate.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned Notifications
+    **/
+    _count?: true | NotificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: NotificationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: NotificationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: NotificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type GetNotificationAggregateType<T extends NotificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateNotification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateNotification[P]>
+      : GetScalarType<T[P], AggregateNotification[P]>
+  }
+
+
+
+
+  export type NotificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: NotificationWhereInput
+    orderBy?: NotificationOrderByWithAggregationInput | NotificationOrderByWithAggregationInput[]
+    by: NotificationScalarFieldEnum[] | NotificationScalarFieldEnum
+    having?: NotificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: NotificationCountAggregateInputType | true
+    _avg?: NotificationAvgAggregateInputType
+    _sum?: NotificationSumAggregateInputType
+    _min?: NotificationMinAggregateInputType
+    _max?: NotificationMaxAggregateInputType
+  }
+
+  export type NotificationGroupByOutputType = {
+    id: number
+    message: string
+    seen: boolean
+    type: $Enums.notifiType
+    create_at: Date
+    userId: number
+    _count: NotificationCountAggregateOutputType | null
+    _avg: NotificationAvgAggregateOutputType | null
+    _sum: NotificationSumAggregateOutputType | null
+    _min: NotificationMinAggregateOutputType | null
+    _max: NotificationMaxAggregateOutputType | null
+  }
+
+  type GetNotificationGroupByPayload<T extends NotificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<NotificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof NotificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+            : GetScalarType<T[P], NotificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type NotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    message?: boolean
+    seen?: boolean
+    type?: boolean
+    create_at?: boolean
+    userId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["notification"]>
+
+
+
+  export type NotificationSelectScalar = {
+    id?: boolean
+    message?: boolean
+    seen?: boolean
+    type?: boolean
+    create_at?: boolean
+    userId?: boolean
+  }
+
+  export type NotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message" | "seen" | "type" | "create_at" | "userId", ExtArgs["result"]["notification"]>
+  export type NotificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+  }
+
+  export type $NotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "Notification"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      message: string
+      seen: boolean
+      type: $Enums.notifiType
+      create_at: Date
+      userId: number
+    }, ExtArgs["result"]["notification"]>
+    composites: {}
+  }
+
+  type NotificationGetPayload<S extends boolean | null | undefined | NotificationDefaultArgs> = $Result.GetResult<Prisma.$NotificationPayload, S>
+
+  type NotificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<NotificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: NotificationCountAggregateInputType | true
+    }
+
+  export interface NotificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['Notification'], meta: { name: 'Notification' } }
+    /**
+     * Find zero or one Notification that matches the filter.
+     * @param {NotificationFindUniqueArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends NotificationFindUniqueArgs>(args: SelectSubset<T, NotificationFindUniqueArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Notification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {NotificationFindUniqueOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends NotificationFindUniqueOrThrowArgs>(args: SelectSubset<T, NotificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends NotificationFindFirstArgs>(args?: SelectSubset<T, NotificationFindFirstArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Notification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindFirstOrThrowArgs} args - Arguments to find a Notification
+     * @example
+     * // Get one Notification
+     * const notification = await prisma.notification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends NotificationFindFirstOrThrowArgs>(args?: SelectSubset<T, NotificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Notifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Notifications
+     * const notifications = await prisma.notification.findMany()
+     * 
+     * // Get first 10 Notifications
+     * const notifications = await prisma.notification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const notificationWithIdOnly = await prisma.notification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends NotificationFindManyArgs>(args?: SelectSubset<T, NotificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Notification.
+     * @param {NotificationCreateArgs} args - Arguments to create a Notification.
+     * @example
+     * // Create one Notification
+     * const Notification = await prisma.notification.create({
+     *   data: {
+     *     // ... data to create a Notification
+     *   }
+     * })
+     * 
+     */
+    create<T extends NotificationCreateArgs>(args: SelectSubset<T, NotificationCreateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Notifications.
+     * @param {NotificationCreateManyArgs} args - Arguments to create many Notifications.
+     * @example
+     * // Create many Notifications
+     * const notification = await prisma.notification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends NotificationCreateManyArgs>(args?: SelectSubset<T, NotificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Notification.
+     * @param {NotificationDeleteArgs} args - Arguments to delete one Notification.
+     * @example
+     * // Delete one Notification
+     * const Notification = await prisma.notification.delete({
+     *   where: {
+     *     // ... filter to delete one Notification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends NotificationDeleteArgs>(args: SelectSubset<T, NotificationDeleteArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Notification.
+     * @param {NotificationUpdateArgs} args - Arguments to update one Notification.
+     * @example
+     * // Update one Notification
+     * const notification = await prisma.notification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends NotificationUpdateArgs>(args: SelectSubset<T, NotificationUpdateArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Notifications.
+     * @param {NotificationDeleteManyArgs} args - Arguments to filter Notifications to delete.
+     * @example
+     * // Delete a few Notifications
+     * const { count } = await prisma.notification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends NotificationDeleteManyArgs>(args?: SelectSubset<T, NotificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Notifications
+     * const notification = await prisma.notification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends NotificationUpdateManyArgs>(args: SelectSubset<T, NotificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Notification.
+     * @param {NotificationUpsertArgs} args - Arguments to update or create a Notification.
+     * @example
+     * // Update or create a Notification
+     * const notification = await prisma.notification.upsert({
+     *   create: {
+     *     // ... data to create a Notification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Notification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends NotificationUpsertArgs>(args: SelectSubset<T, NotificationUpsertArgs<ExtArgs>>): Prisma__NotificationClient<$Result.GetResult<Prisma.$NotificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Notifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationCountArgs} args - Arguments to filter Notifications to count.
+     * @example
+     * // Count the number of Notifications
+     * const count = await prisma.notification.count({
+     *   where: {
+     *     // ... the filter for the Notifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends NotificationCountArgs>(
+      args?: Subset<T, NotificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], NotificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends NotificationAggregateArgs>(args: Subset<T, NotificationAggregateArgs>): Prisma.PrismaPromise<GetNotificationAggregateType<T>>
+
+    /**
+     * Group by Notification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {NotificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends NotificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: NotificationGroupByArgs['orderBy'] }
+        : { orderBy?: NotificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, NotificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the Notification model
+   */
+  readonly fields: NotificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for Notification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__NotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the Notification model
+   */
+  interface NotificationFieldRefs {
+    readonly id: FieldRef<"Notification", 'Int'>
+    readonly message: FieldRef<"Notification", 'String'>
+    readonly seen: FieldRef<"Notification", 'Boolean'>
+    readonly type: FieldRef<"Notification", 'notifiType'>
+    readonly create_at: FieldRef<"Notification", 'DateTime'>
+    readonly userId: FieldRef<"Notification", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * Notification findUnique
+   */
+  export type NotificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findUniqueOrThrow
+   */
+  export type NotificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification findFirst
+   */
+  export type NotificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findFirstOrThrow
+   */
+  export type NotificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notification to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of Notifications.
+     */
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification findMany
+   */
+  export type NotificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which Notifications to fetch.
+     */
+    where?: NotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of Notifications to fetch.
+     */
+    orderBy?: NotificationOrderByWithRelationInput | NotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing Notifications.
+     */
+    cursor?: NotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` Notifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` Notifications.
+     */
+    skip?: number
+    distinct?: NotificationScalarFieldEnum | NotificationScalarFieldEnum[]
+  }
+
+  /**
+   * Notification create
+   */
+  export type NotificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a Notification.
+     */
+    data: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+  }
+
+  /**
+   * Notification createMany
+   */
+  export type NotificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many Notifications.
+     */
+    data: NotificationCreateManyInput | NotificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * Notification update
+   */
+  export type NotificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a Notification.
+     */
+    data: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+    /**
+     * Choose, which Notification to update.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification updateMany
+   */
+  export type NotificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update Notifications.
+     */
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which Notifications to update
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification upsert
+   */
+  export type NotificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the Notification to update in case it exists.
+     */
+    where: NotificationWhereUniqueInput
+    /**
+     * In case the Notification found by the `where` argument doesn't exist, create a new Notification with this data.
+     */
+    create: XOR<NotificationCreateInput, NotificationUncheckedCreateInput>
+    /**
+     * In case the Notification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<NotificationUpdateInput, NotificationUncheckedUpdateInput>
+  }
+
+  /**
+   * Notification delete
+   */
+  export type NotificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+    /**
+     * Filter which Notification to delete.
+     */
+    where: NotificationWhereUniqueInput
+  }
+
+  /**
+   * Notification deleteMany
+   */
+  export type NotificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which Notifications to delete
+     */
+    where?: NotificationWhereInput
+    /**
+     * Limit how many Notifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * Notification without action
+   */
+  export type NotificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Notification
+     */
+    select?: NotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Notification
+     */
+    omit?: NotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: NotificationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model comic_follower
+   */
+
+  export type AggregateComic_follower = {
+    _count: Comic_followerCountAggregateOutputType | null
+    _avg: Comic_followerAvgAggregateOutputType | null
+    _sum: Comic_followerSumAggregateOutputType | null
+    _min: Comic_followerMinAggregateOutputType | null
+    _max: Comic_followerMaxAggregateOutputType | null
+  }
+
+  export type Comic_followerAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+  }
+
+  export type Comic_followerSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+  }
+
+  export type Comic_followerMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+  }
+
+  export type Comic_followerMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+  }
+
+  export type Comic_followerCountAggregateOutputType = {
+    id: number
+    userId: number
+    comicId: number
+    _all: number
+  }
+
+
+  export type Comic_followerAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+  }
+
+  export type Comic_followerSumAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+  }
+
+  export type Comic_followerMinAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+  }
+
+  export type Comic_followerMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+  }
+
+  export type Comic_followerCountAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    _all?: true
+  }
+
+  export type Comic_followerAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which comic_follower to aggregate.
+     */
+    where?: comic_followerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comic_followers to fetch.
+     */
+    orderBy?: comic_followerOrderByWithRelationInput | comic_followerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: comic_followerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comic_followers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comic_followers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned comic_followers
+    **/
+    _count?: true | Comic_followerCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Comic_followerAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Comic_followerSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Comic_followerMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Comic_followerMaxAggregateInputType
+  }
+
+  export type GetComic_followerAggregateType<T extends Comic_followerAggregateArgs> = {
+        [P in keyof T & keyof AggregateComic_follower]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateComic_follower[P]>
+      : GetScalarType<T[P], AggregateComic_follower[P]>
+  }
+
+
+
+
+  export type comic_followerGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: comic_followerWhereInput
+    orderBy?: comic_followerOrderByWithAggregationInput | comic_followerOrderByWithAggregationInput[]
+    by: Comic_followerScalarFieldEnum[] | Comic_followerScalarFieldEnum
+    having?: comic_followerScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Comic_followerCountAggregateInputType | true
+    _avg?: Comic_followerAvgAggregateInputType
+    _sum?: Comic_followerSumAggregateInputType
+    _min?: Comic_followerMinAggregateInputType
+    _max?: Comic_followerMaxAggregateInputType
+  }
+
+  export type Comic_followerGroupByOutputType = {
+    id: number
+    userId: number
+    comicId: number
+    _count: Comic_followerCountAggregateOutputType | null
+    _avg: Comic_followerAvgAggregateOutputType | null
+    _sum: Comic_followerSumAggregateOutputType | null
+    _min: Comic_followerMinAggregateOutputType | null
+    _max: Comic_followerMaxAggregateOutputType | null
+  }
+
+  type GetComic_followerGroupByPayload<T extends comic_followerGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Comic_followerGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Comic_followerGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Comic_followerGroupByOutputType[P]>
+            : GetScalarType<T[P], Comic_followerGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type comic_followerSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    comicId?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comic?: boolean | ComicDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["comic_follower"]>
+
+
+
+  export type comic_followerSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    comicId?: boolean
+  }
+
+  export type comic_followerOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "comicId", ExtArgs["result"]["comic_follower"]>
+  export type comic_followerInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comic?: boolean | ComicDefaultArgs<ExtArgs>
+  }
+
+  export type $comic_followerPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "comic_follower"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      comic: Prisma.$ComicPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      comicId: number
+    }, ExtArgs["result"]["comic_follower"]>
+    composites: {}
+  }
+
+  type comic_followerGetPayload<S extends boolean | null | undefined | comic_followerDefaultArgs> = $Result.GetResult<Prisma.$comic_followerPayload, S>
+
+  type comic_followerCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<comic_followerFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Comic_followerCountAggregateInputType | true
+    }
+
+  export interface comic_followerDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['comic_follower'], meta: { name: 'comic_follower' } }
+    /**
+     * Find zero or one Comic_follower that matches the filter.
+     * @param {comic_followerFindUniqueArgs} args - Arguments to find a Comic_follower
+     * @example
+     * // Get one Comic_follower
+     * const comic_follower = await prisma.comic_follower.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends comic_followerFindUniqueArgs>(args: SelectSubset<T, comic_followerFindUniqueArgs<ExtArgs>>): Prisma__comic_followerClient<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Comic_follower that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {comic_followerFindUniqueOrThrowArgs} args - Arguments to find a Comic_follower
+     * @example
+     * // Get one Comic_follower
+     * const comic_follower = await prisma.comic_follower.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends comic_followerFindUniqueOrThrowArgs>(args: SelectSubset<T, comic_followerFindUniqueOrThrowArgs<ExtArgs>>): Prisma__comic_followerClient<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comic_follower that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_followerFindFirstArgs} args - Arguments to find a Comic_follower
+     * @example
+     * // Get one Comic_follower
+     * const comic_follower = await prisma.comic_follower.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends comic_followerFindFirstArgs>(args?: SelectSubset<T, comic_followerFindFirstArgs<ExtArgs>>): Prisma__comic_followerClient<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comic_follower that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_followerFindFirstOrThrowArgs} args - Arguments to find a Comic_follower
+     * @example
+     * // Get one Comic_follower
+     * const comic_follower = await prisma.comic_follower.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends comic_followerFindFirstOrThrowArgs>(args?: SelectSubset<T, comic_followerFindFirstOrThrowArgs<ExtArgs>>): Prisma__comic_followerClient<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Comic_followers that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_followerFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Comic_followers
+     * const comic_followers = await prisma.comic_follower.findMany()
+     * 
+     * // Get first 10 Comic_followers
+     * const comic_followers = await prisma.comic_follower.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const comic_followerWithIdOnly = await prisma.comic_follower.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends comic_followerFindManyArgs>(args?: SelectSubset<T, comic_followerFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Comic_follower.
+     * @param {comic_followerCreateArgs} args - Arguments to create a Comic_follower.
+     * @example
+     * // Create one Comic_follower
+     * const Comic_follower = await prisma.comic_follower.create({
+     *   data: {
+     *     // ... data to create a Comic_follower
+     *   }
+     * })
+     * 
+     */
+    create<T extends comic_followerCreateArgs>(args: SelectSubset<T, comic_followerCreateArgs<ExtArgs>>): Prisma__comic_followerClient<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Comic_followers.
+     * @param {comic_followerCreateManyArgs} args - Arguments to create many Comic_followers.
+     * @example
+     * // Create many Comic_followers
+     * const comic_follower = await prisma.comic_follower.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends comic_followerCreateManyArgs>(args?: SelectSubset<T, comic_followerCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Comic_follower.
+     * @param {comic_followerDeleteArgs} args - Arguments to delete one Comic_follower.
+     * @example
+     * // Delete one Comic_follower
+     * const Comic_follower = await prisma.comic_follower.delete({
+     *   where: {
+     *     // ... filter to delete one Comic_follower
+     *   }
+     * })
+     * 
+     */
+    delete<T extends comic_followerDeleteArgs>(args: SelectSubset<T, comic_followerDeleteArgs<ExtArgs>>): Prisma__comic_followerClient<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Comic_follower.
+     * @param {comic_followerUpdateArgs} args - Arguments to update one Comic_follower.
+     * @example
+     * // Update one Comic_follower
+     * const comic_follower = await prisma.comic_follower.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends comic_followerUpdateArgs>(args: SelectSubset<T, comic_followerUpdateArgs<ExtArgs>>): Prisma__comic_followerClient<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Comic_followers.
+     * @param {comic_followerDeleteManyArgs} args - Arguments to filter Comic_followers to delete.
+     * @example
+     * // Delete a few Comic_followers
+     * const { count } = await prisma.comic_follower.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends comic_followerDeleteManyArgs>(args?: SelectSubset<T, comic_followerDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Comic_followers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_followerUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Comic_followers
+     * const comic_follower = await prisma.comic_follower.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends comic_followerUpdateManyArgs>(args: SelectSubset<T, comic_followerUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Comic_follower.
+     * @param {comic_followerUpsertArgs} args - Arguments to update or create a Comic_follower.
+     * @example
+     * // Update or create a Comic_follower
+     * const comic_follower = await prisma.comic_follower.upsert({
+     *   create: {
+     *     // ... data to create a Comic_follower
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Comic_follower we want to update
+     *   }
+     * })
+     */
+    upsert<T extends comic_followerUpsertArgs>(args: SelectSubset<T, comic_followerUpsertArgs<ExtArgs>>): Prisma__comic_followerClient<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Comic_followers.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_followerCountArgs} args - Arguments to filter Comic_followers to count.
+     * @example
+     * // Count the number of Comic_followers
+     * const count = await prisma.comic_follower.count({
+     *   where: {
+     *     // ... the filter for the Comic_followers we want to count
+     *   }
+     * })
+    **/
+    count<T extends comic_followerCountArgs>(
+      args?: Subset<T, comic_followerCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Comic_followerCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Comic_follower.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Comic_followerAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Comic_followerAggregateArgs>(args: Subset<T, Comic_followerAggregateArgs>): Prisma.PrismaPromise<GetComic_followerAggregateType<T>>
+
+    /**
+     * Group by Comic_follower.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_followerGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends comic_followerGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: comic_followerGroupByArgs['orderBy'] }
+        : { orderBy?: comic_followerGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, comic_followerGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetComic_followerGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the comic_follower model
+   */
+  readonly fields: comic_followerFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for comic_follower.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__comic_followerClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    comic<T extends ComicDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComicDefaultArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the comic_follower model
+   */
+  interface comic_followerFieldRefs {
+    readonly id: FieldRef<"comic_follower", 'Int'>
+    readonly userId: FieldRef<"comic_follower", 'Int'>
+    readonly comicId: FieldRef<"comic_follower", 'Int'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * comic_follower findUnique
+   */
+  export type comic_followerFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    /**
+     * Filter, which comic_follower to fetch.
+     */
+    where: comic_followerWhereUniqueInput
+  }
+
+  /**
+   * comic_follower findUniqueOrThrow
+   */
+  export type comic_followerFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    /**
+     * Filter, which comic_follower to fetch.
+     */
+    where: comic_followerWhereUniqueInput
+  }
+
+  /**
+   * comic_follower findFirst
+   */
+  export type comic_followerFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    /**
+     * Filter, which comic_follower to fetch.
+     */
+    where?: comic_followerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comic_followers to fetch.
+     */
+    orderBy?: comic_followerOrderByWithRelationInput | comic_followerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for comic_followers.
+     */
+    cursor?: comic_followerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comic_followers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comic_followers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of comic_followers.
+     */
+    distinct?: Comic_followerScalarFieldEnum | Comic_followerScalarFieldEnum[]
+  }
+
+  /**
+   * comic_follower findFirstOrThrow
+   */
+  export type comic_followerFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    /**
+     * Filter, which comic_follower to fetch.
+     */
+    where?: comic_followerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comic_followers to fetch.
+     */
+    orderBy?: comic_followerOrderByWithRelationInput | comic_followerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for comic_followers.
+     */
+    cursor?: comic_followerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comic_followers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comic_followers.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of comic_followers.
+     */
+    distinct?: Comic_followerScalarFieldEnum | Comic_followerScalarFieldEnum[]
+  }
+
+  /**
+   * comic_follower findMany
+   */
+  export type comic_followerFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    /**
+     * Filter, which comic_followers to fetch.
+     */
+    where?: comic_followerWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comic_followers to fetch.
+     */
+    orderBy?: comic_followerOrderByWithRelationInput | comic_followerOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing comic_followers.
+     */
+    cursor?: comic_followerWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comic_followers from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comic_followers.
+     */
+    skip?: number
+    distinct?: Comic_followerScalarFieldEnum | Comic_followerScalarFieldEnum[]
+  }
+
+  /**
+   * comic_follower create
+   */
+  export type comic_followerCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    /**
+     * The data needed to create a comic_follower.
+     */
+    data: XOR<comic_followerCreateInput, comic_followerUncheckedCreateInput>
+  }
+
+  /**
+   * comic_follower createMany
+   */
+  export type comic_followerCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many comic_followers.
+     */
+    data: comic_followerCreateManyInput | comic_followerCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * comic_follower update
+   */
+  export type comic_followerUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    /**
+     * The data needed to update a comic_follower.
+     */
+    data: XOR<comic_followerUpdateInput, comic_followerUncheckedUpdateInput>
+    /**
+     * Choose, which comic_follower to update.
+     */
+    where: comic_followerWhereUniqueInput
+  }
+
+  /**
+   * comic_follower updateMany
+   */
+  export type comic_followerUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update comic_followers.
+     */
+    data: XOR<comic_followerUpdateManyMutationInput, comic_followerUncheckedUpdateManyInput>
+    /**
+     * Filter which comic_followers to update
+     */
+    where?: comic_followerWhereInput
+    /**
+     * Limit how many comic_followers to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * comic_follower upsert
+   */
+  export type comic_followerUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    /**
+     * The filter to search for the comic_follower to update in case it exists.
+     */
+    where: comic_followerWhereUniqueInput
+    /**
+     * In case the comic_follower found by the `where` argument doesn't exist, create a new comic_follower with this data.
+     */
+    create: XOR<comic_followerCreateInput, comic_followerUncheckedCreateInput>
+    /**
+     * In case the comic_follower was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<comic_followerUpdateInput, comic_followerUncheckedUpdateInput>
+  }
+
+  /**
+   * comic_follower delete
+   */
+  export type comic_followerDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+    /**
+     * Filter which comic_follower to delete.
+     */
+    where: comic_followerWhereUniqueInput
+  }
+
+  /**
+   * comic_follower deleteMany
+   */
+  export type comic_followerDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which comic_followers to delete
+     */
+    where?: comic_followerWhereInput
+    /**
+     * Limit how many comic_followers to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * comic_follower without action
+   */
+  export type comic_followerDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_follower
+     */
+    select?: comic_followerSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_follower
+     */
+    omit?: comic_followerOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_followerInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model comic_history
+   */
+
+  export type AggregateComic_history = {
+    _count: Comic_historyCountAggregateOutputType | null
+    _avg: Comic_historyAvgAggregateOutputType | null
+    _sum: Comic_historySumAggregateOutputType | null
+    _min: Comic_historyMinAggregateOutputType | null
+    _max: Comic_historyMaxAggregateOutputType | null
+  }
+
+  export type Comic_historyAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+    chapterId: number | null
+  }
+
+  export type Comic_historySumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+    chapterId: number | null
+  }
+
+  export type Comic_historyMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+    chapterId: number | null
+    read_time: Date | null
+  }
+
+  export type Comic_historyMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+    chapterId: number | null
+    read_time: Date | null
+  }
+
+  export type Comic_historyCountAggregateOutputType = {
+    id: number
+    userId: number
+    comicId: number
+    chapterId: number
+    read_time: number
+    _all: number
+  }
+
+
+  export type Comic_historyAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    chapterId?: true
+  }
+
+  export type Comic_historySumAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    chapterId?: true
+  }
+
+  export type Comic_historyMinAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    chapterId?: true
+    read_time?: true
+  }
+
+  export type Comic_historyMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    chapterId?: true
+    read_time?: true
+  }
+
+  export type Comic_historyCountAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    chapterId?: true
+    read_time?: true
+    _all?: true
+  }
+
+  export type Comic_historyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which comic_history to aggregate.
+     */
+    where?: comic_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comic_histories to fetch.
+     */
+    orderBy?: comic_historyOrderByWithRelationInput | comic_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: comic_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comic_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comic_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned comic_histories
+    **/
+    _count?: true | Comic_historyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: Comic_historyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: Comic_historySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: Comic_historyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: Comic_historyMaxAggregateInputType
+  }
+
+  export type GetComic_historyAggregateType<T extends Comic_historyAggregateArgs> = {
+        [P in keyof T & keyof AggregateComic_history]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateComic_history[P]>
+      : GetScalarType<T[P], AggregateComic_history[P]>
+  }
+
+
+
+
+  export type comic_historyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: comic_historyWhereInput
+    orderBy?: comic_historyOrderByWithAggregationInput | comic_historyOrderByWithAggregationInput[]
+    by: Comic_historyScalarFieldEnum[] | Comic_historyScalarFieldEnum
+    having?: comic_historyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: Comic_historyCountAggregateInputType | true
+    _avg?: Comic_historyAvgAggregateInputType
+    _sum?: Comic_historySumAggregateInputType
+    _min?: Comic_historyMinAggregateInputType
+    _max?: Comic_historyMaxAggregateInputType
+  }
+
+  export type Comic_historyGroupByOutputType = {
+    id: number
+    userId: number
+    comicId: number
+    chapterId: number
+    read_time: Date
+    _count: Comic_historyCountAggregateOutputType | null
+    _avg: Comic_historyAvgAggregateOutputType | null
+    _sum: Comic_historySumAggregateOutputType | null
+    _min: Comic_historyMinAggregateOutputType | null
+    _max: Comic_historyMaxAggregateOutputType | null
+  }
+
+  type GetComic_historyGroupByPayload<T extends comic_historyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<Comic_historyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof Comic_historyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], Comic_historyGroupByOutputType[P]>
+            : GetScalarType<T[P], Comic_historyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type comic_historySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    comicId?: boolean
+    chapterId?: boolean
+    read_time?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comic?: boolean | ComicDefaultArgs<ExtArgs>
+    chapter?: boolean | ChapterDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["comic_history"]>
+
+
+
+  export type comic_historySelectScalar = {
+    id?: boolean
+    userId?: boolean
+    comicId?: boolean
+    chapterId?: boolean
+    read_time?: boolean
+  }
+
+  export type comic_historyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "comicId" | "chapterId" | "read_time", ExtArgs["result"]["comic_history"]>
+  export type comic_historyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comic?: boolean | ComicDefaultArgs<ExtArgs>
+    chapter?: boolean | ChapterDefaultArgs<ExtArgs>
+  }
+
+  export type $comic_historyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "comic_history"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      comic: Prisma.$ComicPayload<ExtArgs>
+      chapter: Prisma.$ChapterPayload<ExtArgs>
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      comicId: number
+      chapterId: number
+      read_time: Date
+    }, ExtArgs["result"]["comic_history"]>
+    composites: {}
+  }
+
+  type comic_historyGetPayload<S extends boolean | null | undefined | comic_historyDefaultArgs> = $Result.GetResult<Prisma.$comic_historyPayload, S>
+
+  type comic_historyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<comic_historyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: Comic_historyCountAggregateInputType | true
+    }
+
+  export interface comic_historyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['comic_history'], meta: { name: 'comic_history' } }
+    /**
+     * Find zero or one Comic_history that matches the filter.
+     * @param {comic_historyFindUniqueArgs} args - Arguments to find a Comic_history
+     * @example
+     * // Get one Comic_history
+     * const comic_history = await prisma.comic_history.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends comic_historyFindUniqueArgs>(args: SelectSubset<T, comic_historyFindUniqueArgs<ExtArgs>>): Prisma__comic_historyClient<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Comic_history that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {comic_historyFindUniqueOrThrowArgs} args - Arguments to find a Comic_history
+     * @example
+     * // Get one Comic_history
+     * const comic_history = await prisma.comic_history.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends comic_historyFindUniqueOrThrowArgs>(args: SelectSubset<T, comic_historyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__comic_historyClient<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comic_history that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_historyFindFirstArgs} args - Arguments to find a Comic_history
+     * @example
+     * // Get one Comic_history
+     * const comic_history = await prisma.comic_history.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends comic_historyFindFirstArgs>(args?: SelectSubset<T, comic_historyFindFirstArgs<ExtArgs>>): Prisma__comic_historyClient<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comic_history that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_historyFindFirstOrThrowArgs} args - Arguments to find a Comic_history
+     * @example
+     * // Get one Comic_history
+     * const comic_history = await prisma.comic_history.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends comic_historyFindFirstOrThrowArgs>(args?: SelectSubset<T, comic_historyFindFirstOrThrowArgs<ExtArgs>>): Prisma__comic_historyClient<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Comic_histories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_historyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Comic_histories
+     * const comic_histories = await prisma.comic_history.findMany()
+     * 
+     * // Get first 10 Comic_histories
+     * const comic_histories = await prisma.comic_history.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const comic_historyWithIdOnly = await prisma.comic_history.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends comic_historyFindManyArgs>(args?: SelectSubset<T, comic_historyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Comic_history.
+     * @param {comic_historyCreateArgs} args - Arguments to create a Comic_history.
+     * @example
+     * // Create one Comic_history
+     * const Comic_history = await prisma.comic_history.create({
+     *   data: {
+     *     // ... data to create a Comic_history
+     *   }
+     * })
+     * 
+     */
+    create<T extends comic_historyCreateArgs>(args: SelectSubset<T, comic_historyCreateArgs<ExtArgs>>): Prisma__comic_historyClient<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Comic_histories.
+     * @param {comic_historyCreateManyArgs} args - Arguments to create many Comic_histories.
+     * @example
+     * // Create many Comic_histories
+     * const comic_history = await prisma.comic_history.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends comic_historyCreateManyArgs>(args?: SelectSubset<T, comic_historyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Comic_history.
+     * @param {comic_historyDeleteArgs} args - Arguments to delete one Comic_history.
+     * @example
+     * // Delete one Comic_history
+     * const Comic_history = await prisma.comic_history.delete({
+     *   where: {
+     *     // ... filter to delete one Comic_history
+     *   }
+     * })
+     * 
+     */
+    delete<T extends comic_historyDeleteArgs>(args: SelectSubset<T, comic_historyDeleteArgs<ExtArgs>>): Prisma__comic_historyClient<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Comic_history.
+     * @param {comic_historyUpdateArgs} args - Arguments to update one Comic_history.
+     * @example
+     * // Update one Comic_history
+     * const comic_history = await prisma.comic_history.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends comic_historyUpdateArgs>(args: SelectSubset<T, comic_historyUpdateArgs<ExtArgs>>): Prisma__comic_historyClient<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Comic_histories.
+     * @param {comic_historyDeleteManyArgs} args - Arguments to filter Comic_histories to delete.
+     * @example
+     * // Delete a few Comic_histories
+     * const { count } = await prisma.comic_history.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends comic_historyDeleteManyArgs>(args?: SelectSubset<T, comic_historyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Comic_histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_historyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Comic_histories
+     * const comic_history = await prisma.comic_history.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends comic_historyUpdateManyArgs>(args: SelectSubset<T, comic_historyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Comic_history.
+     * @param {comic_historyUpsertArgs} args - Arguments to update or create a Comic_history.
+     * @example
+     * // Update or create a Comic_history
+     * const comic_history = await prisma.comic_history.upsert({
+     *   create: {
+     *     // ... data to create a Comic_history
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Comic_history we want to update
+     *   }
+     * })
+     */
+    upsert<T extends comic_historyUpsertArgs>(args: SelectSubset<T, comic_historyUpsertArgs<ExtArgs>>): Prisma__comic_historyClient<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Comic_histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_historyCountArgs} args - Arguments to filter Comic_histories to count.
+     * @example
+     * // Count the number of Comic_histories
+     * const count = await prisma.comic_history.count({
+     *   where: {
+     *     // ... the filter for the Comic_histories we want to count
+     *   }
+     * })
+    **/
+    count<T extends comic_historyCountArgs>(
+      args?: Subset<T, comic_historyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], Comic_historyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Comic_history.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {Comic_historyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends Comic_historyAggregateArgs>(args: Subset<T, Comic_historyAggregateArgs>): Prisma.PrismaPromise<GetComic_historyAggregateType<T>>
+
+    /**
+     * Group by Comic_history.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {comic_historyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends comic_historyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: comic_historyGroupByArgs['orderBy'] }
+        : { orderBy?: comic_historyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, comic_historyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetComic_historyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the comic_history model
+   */
+  readonly fields: comic_historyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for comic_history.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__comic_historyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    comic<T extends ComicDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ComicDefaultArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    chapter<T extends ChapterDefaultArgs<ExtArgs> = {}>(args?: Subset<T, ChapterDefaultArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the comic_history model
+   */
+  interface comic_historyFieldRefs {
+    readonly id: FieldRef<"comic_history", 'Int'>
+    readonly userId: FieldRef<"comic_history", 'Int'>
+    readonly comicId: FieldRef<"comic_history", 'Int'>
+    readonly chapterId: FieldRef<"comic_history", 'Int'>
+    readonly read_time: FieldRef<"comic_history", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * comic_history findUnique
+   */
+  export type comic_historyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which comic_history to fetch.
+     */
+    where: comic_historyWhereUniqueInput
+  }
+
+  /**
+   * comic_history findUniqueOrThrow
+   */
+  export type comic_historyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which comic_history to fetch.
+     */
+    where: comic_historyWhereUniqueInput
+  }
+
+  /**
+   * comic_history findFirst
+   */
+  export type comic_historyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which comic_history to fetch.
+     */
+    where?: comic_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comic_histories to fetch.
+     */
+    orderBy?: comic_historyOrderByWithRelationInput | comic_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for comic_histories.
+     */
+    cursor?: comic_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comic_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comic_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of comic_histories.
+     */
+    distinct?: Comic_historyScalarFieldEnum | Comic_historyScalarFieldEnum[]
+  }
+
+  /**
+   * comic_history findFirstOrThrow
+   */
+  export type comic_historyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which comic_history to fetch.
+     */
+    where?: comic_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comic_histories to fetch.
+     */
+    orderBy?: comic_historyOrderByWithRelationInput | comic_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for comic_histories.
+     */
+    cursor?: comic_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comic_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comic_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of comic_histories.
+     */
+    distinct?: Comic_historyScalarFieldEnum | Comic_historyScalarFieldEnum[]
+  }
+
+  /**
+   * comic_history findMany
+   */
+  export type comic_historyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which comic_histories to fetch.
+     */
+    where?: comic_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comic_histories to fetch.
+     */
+    orderBy?: comic_historyOrderByWithRelationInput | comic_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing comic_histories.
+     */
+    cursor?: comic_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comic_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comic_histories.
+     */
+    skip?: number
+    distinct?: Comic_historyScalarFieldEnum | Comic_historyScalarFieldEnum[]
+  }
+
+  /**
+   * comic_history create
+   */
+  export type comic_historyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a comic_history.
+     */
+    data: XOR<comic_historyCreateInput, comic_historyUncheckedCreateInput>
+  }
+
+  /**
+   * comic_history createMany
+   */
+  export type comic_historyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many comic_histories.
+     */
+    data: comic_historyCreateManyInput | comic_historyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * comic_history update
+   */
+  export type comic_historyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a comic_history.
+     */
+    data: XOR<comic_historyUpdateInput, comic_historyUncheckedUpdateInput>
+    /**
+     * Choose, which comic_history to update.
+     */
+    where: comic_historyWhereUniqueInput
+  }
+
+  /**
+   * comic_history updateMany
+   */
+  export type comic_historyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update comic_histories.
+     */
+    data: XOR<comic_historyUpdateManyMutationInput, comic_historyUncheckedUpdateManyInput>
+    /**
+     * Filter which comic_histories to update
+     */
+    where?: comic_historyWhereInput
+    /**
+     * Limit how many comic_histories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * comic_history upsert
+   */
+  export type comic_historyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the comic_history to update in case it exists.
+     */
+    where: comic_historyWhereUniqueInput
+    /**
+     * In case the comic_history found by the `where` argument doesn't exist, create a new comic_history with this data.
+     */
+    create: XOR<comic_historyCreateInput, comic_historyUncheckedCreateInput>
+    /**
+     * In case the comic_history was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<comic_historyUpdateInput, comic_historyUncheckedUpdateInput>
+  }
+
+  /**
+   * comic_history delete
+   */
+  export type comic_historyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+    /**
+     * Filter which comic_history to delete.
+     */
+    where: comic_historyWhereUniqueInput
+  }
+
+  /**
+   * comic_history deleteMany
+   */
+  export type comic_historyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which comic_histories to delete
+     */
+    where?: comic_historyWhereInput
+    /**
+     * Limit how many comic_histories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * comic_history without action
+   */
+  export type comic_historyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comic_history
+     */
+    select?: comic_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comic_history
+     */
+    omit?: comic_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: comic_historyInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model comment
+   */
+
+  export type AggregateComment = {
+    _count: CommentCountAggregateOutputType | null
+    _avg: CommentAvgAggregateOutputType | null
+    _sum: CommentSumAggregateOutputType | null
+    _min: CommentMinAggregateOutputType | null
+    _max: CommentMaxAggregateOutputType | null
+  }
+
+  export type CommentAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+    chapterId: number | null
+    parentId: number | null
+  }
+
+  export type CommentSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+    chapterId: number | null
+    parentId: number | null
+  }
+
+  export type CommentMinAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+    chapterId: number | null
+    content: string | null
+    parentId: number | null
+    create_at: Date | null
+  }
+
+  export type CommentMaxAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    comicId: number | null
+    chapterId: number | null
+    content: string | null
+    parentId: number | null
+    create_at: Date | null
+  }
+
+  export type CommentCountAggregateOutputType = {
+    id: number
+    userId: number
+    comicId: number
+    chapterId: number
+    content: number
+    parentId: number
+    create_at: number
+    _all: number
+  }
+
+
+  export type CommentAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    chapterId?: true
+    parentId?: true
+  }
+
+  export type CommentSumAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    chapterId?: true
+    parentId?: true
+  }
+
+  export type CommentMinAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    chapterId?: true
+    content?: true
+    parentId?: true
+    create_at?: true
+  }
+
+  export type CommentMaxAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    chapterId?: true
+    content?: true
+    parentId?: true
+    create_at?: true
+  }
+
+  export type CommentCountAggregateInputType = {
+    id?: true
+    userId?: true
+    comicId?: true
+    chapterId?: true
+    content?: true
+    parentId?: true
+    create_at?: true
+    _all?: true
+  }
+
+  export type CommentAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which comment to aggregate.
+     */
+    where?: commentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comments to fetch.
+     */
+    orderBy?: commentOrderByWithRelationInput | commentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: commentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned comments
+    **/
+    _count?: true | CommentCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: CommentAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: CommentSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: CommentMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: CommentMaxAggregateInputType
+  }
+
+  export type GetCommentAggregateType<T extends CommentAggregateArgs> = {
+        [P in keyof T & keyof AggregateComment]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateComment[P]>
+      : GetScalarType<T[P], AggregateComment[P]>
+  }
+
+
+
+
+  export type commentGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: commentWhereInput
+    orderBy?: commentOrderByWithAggregationInput | commentOrderByWithAggregationInput[]
+    by: CommentScalarFieldEnum[] | CommentScalarFieldEnum
+    having?: commentScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: CommentCountAggregateInputType | true
+    _avg?: CommentAvgAggregateInputType
+    _sum?: CommentSumAggregateInputType
+    _min?: CommentMinAggregateInputType
+    _max?: CommentMaxAggregateInputType
+  }
+
+  export type CommentGroupByOutputType = {
+    id: number
+    userId: number
+    comicId: number | null
+    chapterId: number | null
+    content: string
+    parentId: number | null
+    create_at: Date
+    _count: CommentCountAggregateOutputType | null
+    _avg: CommentAvgAggregateOutputType | null
+    _sum: CommentSumAggregateOutputType | null
+    _min: CommentMinAggregateOutputType | null
+    _max: CommentMaxAggregateOutputType | null
+  }
+
+  type GetCommentGroupByPayload<T extends commentGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<CommentGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof CommentGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], CommentGroupByOutputType[P]>
+            : GetScalarType<T[P], CommentGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type commentSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    userId?: boolean
+    comicId?: boolean
+    chapterId?: boolean
+    content?: boolean
+    parentId?: boolean
+    create_at?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comic?: boolean | comment$comicArgs<ExtArgs>
+    chapter?: boolean | comment$chapterArgs<ExtArgs>
+    parent?: boolean | comment$parentArgs<ExtArgs>
+    replies?: boolean | comment$repliesArgs<ExtArgs>
+    _count?: boolean | CommentCountOutputTypeDefaultArgs<ExtArgs>
+  }, ExtArgs["result"]["comment"]>
+
+
+
+  export type commentSelectScalar = {
+    id?: boolean
+    userId?: boolean
+    comicId?: boolean
+    chapterId?: boolean
+    content?: boolean
+    parentId?: boolean
+    create_at?: boolean
+  }
+
+  export type commentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "comicId" | "chapterId" | "content" | "parentId" | "create_at", ExtArgs["result"]["comment"]>
+  export type commentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comic?: boolean | comment$comicArgs<ExtArgs>
+    chapter?: boolean | comment$chapterArgs<ExtArgs>
+    parent?: boolean | comment$parentArgs<ExtArgs>
+    replies?: boolean | comment$repliesArgs<ExtArgs>
+    _count?: boolean | CommentCountOutputTypeDefaultArgs<ExtArgs>
+  }
+
+  export type $commentPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "comment"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      comic: Prisma.$ComicPayload<ExtArgs> | null
+      chapter: Prisma.$ChapterPayload<ExtArgs> | null
+      parent: Prisma.$commentPayload<ExtArgs> | null
+      replies: Prisma.$commentPayload<ExtArgs>[]
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      userId: number
+      comicId: number | null
+      chapterId: number | null
+      content: string
+      parentId: number | null
+      create_at: Date
+    }, ExtArgs["result"]["comment"]>
+    composites: {}
+  }
+
+  type commentGetPayload<S extends boolean | null | undefined | commentDefaultArgs> = $Result.GetResult<Prisma.$commentPayload, S>
+
+  type commentCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<commentFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: CommentCountAggregateInputType | true
+    }
+
+  export interface commentDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['comment'], meta: { name: 'comment' } }
+    /**
+     * Find zero or one Comment that matches the filter.
+     * @param {commentFindUniqueArgs} args - Arguments to find a Comment
+     * @example
+     * // Get one Comment
+     * const comment = await prisma.comment.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends commentFindUniqueArgs>(args: SelectSubset<T, commentFindUniqueArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one Comment that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {commentFindUniqueOrThrowArgs} args - Arguments to find a Comment
+     * @example
+     * // Get one Comment
+     * const comment = await prisma.comment.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends commentFindUniqueOrThrowArgs>(args: SelectSubset<T, commentFindUniqueOrThrowArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comment that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {commentFindFirstArgs} args - Arguments to find a Comment
+     * @example
+     * // Get one Comment
+     * const comment = await prisma.comment.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends commentFindFirstArgs>(args?: SelectSubset<T, commentFindFirstArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first Comment that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {commentFindFirstOrThrowArgs} args - Arguments to find a Comment
+     * @example
+     * // Get one Comment
+     * const comment = await prisma.comment.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends commentFindFirstOrThrowArgs>(args?: SelectSubset<T, commentFindFirstOrThrowArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more Comments that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {commentFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all Comments
+     * const comments = await prisma.comment.findMany()
+     * 
+     * // Get first 10 Comments
+     * const comments = await prisma.comment.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const commentWithIdOnly = await prisma.comment.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends commentFindManyArgs>(args?: SelectSubset<T, commentFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a Comment.
+     * @param {commentCreateArgs} args - Arguments to create a Comment.
+     * @example
+     * // Create one Comment
+     * const Comment = await prisma.comment.create({
+     *   data: {
+     *     // ... data to create a Comment
+     *   }
+     * })
+     * 
+     */
+    create<T extends commentCreateArgs>(args: SelectSubset<T, commentCreateArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many Comments.
+     * @param {commentCreateManyArgs} args - Arguments to create many Comments.
+     * @example
+     * // Create many Comments
+     * const comment = await prisma.comment.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends commentCreateManyArgs>(args?: SelectSubset<T, commentCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a Comment.
+     * @param {commentDeleteArgs} args - Arguments to delete one Comment.
+     * @example
+     * // Delete one Comment
+     * const Comment = await prisma.comment.delete({
+     *   where: {
+     *     // ... filter to delete one Comment
+     *   }
+     * })
+     * 
+     */
+    delete<T extends commentDeleteArgs>(args: SelectSubset<T, commentDeleteArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one Comment.
+     * @param {commentUpdateArgs} args - Arguments to update one Comment.
+     * @example
+     * // Update one Comment
+     * const comment = await prisma.comment.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends commentUpdateArgs>(args: SelectSubset<T, commentUpdateArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more Comments.
+     * @param {commentDeleteManyArgs} args - Arguments to filter Comments to delete.
+     * @example
+     * // Delete a few Comments
+     * const { count } = await prisma.comment.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends commentDeleteManyArgs>(args?: SelectSubset<T, commentDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more Comments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {commentUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many Comments
+     * const comment = await prisma.comment.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends commentUpdateManyArgs>(args: SelectSubset<T, commentUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one Comment.
+     * @param {commentUpsertArgs} args - Arguments to update or create a Comment.
+     * @example
+     * // Update or create a Comment
+     * const comment = await prisma.comment.upsert({
+     *   create: {
+     *     // ... data to create a Comment
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the Comment we want to update
+     *   }
+     * })
+     */
+    upsert<T extends commentUpsertArgs>(args: SelectSubset<T, commentUpsertArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of Comments.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {commentCountArgs} args - Arguments to filter Comments to count.
+     * @example
+     * // Count the number of Comments
+     * const count = await prisma.comment.count({
+     *   where: {
+     *     // ... the filter for the Comments we want to count
+     *   }
+     * })
+    **/
+    count<T extends commentCountArgs>(
+      args?: Subset<T, commentCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], CommentCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a Comment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {CommentAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends CommentAggregateArgs>(args: Subset<T, CommentAggregateArgs>): Prisma.PrismaPromise<GetCommentAggregateType<T>>
+
+    /**
+     * Group by Comment.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {commentGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends commentGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: commentGroupByArgs['orderBy'] }
+        : { orderBy?: commentGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, commentGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetCommentGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the comment model
+   */
+  readonly fields: commentFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for comment.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__commentClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    comic<T extends comment$comicArgs<ExtArgs> = {}>(args?: Subset<T, comment$comicArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    chapter<T extends comment$chapterArgs<ExtArgs> = {}>(args?: Subset<T, comment$chapterArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    parent<T extends comment$parentArgs<ExtArgs> = {}>(args?: Subset<T, comment$parentArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    replies<T extends comment$repliesArgs<ExtArgs> = {}>(args?: Subset<T, comment$repliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the comment model
+   */
+  interface commentFieldRefs {
+    readonly id: FieldRef<"comment", 'Int'>
+    readonly userId: FieldRef<"comment", 'Int'>
+    readonly comicId: FieldRef<"comment", 'Int'>
+    readonly chapterId: FieldRef<"comment", 'Int'>
+    readonly content: FieldRef<"comment", 'String'>
+    readonly parentId: FieldRef<"comment", 'Int'>
+    readonly create_at: FieldRef<"comment", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * comment findUnique
+   */
+  export type commentFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    /**
+     * Filter, which comment to fetch.
+     */
+    where: commentWhereUniqueInput
+  }
+
+  /**
+   * comment findUniqueOrThrow
+   */
+  export type commentFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    /**
+     * Filter, which comment to fetch.
+     */
+    where: commentWhereUniqueInput
+  }
+
+  /**
+   * comment findFirst
+   */
+  export type commentFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    /**
+     * Filter, which comment to fetch.
+     */
+    where?: commentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comments to fetch.
+     */
+    orderBy?: commentOrderByWithRelationInput | commentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for comments.
+     */
+    cursor?: commentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of comments.
+     */
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * comment findFirstOrThrow
+   */
+  export type commentFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    /**
+     * Filter, which comment to fetch.
+     */
+    where?: commentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comments to fetch.
+     */
+    orderBy?: commentOrderByWithRelationInput | commentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for comments.
+     */
+    cursor?: commentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comments.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of comments.
+     */
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * comment findMany
+   */
+  export type commentFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    /**
+     * Filter, which comments to fetch.
+     */
+    where?: commentWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of comments to fetch.
+     */
+    orderBy?: commentOrderByWithRelationInput | commentOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing comments.
+     */
+    cursor?: commentWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` comments from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` comments.
+     */
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * comment create
+   */
+  export type commentCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    /**
+     * The data needed to create a comment.
+     */
+    data: XOR<commentCreateInput, commentUncheckedCreateInput>
+  }
+
+  /**
+   * comment createMany
+   */
+  export type commentCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many comments.
+     */
+    data: commentCreateManyInput | commentCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * comment update
+   */
+  export type commentUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    /**
+     * The data needed to update a comment.
+     */
+    data: XOR<commentUpdateInput, commentUncheckedUpdateInput>
+    /**
+     * Choose, which comment to update.
+     */
+    where: commentWhereUniqueInput
+  }
+
+  /**
+   * comment updateMany
+   */
+  export type commentUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update comments.
+     */
+    data: XOR<commentUpdateManyMutationInput, commentUncheckedUpdateManyInput>
+    /**
+     * Filter which comments to update
+     */
+    where?: commentWhereInput
+    /**
+     * Limit how many comments to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * comment upsert
+   */
+  export type commentUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    /**
+     * The filter to search for the comment to update in case it exists.
+     */
+    where: commentWhereUniqueInput
+    /**
+     * In case the comment found by the `where` argument doesn't exist, create a new comment with this data.
+     */
+    create: XOR<commentCreateInput, commentUncheckedCreateInput>
+    /**
+     * In case the comment was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<commentUpdateInput, commentUncheckedUpdateInput>
+  }
+
+  /**
+   * comment delete
+   */
+  export type commentDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    /**
+     * Filter which comment to delete.
+     */
+    where: commentWhereUniqueInput
+  }
+
+  /**
+   * comment deleteMany
+   */
+  export type commentDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which comments to delete
+     */
+    where?: commentWhereInput
+    /**
+     * Limit how many comments to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * comment.comic
+   */
+  export type comment$comicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    where?: ComicWhereInput
+  }
+
+  /**
+   * comment.chapter
+   */
+  export type comment$chapterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    where?: ChapterWhereInput
+  }
+
+  /**
+   * comment.parent
+   */
+  export type comment$parentArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    where?: commentWhereInput
+  }
+
+  /**
+   * comment.replies
+   */
+  export type comment$repliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    where?: commentWhereInput
+    orderBy?: commentOrderByWithRelationInput | commentOrderByWithRelationInput[]
+    cursor?: commentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * comment without action
+   */
+  export type commentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Enums
+   */
+
+  export const TransactionIsolationLevel: {
+    ReadUncommitted: 'ReadUncommitted',
+    ReadCommitted: 'ReadCommitted',
+    RepeatableRead: 'RepeatableRead',
+    Serializable: 'Serializable'
+  };
+
+  export type TransactionIsolationLevel = (typeof TransactionIsolationLevel)[keyof typeof TransactionIsolationLevel]
+
+
+  export const UserScalarFieldEnum: {
+    id: 'id',
+    username: 'username',
+    email: 'email',
+    password: 'password',
+    avatar: 'avatar',
+    role: 'role',
+    total_coin: 'total_coin',
+    refresh_token: 'refresh_token',
+    create_at: 'create_at',
+    update_at: 'update_at'
+  };
+
+  export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+  export const CoinScalarFieldEnum: {
+    id: 'id',
+    coin_amount: 'coin_amount',
+    price: 'price',
+    create_at: 'create_at'
+  };
+
+  export type CoinScalarFieldEnum = (typeof CoinScalarFieldEnum)[keyof typeof CoinScalarFieldEnum]
+
+
+  export const TransactionScalarFieldEnum: {
+    id: 'id',
+    coin_amount: 'coin_amount',
+    price: 'price',
+    status: 'status',
+    create_at: 'create_at',
+    userId: 'userId',
+    coinId: 'coinId'
+  };
+
+  export type TransactionScalarFieldEnum = (typeof TransactionScalarFieldEnum)[keyof typeof TransactionScalarFieldEnum]
+
+
+  export const CountryScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    create_at: 'create_at',
+    update_at: 'update_at'
+  };
+
+  export type CountryScalarFieldEnum = (typeof CountryScalarFieldEnum)[keyof typeof CountryScalarFieldEnum]
+
+
+  export const ComicScalarFieldEnum: {
+    id: 'id',
+    title: 'title',
+    title_eng: 'title_eng',
+    slug: 'slug',
+    description: 'description',
+    author: 'author',
+    status: 'status',
+    cover_image: 'cover_image',
+    views: 'views',
+    is_active: 'is_active',
+    create_at: 'create_at',
+    update_at: 'update_at',
+    countryId: 'countryId'
+  };
+
+  export type ComicScalarFieldEnum = (typeof ComicScalarFieldEnum)[keyof typeof ComicScalarFieldEnum]
+
+
+  export const CategoryScalarFieldEnum: {
+    id: 'id',
+    name: 'name',
+    slug: 'slug',
+    description: 'description',
+    create_at: 'create_at',
+    update_at: 'update_at'
+  };
+
+  export type CategoryScalarFieldEnum = (typeof CategoryScalarFieldEnum)[keyof typeof CategoryScalarFieldEnum]
+
+
+  export const ChapterScalarFieldEnum: {
+    id: 'id',
+    chapter_name: 'chapter_name',
+    chapter_title: 'chapter_title',
+    slug: 'slug',
+    is_locked: 'is_locked',
+    price_xu: 'price_xu',
+    auto_unlock_time: 'auto_unlock_time',
+    views: 'views',
+    chapter_image_url: 'chapter_image_url',
+    create_at: 'create_at',
+    update_at: 'update_at',
+    comicId: 'comicId'
+  };
+
+  export type ChapterScalarFieldEnum = (typeof ChapterScalarFieldEnum)[keyof typeof ChapterScalarFieldEnum]
+
+
+  export const Chapter_imageScalarFieldEnum: {
+    id: 'id',
+    image_url: 'image_url',
+    chapterId: 'chapterId'
+  };
+
+  export type Chapter_imageScalarFieldEnum = (typeof Chapter_imageScalarFieldEnum)[keyof typeof Chapter_imageScalarFieldEnum]
+
+
+  export const Chapter_unlockScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    chapterId: 'chapterId',
+    unlock_time: 'unlock_time'
+  };
+
+  export type Chapter_unlockScalarFieldEnum = (typeof Chapter_unlockScalarFieldEnum)[keyof typeof Chapter_unlockScalarFieldEnum]
+
+
+  export const NotificationScalarFieldEnum: {
+    id: 'id',
+    message: 'message',
+    seen: 'seen',
+    type: 'type',
+    create_at: 'create_at',
+    userId: 'userId'
+  };
+
+  export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
+
+
+  export const Comic_followerScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    comicId: 'comicId'
+  };
+
+  export type Comic_followerScalarFieldEnum = (typeof Comic_followerScalarFieldEnum)[keyof typeof Comic_followerScalarFieldEnum]
+
+
+  export const Comic_historyScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    comicId: 'comicId',
+    chapterId: 'chapterId',
+    read_time: 'read_time'
+  };
+
+  export type Comic_historyScalarFieldEnum = (typeof Comic_historyScalarFieldEnum)[keyof typeof Comic_historyScalarFieldEnum]
+
+
+  export const CommentScalarFieldEnum: {
+    id: 'id',
+    userId: 'userId',
+    comicId: 'comicId',
+    chapterId: 'chapterId',
+    content: 'content',
+    parentId: 'parentId',
+    create_at: 'create_at'
+  };
+
+  export type CommentScalarFieldEnum = (typeof CommentScalarFieldEnum)[keyof typeof CommentScalarFieldEnum]
+
+
+  export const SortOrder: {
+    asc: 'asc',
+    desc: 'desc'
+  };
+
+  export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
+
+
+  export const NullsOrder: {
+    first: 'first',
+    last: 'last'
+  };
+
+  export type NullsOrder = (typeof NullsOrder)[keyof typeof NullsOrder]
+
+
+  export const UserOrderByRelevanceFieldEnum: {
+    username: 'username',
+    email: 'email',
+    password: 'password',
+    avatar: 'avatar',
+    refresh_token: 'refresh_token'
+  };
+
+  export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
+
+
+  export const CountryOrderByRelevanceFieldEnum: {
+    name: 'name'
+  };
+
+  export type CountryOrderByRelevanceFieldEnum = (typeof CountryOrderByRelevanceFieldEnum)[keyof typeof CountryOrderByRelevanceFieldEnum]
+
+
+  export const ComicOrderByRelevanceFieldEnum: {
+    title: 'title',
+    title_eng: 'title_eng',
+    slug: 'slug',
+    description: 'description',
+    author: 'author',
+    cover_image: 'cover_image'
+  };
+
+  export type ComicOrderByRelevanceFieldEnum = (typeof ComicOrderByRelevanceFieldEnum)[keyof typeof ComicOrderByRelevanceFieldEnum]
+
+
+  export const CategoryOrderByRelevanceFieldEnum: {
+    name: 'name',
+    slug: 'slug',
+    description: 'description'
+  };
+
+  export type CategoryOrderByRelevanceFieldEnum = (typeof CategoryOrderByRelevanceFieldEnum)[keyof typeof CategoryOrderByRelevanceFieldEnum]
+
+
+  export const ChapterOrderByRelevanceFieldEnum: {
+    chapter_name: 'chapter_name',
+    chapter_title: 'chapter_title',
+    slug: 'slug',
+    chapter_image_url: 'chapter_image_url'
+  };
+
+  export type ChapterOrderByRelevanceFieldEnum = (typeof ChapterOrderByRelevanceFieldEnum)[keyof typeof ChapterOrderByRelevanceFieldEnum]
+
+
+  export const chapter_imageOrderByRelevanceFieldEnum: {
+    image_url: 'image_url'
+  };
+
+  export type chapter_imageOrderByRelevanceFieldEnum = (typeof chapter_imageOrderByRelevanceFieldEnum)[keyof typeof chapter_imageOrderByRelevanceFieldEnum]
+
+
+  export const NotificationOrderByRelevanceFieldEnum: {
+    message: 'message'
+  };
+
+  export type NotificationOrderByRelevanceFieldEnum = (typeof NotificationOrderByRelevanceFieldEnum)[keyof typeof NotificationOrderByRelevanceFieldEnum]
+
+
+  export const commentOrderByRelevanceFieldEnum: {
+    content: 'content'
+  };
+
+  export type commentOrderByRelevanceFieldEnum = (typeof commentOrderByRelevanceFieldEnum)[keyof typeof commentOrderByRelevanceFieldEnum]
+
+
+  /**
+   * Field references
+   */
+
+
+  /**
+   * Reference to a field of type 'Int'
+   */
+  export type IntFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Int'>
+    
+
+
+  /**
+   * Reference to a field of type 'String'
+   */
+  export type StringFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'String'>
+    
+
+
+  /**
+   * Reference to a field of type 'userRole'
+   */
+  export type EnumuserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'userRole'>
+    
+
+
+  /**
+   * Reference to a field of type 'DateTime'
+   */
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+  /**
+   * Reference to a field of type 'Float'
+   */
+  export type FloatFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Float'>
+    
+
+
+  /**
+   * Reference to a field of type 'transactionStatus'
+   */
+  export type EnumtransactionStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'transactionStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'comicStatus'
+   */
+  export type EnumcomicStatusFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'comicStatus'>
+    
+
+
+  /**
+   * Reference to a field of type 'Boolean'
+   */
+  export type BooleanFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Boolean'>
+    
+
+
+  /**
+   * Reference to a field of type 'notifiType'
+   */
+  export type EnumnotifiTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'notifiType'>
+    
+  /**
+   * Deep Input Types
+   */
+
+
+  export type UserWhereInput = {
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    id?: IntFilter<"User"> | number
+    username?: StringFilter<"User"> | string
+    email?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
+    avatar?: StringNullableFilter<"User"> | string | null
+    role?: EnumuserRoleFilter<"User"> | $Enums.userRole
+    total_coin?: IntFilter<"User"> | number
+    refresh_token?: StringNullableFilter<"User"> | string | null
+    create_at?: DateTimeFilter<"User"> | Date | string
+    update_at?: DateTimeFilter<"User"> | Date | string
+    transactions?: TransactionListRelationFilter
+    chapterUnlocks?: Chapter_unlockListRelationFilter
+    notifications?: NotificationListRelationFilter
+    comicFollower?: Comic_followerListRelationFilter
+    comicHistory?: Comic_historyListRelationFilter
+    comments?: CommentListRelationFilter
+  }
+
+  export type UserOrderByWithRelationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    avatar?: SortOrderInput | SortOrder
+    role?: SortOrder
+    total_coin?: SortOrder
+    refresh_token?: SortOrderInput | SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    transactions?: TransactionOrderByRelationAggregateInput
+    chapterUnlocks?: chapter_unlockOrderByRelationAggregateInput
+    notifications?: NotificationOrderByRelationAggregateInput
+    comicFollower?: comic_followerOrderByRelationAggregateInput
+    comicHistory?: comic_historyOrderByRelationAggregateInput
+    comments?: commentOrderByRelationAggregateInput
+    _relevance?: UserOrderByRelevanceInput
+  }
+
+  export type UserWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    email?: string
+    AND?: UserWhereInput | UserWhereInput[]
+    OR?: UserWhereInput[]
+    NOT?: UserWhereInput | UserWhereInput[]
+    username?: StringFilter<"User"> | string
+    password?: StringFilter<"User"> | string
+    avatar?: StringNullableFilter<"User"> | string | null
+    role?: EnumuserRoleFilter<"User"> | $Enums.userRole
+    total_coin?: IntFilter<"User"> | number
+    refresh_token?: StringNullableFilter<"User"> | string | null
+    create_at?: DateTimeFilter<"User"> | Date | string
+    update_at?: DateTimeFilter<"User"> | Date | string
+    transactions?: TransactionListRelationFilter
+    chapterUnlocks?: Chapter_unlockListRelationFilter
+    notifications?: NotificationListRelationFilter
+    comicFollower?: Comic_followerListRelationFilter
+    comicHistory?: Comic_historyListRelationFilter
+    comments?: CommentListRelationFilter
+  }, "id" | "email">
+
+  export type UserOrderByWithAggregationInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    avatar?: SortOrderInput | SortOrder
+    role?: SortOrder
+    total_coin?: SortOrder
+    refresh_token?: SortOrderInput | SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    _count?: UserCountOrderByAggregateInput
+    _avg?: UserAvgOrderByAggregateInput
+    _max?: UserMaxOrderByAggregateInput
+    _min?: UserMinOrderByAggregateInput
+    _sum?: UserSumOrderByAggregateInput
+  }
+
+  export type UserScalarWhereWithAggregatesInput = {
+    AND?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    OR?: UserScalarWhereWithAggregatesInput[]
+    NOT?: UserScalarWhereWithAggregatesInput | UserScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"User"> | number
+    username?: StringWithAggregatesFilter<"User"> | string
+    email?: StringWithAggregatesFilter<"User"> | string
+    password?: StringWithAggregatesFilter<"User"> | string
+    avatar?: StringNullableWithAggregatesFilter<"User"> | string | null
+    role?: EnumuserRoleWithAggregatesFilter<"User"> | $Enums.userRole
+    total_coin?: IntWithAggregatesFilter<"User"> | number
+    refresh_token?: StringNullableWithAggregatesFilter<"User"> | string | null
+    create_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
+    update_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
+  }
+
+  export type CoinWhereInput = {
+    AND?: CoinWhereInput | CoinWhereInput[]
+    OR?: CoinWhereInput[]
+    NOT?: CoinWhereInput | CoinWhereInput[]
+    id?: IntFilter<"Coin"> | number
+    coin_amount?: IntFilter<"Coin"> | number
+    price?: FloatFilter<"Coin"> | number
+    create_at?: DateTimeFilter<"Coin"> | Date | string
+    transactions?: TransactionListRelationFilter
+  }
+
+  export type CoinOrderByWithRelationInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    create_at?: SortOrder
+    transactions?: TransactionOrderByRelationAggregateInput
+  }
+
+  export type CoinWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: CoinWhereInput | CoinWhereInput[]
+    OR?: CoinWhereInput[]
+    NOT?: CoinWhereInput | CoinWhereInput[]
+    coin_amount?: IntFilter<"Coin"> | number
+    price?: FloatFilter<"Coin"> | number
+    create_at?: DateTimeFilter<"Coin"> | Date | string
+    transactions?: TransactionListRelationFilter
+  }, "id">
+
+  export type CoinOrderByWithAggregationInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    create_at?: SortOrder
+    _count?: CoinCountOrderByAggregateInput
+    _avg?: CoinAvgOrderByAggregateInput
+    _max?: CoinMaxOrderByAggregateInput
+    _min?: CoinMinOrderByAggregateInput
+    _sum?: CoinSumOrderByAggregateInput
+  }
+
+  export type CoinScalarWhereWithAggregatesInput = {
+    AND?: CoinScalarWhereWithAggregatesInput | CoinScalarWhereWithAggregatesInput[]
+    OR?: CoinScalarWhereWithAggregatesInput[]
+    NOT?: CoinScalarWhereWithAggregatesInput | CoinScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Coin"> | number
+    coin_amount?: IntWithAggregatesFilter<"Coin"> | number
+    price?: FloatWithAggregatesFilter<"Coin"> | number
+    create_at?: DateTimeWithAggregatesFilter<"Coin"> | Date | string
+  }
+
+  export type TransactionWhereInput = {
+    AND?: TransactionWhereInput | TransactionWhereInput[]
+    OR?: TransactionWhereInput[]
+    NOT?: TransactionWhereInput | TransactionWhereInput[]
+    id?: IntFilter<"Transaction"> | number
+    coin_amount?: IntFilter<"Transaction"> | number
+    price?: FloatFilter<"Transaction"> | number
+    status?: EnumtransactionStatusFilter<"Transaction"> | $Enums.transactionStatus
+    create_at?: DateTimeFilter<"Transaction"> | Date | string
+    userId?: IntFilter<"Transaction"> | number
+    coinId?: IntFilter<"Transaction"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    coin?: XOR<CoinScalarRelationFilter, CoinWhereInput>
+  }
+
+  export type TransactionOrderByWithRelationInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    status?: SortOrder
+    create_at?: SortOrder
+    userId?: SortOrder
+    coinId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    coin?: CoinOrderByWithRelationInput
+  }
+
+  export type TransactionWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: TransactionWhereInput | TransactionWhereInput[]
+    OR?: TransactionWhereInput[]
+    NOT?: TransactionWhereInput | TransactionWhereInput[]
+    coin_amount?: IntFilter<"Transaction"> | number
+    price?: FloatFilter<"Transaction"> | number
+    status?: EnumtransactionStatusFilter<"Transaction"> | $Enums.transactionStatus
+    create_at?: DateTimeFilter<"Transaction"> | Date | string
+    userId?: IntFilter<"Transaction"> | number
+    coinId?: IntFilter<"Transaction"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    coin?: XOR<CoinScalarRelationFilter, CoinWhereInput>
+  }, "id">
+
+  export type TransactionOrderByWithAggregationInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    status?: SortOrder
+    create_at?: SortOrder
+    userId?: SortOrder
+    coinId?: SortOrder
+    _count?: TransactionCountOrderByAggregateInput
+    _avg?: TransactionAvgOrderByAggregateInput
+    _max?: TransactionMaxOrderByAggregateInput
+    _min?: TransactionMinOrderByAggregateInput
+    _sum?: TransactionSumOrderByAggregateInput
+  }
+
+  export type TransactionScalarWhereWithAggregatesInput = {
+    AND?: TransactionScalarWhereWithAggregatesInput | TransactionScalarWhereWithAggregatesInput[]
+    OR?: TransactionScalarWhereWithAggregatesInput[]
+    NOT?: TransactionScalarWhereWithAggregatesInput | TransactionScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Transaction"> | number
+    coin_amount?: IntWithAggregatesFilter<"Transaction"> | number
+    price?: FloatWithAggregatesFilter<"Transaction"> | number
+    status?: EnumtransactionStatusWithAggregatesFilter<"Transaction"> | $Enums.transactionStatus
+    create_at?: DateTimeWithAggregatesFilter<"Transaction"> | Date | string
+    userId?: IntWithAggregatesFilter<"Transaction"> | number
+    coinId?: IntWithAggregatesFilter<"Transaction"> | number
+  }
+
+  export type CountryWhereInput = {
+    AND?: CountryWhereInput | CountryWhereInput[]
+    OR?: CountryWhereInput[]
+    NOT?: CountryWhereInput | CountryWhereInput[]
+    id?: IntFilter<"Country"> | number
+    name?: StringFilter<"Country"> | string
+    create_at?: DateTimeFilter<"Country"> | Date | string
+    update_at?: DateTimeFilter<"Country"> | Date | string
+    comics?: ComicListRelationFilter
+  }
+
+  export type CountryOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    comics?: ComicOrderByRelationAggregateInput
+    _relevance?: CountryOrderByRelevanceInput
+  }
+
+  export type CountryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    AND?: CountryWhereInput | CountryWhereInput[]
+    OR?: CountryWhereInput[]
+    NOT?: CountryWhereInput | CountryWhereInput[]
+    create_at?: DateTimeFilter<"Country"> | Date | string
+    update_at?: DateTimeFilter<"Country"> | Date | string
+    comics?: ComicListRelationFilter
+  }, "id" | "name">
+
+  export type CountryOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    _count?: CountryCountOrderByAggregateInput
+    _avg?: CountryAvgOrderByAggregateInput
+    _max?: CountryMaxOrderByAggregateInput
+    _min?: CountryMinOrderByAggregateInput
+    _sum?: CountrySumOrderByAggregateInput
+  }
+
+  export type CountryScalarWhereWithAggregatesInput = {
+    AND?: CountryScalarWhereWithAggregatesInput | CountryScalarWhereWithAggregatesInput[]
+    OR?: CountryScalarWhereWithAggregatesInput[]
+    NOT?: CountryScalarWhereWithAggregatesInput | CountryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Country"> | number
+    name?: StringWithAggregatesFilter<"Country"> | string
+    create_at?: DateTimeWithAggregatesFilter<"Country"> | Date | string
+    update_at?: DateTimeWithAggregatesFilter<"Country"> | Date | string
+  }
+
+  export type ComicWhereInput = {
+    AND?: ComicWhereInput | ComicWhereInput[]
+    OR?: ComicWhereInput[]
+    NOT?: ComicWhereInput | ComicWhereInput[]
+    id?: IntFilter<"Comic"> | number
+    title?: StringFilter<"Comic"> | string
+    title_eng?: StringNullableFilter<"Comic"> | string | null
+    slug?: StringFilter<"Comic"> | string
+    description?: StringFilter<"Comic"> | string
+    author?: StringFilter<"Comic"> | string
+    status?: EnumcomicStatusFilter<"Comic"> | $Enums.comicStatus
+    cover_image?: StringFilter<"Comic"> | string
+    views?: IntFilter<"Comic"> | number
+    is_active?: BoolFilter<"Comic"> | boolean
+    create_at?: DateTimeFilter<"Comic"> | Date | string
+    update_at?: DateTimeFilter<"Comic"> | Date | string
+    countryId?: IntFilter<"Comic"> | number
+    country?: XOR<CountryScalarRelationFilter, CountryWhereInput>
+    categories?: CategoryListRelationFilter
+    chapters?: ChapterListRelationFilter
+    comicFollower?: Comic_followerListRelationFilter
+    comicHistory?: Comic_historyListRelationFilter
+    comments?: CommentListRelationFilter
+  }
+
+  export type ComicOrderByWithRelationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    title_eng?: SortOrderInput | SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    author?: SortOrder
+    status?: SortOrder
+    cover_image?: SortOrder
+    views?: SortOrder
+    is_active?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    countryId?: SortOrder
+    country?: CountryOrderByWithRelationInput
+    categories?: CategoryOrderByRelationAggregateInput
+    chapters?: ChapterOrderByRelationAggregateInput
+    comicFollower?: comic_followerOrderByRelationAggregateInput
+    comicHistory?: comic_historyOrderByRelationAggregateInput
+    comments?: commentOrderByRelationAggregateInput
+    _relevance?: ComicOrderByRelevanceInput
+  }
+
+  export type ComicWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    title?: string
+    slug?: string
+    AND?: ComicWhereInput | ComicWhereInput[]
+    OR?: ComicWhereInput[]
+    NOT?: ComicWhereInput | ComicWhereInput[]
+    title_eng?: StringNullableFilter<"Comic"> | string | null
+    description?: StringFilter<"Comic"> | string
+    author?: StringFilter<"Comic"> | string
+    status?: EnumcomicStatusFilter<"Comic"> | $Enums.comicStatus
+    cover_image?: StringFilter<"Comic"> | string
+    views?: IntFilter<"Comic"> | number
+    is_active?: BoolFilter<"Comic"> | boolean
+    create_at?: DateTimeFilter<"Comic"> | Date | string
+    update_at?: DateTimeFilter<"Comic"> | Date | string
+    countryId?: IntFilter<"Comic"> | number
+    country?: XOR<CountryScalarRelationFilter, CountryWhereInput>
+    categories?: CategoryListRelationFilter
+    chapters?: ChapterListRelationFilter
+    comicFollower?: Comic_followerListRelationFilter
+    comicHistory?: Comic_historyListRelationFilter
+    comments?: CommentListRelationFilter
+  }, "id" | "title" | "slug">
+
+  export type ComicOrderByWithAggregationInput = {
+    id?: SortOrder
+    title?: SortOrder
+    title_eng?: SortOrderInput | SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    author?: SortOrder
+    status?: SortOrder
+    cover_image?: SortOrder
+    views?: SortOrder
+    is_active?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    countryId?: SortOrder
+    _count?: ComicCountOrderByAggregateInput
+    _avg?: ComicAvgOrderByAggregateInput
+    _max?: ComicMaxOrderByAggregateInput
+    _min?: ComicMinOrderByAggregateInput
+    _sum?: ComicSumOrderByAggregateInput
+  }
+
+  export type ComicScalarWhereWithAggregatesInput = {
+    AND?: ComicScalarWhereWithAggregatesInput | ComicScalarWhereWithAggregatesInput[]
+    OR?: ComicScalarWhereWithAggregatesInput[]
+    NOT?: ComicScalarWhereWithAggregatesInput | ComicScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Comic"> | number
+    title?: StringWithAggregatesFilter<"Comic"> | string
+    title_eng?: StringNullableWithAggregatesFilter<"Comic"> | string | null
+    slug?: StringWithAggregatesFilter<"Comic"> | string
+    description?: StringWithAggregatesFilter<"Comic"> | string
+    author?: StringWithAggregatesFilter<"Comic"> | string
+    status?: EnumcomicStatusWithAggregatesFilter<"Comic"> | $Enums.comicStatus
+    cover_image?: StringWithAggregatesFilter<"Comic"> | string
+    views?: IntWithAggregatesFilter<"Comic"> | number
+    is_active?: BoolWithAggregatesFilter<"Comic"> | boolean
+    create_at?: DateTimeWithAggregatesFilter<"Comic"> | Date | string
+    update_at?: DateTimeWithAggregatesFilter<"Comic"> | Date | string
+    countryId?: IntWithAggregatesFilter<"Comic"> | number
+  }
+
+  export type CategoryWhereInput = {
+    AND?: CategoryWhereInput | CategoryWhereInput[]
+    OR?: CategoryWhereInput[]
+    NOT?: CategoryWhereInput | CategoryWhereInput[]
+    id?: IntFilter<"Category"> | number
+    name?: StringFilter<"Category"> | string
+    slug?: StringFilter<"Category"> | string
+    description?: StringFilter<"Category"> | string
+    create_at?: DateTimeFilter<"Category"> | Date | string
+    update_at?: DateTimeFilter<"Category"> | Date | string
+    comics?: ComicListRelationFilter
+  }
+
+  export type CategoryOrderByWithRelationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    comics?: ComicOrderByRelationAggregateInput
+    _relevance?: CategoryOrderByRelevanceInput
+  }
+
+  export type CategoryWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    name?: string
+    slug?: string
+    AND?: CategoryWhereInput | CategoryWhereInput[]
+    OR?: CategoryWhereInput[]
+    NOT?: CategoryWhereInput | CategoryWhereInput[]
+    description?: StringFilter<"Category"> | string
+    create_at?: DateTimeFilter<"Category"> | Date | string
+    update_at?: DateTimeFilter<"Category"> | Date | string
+    comics?: ComicListRelationFilter
+  }, "id" | "name" | "slug">
+
+  export type CategoryOrderByWithAggregationInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    _count?: CategoryCountOrderByAggregateInput
+    _avg?: CategoryAvgOrderByAggregateInput
+    _max?: CategoryMaxOrderByAggregateInput
+    _min?: CategoryMinOrderByAggregateInput
+    _sum?: CategorySumOrderByAggregateInput
+  }
+
+  export type CategoryScalarWhereWithAggregatesInput = {
+    AND?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
+    OR?: CategoryScalarWhereWithAggregatesInput[]
+    NOT?: CategoryScalarWhereWithAggregatesInput | CategoryScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Category"> | number
+    name?: StringWithAggregatesFilter<"Category"> | string
+    slug?: StringWithAggregatesFilter<"Category"> | string
+    description?: StringWithAggregatesFilter<"Category"> | string
+    create_at?: DateTimeWithAggregatesFilter<"Category"> | Date | string
+    update_at?: DateTimeWithAggregatesFilter<"Category"> | Date | string
+  }
+
+  export type ChapterWhereInput = {
+    AND?: ChapterWhereInput | ChapterWhereInput[]
+    OR?: ChapterWhereInput[]
+    NOT?: ChapterWhereInput | ChapterWhereInput[]
+    id?: IntFilter<"Chapter"> | number
+    chapter_name?: StringFilter<"Chapter"> | string
+    chapter_title?: StringNullableFilter<"Chapter"> | string | null
+    slug?: StringFilter<"Chapter"> | string
+    is_locked?: BoolFilter<"Chapter"> | boolean
+    price_xu?: IntFilter<"Chapter"> | number
+    auto_unlock_time?: DateTimeFilter<"Chapter"> | Date | string
+    views?: IntFilter<"Chapter"> | number
+    chapter_image_url?: StringNullableFilter<"Chapter"> | string | null
+    create_at?: DateTimeFilter<"Chapter"> | Date | string
+    update_at?: DateTimeFilter<"Chapter"> | Date | string
+    comicId?: IntFilter<"Chapter"> | number
+    comic?: XOR<ComicScalarRelationFilter, ComicWhereInput>
+    chapterImages?: Chapter_imageListRelationFilter
+    chapterUnlocks?: Chapter_unlockListRelationFilter
+    comicHistory?: Comic_historyListRelationFilter
+    comments?: CommentListRelationFilter
+  }
+
+  export type ChapterOrderByWithRelationInput = {
+    id?: SortOrder
+    chapter_name?: SortOrder
+    chapter_title?: SortOrderInput | SortOrder
+    slug?: SortOrder
+    is_locked?: SortOrder
+    price_xu?: SortOrder
+    auto_unlock_time?: SortOrder
+    views?: SortOrder
+    chapter_image_url?: SortOrderInput | SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    comicId?: SortOrder
+    comic?: ComicOrderByWithRelationInput
+    chapterImages?: chapter_imageOrderByRelationAggregateInput
+    chapterUnlocks?: chapter_unlockOrderByRelationAggregateInput
+    comicHistory?: comic_historyOrderByRelationAggregateInput
+    comments?: commentOrderByRelationAggregateInput
+    _relevance?: ChapterOrderByRelevanceInput
+  }
+
+  export type ChapterWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    slug?: string
+    AND?: ChapterWhereInput | ChapterWhereInput[]
+    OR?: ChapterWhereInput[]
+    NOT?: ChapterWhereInput | ChapterWhereInput[]
+    chapter_name?: StringFilter<"Chapter"> | string
+    chapter_title?: StringNullableFilter<"Chapter"> | string | null
+    is_locked?: BoolFilter<"Chapter"> | boolean
+    price_xu?: IntFilter<"Chapter"> | number
+    auto_unlock_time?: DateTimeFilter<"Chapter"> | Date | string
+    views?: IntFilter<"Chapter"> | number
+    chapter_image_url?: StringNullableFilter<"Chapter"> | string | null
+    create_at?: DateTimeFilter<"Chapter"> | Date | string
+    update_at?: DateTimeFilter<"Chapter"> | Date | string
+    comicId?: IntFilter<"Chapter"> | number
+    comic?: XOR<ComicScalarRelationFilter, ComicWhereInput>
+    chapterImages?: Chapter_imageListRelationFilter
+    chapterUnlocks?: Chapter_unlockListRelationFilter
+    comicHistory?: Comic_historyListRelationFilter
+    comments?: CommentListRelationFilter
+  }, "id" | "slug">
+
+  export type ChapterOrderByWithAggregationInput = {
+    id?: SortOrder
+    chapter_name?: SortOrder
+    chapter_title?: SortOrderInput | SortOrder
+    slug?: SortOrder
+    is_locked?: SortOrder
+    price_xu?: SortOrder
+    auto_unlock_time?: SortOrder
+    views?: SortOrder
+    chapter_image_url?: SortOrderInput | SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    comicId?: SortOrder
+    _count?: ChapterCountOrderByAggregateInput
+    _avg?: ChapterAvgOrderByAggregateInput
+    _max?: ChapterMaxOrderByAggregateInput
+    _min?: ChapterMinOrderByAggregateInput
+    _sum?: ChapterSumOrderByAggregateInput
+  }
+
+  export type ChapterScalarWhereWithAggregatesInput = {
+    AND?: ChapterScalarWhereWithAggregatesInput | ChapterScalarWhereWithAggregatesInput[]
+    OR?: ChapterScalarWhereWithAggregatesInput[]
+    NOT?: ChapterScalarWhereWithAggregatesInput | ChapterScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Chapter"> | number
+    chapter_name?: StringWithAggregatesFilter<"Chapter"> | string
+    chapter_title?: StringNullableWithAggregatesFilter<"Chapter"> | string | null
+    slug?: StringWithAggregatesFilter<"Chapter"> | string
+    is_locked?: BoolWithAggregatesFilter<"Chapter"> | boolean
+    price_xu?: IntWithAggregatesFilter<"Chapter"> | number
+    auto_unlock_time?: DateTimeWithAggregatesFilter<"Chapter"> | Date | string
+    views?: IntWithAggregatesFilter<"Chapter"> | number
+    chapter_image_url?: StringNullableWithAggregatesFilter<"Chapter"> | string | null
+    create_at?: DateTimeWithAggregatesFilter<"Chapter"> | Date | string
+    update_at?: DateTimeWithAggregatesFilter<"Chapter"> | Date | string
+    comicId?: IntWithAggregatesFilter<"Chapter"> | number
+  }
+
+  export type chapter_imageWhereInput = {
+    AND?: chapter_imageWhereInput | chapter_imageWhereInput[]
+    OR?: chapter_imageWhereInput[]
+    NOT?: chapter_imageWhereInput | chapter_imageWhereInput[]
+    id?: IntFilter<"chapter_image"> | number
+    image_url?: StringFilter<"chapter_image"> | string
+    chapterId?: IntFilter<"chapter_image"> | number
+    chapter?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
+  }
+
+  export type chapter_imageOrderByWithRelationInput = {
+    id?: SortOrder
+    image_url?: SortOrder
+    chapterId?: SortOrder
+    chapter?: ChapterOrderByWithRelationInput
+    _relevance?: chapter_imageOrderByRelevanceInput
+  }
+
+  export type chapter_imageWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: chapter_imageWhereInput | chapter_imageWhereInput[]
+    OR?: chapter_imageWhereInput[]
+    NOT?: chapter_imageWhereInput | chapter_imageWhereInput[]
+    image_url?: StringFilter<"chapter_image"> | string
+    chapterId?: IntFilter<"chapter_image"> | number
+    chapter?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
+  }, "id">
+
+  export type chapter_imageOrderByWithAggregationInput = {
+    id?: SortOrder
+    image_url?: SortOrder
+    chapterId?: SortOrder
+    _count?: chapter_imageCountOrderByAggregateInput
+    _avg?: chapter_imageAvgOrderByAggregateInput
+    _max?: chapter_imageMaxOrderByAggregateInput
+    _min?: chapter_imageMinOrderByAggregateInput
+    _sum?: chapter_imageSumOrderByAggregateInput
+  }
+
+  export type chapter_imageScalarWhereWithAggregatesInput = {
+    AND?: chapter_imageScalarWhereWithAggregatesInput | chapter_imageScalarWhereWithAggregatesInput[]
+    OR?: chapter_imageScalarWhereWithAggregatesInput[]
+    NOT?: chapter_imageScalarWhereWithAggregatesInput | chapter_imageScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"chapter_image"> | number
+    image_url?: StringWithAggregatesFilter<"chapter_image"> | string
+    chapterId?: IntWithAggregatesFilter<"chapter_image"> | number
+  }
+
+  export type chapter_unlockWhereInput = {
+    AND?: chapter_unlockWhereInput | chapter_unlockWhereInput[]
+    OR?: chapter_unlockWhereInput[]
+    NOT?: chapter_unlockWhereInput | chapter_unlockWhereInput[]
+    id?: IntFilter<"chapter_unlock"> | number
+    userId?: IntFilter<"chapter_unlock"> | number
+    chapterId?: IntFilter<"chapter_unlock"> | number
+    unlock_time?: DateTimeFilter<"chapter_unlock"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    chapter?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
+  }
+
+  export type chapter_unlockOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    chapterId?: SortOrder
+    unlock_time?: SortOrder
+    user?: UserOrderByWithRelationInput
+    chapter?: ChapterOrderByWithRelationInput
+  }
+
+  export type chapter_unlockWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: chapter_unlockWhereInput | chapter_unlockWhereInput[]
+    OR?: chapter_unlockWhereInput[]
+    NOT?: chapter_unlockWhereInput | chapter_unlockWhereInput[]
+    userId?: IntFilter<"chapter_unlock"> | number
+    chapterId?: IntFilter<"chapter_unlock"> | number
+    unlock_time?: DateTimeFilter<"chapter_unlock"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    chapter?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
+  }, "id">
+
+  export type chapter_unlockOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    chapterId?: SortOrder
+    unlock_time?: SortOrder
+    _count?: chapter_unlockCountOrderByAggregateInput
+    _avg?: chapter_unlockAvgOrderByAggregateInput
+    _max?: chapter_unlockMaxOrderByAggregateInput
+    _min?: chapter_unlockMinOrderByAggregateInput
+    _sum?: chapter_unlockSumOrderByAggregateInput
+  }
+
+  export type chapter_unlockScalarWhereWithAggregatesInput = {
+    AND?: chapter_unlockScalarWhereWithAggregatesInput | chapter_unlockScalarWhereWithAggregatesInput[]
+    OR?: chapter_unlockScalarWhereWithAggregatesInput[]
+    NOT?: chapter_unlockScalarWhereWithAggregatesInput | chapter_unlockScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"chapter_unlock"> | number
+    userId?: IntWithAggregatesFilter<"chapter_unlock"> | number
+    chapterId?: IntWithAggregatesFilter<"chapter_unlock"> | number
+    unlock_time?: DateTimeWithAggregatesFilter<"chapter_unlock"> | Date | string
+  }
+
+  export type NotificationWhereInput = {
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    id?: IntFilter<"Notification"> | number
+    message?: StringFilter<"Notification"> | string
+    seen?: BoolFilter<"Notification"> | boolean
+    type?: EnumnotifiTypeFilter<"Notification"> | $Enums.notifiType
+    create_at?: DateTimeFilter<"Notification"> | Date | string
+    userId?: IntFilter<"Notification"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }
+
+  export type NotificationOrderByWithRelationInput = {
+    id?: SortOrder
+    message?: SortOrder
+    seen?: SortOrder
+    type?: SortOrder
+    create_at?: SortOrder
+    userId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    _relevance?: NotificationOrderByRelevanceInput
+  }
+
+  export type NotificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: NotificationWhereInput | NotificationWhereInput[]
+    OR?: NotificationWhereInput[]
+    NOT?: NotificationWhereInput | NotificationWhereInput[]
+    message?: StringFilter<"Notification"> | string
+    seen?: BoolFilter<"Notification"> | boolean
+    type?: EnumnotifiTypeFilter<"Notification"> | $Enums.notifiType
+    create_at?: DateTimeFilter<"Notification"> | Date | string
+    userId?: IntFilter<"Notification"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+  }, "id">
+
+  export type NotificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    message?: SortOrder
+    seen?: SortOrder
+    type?: SortOrder
+    create_at?: SortOrder
+    userId?: SortOrder
+    _count?: NotificationCountOrderByAggregateInput
+    _avg?: NotificationAvgOrderByAggregateInput
+    _max?: NotificationMaxOrderByAggregateInput
+    _min?: NotificationMinOrderByAggregateInput
+    _sum?: NotificationSumOrderByAggregateInput
+  }
+
+  export type NotificationScalarWhereWithAggregatesInput = {
+    AND?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    OR?: NotificationScalarWhereWithAggregatesInput[]
+    NOT?: NotificationScalarWhereWithAggregatesInput | NotificationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"Notification"> | number
+    message?: StringWithAggregatesFilter<"Notification"> | string
+    seen?: BoolWithAggregatesFilter<"Notification"> | boolean
+    type?: EnumnotifiTypeWithAggregatesFilter<"Notification"> | $Enums.notifiType
+    create_at?: DateTimeWithAggregatesFilter<"Notification"> | Date | string
+    userId?: IntWithAggregatesFilter<"Notification"> | number
+  }
+
+  export type comic_followerWhereInput = {
+    AND?: comic_followerWhereInput | comic_followerWhereInput[]
+    OR?: comic_followerWhereInput[]
+    NOT?: comic_followerWhereInput | comic_followerWhereInput[]
+    id?: IntFilter<"comic_follower"> | number
+    userId?: IntFilter<"comic_follower"> | number
+    comicId?: IntFilter<"comic_follower"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    comic?: XOR<ComicScalarRelationFilter, ComicWhereInput>
+  }
+
+  export type comic_followerOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    user?: UserOrderByWithRelationInput
+    comic?: ComicOrderByWithRelationInput
+  }
+
+  export type comic_followerWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: comic_followerWhereInput | comic_followerWhereInput[]
+    OR?: comic_followerWhereInput[]
+    NOT?: comic_followerWhereInput | comic_followerWhereInput[]
+    userId?: IntFilter<"comic_follower"> | number
+    comicId?: IntFilter<"comic_follower"> | number
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    comic?: XOR<ComicScalarRelationFilter, ComicWhereInput>
+  }, "id">
+
+  export type comic_followerOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    _count?: comic_followerCountOrderByAggregateInput
+    _avg?: comic_followerAvgOrderByAggregateInput
+    _max?: comic_followerMaxOrderByAggregateInput
+    _min?: comic_followerMinOrderByAggregateInput
+    _sum?: comic_followerSumOrderByAggregateInput
+  }
+
+  export type comic_followerScalarWhereWithAggregatesInput = {
+    AND?: comic_followerScalarWhereWithAggregatesInput | comic_followerScalarWhereWithAggregatesInput[]
+    OR?: comic_followerScalarWhereWithAggregatesInput[]
+    NOT?: comic_followerScalarWhereWithAggregatesInput | comic_followerScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"comic_follower"> | number
+    userId?: IntWithAggregatesFilter<"comic_follower"> | number
+    comicId?: IntWithAggregatesFilter<"comic_follower"> | number
+  }
+
+  export type comic_historyWhereInput = {
+    AND?: comic_historyWhereInput | comic_historyWhereInput[]
+    OR?: comic_historyWhereInput[]
+    NOT?: comic_historyWhereInput | comic_historyWhereInput[]
+    id?: IntFilter<"comic_history"> | number
+    userId?: IntFilter<"comic_history"> | number
+    comicId?: IntFilter<"comic_history"> | number
+    chapterId?: IntFilter<"comic_history"> | number
+    read_time?: DateTimeFilter<"comic_history"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    comic?: XOR<ComicScalarRelationFilter, ComicWhereInput>
+    chapter?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
+  }
+
+  export type comic_historyOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    read_time?: SortOrder
+    user?: UserOrderByWithRelationInput
+    comic?: ComicOrderByWithRelationInput
+    chapter?: ChapterOrderByWithRelationInput
+  }
+
+  export type comic_historyWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    userId_comicId?: comic_historyUserIdComicIdCompoundUniqueInput
+    AND?: comic_historyWhereInput | comic_historyWhereInput[]
+    OR?: comic_historyWhereInput[]
+    NOT?: comic_historyWhereInput | comic_historyWhereInput[]
+    userId?: IntFilter<"comic_history"> | number
+    comicId?: IntFilter<"comic_history"> | number
+    chapterId?: IntFilter<"comic_history"> | number
+    read_time?: DateTimeFilter<"comic_history"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    comic?: XOR<ComicScalarRelationFilter, ComicWhereInput>
+    chapter?: XOR<ChapterScalarRelationFilter, ChapterWhereInput>
+  }, "id" | "userId_comicId">
+
+  export type comic_historyOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    read_time?: SortOrder
+    _count?: comic_historyCountOrderByAggregateInput
+    _avg?: comic_historyAvgOrderByAggregateInput
+    _max?: comic_historyMaxOrderByAggregateInput
+    _min?: comic_historyMinOrderByAggregateInput
+    _sum?: comic_historySumOrderByAggregateInput
+  }
+
+  export type comic_historyScalarWhereWithAggregatesInput = {
+    AND?: comic_historyScalarWhereWithAggregatesInput | comic_historyScalarWhereWithAggregatesInput[]
+    OR?: comic_historyScalarWhereWithAggregatesInput[]
+    NOT?: comic_historyScalarWhereWithAggregatesInput | comic_historyScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"comic_history"> | number
+    userId?: IntWithAggregatesFilter<"comic_history"> | number
+    comicId?: IntWithAggregatesFilter<"comic_history"> | number
+    chapterId?: IntWithAggregatesFilter<"comic_history"> | number
+    read_time?: DateTimeWithAggregatesFilter<"comic_history"> | Date | string
+  }
+
+  export type commentWhereInput = {
+    AND?: commentWhereInput | commentWhereInput[]
+    OR?: commentWhereInput[]
+    NOT?: commentWhereInput | commentWhereInput[]
+    id?: IntFilter<"comment"> | number
+    userId?: IntFilter<"comment"> | number
+    comicId?: IntNullableFilter<"comment"> | number | null
+    chapterId?: IntNullableFilter<"comment"> | number | null
+    content?: StringFilter<"comment"> | string
+    parentId?: IntNullableFilter<"comment"> | number | null
+    create_at?: DateTimeFilter<"comment"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    comic?: XOR<ComicNullableScalarRelationFilter, ComicWhereInput> | null
+    chapter?: XOR<ChapterNullableScalarRelationFilter, ChapterWhereInput> | null
+    parent?: XOR<CommentNullableScalarRelationFilter, commentWhereInput> | null
+    replies?: CommentListRelationFilter
+  }
+
+  export type commentOrderByWithRelationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrderInput | SortOrder
+    chapterId?: SortOrderInput | SortOrder
+    content?: SortOrder
+    parentId?: SortOrderInput | SortOrder
+    create_at?: SortOrder
+    user?: UserOrderByWithRelationInput
+    comic?: ComicOrderByWithRelationInput
+    chapter?: ChapterOrderByWithRelationInput
+    parent?: commentOrderByWithRelationInput
+    replies?: commentOrderByRelationAggregateInput
+    _relevance?: commentOrderByRelevanceInput
+  }
+
+  export type commentWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: commentWhereInput | commentWhereInput[]
+    OR?: commentWhereInput[]
+    NOT?: commentWhereInput | commentWhereInput[]
+    userId?: IntFilter<"comment"> | number
+    comicId?: IntNullableFilter<"comment"> | number | null
+    chapterId?: IntNullableFilter<"comment"> | number | null
+    content?: StringFilter<"comment"> | string
+    parentId?: IntNullableFilter<"comment"> | number | null
+    create_at?: DateTimeFilter<"comment"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    comic?: XOR<ComicNullableScalarRelationFilter, ComicWhereInput> | null
+    chapter?: XOR<ChapterNullableScalarRelationFilter, ChapterWhereInput> | null
+    parent?: XOR<CommentNullableScalarRelationFilter, commentWhereInput> | null
+    replies?: CommentListRelationFilter
+  }, "id">
+
+  export type commentOrderByWithAggregationInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrderInput | SortOrder
+    chapterId?: SortOrderInput | SortOrder
+    content?: SortOrder
+    parentId?: SortOrderInput | SortOrder
+    create_at?: SortOrder
+    _count?: commentCountOrderByAggregateInput
+    _avg?: commentAvgOrderByAggregateInput
+    _max?: commentMaxOrderByAggregateInput
+    _min?: commentMinOrderByAggregateInput
+    _sum?: commentSumOrderByAggregateInput
+  }
+
+  export type commentScalarWhereWithAggregatesInput = {
+    AND?: commentScalarWhereWithAggregatesInput | commentScalarWhereWithAggregatesInput[]
+    OR?: commentScalarWhereWithAggregatesInput[]
+    NOT?: commentScalarWhereWithAggregatesInput | commentScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"comment"> | number
+    userId?: IntWithAggregatesFilter<"comment"> | number
+    comicId?: IntNullableWithAggregatesFilter<"comment"> | number | null
+    chapterId?: IntNullableWithAggregatesFilter<"comment"> | number | null
+    content?: StringWithAggregatesFilter<"comment"> | string
+    parentId?: IntNullableWithAggregatesFilter<"comment"> | number | null
+    create_at?: DateTimeWithAggregatesFilter<"comment"> | Date | string
+  }
+
+  export type UserCreateInput = {
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyCreateNestedManyWithoutUserInput
+    comments?: commentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
+    comments?: commentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUpdateInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
+    comments?: commentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
+    comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateManyInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+  }
+
+  export type UserUpdateManyMutationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type UserUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoinCreateInput = {
+    coin_amount: number
+    price: number
+    create_at?: Date | string
+    transactions?: TransactionCreateNestedManyWithoutCoinInput
+  }
+
+  export type CoinUncheckedCreateInput = {
+    id?: number
+    coin_amount: number
+    price: number
+    create_at?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutCoinInput
+  }
+
+  export type CoinUpdateInput = {
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUpdateManyWithoutCoinNestedInput
+  }
+
+  export type CoinUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutCoinNestedInput
+  }
+
+  export type CoinCreateManyInput = {
+    id?: number
+    coin_amount: number
+    price: number
+    create_at?: Date | string
+  }
+
+  export type CoinUpdateManyMutationInput = {
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoinUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionCreateInput = {
+    coin_amount: number
+    price: number
+    status?: $Enums.transactionStatus
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutTransactionsInput
+    coin: CoinCreateNestedOneWithoutTransactionsInput
+  }
+
+  export type TransactionUncheckedCreateInput = {
+    id?: number
+    coin_amount: number
+    price: number
+    status?: $Enums.transactionStatus
+    create_at?: Date | string
+    userId: number
+    coinId: number
+  }
+
+  export type TransactionUpdateInput = {
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    status?: EnumtransactionStatusFieldUpdateOperationsInput | $Enums.transactionStatus
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTransactionsNestedInput
+    coin?: CoinUpdateOneRequiredWithoutTransactionsNestedInput
+  }
+
+  export type TransactionUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    status?: EnumtransactionStatusFieldUpdateOperationsInput | $Enums.transactionStatus
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    coinId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TransactionCreateManyInput = {
+    id?: number
+    coin_amount: number
+    price: number
+    status?: $Enums.transactionStatus
+    create_at?: Date | string
+    userId: number
+    coinId: number
+  }
+
+  export type TransactionUpdateManyMutationInput = {
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    status?: EnumtransactionStatusFieldUpdateOperationsInput | $Enums.transactionStatus
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    status?: EnumtransactionStatusFieldUpdateOperationsInput | $Enums.transactionStatus
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+    coinId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CountryCreateInput = {
+    name: string
+    create_at?: Date | string
+    update_at?: Date | string
+    comics?: ComicCreateNestedManyWithoutCountryInput
+  }
+
+  export type CountryUncheckedCreateInput = {
+    id?: number
+    name: string
+    create_at?: Date | string
+    update_at?: Date | string
+    comics?: ComicUncheckedCreateNestedManyWithoutCountryInput
+  }
+
+  export type CountryUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comics?: ComicUpdateManyWithoutCountryNestedInput
+  }
+
+  export type CountryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comics?: ComicUncheckedUpdateManyWithoutCountryNestedInput
+  }
+
+  export type CountryCreateManyInput = {
+    id?: number
+    name: string
+    create_at?: Date | string
+    update_at?: Date | string
+  }
+
+  export type CountryUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CountryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComicCreateInput = {
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    country: CountryCreateNestedOneWithoutComicsInput
+    categories?: CategoryCreateNestedManyWithoutComicsInput
+    chapters?: ChapterCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyCreateNestedManyWithoutComicInput
+    comments?: commentCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicUncheckedCreateInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    countryId: number
+    categories?: CategoryUncheckedCreateNestedManyWithoutComicsInput
+    chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
+    comments?: commentUncheckedCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicUpdateInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: CountryUpdateOneRequiredWithoutComicsNestedInput
+    categories?: CategoryUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
+    comments?: commentUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+    categories?: CategoryUncheckedUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
+    comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicCreateManyInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    countryId: number
+  }
+
+  export type ComicUpdateManyMutationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComicUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type CategoryCreateInput = {
+    name: string
+    slug: string
+    description: string
+    create_at?: Date | string
+    update_at?: Date | string
+    comics?: ComicCreateNestedManyWithoutCategoriesInput
+  }
+
+  export type CategoryUncheckedCreateInput = {
+    id?: number
+    name: string
+    slug: string
+    description: string
+    create_at?: Date | string
+    update_at?: Date | string
+    comics?: ComicUncheckedCreateNestedManyWithoutCategoriesInput
+  }
+
+  export type CategoryUpdateInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comics?: ComicUpdateManyWithoutCategoriesNestedInput
+  }
+
+  export type CategoryUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comics?: ComicUncheckedUpdateManyWithoutCategoriesNestedInput
+  }
+
+  export type CategoryCreateManyInput = {
+    id?: number
+    name: string
+    slug: string
+    description: string
+    create_at?: Date | string
+    update_at?: Date | string
+  }
+
+  export type CategoryUpdateManyMutationInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChapterCreateInput = {
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comic: ComicCreateNestedOneWithoutChaptersInput
+    chapterImages?: chapter_imageCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
+    comments?: commentCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterUncheckedCreateInput = {
+    id?: number
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comicId: number
+    chapterImages?: chapter_imageUncheckedCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
+    comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterUpdateInput = {
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneRequiredWithoutChaptersNestedInput
+    chapterImages?: chapter_imageUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
+    comments?: commentUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ChapterUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterImages?: chapter_imageUncheckedUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
+    comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ChapterCreateManyInput = {
+    id?: number
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comicId: number
+  }
+
+  export type ChapterUpdateManyMutationInput = {
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChapterUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comicId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type chapter_imageCreateInput = {
+    image_url: string
+    chapter: ChapterCreateNestedOneWithoutChapterImagesInput
+  }
+
+  export type chapter_imageUncheckedCreateInput = {
+    id?: number
+    image_url: string
+    chapterId: number
+  }
+
+  export type chapter_imageUpdateInput = {
+    image_url?: StringFieldUpdateOperationsInput | string
+    chapter?: ChapterUpdateOneRequiredWithoutChapterImagesNestedInput
+  }
+
+  export type chapter_imageUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image_url?: StringFieldUpdateOperationsInput | string
+    chapterId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type chapter_imageCreateManyInput = {
+    id?: number
+    image_url: string
+    chapterId: number
+  }
+
+  export type chapter_imageUpdateManyMutationInput = {
+    image_url?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type chapter_imageUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image_url?: StringFieldUpdateOperationsInput | string
+    chapterId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type chapter_unlockCreateInput = {
+    unlock_time?: Date | string
+    user: UserCreateNestedOneWithoutChapterUnlocksInput
+    chapter: ChapterCreateNestedOneWithoutChapterUnlocksInput
+  }
+
+  export type chapter_unlockUncheckedCreateInput = {
+    id?: number
+    userId: number
+    chapterId: number
+    unlock_time?: Date | string
+  }
+
+  export type chapter_unlockUpdateInput = {
+    unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutChapterUnlocksNestedInput
+    chapter?: ChapterUpdateOneRequiredWithoutChapterUnlocksNestedInput
+  }
+
+  export type chapter_unlockUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    chapterId?: IntFieldUpdateOperationsInput | number
+    unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type chapter_unlockCreateManyInput = {
+    id?: number
+    userId: number
+    chapterId: number
+    unlock_time?: Date | string
+  }
+
+  export type chapter_unlockUpdateManyMutationInput = {
+    unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type chapter_unlockUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    chapterId?: IntFieldUpdateOperationsInput | number
+    unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationCreateInput = {
+    message: string
+    seen?: boolean
+    type: $Enums.notifiType
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutNotificationsInput
+  }
+
+  export type NotificationUncheckedCreateInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    type: $Enums.notifiType
+    create_at?: Date | string
+    userId: number
+  }
+
+  export type NotificationUpdateInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumnotifiTypeFieldUpdateOperationsInput | $Enums.notifiType
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutNotificationsNestedInput
+  }
+
+  export type NotificationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumnotifiTypeFieldUpdateOperationsInput | $Enums.notifiType
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type NotificationCreateManyInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    type: $Enums.notifiType
+    create_at?: Date | string
+    userId: number
+  }
+
+  export type NotificationUpdateManyMutationInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumnotifiTypeFieldUpdateOperationsInput | $Enums.notifiType
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumnotifiTypeFieldUpdateOperationsInput | $Enums.notifiType
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type comic_followerCreateInput = {
+    user: UserCreateNestedOneWithoutComicFollowerInput
+    comic: ComicCreateNestedOneWithoutComicFollowerInput
+  }
+
+  export type comic_followerUncheckedCreateInput = {
+    id?: number
+    userId: number
+    comicId: number
+  }
+
+  export type comic_followerUpdateInput = {
+    user?: UserUpdateOneRequiredWithoutComicFollowerNestedInput
+    comic?: ComicUpdateOneRequiredWithoutComicFollowerNestedInput
+  }
+
+  export type comic_followerUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type comic_followerCreateManyInput = {
+    id?: number
+    userId: number
+    comicId: number
+  }
+
+  export type comic_followerUpdateManyMutationInput = {
+
+  }
+
+  export type comic_followerUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type comic_historyCreateInput = {
+    read_time?: Date | string
+    user: UserCreateNestedOneWithoutComicHistoryInput
+    comic: ComicCreateNestedOneWithoutComicHistoryInput
+    chapter: ChapterCreateNestedOneWithoutComicHistoryInput
+  }
+
+  export type comic_historyUncheckedCreateInput = {
+    id?: number
+    userId: number
+    comicId: number
+    chapterId: number
+    read_time?: Date | string
+  }
+
+  export type comic_historyUpdateInput = {
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutComicHistoryNestedInput
+    comic?: ComicUpdateOneRequiredWithoutComicHistoryNestedInput
+    chapter?: ChapterUpdateOneRequiredWithoutComicHistoryNestedInput
+  }
+
+  export type comic_historyUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterId?: IntFieldUpdateOperationsInput | number
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type comic_historyCreateManyInput = {
+    id?: number
+    userId: number
+    comicId: number
+    chapterId: number
+    read_time?: Date | string
+  }
+
+  export type comic_historyUpdateManyMutationInput = {
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type comic_historyUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterId?: IntFieldUpdateOperationsInput | number
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type commentCreateInput = {
+    content: string
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    comic?: ComicCreateNestedOneWithoutCommentsInput
+    chapter?: ChapterCreateNestedOneWithoutCommentsInput
+    parent?: commentCreateNestedOneWithoutRepliesInput
+    replies?: commentCreateNestedManyWithoutParentInput
+  }
+
+  export type commentUncheckedCreateInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+    replies?: commentUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type commentUpdateInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    comic?: ComicUpdateOneWithoutCommentsNestedInput
+    chapter?: ChapterUpdateOneWithoutCommentsNestedInput
+    parent?: commentUpdateOneWithoutRepliesNestedInput
+    replies?: commentUpdateManyWithoutParentNestedInput
+  }
+
+  export type commentUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type commentCreateManyInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+  }
+
+  export type commentUpdateManyMutationInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type commentUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type IntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type StringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type EnumuserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.userRole | EnumuserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.userRole[]
+    notIn?: $Enums.userRole[]
+    not?: NestedEnumuserRoleFilter<$PrismaModel> | $Enums.userRole
+  }
+
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type TransactionListRelationFilter = {
+    every?: TransactionWhereInput
+    some?: TransactionWhereInput
+    none?: TransactionWhereInput
+  }
+
+  export type Chapter_unlockListRelationFilter = {
+    every?: chapter_unlockWhereInput
+    some?: chapter_unlockWhereInput
+    none?: chapter_unlockWhereInput
+  }
+
+  export type NotificationListRelationFilter = {
+    every?: NotificationWhereInput
+    some?: NotificationWhereInput
+    none?: NotificationWhereInput
+  }
+
+  export type Comic_followerListRelationFilter = {
+    every?: comic_followerWhereInput
+    some?: comic_followerWhereInput
+    none?: comic_followerWhereInput
+  }
+
+  export type Comic_historyListRelationFilter = {
+    every?: comic_historyWhereInput
+    some?: comic_historyWhereInput
+    none?: comic_historyWhereInput
+  }
+
+  export type CommentListRelationFilter = {
+    every?: commentWhereInput
+    some?: commentWhereInput
+    none?: commentWhereInput
+  }
+
+  export type SortOrderInput = {
+    sort: SortOrder
+    nulls?: NullsOrder
+  }
+
+  export type TransactionOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type chapter_unlockOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type NotificationOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type comic_followerOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type comic_historyOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type commentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type UserOrderByRelevanceInput = {
+    fields: UserOrderByRelevanceFieldEnum | UserOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type UserCountOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    avatar?: SortOrder
+    role?: SortOrder
+    total_coin?: SortOrder
+    refresh_token?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+  }
+
+  export type UserAvgOrderByAggregateInput = {
+    id?: SortOrder
+    total_coin?: SortOrder
+  }
+
+  export type UserMaxOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    avatar?: SortOrder
+    role?: SortOrder
+    total_coin?: SortOrder
+    refresh_token?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+  }
+
+  export type UserMinOrderByAggregateInput = {
+    id?: SortOrder
+    username?: SortOrder
+    email?: SortOrder
+    password?: SortOrder
+    avatar?: SortOrder
+    role?: SortOrder
+    total_coin?: SortOrder
+    refresh_token?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+  }
+
+  export type UserSumOrderByAggregateInput = {
+    id?: SortOrder
+    total_coin?: SortOrder
+  }
+
+  export type IntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type StringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type EnumuserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.userRole | EnumuserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.userRole[]
+    notIn?: $Enums.userRole[]
+    not?: NestedEnumuserRoleWithAggregatesFilter<$PrismaModel> | $Enums.userRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumuserRoleFilter<$PrismaModel>
+    _max?: NestedEnumuserRoleFilter<$PrismaModel>
+  }
+
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type FloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type CoinCountOrderByAggregateInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type CoinAvgOrderByAggregateInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+  }
+
+  export type CoinMaxOrderByAggregateInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type CoinMinOrderByAggregateInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type CoinSumOrderByAggregateInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+  }
+
+  export type FloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type EnumtransactionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.transactionStatus | EnumtransactionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.transactionStatus[]
+    notIn?: $Enums.transactionStatus[]
+    not?: NestedEnumtransactionStatusFilter<$PrismaModel> | $Enums.transactionStatus
+  }
+
+  export type UserScalarRelationFilter = {
+    is?: UserWhereInput
+    isNot?: UserWhereInput
+  }
+
+  export type CoinScalarRelationFilter = {
+    is?: CoinWhereInput
+    isNot?: CoinWhereInput
+  }
+
+  export type TransactionCountOrderByAggregateInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    status?: SortOrder
+    create_at?: SortOrder
+    userId?: SortOrder
+    coinId?: SortOrder
+  }
+
+  export type TransactionAvgOrderByAggregateInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    userId?: SortOrder
+    coinId?: SortOrder
+  }
+
+  export type TransactionMaxOrderByAggregateInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    status?: SortOrder
+    create_at?: SortOrder
+    userId?: SortOrder
+    coinId?: SortOrder
+  }
+
+  export type TransactionMinOrderByAggregateInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    status?: SortOrder
+    create_at?: SortOrder
+    userId?: SortOrder
+    coinId?: SortOrder
+  }
+
+  export type TransactionSumOrderByAggregateInput = {
+    id?: SortOrder
+    coin_amount?: SortOrder
+    price?: SortOrder
+    userId?: SortOrder
+    coinId?: SortOrder
+  }
+
+  export type EnumtransactionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.transactionStatus | EnumtransactionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.transactionStatus[]
+    notIn?: $Enums.transactionStatus[]
+    not?: NestedEnumtransactionStatusWithAggregatesFilter<$PrismaModel> | $Enums.transactionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumtransactionStatusFilter<$PrismaModel>
+    _max?: NestedEnumtransactionStatusFilter<$PrismaModel>
+  }
+
+  export type ComicListRelationFilter = {
+    every?: ComicWhereInput
+    some?: ComicWhereInput
+    none?: ComicWhereInput
+  }
+
+  export type ComicOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type CountryOrderByRelevanceInput = {
+    fields: CountryOrderByRelevanceFieldEnum | CountryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type CountryCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+  }
+
+  export type CountryAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type CountryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+  }
+
+  export type CountryMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+  }
+
+  export type CountrySumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type EnumcomicStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.comicStatus | EnumcomicStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.comicStatus[]
+    notIn?: $Enums.comicStatus[]
+    not?: NestedEnumcomicStatusFilter<$PrismaModel> | $Enums.comicStatus
+  }
+
+  export type BoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type CountryScalarRelationFilter = {
+    is?: CountryWhereInput
+    isNot?: CountryWhereInput
+  }
+
+  export type CategoryListRelationFilter = {
+    every?: CategoryWhereInput
+    some?: CategoryWhereInput
+    none?: CategoryWhereInput
+  }
+
+  export type ChapterListRelationFilter = {
+    every?: ChapterWhereInput
+    some?: ChapterWhereInput
+    none?: ChapterWhereInput
+  }
+
+  export type CategoryOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ChapterOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ComicOrderByRelevanceInput = {
+    fields: ComicOrderByRelevanceFieldEnum | ComicOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ComicCountOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    title_eng?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    author?: SortOrder
+    status?: SortOrder
+    cover_image?: SortOrder
+    views?: SortOrder
+    is_active?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    countryId?: SortOrder
+  }
+
+  export type ComicAvgOrderByAggregateInput = {
+    id?: SortOrder
+    views?: SortOrder
+    countryId?: SortOrder
+  }
+
+  export type ComicMaxOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    title_eng?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    author?: SortOrder
+    status?: SortOrder
+    cover_image?: SortOrder
+    views?: SortOrder
+    is_active?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    countryId?: SortOrder
+  }
+
+  export type ComicMinOrderByAggregateInput = {
+    id?: SortOrder
+    title?: SortOrder
+    title_eng?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    author?: SortOrder
+    status?: SortOrder
+    cover_image?: SortOrder
+    views?: SortOrder
+    is_active?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    countryId?: SortOrder
+  }
+
+  export type ComicSumOrderByAggregateInput = {
+    id?: SortOrder
+    views?: SortOrder
+    countryId?: SortOrder
+  }
+
+  export type EnumcomicStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.comicStatus | EnumcomicStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.comicStatus[]
+    notIn?: $Enums.comicStatus[]
+    not?: NestedEnumcomicStatusWithAggregatesFilter<$PrismaModel> | $Enums.comicStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumcomicStatusFilter<$PrismaModel>
+    _max?: NestedEnumcomicStatusFilter<$PrismaModel>
+  }
+
+  export type BoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type CategoryOrderByRelevanceInput = {
+    fields: CategoryOrderByRelevanceFieldEnum | CategoryOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type CategoryCountOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+  }
+
+  export type CategoryAvgOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type CategoryMaxOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+  }
+
+  export type CategoryMinOrderByAggregateInput = {
+    id?: SortOrder
+    name?: SortOrder
+    slug?: SortOrder
+    description?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+  }
+
+  export type CategorySumOrderByAggregateInput = {
+    id?: SortOrder
+  }
+
+  export type ComicScalarRelationFilter = {
+    is?: ComicWhereInput
+    isNot?: ComicWhereInput
+  }
+
+  export type Chapter_imageListRelationFilter = {
+    every?: chapter_imageWhereInput
+    some?: chapter_imageWhereInput
+    none?: chapter_imageWhereInput
+  }
+
+  export type chapter_imageOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ChapterOrderByRelevanceInput = {
+    fields: ChapterOrderByRelevanceFieldEnum | ChapterOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ChapterCountOrderByAggregateInput = {
+    id?: SortOrder
+    chapter_name?: SortOrder
+    chapter_title?: SortOrder
+    slug?: SortOrder
+    is_locked?: SortOrder
+    price_xu?: SortOrder
+    auto_unlock_time?: SortOrder
+    views?: SortOrder
+    chapter_image_url?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    comicId?: SortOrder
+  }
+
+  export type ChapterAvgOrderByAggregateInput = {
+    id?: SortOrder
+    price_xu?: SortOrder
+    views?: SortOrder
+    comicId?: SortOrder
+  }
+
+  export type ChapterMaxOrderByAggregateInput = {
+    id?: SortOrder
+    chapter_name?: SortOrder
+    chapter_title?: SortOrder
+    slug?: SortOrder
+    is_locked?: SortOrder
+    price_xu?: SortOrder
+    auto_unlock_time?: SortOrder
+    views?: SortOrder
+    chapter_image_url?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    comicId?: SortOrder
+  }
+
+  export type ChapterMinOrderByAggregateInput = {
+    id?: SortOrder
+    chapter_name?: SortOrder
+    chapter_title?: SortOrder
+    slug?: SortOrder
+    is_locked?: SortOrder
+    price_xu?: SortOrder
+    auto_unlock_time?: SortOrder
+    views?: SortOrder
+    chapter_image_url?: SortOrder
+    create_at?: SortOrder
+    update_at?: SortOrder
+    comicId?: SortOrder
+  }
+
+  export type ChapterSumOrderByAggregateInput = {
+    id?: SortOrder
+    price_xu?: SortOrder
+    views?: SortOrder
+    comicId?: SortOrder
+  }
+
+  export type ChapterScalarRelationFilter = {
+    is?: ChapterWhereInput
+    isNot?: ChapterWhereInput
+  }
+
+  export type chapter_imageOrderByRelevanceInput = {
+    fields: chapter_imageOrderByRelevanceFieldEnum | chapter_imageOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type chapter_imageCountOrderByAggregateInput = {
+    id?: SortOrder
+    image_url?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type chapter_imageAvgOrderByAggregateInput = {
+    id?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type chapter_imageMaxOrderByAggregateInput = {
+    id?: SortOrder
+    image_url?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type chapter_imageMinOrderByAggregateInput = {
+    id?: SortOrder
+    image_url?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type chapter_imageSumOrderByAggregateInput = {
+    id?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type chapter_unlockCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    chapterId?: SortOrder
+    unlock_time?: SortOrder
+  }
+
+  export type chapter_unlockAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type chapter_unlockMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    chapterId?: SortOrder
+    unlock_time?: SortOrder
+  }
+
+  export type chapter_unlockMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    chapterId?: SortOrder
+    unlock_time?: SortOrder
+  }
+
+  export type chapter_unlockSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type EnumnotifiTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.notifiType | EnumnotifiTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.notifiType[]
+    notIn?: $Enums.notifiType[]
+    not?: NestedEnumnotifiTypeFilter<$PrismaModel> | $Enums.notifiType
+  }
+
+  export type NotificationOrderByRelevanceInput = {
+    fields: NotificationOrderByRelevanceFieldEnum | NotificationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type NotificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    seen?: SortOrder
+    type?: SortOrder
+    create_at?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type NotificationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type NotificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    seen?: SortOrder
+    type?: SortOrder
+    create_at?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type NotificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    seen?: SortOrder
+    type?: SortOrder
+    create_at?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type NotificationSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+  }
+
+  export type EnumnotifiTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.notifiType | EnumnotifiTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.notifiType[]
+    notIn?: $Enums.notifiType[]
+    not?: NestedEnumnotifiTypeWithAggregatesFilter<$PrismaModel> | $Enums.notifiType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumnotifiTypeFilter<$PrismaModel>
+    _max?: NestedEnumnotifiTypeFilter<$PrismaModel>
+  }
+
+  export type comic_followerCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+  }
+
+  export type comic_followerAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+  }
+
+  export type comic_followerMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+  }
+
+  export type comic_followerMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+  }
+
+  export type comic_followerSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+  }
+
+  export type comic_historyUserIdComicIdCompoundUniqueInput = {
+    userId: number
+    comicId: number
+  }
+
+  export type comic_historyCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    read_time?: SortOrder
+  }
+
+  export type comic_historyAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type comic_historyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    read_time?: SortOrder
+  }
+
+  export type comic_historyMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    read_time?: SortOrder
+  }
+
+  export type comic_historySumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type ComicNullableScalarRelationFilter = {
+    is?: ComicWhereInput | null
+    isNot?: ComicWhereInput | null
+  }
+
+  export type ChapterNullableScalarRelationFilter = {
+    is?: ChapterWhereInput | null
+    isNot?: ChapterWhereInput | null
+  }
+
+  export type CommentNullableScalarRelationFilter = {
+    is?: commentWhereInput | null
+    isNot?: commentWhereInput | null
+  }
+
+  export type commentOrderByRelevanceInput = {
+    fields: commentOrderByRelevanceFieldEnum | commentOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type commentCountOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    content?: SortOrder
+    parentId?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type commentAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    parentId?: SortOrder
+  }
+
+  export type commentMaxOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    content?: SortOrder
+    parentId?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type commentMinOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    content?: SortOrder
+    parentId?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type commentSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    parentId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type TransactionCreateNestedManyWithoutUserInput = {
+    create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
+    createMany?: TransactionCreateManyUserInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type chapter_unlockCreateNestedManyWithoutUserInput = {
+    create?: XOR<chapter_unlockCreateWithoutUserInput, chapter_unlockUncheckedCreateWithoutUserInput> | chapter_unlockCreateWithoutUserInput[] | chapter_unlockUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: chapter_unlockCreateOrConnectWithoutUserInput | chapter_unlockCreateOrConnectWithoutUserInput[]
+    createMany?: chapter_unlockCreateManyUserInputEnvelope
+    connect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+  }
+
+  export type NotificationCreateNestedManyWithoutUserInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
+  export type comic_followerCreateNestedManyWithoutUserInput = {
+    create?: XOR<comic_followerCreateWithoutUserInput, comic_followerUncheckedCreateWithoutUserInput> | comic_followerCreateWithoutUserInput[] | comic_followerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: comic_followerCreateOrConnectWithoutUserInput | comic_followerCreateOrConnectWithoutUserInput[]
+    createMany?: comic_followerCreateManyUserInputEnvelope
+    connect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+  }
+
+  export type comic_historyCreateNestedManyWithoutUserInput = {
+    create?: XOR<comic_historyCreateWithoutUserInput, comic_historyUncheckedCreateWithoutUserInput> | comic_historyCreateWithoutUserInput[] | comic_historyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutUserInput | comic_historyCreateOrConnectWithoutUserInput[]
+    createMany?: comic_historyCreateManyUserInputEnvelope
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+  }
+
+  export type commentCreateNestedManyWithoutUserInput = {
+    create?: XOR<commentCreateWithoutUserInput, commentUncheckedCreateWithoutUserInput> | commentCreateWithoutUserInput[] | commentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutUserInput | commentCreateOrConnectWithoutUserInput[]
+    createMany?: commentCreateManyUserInputEnvelope
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type TransactionUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
+    createMany?: TransactionCreateManyUserInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type chapter_unlockUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<chapter_unlockCreateWithoutUserInput, chapter_unlockUncheckedCreateWithoutUserInput> | chapter_unlockCreateWithoutUserInput[] | chapter_unlockUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: chapter_unlockCreateOrConnectWithoutUserInput | chapter_unlockCreateOrConnectWithoutUserInput[]
+    createMany?: chapter_unlockCreateManyUserInputEnvelope
+    connect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+  }
+
+  export type NotificationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+  }
+
+  export type comic_followerUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<comic_followerCreateWithoutUserInput, comic_followerUncheckedCreateWithoutUserInput> | comic_followerCreateWithoutUserInput[] | comic_followerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: comic_followerCreateOrConnectWithoutUserInput | comic_followerCreateOrConnectWithoutUserInput[]
+    createMany?: comic_followerCreateManyUserInputEnvelope
+    connect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+  }
+
+  export type comic_historyUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<comic_historyCreateWithoutUserInput, comic_historyUncheckedCreateWithoutUserInput> | comic_historyCreateWithoutUserInput[] | comic_historyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutUserInput | comic_historyCreateOrConnectWithoutUserInput[]
+    createMany?: comic_historyCreateManyUserInputEnvelope
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+  }
+
+  export type commentUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<commentCreateWithoutUserInput, commentUncheckedCreateWithoutUserInput> | commentCreateWithoutUserInput[] | commentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutUserInput | commentCreateOrConnectWithoutUserInput[]
+    createMany?: commentCreateManyUserInputEnvelope
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type StringFieldUpdateOperationsInput = {
+    set?: string
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type EnumuserRoleFieldUpdateOperationsInput = {
+    set?: $Enums.userRole
+  }
+
+  export type IntFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type TransactionUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutUserInput | TransactionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TransactionCreateManyUserInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutUserInput | TransactionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutUserInput | TransactionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type chapter_unlockUpdateManyWithoutUserNestedInput = {
+    create?: XOR<chapter_unlockCreateWithoutUserInput, chapter_unlockUncheckedCreateWithoutUserInput> | chapter_unlockCreateWithoutUserInput[] | chapter_unlockUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: chapter_unlockCreateOrConnectWithoutUserInput | chapter_unlockCreateOrConnectWithoutUserInput[]
+    upsert?: chapter_unlockUpsertWithWhereUniqueWithoutUserInput | chapter_unlockUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: chapter_unlockCreateManyUserInputEnvelope
+    set?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    disconnect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    delete?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    connect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    update?: chapter_unlockUpdateWithWhereUniqueWithoutUserInput | chapter_unlockUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: chapter_unlockUpdateManyWithWhereWithoutUserInput | chapter_unlockUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: chapter_unlockScalarWhereInput | chapter_unlockScalarWhereInput[]
+  }
+
+  export type NotificationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type comic_followerUpdateManyWithoutUserNestedInput = {
+    create?: XOR<comic_followerCreateWithoutUserInput, comic_followerUncheckedCreateWithoutUserInput> | comic_followerCreateWithoutUserInput[] | comic_followerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: comic_followerCreateOrConnectWithoutUserInput | comic_followerCreateOrConnectWithoutUserInput[]
+    upsert?: comic_followerUpsertWithWhereUniqueWithoutUserInput | comic_followerUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: comic_followerCreateManyUserInputEnvelope
+    set?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    disconnect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    delete?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    connect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    update?: comic_followerUpdateWithWhereUniqueWithoutUserInput | comic_followerUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: comic_followerUpdateManyWithWhereWithoutUserInput | comic_followerUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: comic_followerScalarWhereInput | comic_followerScalarWhereInput[]
+  }
+
+  export type comic_historyUpdateManyWithoutUserNestedInput = {
+    create?: XOR<comic_historyCreateWithoutUserInput, comic_historyUncheckedCreateWithoutUserInput> | comic_historyCreateWithoutUserInput[] | comic_historyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutUserInput | comic_historyCreateOrConnectWithoutUserInput[]
+    upsert?: comic_historyUpsertWithWhereUniqueWithoutUserInput | comic_historyUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: comic_historyCreateManyUserInputEnvelope
+    set?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    disconnect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    delete?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    update?: comic_historyUpdateWithWhereUniqueWithoutUserInput | comic_historyUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: comic_historyUpdateManyWithWhereWithoutUserInput | comic_historyUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: comic_historyScalarWhereInput | comic_historyScalarWhereInput[]
+  }
+
+  export type commentUpdateManyWithoutUserNestedInput = {
+    create?: XOR<commentCreateWithoutUserInput, commentUncheckedCreateWithoutUserInput> | commentCreateWithoutUserInput[] | commentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutUserInput | commentCreateOrConnectWithoutUserInput[]
+    upsert?: commentUpsertWithWhereUniqueWithoutUserInput | commentUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: commentCreateManyUserInputEnvelope
+    set?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    disconnect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    delete?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    update?: commentUpdateWithWhereUniqueWithoutUserInput | commentUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: commentUpdateManyWithWhereWithoutUserInput | commentUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutUserInput | TransactionUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: TransactionCreateManyUserInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutUserInput | TransactionUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutUserInput | TransactionUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type chapter_unlockUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<chapter_unlockCreateWithoutUserInput, chapter_unlockUncheckedCreateWithoutUserInput> | chapter_unlockCreateWithoutUserInput[] | chapter_unlockUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: chapter_unlockCreateOrConnectWithoutUserInput | chapter_unlockCreateOrConnectWithoutUserInput[]
+    upsert?: chapter_unlockUpsertWithWhereUniqueWithoutUserInput | chapter_unlockUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: chapter_unlockCreateManyUserInputEnvelope
+    set?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    disconnect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    delete?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    connect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    update?: chapter_unlockUpdateWithWhereUniqueWithoutUserInput | chapter_unlockUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: chapter_unlockUpdateManyWithWhereWithoutUserInput | chapter_unlockUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: chapter_unlockScalarWhereInput | chapter_unlockScalarWhereInput[]
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput> | NotificationCreateWithoutUserInput[] | NotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: NotificationCreateOrConnectWithoutUserInput | NotificationCreateOrConnectWithoutUserInput[]
+    upsert?: NotificationUpsertWithWhereUniqueWithoutUserInput | NotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: NotificationCreateManyUserInputEnvelope
+    set?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    disconnect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    delete?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    connect?: NotificationWhereUniqueInput | NotificationWhereUniqueInput[]
+    update?: NotificationUpdateWithWhereUniqueWithoutUserInput | NotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: NotificationUpdateManyWithWhereWithoutUserInput | NotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+  }
+
+  export type comic_followerUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<comic_followerCreateWithoutUserInput, comic_followerUncheckedCreateWithoutUserInput> | comic_followerCreateWithoutUserInput[] | comic_followerUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: comic_followerCreateOrConnectWithoutUserInput | comic_followerCreateOrConnectWithoutUserInput[]
+    upsert?: comic_followerUpsertWithWhereUniqueWithoutUserInput | comic_followerUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: comic_followerCreateManyUserInputEnvelope
+    set?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    disconnect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    delete?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    connect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    update?: comic_followerUpdateWithWhereUniqueWithoutUserInput | comic_followerUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: comic_followerUpdateManyWithWhereWithoutUserInput | comic_followerUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: comic_followerScalarWhereInput | comic_followerScalarWhereInput[]
+  }
+
+  export type comic_historyUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<comic_historyCreateWithoutUserInput, comic_historyUncheckedCreateWithoutUserInput> | comic_historyCreateWithoutUserInput[] | comic_historyUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutUserInput | comic_historyCreateOrConnectWithoutUserInput[]
+    upsert?: comic_historyUpsertWithWhereUniqueWithoutUserInput | comic_historyUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: comic_historyCreateManyUserInputEnvelope
+    set?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    disconnect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    delete?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    update?: comic_historyUpdateWithWhereUniqueWithoutUserInput | comic_historyUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: comic_historyUpdateManyWithWhereWithoutUserInput | comic_historyUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: comic_historyScalarWhereInput | comic_historyScalarWhereInput[]
+  }
+
+  export type commentUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<commentCreateWithoutUserInput, commentUncheckedCreateWithoutUserInput> | commentCreateWithoutUserInput[] | commentUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutUserInput | commentCreateOrConnectWithoutUserInput[]
+    upsert?: commentUpsertWithWhereUniqueWithoutUserInput | commentUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: commentCreateManyUserInputEnvelope
+    set?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    disconnect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    delete?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    update?: commentUpdateWithWhereUniqueWithoutUserInput | commentUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: commentUpdateManyWithWhereWithoutUserInput | commentUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type TransactionCreateNestedManyWithoutCoinInput = {
+    create?: XOR<TransactionCreateWithoutCoinInput, TransactionUncheckedCreateWithoutCoinInput> | TransactionCreateWithoutCoinInput[] | TransactionUncheckedCreateWithoutCoinInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutCoinInput | TransactionCreateOrConnectWithoutCoinInput[]
+    createMany?: TransactionCreateManyCoinInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type TransactionUncheckedCreateNestedManyWithoutCoinInput = {
+    create?: XOR<TransactionCreateWithoutCoinInput, TransactionUncheckedCreateWithoutCoinInput> | TransactionCreateWithoutCoinInput[] | TransactionUncheckedCreateWithoutCoinInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutCoinInput | TransactionCreateOrConnectWithoutCoinInput[]
+    createMany?: TransactionCreateManyCoinInputEnvelope
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+  }
+
+  export type FloatFieldUpdateOperationsInput = {
+    set?: number
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type TransactionUpdateManyWithoutCoinNestedInput = {
+    create?: XOR<TransactionCreateWithoutCoinInput, TransactionUncheckedCreateWithoutCoinInput> | TransactionCreateWithoutCoinInput[] | TransactionUncheckedCreateWithoutCoinInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutCoinInput | TransactionCreateOrConnectWithoutCoinInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutCoinInput | TransactionUpsertWithWhereUniqueWithoutCoinInput[]
+    createMany?: TransactionCreateManyCoinInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutCoinInput | TransactionUpdateWithWhereUniqueWithoutCoinInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutCoinInput | TransactionUpdateManyWithWhereWithoutCoinInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutCoinNestedInput = {
+    create?: XOR<TransactionCreateWithoutCoinInput, TransactionUncheckedCreateWithoutCoinInput> | TransactionCreateWithoutCoinInput[] | TransactionUncheckedCreateWithoutCoinInput[]
+    connectOrCreate?: TransactionCreateOrConnectWithoutCoinInput | TransactionCreateOrConnectWithoutCoinInput[]
+    upsert?: TransactionUpsertWithWhereUniqueWithoutCoinInput | TransactionUpsertWithWhereUniqueWithoutCoinInput[]
+    createMany?: TransactionCreateManyCoinInputEnvelope
+    set?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    disconnect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    delete?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    connect?: TransactionWhereUniqueInput | TransactionWhereUniqueInput[]
+    update?: TransactionUpdateWithWhereUniqueWithoutCoinInput | TransactionUpdateWithWhereUniqueWithoutCoinInput[]
+    updateMany?: TransactionUpdateManyWithWhereWithoutCoinInput | TransactionUpdateManyWithWhereWithoutCoinInput[]
+    deleteMany?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+  }
+
+  export type UserCreateNestedOneWithoutTransactionsInput = {
+    create?: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTransactionsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type CoinCreateNestedOneWithoutTransactionsInput = {
+    create?: XOR<CoinCreateWithoutTransactionsInput, CoinUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: CoinCreateOrConnectWithoutTransactionsInput
+    connect?: CoinWhereUniqueInput
+  }
+
+  export type EnumtransactionStatusFieldUpdateOperationsInput = {
+    set?: $Enums.transactionStatus
+  }
+
+  export type UserUpdateOneRequiredWithoutTransactionsNestedInput = {
+    create?: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutTransactionsInput
+    upsert?: UserUpsertWithoutTransactionsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutTransactionsInput, UserUpdateWithoutTransactionsInput>, UserUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type CoinUpdateOneRequiredWithoutTransactionsNestedInput = {
+    create?: XOR<CoinCreateWithoutTransactionsInput, CoinUncheckedCreateWithoutTransactionsInput>
+    connectOrCreate?: CoinCreateOrConnectWithoutTransactionsInput
+    upsert?: CoinUpsertWithoutTransactionsInput
+    connect?: CoinWhereUniqueInput
+    update?: XOR<XOR<CoinUpdateToOneWithWhereWithoutTransactionsInput, CoinUpdateWithoutTransactionsInput>, CoinUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type ComicCreateNestedManyWithoutCountryInput = {
+    create?: XOR<ComicCreateWithoutCountryInput, ComicUncheckedCreateWithoutCountryInput> | ComicCreateWithoutCountryInput[] | ComicUncheckedCreateWithoutCountryInput[]
+    connectOrCreate?: ComicCreateOrConnectWithoutCountryInput | ComicCreateOrConnectWithoutCountryInput[]
+    createMany?: ComicCreateManyCountryInputEnvelope
+    connect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+  }
+
+  export type ComicUncheckedCreateNestedManyWithoutCountryInput = {
+    create?: XOR<ComicCreateWithoutCountryInput, ComicUncheckedCreateWithoutCountryInput> | ComicCreateWithoutCountryInput[] | ComicUncheckedCreateWithoutCountryInput[]
+    connectOrCreate?: ComicCreateOrConnectWithoutCountryInput | ComicCreateOrConnectWithoutCountryInput[]
+    createMany?: ComicCreateManyCountryInputEnvelope
+    connect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+  }
+
+  export type ComicUpdateManyWithoutCountryNestedInput = {
+    create?: XOR<ComicCreateWithoutCountryInput, ComicUncheckedCreateWithoutCountryInput> | ComicCreateWithoutCountryInput[] | ComicUncheckedCreateWithoutCountryInput[]
+    connectOrCreate?: ComicCreateOrConnectWithoutCountryInput | ComicCreateOrConnectWithoutCountryInput[]
+    upsert?: ComicUpsertWithWhereUniqueWithoutCountryInput | ComicUpsertWithWhereUniqueWithoutCountryInput[]
+    createMany?: ComicCreateManyCountryInputEnvelope
+    set?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    disconnect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    delete?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    connect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    update?: ComicUpdateWithWhereUniqueWithoutCountryInput | ComicUpdateWithWhereUniqueWithoutCountryInput[]
+    updateMany?: ComicUpdateManyWithWhereWithoutCountryInput | ComicUpdateManyWithWhereWithoutCountryInput[]
+    deleteMany?: ComicScalarWhereInput | ComicScalarWhereInput[]
+  }
+
+  export type ComicUncheckedUpdateManyWithoutCountryNestedInput = {
+    create?: XOR<ComicCreateWithoutCountryInput, ComicUncheckedCreateWithoutCountryInput> | ComicCreateWithoutCountryInput[] | ComicUncheckedCreateWithoutCountryInput[]
+    connectOrCreate?: ComicCreateOrConnectWithoutCountryInput | ComicCreateOrConnectWithoutCountryInput[]
+    upsert?: ComicUpsertWithWhereUniqueWithoutCountryInput | ComicUpsertWithWhereUniqueWithoutCountryInput[]
+    createMany?: ComicCreateManyCountryInputEnvelope
+    set?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    disconnect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    delete?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    connect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    update?: ComicUpdateWithWhereUniqueWithoutCountryInput | ComicUpdateWithWhereUniqueWithoutCountryInput[]
+    updateMany?: ComicUpdateManyWithWhereWithoutCountryInput | ComicUpdateManyWithWhereWithoutCountryInput[]
+    deleteMany?: ComicScalarWhereInput | ComicScalarWhereInput[]
+  }
+
+  export type CountryCreateNestedOneWithoutComicsInput = {
+    create?: XOR<CountryCreateWithoutComicsInput, CountryUncheckedCreateWithoutComicsInput>
+    connectOrCreate?: CountryCreateOrConnectWithoutComicsInput
+    connect?: CountryWhereUniqueInput
+  }
+
+  export type CategoryCreateNestedManyWithoutComicsInput = {
+    create?: XOR<CategoryCreateWithoutComicsInput, CategoryUncheckedCreateWithoutComicsInput> | CategoryCreateWithoutComicsInput[] | CategoryUncheckedCreateWithoutComicsInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutComicsInput | CategoryCreateOrConnectWithoutComicsInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+  }
+
+  export type ChapterCreateNestedManyWithoutComicInput = {
+    create?: XOR<ChapterCreateWithoutComicInput, ChapterUncheckedCreateWithoutComicInput> | ChapterCreateWithoutComicInput[] | ChapterUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: ChapterCreateOrConnectWithoutComicInput | ChapterCreateOrConnectWithoutComicInput[]
+    createMany?: ChapterCreateManyComicInputEnvelope
+    connect?: ChapterWhereUniqueInput | ChapterWhereUniqueInput[]
+  }
+
+  export type comic_followerCreateNestedManyWithoutComicInput = {
+    create?: XOR<comic_followerCreateWithoutComicInput, comic_followerUncheckedCreateWithoutComicInput> | comic_followerCreateWithoutComicInput[] | comic_followerUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: comic_followerCreateOrConnectWithoutComicInput | comic_followerCreateOrConnectWithoutComicInput[]
+    createMany?: comic_followerCreateManyComicInputEnvelope
+    connect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+  }
+
+  export type comic_historyCreateNestedManyWithoutComicInput = {
+    create?: XOR<comic_historyCreateWithoutComicInput, comic_historyUncheckedCreateWithoutComicInput> | comic_historyCreateWithoutComicInput[] | comic_historyUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutComicInput | comic_historyCreateOrConnectWithoutComicInput[]
+    createMany?: comic_historyCreateManyComicInputEnvelope
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+  }
+
+  export type commentCreateNestedManyWithoutComicInput = {
+    create?: XOR<commentCreateWithoutComicInput, commentUncheckedCreateWithoutComicInput> | commentCreateWithoutComicInput[] | commentUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutComicInput | commentCreateOrConnectWithoutComicInput[]
+    createMany?: commentCreateManyComicInputEnvelope
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type CategoryUncheckedCreateNestedManyWithoutComicsInput = {
+    create?: XOR<CategoryCreateWithoutComicsInput, CategoryUncheckedCreateWithoutComicsInput> | CategoryCreateWithoutComicsInput[] | CategoryUncheckedCreateWithoutComicsInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutComicsInput | CategoryCreateOrConnectWithoutComicsInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+  }
+
+  export type ChapterUncheckedCreateNestedManyWithoutComicInput = {
+    create?: XOR<ChapterCreateWithoutComicInput, ChapterUncheckedCreateWithoutComicInput> | ChapterCreateWithoutComicInput[] | ChapterUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: ChapterCreateOrConnectWithoutComicInput | ChapterCreateOrConnectWithoutComicInput[]
+    createMany?: ChapterCreateManyComicInputEnvelope
+    connect?: ChapterWhereUniqueInput | ChapterWhereUniqueInput[]
+  }
+
+  export type comic_followerUncheckedCreateNestedManyWithoutComicInput = {
+    create?: XOR<comic_followerCreateWithoutComicInput, comic_followerUncheckedCreateWithoutComicInput> | comic_followerCreateWithoutComicInput[] | comic_followerUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: comic_followerCreateOrConnectWithoutComicInput | comic_followerCreateOrConnectWithoutComicInput[]
+    createMany?: comic_followerCreateManyComicInputEnvelope
+    connect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+  }
+
+  export type comic_historyUncheckedCreateNestedManyWithoutComicInput = {
+    create?: XOR<comic_historyCreateWithoutComicInput, comic_historyUncheckedCreateWithoutComicInput> | comic_historyCreateWithoutComicInput[] | comic_historyUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutComicInput | comic_historyCreateOrConnectWithoutComicInput[]
+    createMany?: comic_historyCreateManyComicInputEnvelope
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+  }
+
+  export type commentUncheckedCreateNestedManyWithoutComicInput = {
+    create?: XOR<commentCreateWithoutComicInput, commentUncheckedCreateWithoutComicInput> | commentCreateWithoutComicInput[] | commentUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutComicInput | commentCreateOrConnectWithoutComicInput[]
+    createMany?: commentCreateManyComicInputEnvelope
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type EnumcomicStatusFieldUpdateOperationsInput = {
+    set?: $Enums.comicStatus
+  }
+
+  export type BoolFieldUpdateOperationsInput = {
+    set?: boolean
+  }
+
+  export type CountryUpdateOneRequiredWithoutComicsNestedInput = {
+    create?: XOR<CountryCreateWithoutComicsInput, CountryUncheckedCreateWithoutComicsInput>
+    connectOrCreate?: CountryCreateOrConnectWithoutComicsInput
+    upsert?: CountryUpsertWithoutComicsInput
+    connect?: CountryWhereUniqueInput
+    update?: XOR<XOR<CountryUpdateToOneWithWhereWithoutComicsInput, CountryUpdateWithoutComicsInput>, CountryUncheckedUpdateWithoutComicsInput>
+  }
+
+  export type CategoryUpdateManyWithoutComicsNestedInput = {
+    create?: XOR<CategoryCreateWithoutComicsInput, CategoryUncheckedCreateWithoutComicsInput> | CategoryCreateWithoutComicsInput[] | CategoryUncheckedCreateWithoutComicsInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutComicsInput | CategoryCreateOrConnectWithoutComicsInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutComicsInput | CategoryUpsertWithWhereUniqueWithoutComicsInput[]
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutComicsInput | CategoryUpdateWithWhereUniqueWithoutComicsInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutComicsInput | CategoryUpdateManyWithWhereWithoutComicsInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+  }
+
+  export type ChapterUpdateManyWithoutComicNestedInput = {
+    create?: XOR<ChapterCreateWithoutComicInput, ChapterUncheckedCreateWithoutComicInput> | ChapterCreateWithoutComicInput[] | ChapterUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: ChapterCreateOrConnectWithoutComicInput | ChapterCreateOrConnectWithoutComicInput[]
+    upsert?: ChapterUpsertWithWhereUniqueWithoutComicInput | ChapterUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: ChapterCreateManyComicInputEnvelope
+    set?: ChapterWhereUniqueInput | ChapterWhereUniqueInput[]
+    disconnect?: ChapterWhereUniqueInput | ChapterWhereUniqueInput[]
+    delete?: ChapterWhereUniqueInput | ChapterWhereUniqueInput[]
+    connect?: ChapterWhereUniqueInput | ChapterWhereUniqueInput[]
+    update?: ChapterUpdateWithWhereUniqueWithoutComicInput | ChapterUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: ChapterUpdateManyWithWhereWithoutComicInput | ChapterUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: ChapterScalarWhereInput | ChapterScalarWhereInput[]
+  }
+
+  export type comic_followerUpdateManyWithoutComicNestedInput = {
+    create?: XOR<comic_followerCreateWithoutComicInput, comic_followerUncheckedCreateWithoutComicInput> | comic_followerCreateWithoutComicInput[] | comic_followerUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: comic_followerCreateOrConnectWithoutComicInput | comic_followerCreateOrConnectWithoutComicInput[]
+    upsert?: comic_followerUpsertWithWhereUniqueWithoutComicInput | comic_followerUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: comic_followerCreateManyComicInputEnvelope
+    set?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    disconnect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    delete?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    connect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    update?: comic_followerUpdateWithWhereUniqueWithoutComicInput | comic_followerUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: comic_followerUpdateManyWithWhereWithoutComicInput | comic_followerUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: comic_followerScalarWhereInput | comic_followerScalarWhereInput[]
+  }
+
+  export type comic_historyUpdateManyWithoutComicNestedInput = {
+    create?: XOR<comic_historyCreateWithoutComicInput, comic_historyUncheckedCreateWithoutComicInput> | comic_historyCreateWithoutComicInput[] | comic_historyUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutComicInput | comic_historyCreateOrConnectWithoutComicInput[]
+    upsert?: comic_historyUpsertWithWhereUniqueWithoutComicInput | comic_historyUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: comic_historyCreateManyComicInputEnvelope
+    set?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    disconnect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    delete?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    update?: comic_historyUpdateWithWhereUniqueWithoutComicInput | comic_historyUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: comic_historyUpdateManyWithWhereWithoutComicInput | comic_historyUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: comic_historyScalarWhereInput | comic_historyScalarWhereInput[]
+  }
+
+  export type commentUpdateManyWithoutComicNestedInput = {
+    create?: XOR<commentCreateWithoutComicInput, commentUncheckedCreateWithoutComicInput> | commentCreateWithoutComicInput[] | commentUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutComicInput | commentCreateOrConnectWithoutComicInput[]
+    upsert?: commentUpsertWithWhereUniqueWithoutComicInput | commentUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: commentCreateManyComicInputEnvelope
+    set?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    disconnect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    delete?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    update?: commentUpdateWithWhereUniqueWithoutComicInput | commentUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: commentUpdateManyWithWhereWithoutComicInput | commentUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutComicsNestedInput = {
+    create?: XOR<CategoryCreateWithoutComicsInput, CategoryUncheckedCreateWithoutComicsInput> | CategoryCreateWithoutComicsInput[] | CategoryUncheckedCreateWithoutComicsInput[]
+    connectOrCreate?: CategoryCreateOrConnectWithoutComicsInput | CategoryCreateOrConnectWithoutComicsInput[]
+    upsert?: CategoryUpsertWithWhereUniqueWithoutComicsInput | CategoryUpsertWithWhereUniqueWithoutComicsInput[]
+    set?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    disconnect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    delete?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    connect?: CategoryWhereUniqueInput | CategoryWhereUniqueInput[]
+    update?: CategoryUpdateWithWhereUniqueWithoutComicsInput | CategoryUpdateWithWhereUniqueWithoutComicsInput[]
+    updateMany?: CategoryUpdateManyWithWhereWithoutComicsInput | CategoryUpdateManyWithWhereWithoutComicsInput[]
+    deleteMany?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+  }
+
+  export type ChapterUncheckedUpdateManyWithoutComicNestedInput = {
+    create?: XOR<ChapterCreateWithoutComicInput, ChapterUncheckedCreateWithoutComicInput> | ChapterCreateWithoutComicInput[] | ChapterUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: ChapterCreateOrConnectWithoutComicInput | ChapterCreateOrConnectWithoutComicInput[]
+    upsert?: ChapterUpsertWithWhereUniqueWithoutComicInput | ChapterUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: ChapterCreateManyComicInputEnvelope
+    set?: ChapterWhereUniqueInput | ChapterWhereUniqueInput[]
+    disconnect?: ChapterWhereUniqueInput | ChapterWhereUniqueInput[]
+    delete?: ChapterWhereUniqueInput | ChapterWhereUniqueInput[]
+    connect?: ChapterWhereUniqueInput | ChapterWhereUniqueInput[]
+    update?: ChapterUpdateWithWhereUniqueWithoutComicInput | ChapterUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: ChapterUpdateManyWithWhereWithoutComicInput | ChapterUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: ChapterScalarWhereInput | ChapterScalarWhereInput[]
+  }
+
+  export type comic_followerUncheckedUpdateManyWithoutComicNestedInput = {
+    create?: XOR<comic_followerCreateWithoutComicInput, comic_followerUncheckedCreateWithoutComicInput> | comic_followerCreateWithoutComicInput[] | comic_followerUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: comic_followerCreateOrConnectWithoutComicInput | comic_followerCreateOrConnectWithoutComicInput[]
+    upsert?: comic_followerUpsertWithWhereUniqueWithoutComicInput | comic_followerUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: comic_followerCreateManyComicInputEnvelope
+    set?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    disconnect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    delete?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    connect?: comic_followerWhereUniqueInput | comic_followerWhereUniqueInput[]
+    update?: comic_followerUpdateWithWhereUniqueWithoutComicInput | comic_followerUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: comic_followerUpdateManyWithWhereWithoutComicInput | comic_followerUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: comic_followerScalarWhereInput | comic_followerScalarWhereInput[]
+  }
+
+  export type comic_historyUncheckedUpdateManyWithoutComicNestedInput = {
+    create?: XOR<comic_historyCreateWithoutComicInput, comic_historyUncheckedCreateWithoutComicInput> | comic_historyCreateWithoutComicInput[] | comic_historyUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutComicInput | comic_historyCreateOrConnectWithoutComicInput[]
+    upsert?: comic_historyUpsertWithWhereUniqueWithoutComicInput | comic_historyUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: comic_historyCreateManyComicInputEnvelope
+    set?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    disconnect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    delete?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    update?: comic_historyUpdateWithWhereUniqueWithoutComicInput | comic_historyUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: comic_historyUpdateManyWithWhereWithoutComicInput | comic_historyUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: comic_historyScalarWhereInput | comic_historyScalarWhereInput[]
+  }
+
+  export type commentUncheckedUpdateManyWithoutComicNestedInput = {
+    create?: XOR<commentCreateWithoutComicInput, commentUncheckedCreateWithoutComicInput> | commentCreateWithoutComicInput[] | commentUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutComicInput | commentCreateOrConnectWithoutComicInput[]
+    upsert?: commentUpsertWithWhereUniqueWithoutComicInput | commentUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: commentCreateManyComicInputEnvelope
+    set?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    disconnect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    delete?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    update?: commentUpdateWithWhereUniqueWithoutComicInput | commentUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: commentUpdateManyWithWhereWithoutComicInput | commentUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type ComicCreateNestedManyWithoutCategoriesInput = {
+    create?: XOR<ComicCreateWithoutCategoriesInput, ComicUncheckedCreateWithoutCategoriesInput> | ComicCreateWithoutCategoriesInput[] | ComicUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: ComicCreateOrConnectWithoutCategoriesInput | ComicCreateOrConnectWithoutCategoriesInput[]
+    connect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+  }
+
+  export type ComicUncheckedCreateNestedManyWithoutCategoriesInput = {
+    create?: XOR<ComicCreateWithoutCategoriesInput, ComicUncheckedCreateWithoutCategoriesInput> | ComicCreateWithoutCategoriesInput[] | ComicUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: ComicCreateOrConnectWithoutCategoriesInput | ComicCreateOrConnectWithoutCategoriesInput[]
+    connect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+  }
+
+  export type ComicUpdateManyWithoutCategoriesNestedInput = {
+    create?: XOR<ComicCreateWithoutCategoriesInput, ComicUncheckedCreateWithoutCategoriesInput> | ComicCreateWithoutCategoriesInput[] | ComicUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: ComicCreateOrConnectWithoutCategoriesInput | ComicCreateOrConnectWithoutCategoriesInput[]
+    upsert?: ComicUpsertWithWhereUniqueWithoutCategoriesInput | ComicUpsertWithWhereUniqueWithoutCategoriesInput[]
+    set?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    disconnect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    delete?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    connect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    update?: ComicUpdateWithWhereUniqueWithoutCategoriesInput | ComicUpdateWithWhereUniqueWithoutCategoriesInput[]
+    updateMany?: ComicUpdateManyWithWhereWithoutCategoriesInput | ComicUpdateManyWithWhereWithoutCategoriesInput[]
+    deleteMany?: ComicScalarWhereInput | ComicScalarWhereInput[]
+  }
+
+  export type ComicUncheckedUpdateManyWithoutCategoriesNestedInput = {
+    create?: XOR<ComicCreateWithoutCategoriesInput, ComicUncheckedCreateWithoutCategoriesInput> | ComicCreateWithoutCategoriesInput[] | ComicUncheckedCreateWithoutCategoriesInput[]
+    connectOrCreate?: ComicCreateOrConnectWithoutCategoriesInput | ComicCreateOrConnectWithoutCategoriesInput[]
+    upsert?: ComicUpsertWithWhereUniqueWithoutCategoriesInput | ComicUpsertWithWhereUniqueWithoutCategoriesInput[]
+    set?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    disconnect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    delete?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    connect?: ComicWhereUniqueInput | ComicWhereUniqueInput[]
+    update?: ComicUpdateWithWhereUniqueWithoutCategoriesInput | ComicUpdateWithWhereUniqueWithoutCategoriesInput[]
+    updateMany?: ComicUpdateManyWithWhereWithoutCategoriesInput | ComicUpdateManyWithWhereWithoutCategoriesInput[]
+    deleteMany?: ComicScalarWhereInput | ComicScalarWhereInput[]
+  }
+
+  export type ComicCreateNestedOneWithoutChaptersInput = {
+    create?: XOR<ComicCreateWithoutChaptersInput, ComicUncheckedCreateWithoutChaptersInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutChaptersInput
+    connect?: ComicWhereUniqueInput
+  }
+
+  export type chapter_imageCreateNestedManyWithoutChapterInput = {
+    create?: XOR<chapter_imageCreateWithoutChapterInput, chapter_imageUncheckedCreateWithoutChapterInput> | chapter_imageCreateWithoutChapterInput[] | chapter_imageUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: chapter_imageCreateOrConnectWithoutChapterInput | chapter_imageCreateOrConnectWithoutChapterInput[]
+    createMany?: chapter_imageCreateManyChapterInputEnvelope
+    connect?: chapter_imageWhereUniqueInput | chapter_imageWhereUniqueInput[]
+  }
+
+  export type chapter_unlockCreateNestedManyWithoutChapterInput = {
+    create?: XOR<chapter_unlockCreateWithoutChapterInput, chapter_unlockUncheckedCreateWithoutChapterInput> | chapter_unlockCreateWithoutChapterInput[] | chapter_unlockUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: chapter_unlockCreateOrConnectWithoutChapterInput | chapter_unlockCreateOrConnectWithoutChapterInput[]
+    createMany?: chapter_unlockCreateManyChapterInputEnvelope
+    connect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+  }
+
+  export type comic_historyCreateNestedManyWithoutChapterInput = {
+    create?: XOR<comic_historyCreateWithoutChapterInput, comic_historyUncheckedCreateWithoutChapterInput> | comic_historyCreateWithoutChapterInput[] | comic_historyUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutChapterInput | comic_historyCreateOrConnectWithoutChapterInput[]
+    createMany?: comic_historyCreateManyChapterInputEnvelope
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+  }
+
+  export type commentCreateNestedManyWithoutChapterInput = {
+    create?: XOR<commentCreateWithoutChapterInput, commentUncheckedCreateWithoutChapterInput> | commentCreateWithoutChapterInput[] | commentUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutChapterInput | commentCreateOrConnectWithoutChapterInput[]
+    createMany?: commentCreateManyChapterInputEnvelope
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type chapter_imageUncheckedCreateNestedManyWithoutChapterInput = {
+    create?: XOR<chapter_imageCreateWithoutChapterInput, chapter_imageUncheckedCreateWithoutChapterInput> | chapter_imageCreateWithoutChapterInput[] | chapter_imageUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: chapter_imageCreateOrConnectWithoutChapterInput | chapter_imageCreateOrConnectWithoutChapterInput[]
+    createMany?: chapter_imageCreateManyChapterInputEnvelope
+    connect?: chapter_imageWhereUniqueInput | chapter_imageWhereUniqueInput[]
+  }
+
+  export type chapter_unlockUncheckedCreateNestedManyWithoutChapterInput = {
+    create?: XOR<chapter_unlockCreateWithoutChapterInput, chapter_unlockUncheckedCreateWithoutChapterInput> | chapter_unlockCreateWithoutChapterInput[] | chapter_unlockUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: chapter_unlockCreateOrConnectWithoutChapterInput | chapter_unlockCreateOrConnectWithoutChapterInput[]
+    createMany?: chapter_unlockCreateManyChapterInputEnvelope
+    connect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+  }
+
+  export type comic_historyUncheckedCreateNestedManyWithoutChapterInput = {
+    create?: XOR<comic_historyCreateWithoutChapterInput, comic_historyUncheckedCreateWithoutChapterInput> | comic_historyCreateWithoutChapterInput[] | comic_historyUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutChapterInput | comic_historyCreateOrConnectWithoutChapterInput[]
+    createMany?: comic_historyCreateManyChapterInputEnvelope
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+  }
+
+  export type commentUncheckedCreateNestedManyWithoutChapterInput = {
+    create?: XOR<commentCreateWithoutChapterInput, commentUncheckedCreateWithoutChapterInput> | commentCreateWithoutChapterInput[] | commentUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutChapterInput | commentCreateOrConnectWithoutChapterInput[]
+    createMany?: commentCreateManyChapterInputEnvelope
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type ComicUpdateOneRequiredWithoutChaptersNestedInput = {
+    create?: XOR<ComicCreateWithoutChaptersInput, ComicUncheckedCreateWithoutChaptersInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutChaptersInput
+    upsert?: ComicUpsertWithoutChaptersInput
+    connect?: ComicWhereUniqueInput
+    update?: XOR<XOR<ComicUpdateToOneWithWhereWithoutChaptersInput, ComicUpdateWithoutChaptersInput>, ComicUncheckedUpdateWithoutChaptersInput>
+  }
+
+  export type chapter_imageUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<chapter_imageCreateWithoutChapterInput, chapter_imageUncheckedCreateWithoutChapterInput> | chapter_imageCreateWithoutChapterInput[] | chapter_imageUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: chapter_imageCreateOrConnectWithoutChapterInput | chapter_imageCreateOrConnectWithoutChapterInput[]
+    upsert?: chapter_imageUpsertWithWhereUniqueWithoutChapterInput | chapter_imageUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: chapter_imageCreateManyChapterInputEnvelope
+    set?: chapter_imageWhereUniqueInput | chapter_imageWhereUniqueInput[]
+    disconnect?: chapter_imageWhereUniqueInput | chapter_imageWhereUniqueInput[]
+    delete?: chapter_imageWhereUniqueInput | chapter_imageWhereUniqueInput[]
+    connect?: chapter_imageWhereUniqueInput | chapter_imageWhereUniqueInput[]
+    update?: chapter_imageUpdateWithWhereUniqueWithoutChapterInput | chapter_imageUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: chapter_imageUpdateManyWithWhereWithoutChapterInput | chapter_imageUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: chapter_imageScalarWhereInput | chapter_imageScalarWhereInput[]
+  }
+
+  export type chapter_unlockUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<chapter_unlockCreateWithoutChapterInput, chapter_unlockUncheckedCreateWithoutChapterInput> | chapter_unlockCreateWithoutChapterInput[] | chapter_unlockUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: chapter_unlockCreateOrConnectWithoutChapterInput | chapter_unlockCreateOrConnectWithoutChapterInput[]
+    upsert?: chapter_unlockUpsertWithWhereUniqueWithoutChapterInput | chapter_unlockUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: chapter_unlockCreateManyChapterInputEnvelope
+    set?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    disconnect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    delete?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    connect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    update?: chapter_unlockUpdateWithWhereUniqueWithoutChapterInput | chapter_unlockUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: chapter_unlockUpdateManyWithWhereWithoutChapterInput | chapter_unlockUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: chapter_unlockScalarWhereInput | chapter_unlockScalarWhereInput[]
+  }
+
+  export type comic_historyUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<comic_historyCreateWithoutChapterInput, comic_historyUncheckedCreateWithoutChapterInput> | comic_historyCreateWithoutChapterInput[] | comic_historyUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutChapterInput | comic_historyCreateOrConnectWithoutChapterInput[]
+    upsert?: comic_historyUpsertWithWhereUniqueWithoutChapterInput | comic_historyUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: comic_historyCreateManyChapterInputEnvelope
+    set?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    disconnect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    delete?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    update?: comic_historyUpdateWithWhereUniqueWithoutChapterInput | comic_historyUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: comic_historyUpdateManyWithWhereWithoutChapterInput | comic_historyUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: comic_historyScalarWhereInput | comic_historyScalarWhereInput[]
+  }
+
+  export type commentUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<commentCreateWithoutChapterInput, commentUncheckedCreateWithoutChapterInput> | commentCreateWithoutChapterInput[] | commentUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutChapterInput | commentCreateOrConnectWithoutChapterInput[]
+    upsert?: commentUpsertWithWhereUniqueWithoutChapterInput | commentUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: commentCreateManyChapterInputEnvelope
+    set?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    disconnect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    delete?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    update?: commentUpdateWithWhereUniqueWithoutChapterInput | commentUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: commentUpdateManyWithWhereWithoutChapterInput | commentUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type chapter_imageUncheckedUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<chapter_imageCreateWithoutChapterInput, chapter_imageUncheckedCreateWithoutChapterInput> | chapter_imageCreateWithoutChapterInput[] | chapter_imageUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: chapter_imageCreateOrConnectWithoutChapterInput | chapter_imageCreateOrConnectWithoutChapterInput[]
+    upsert?: chapter_imageUpsertWithWhereUniqueWithoutChapterInput | chapter_imageUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: chapter_imageCreateManyChapterInputEnvelope
+    set?: chapter_imageWhereUniqueInput | chapter_imageWhereUniqueInput[]
+    disconnect?: chapter_imageWhereUniqueInput | chapter_imageWhereUniqueInput[]
+    delete?: chapter_imageWhereUniqueInput | chapter_imageWhereUniqueInput[]
+    connect?: chapter_imageWhereUniqueInput | chapter_imageWhereUniqueInput[]
+    update?: chapter_imageUpdateWithWhereUniqueWithoutChapterInput | chapter_imageUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: chapter_imageUpdateManyWithWhereWithoutChapterInput | chapter_imageUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: chapter_imageScalarWhereInput | chapter_imageScalarWhereInput[]
+  }
+
+  export type chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<chapter_unlockCreateWithoutChapterInput, chapter_unlockUncheckedCreateWithoutChapterInput> | chapter_unlockCreateWithoutChapterInput[] | chapter_unlockUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: chapter_unlockCreateOrConnectWithoutChapterInput | chapter_unlockCreateOrConnectWithoutChapterInput[]
+    upsert?: chapter_unlockUpsertWithWhereUniqueWithoutChapterInput | chapter_unlockUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: chapter_unlockCreateManyChapterInputEnvelope
+    set?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    disconnect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    delete?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    connect?: chapter_unlockWhereUniqueInput | chapter_unlockWhereUniqueInput[]
+    update?: chapter_unlockUpdateWithWhereUniqueWithoutChapterInput | chapter_unlockUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: chapter_unlockUpdateManyWithWhereWithoutChapterInput | chapter_unlockUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: chapter_unlockScalarWhereInput | chapter_unlockScalarWhereInput[]
+  }
+
+  export type comic_historyUncheckedUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<comic_historyCreateWithoutChapterInput, comic_historyUncheckedCreateWithoutChapterInput> | comic_historyCreateWithoutChapterInput[] | comic_historyUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: comic_historyCreateOrConnectWithoutChapterInput | comic_historyCreateOrConnectWithoutChapterInput[]
+    upsert?: comic_historyUpsertWithWhereUniqueWithoutChapterInput | comic_historyUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: comic_historyCreateManyChapterInputEnvelope
+    set?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    disconnect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    delete?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    connect?: comic_historyWhereUniqueInput | comic_historyWhereUniqueInput[]
+    update?: comic_historyUpdateWithWhereUniqueWithoutChapterInput | comic_historyUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: comic_historyUpdateManyWithWhereWithoutChapterInput | comic_historyUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: comic_historyScalarWhereInput | comic_historyScalarWhereInput[]
+  }
+
+  export type commentUncheckedUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<commentCreateWithoutChapterInput, commentUncheckedCreateWithoutChapterInput> | commentCreateWithoutChapterInput[] | commentUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutChapterInput | commentCreateOrConnectWithoutChapterInput[]
+    upsert?: commentUpsertWithWhereUniqueWithoutChapterInput | commentUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: commentCreateManyChapterInputEnvelope
+    set?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    disconnect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    delete?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    update?: commentUpdateWithWhereUniqueWithoutChapterInput | commentUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: commentUpdateManyWithWhereWithoutChapterInput | commentUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type ChapterCreateNestedOneWithoutChapterImagesInput = {
+    create?: XOR<ChapterCreateWithoutChapterImagesInput, ChapterUncheckedCreateWithoutChapterImagesInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutChapterImagesInput
+    connect?: ChapterWhereUniqueInput
+  }
+
+  export type ChapterUpdateOneRequiredWithoutChapterImagesNestedInput = {
+    create?: XOR<ChapterCreateWithoutChapterImagesInput, ChapterUncheckedCreateWithoutChapterImagesInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutChapterImagesInput
+    upsert?: ChapterUpsertWithoutChapterImagesInput
+    connect?: ChapterWhereUniqueInput
+    update?: XOR<XOR<ChapterUpdateToOneWithWhereWithoutChapterImagesInput, ChapterUpdateWithoutChapterImagesInput>, ChapterUncheckedUpdateWithoutChapterImagesInput>
+  }
+
+  export type UserCreateNestedOneWithoutChapterUnlocksInput = {
+    create?: XOR<UserCreateWithoutChapterUnlocksInput, UserUncheckedCreateWithoutChapterUnlocksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChapterUnlocksInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ChapterCreateNestedOneWithoutChapterUnlocksInput = {
+    create?: XOR<ChapterCreateWithoutChapterUnlocksInput, ChapterUncheckedCreateWithoutChapterUnlocksInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutChapterUnlocksInput
+    connect?: ChapterWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutChapterUnlocksNestedInput = {
+    create?: XOR<UserCreateWithoutChapterUnlocksInput, UserUncheckedCreateWithoutChapterUnlocksInput>
+    connectOrCreate?: UserCreateOrConnectWithoutChapterUnlocksInput
+    upsert?: UserUpsertWithoutChapterUnlocksInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutChapterUnlocksInput, UserUpdateWithoutChapterUnlocksInput>, UserUncheckedUpdateWithoutChapterUnlocksInput>
+  }
+
+  export type ChapterUpdateOneRequiredWithoutChapterUnlocksNestedInput = {
+    create?: XOR<ChapterCreateWithoutChapterUnlocksInput, ChapterUncheckedCreateWithoutChapterUnlocksInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutChapterUnlocksInput
+    upsert?: ChapterUpsertWithoutChapterUnlocksInput
+    connect?: ChapterWhereUniqueInput
+    update?: XOR<XOR<ChapterUpdateToOneWithWhereWithoutChapterUnlocksInput, ChapterUpdateWithoutChapterUnlocksInput>, ChapterUncheckedUpdateWithoutChapterUnlocksInput>
+  }
+
+  export type UserCreateNestedOneWithoutNotificationsInput = {
+    create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type EnumnotifiTypeFieldUpdateOperationsInput = {
+    set?: $Enums.notifiType
+  }
+
+  export type UserUpdateOneRequiredWithoutNotificationsNestedInput = {
+    create?: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutNotificationsInput
+    upsert?: UserUpsertWithoutNotificationsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationsInput, UserUpdateWithoutNotificationsInput>, UserUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type UserCreateNestedOneWithoutComicFollowerInput = {
+    create?: XOR<UserCreateWithoutComicFollowerInput, UserUncheckedCreateWithoutComicFollowerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutComicFollowerInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ComicCreateNestedOneWithoutComicFollowerInput = {
+    create?: XOR<ComicCreateWithoutComicFollowerInput, ComicUncheckedCreateWithoutComicFollowerInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutComicFollowerInput
+    connect?: ComicWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutComicFollowerNestedInput = {
+    create?: XOR<UserCreateWithoutComicFollowerInput, UserUncheckedCreateWithoutComicFollowerInput>
+    connectOrCreate?: UserCreateOrConnectWithoutComicFollowerInput
+    upsert?: UserUpsertWithoutComicFollowerInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutComicFollowerInput, UserUpdateWithoutComicFollowerInput>, UserUncheckedUpdateWithoutComicFollowerInput>
+  }
+
+  export type ComicUpdateOneRequiredWithoutComicFollowerNestedInput = {
+    create?: XOR<ComicCreateWithoutComicFollowerInput, ComicUncheckedCreateWithoutComicFollowerInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutComicFollowerInput
+    upsert?: ComicUpsertWithoutComicFollowerInput
+    connect?: ComicWhereUniqueInput
+    update?: XOR<XOR<ComicUpdateToOneWithWhereWithoutComicFollowerInput, ComicUpdateWithoutComicFollowerInput>, ComicUncheckedUpdateWithoutComicFollowerInput>
+  }
+
+  export type UserCreateNestedOneWithoutComicHistoryInput = {
+    create?: XOR<UserCreateWithoutComicHistoryInput, UserUncheckedCreateWithoutComicHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutComicHistoryInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ComicCreateNestedOneWithoutComicHistoryInput = {
+    create?: XOR<ComicCreateWithoutComicHistoryInput, ComicUncheckedCreateWithoutComicHistoryInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutComicHistoryInput
+    connect?: ComicWhereUniqueInput
+  }
+
+  export type ChapterCreateNestedOneWithoutComicHistoryInput = {
+    create?: XOR<ChapterCreateWithoutComicHistoryInput, ChapterUncheckedCreateWithoutComicHistoryInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutComicHistoryInput
+    connect?: ChapterWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutComicHistoryNestedInput = {
+    create?: XOR<UserCreateWithoutComicHistoryInput, UserUncheckedCreateWithoutComicHistoryInput>
+    connectOrCreate?: UserCreateOrConnectWithoutComicHistoryInput
+    upsert?: UserUpsertWithoutComicHistoryInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutComicHistoryInput, UserUpdateWithoutComicHistoryInput>, UserUncheckedUpdateWithoutComicHistoryInput>
+  }
+
+  export type ComicUpdateOneRequiredWithoutComicHistoryNestedInput = {
+    create?: XOR<ComicCreateWithoutComicHistoryInput, ComicUncheckedCreateWithoutComicHistoryInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutComicHistoryInput
+    upsert?: ComicUpsertWithoutComicHistoryInput
+    connect?: ComicWhereUniqueInput
+    update?: XOR<XOR<ComicUpdateToOneWithWhereWithoutComicHistoryInput, ComicUpdateWithoutComicHistoryInput>, ComicUncheckedUpdateWithoutComicHistoryInput>
+  }
+
+  export type ChapterUpdateOneRequiredWithoutComicHistoryNestedInput = {
+    create?: XOR<ChapterCreateWithoutComicHistoryInput, ChapterUncheckedCreateWithoutComicHistoryInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutComicHistoryInput
+    upsert?: ChapterUpsertWithoutComicHistoryInput
+    connect?: ChapterWhereUniqueInput
+    update?: XOR<XOR<ChapterUpdateToOneWithWhereWithoutComicHistoryInput, ChapterUpdateWithoutComicHistoryInput>, ChapterUncheckedUpdateWithoutComicHistoryInput>
+  }
+
+  export type UserCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type ComicCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<ComicCreateWithoutCommentsInput, ComicUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutCommentsInput
+    connect?: ComicWhereUniqueInput
+  }
+
+  export type ChapterCreateNestedOneWithoutCommentsInput = {
+    create?: XOR<ChapterCreateWithoutCommentsInput, ChapterUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutCommentsInput
+    connect?: ChapterWhereUniqueInput
+  }
+
+  export type commentCreateNestedOneWithoutRepliesInput = {
+    create?: XOR<commentCreateWithoutRepliesInput, commentUncheckedCreateWithoutRepliesInput>
+    connectOrCreate?: commentCreateOrConnectWithoutRepliesInput
+    connect?: commentWhereUniqueInput
+  }
+
+  export type commentCreateNestedManyWithoutParentInput = {
+    create?: XOR<commentCreateWithoutParentInput, commentUncheckedCreateWithoutParentInput> | commentCreateWithoutParentInput[] | commentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutParentInput | commentCreateOrConnectWithoutParentInput[]
+    createMany?: commentCreateManyParentInputEnvelope
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type commentUncheckedCreateNestedManyWithoutParentInput = {
+    create?: XOR<commentCreateWithoutParentInput, commentUncheckedCreateWithoutParentInput> | commentCreateWithoutParentInput[] | commentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutParentInput | commentCreateOrConnectWithoutParentInput[]
+    createMany?: commentCreateManyParentInputEnvelope
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
+    create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
+    upsert?: UserUpsertWithoutCommentsInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutCommentsInput, UserUpdateWithoutCommentsInput>, UserUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type ComicUpdateOneWithoutCommentsNestedInput = {
+    create?: XOR<ComicCreateWithoutCommentsInput, ComicUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutCommentsInput
+    upsert?: ComicUpsertWithoutCommentsInput
+    disconnect?: ComicWhereInput | boolean
+    delete?: ComicWhereInput | boolean
+    connect?: ComicWhereUniqueInput
+    update?: XOR<XOR<ComicUpdateToOneWithWhereWithoutCommentsInput, ComicUpdateWithoutCommentsInput>, ComicUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type ChapterUpdateOneWithoutCommentsNestedInput = {
+    create?: XOR<ChapterCreateWithoutCommentsInput, ChapterUncheckedCreateWithoutCommentsInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutCommentsInput
+    upsert?: ChapterUpsertWithoutCommentsInput
+    disconnect?: ChapterWhereInput | boolean
+    delete?: ChapterWhereInput | boolean
+    connect?: ChapterWhereUniqueInput
+    update?: XOR<XOR<ChapterUpdateToOneWithWhereWithoutCommentsInput, ChapterUpdateWithoutCommentsInput>, ChapterUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type commentUpdateOneWithoutRepliesNestedInput = {
+    create?: XOR<commentCreateWithoutRepliesInput, commentUncheckedCreateWithoutRepliesInput>
+    connectOrCreate?: commentCreateOrConnectWithoutRepliesInput
+    upsert?: commentUpsertWithoutRepliesInput
+    disconnect?: commentWhereInput | boolean
+    delete?: commentWhereInput | boolean
+    connect?: commentWhereUniqueInput
+    update?: XOR<XOR<commentUpdateToOneWithWhereWithoutRepliesInput, commentUpdateWithoutRepliesInput>, commentUncheckedUpdateWithoutRepliesInput>
+  }
+
+  export type commentUpdateManyWithoutParentNestedInput = {
+    create?: XOR<commentCreateWithoutParentInput, commentUncheckedCreateWithoutParentInput> | commentCreateWithoutParentInput[] | commentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutParentInput | commentCreateOrConnectWithoutParentInput[]
+    upsert?: commentUpsertWithWhereUniqueWithoutParentInput | commentUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: commentCreateManyParentInputEnvelope
+    set?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    disconnect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    delete?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    update?: commentUpdateWithWhereUniqueWithoutParentInput | commentUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: commentUpdateManyWithWhereWithoutParentInput | commentUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
+  export type commentUncheckedUpdateManyWithoutParentNestedInput = {
+    create?: XOR<commentCreateWithoutParentInput, commentUncheckedCreateWithoutParentInput> | commentCreateWithoutParentInput[] | commentUncheckedCreateWithoutParentInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutParentInput | commentCreateOrConnectWithoutParentInput[]
+    upsert?: commentUpsertWithWhereUniqueWithoutParentInput | commentUpsertWithWhereUniqueWithoutParentInput[]
+    createMany?: commentCreateManyParentInputEnvelope
+    set?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    disconnect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    delete?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    update?: commentUpdateWithWhereUniqueWithoutParentInput | commentUpdateWithWhereUniqueWithoutParentInput[]
+    updateMany?: commentUpdateManyWithWhereWithoutParentInput | commentUpdateManyWithWhereWithoutParentInput[]
+    deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type NestedIntFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringFilter<$PrismaModel> | string
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type NestedEnumuserRoleFilter<$PrismaModel = never> = {
+    equals?: $Enums.userRole | EnumuserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.userRole[]
+    notIn?: $Enums.userRole[]
+    not?: NestedEnumuserRoleFilter<$PrismaModel> | $Enums.userRole
+  }
+
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedIntFilter<$PrismaModel>
+    _min?: NestedIntFilter<$PrismaModel>
+    _max?: NestedIntFilter<$PrismaModel>
+  }
+
+  export type NestedFloatFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatFilter<$PrismaModel> | number
+  }
+
+  export type NestedStringWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel>
+    in?: string[]
+    notIn?: string[]
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringWithAggregatesFilter<$PrismaModel> | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedStringFilter<$PrismaModel>
+    _max?: NestedStringFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | null
+    notIn?: string[] | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    search?: string
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedEnumuserRoleWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.userRole | EnumuserRoleFieldRefInput<$PrismaModel>
+    in?: $Enums.userRole[]
+    notIn?: $Enums.userRole[]
+    not?: NestedEnumuserRoleWithAggregatesFilter<$PrismaModel> | $Enums.userRole
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumuserRoleFilter<$PrismaModel>
+    _max?: NestedEnumuserRoleFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[]
+    notIn?: Date[] | string[]
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedFloatWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel>
+    in?: number[]
+    notIn?: number[]
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatWithAggregatesFilter<$PrismaModel> | number
+    _count?: NestedIntFilter<$PrismaModel>
+    _avg?: NestedFloatFilter<$PrismaModel>
+    _sum?: NestedFloatFilter<$PrismaModel>
+    _min?: NestedFloatFilter<$PrismaModel>
+    _max?: NestedFloatFilter<$PrismaModel>
+  }
+
+  export type NestedEnumtransactionStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.transactionStatus | EnumtransactionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.transactionStatus[]
+    notIn?: $Enums.transactionStatus[]
+    not?: NestedEnumtransactionStatusFilter<$PrismaModel> | $Enums.transactionStatus
+  }
+
+  export type NestedEnumtransactionStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.transactionStatus | EnumtransactionStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.transactionStatus[]
+    notIn?: $Enums.transactionStatus[]
+    not?: NestedEnumtransactionStatusWithAggregatesFilter<$PrismaModel> | $Enums.transactionStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumtransactionStatusFilter<$PrismaModel>
+    _max?: NestedEnumtransactionStatusFilter<$PrismaModel>
+  }
+
+  export type NestedEnumcomicStatusFilter<$PrismaModel = never> = {
+    equals?: $Enums.comicStatus | EnumcomicStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.comicStatus[]
+    notIn?: $Enums.comicStatus[]
+    not?: NestedEnumcomicStatusFilter<$PrismaModel> | $Enums.comicStatus
+  }
+
+  export type NestedBoolFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolFilter<$PrismaModel> | boolean
+  }
+
+  export type NestedEnumcomicStatusWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.comicStatus | EnumcomicStatusFieldRefInput<$PrismaModel>
+    in?: $Enums.comicStatus[]
+    notIn?: $Enums.comicStatus[]
+    not?: NestedEnumcomicStatusWithAggregatesFilter<$PrismaModel> | $Enums.comicStatus
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumcomicStatusFilter<$PrismaModel>
+    _max?: NestedEnumcomicStatusFilter<$PrismaModel>
+  }
+
+  export type NestedBoolWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: boolean | BooleanFieldRefInput<$PrismaModel>
+    not?: NestedBoolWithAggregatesFilter<$PrismaModel> | boolean
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedBoolFilter<$PrismaModel>
+    _max?: NestedBoolFilter<$PrismaModel>
+  }
+
+  export type NestedEnumnotifiTypeFilter<$PrismaModel = never> = {
+    equals?: $Enums.notifiType | EnumnotifiTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.notifiType[]
+    notIn?: $Enums.notifiType[]
+    not?: NestedEnumnotifiTypeFilter<$PrismaModel> | $Enums.notifiType
+  }
+
+  export type NestedEnumnotifiTypeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: $Enums.notifiType | EnumnotifiTypeFieldRefInput<$PrismaModel>
+    in?: $Enums.notifiType[]
+    notIn?: $Enums.notifiType[]
+    not?: NestedEnumnotifiTypeWithAggregatesFilter<$PrismaModel> | $Enums.notifiType
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedEnumnotifiTypeFilter<$PrismaModel>
+    _max?: NestedEnumnotifiTypeFilter<$PrismaModel>
+  }
+
+  export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
+  export type NestedFloatNullableFilter<$PrismaModel = never> = {
+    equals?: number | FloatFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | FloatFieldRefInput<$PrismaModel>
+    lte?: number | FloatFieldRefInput<$PrismaModel>
+    gt?: number | FloatFieldRefInput<$PrismaModel>
+    gte?: number | FloatFieldRefInput<$PrismaModel>
+    not?: NestedFloatNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type TransactionCreateWithoutUserInput = {
+    coin_amount: number
+    price: number
+    status?: $Enums.transactionStatus
+    create_at?: Date | string
+    coin: CoinCreateNestedOneWithoutTransactionsInput
+  }
+
+  export type TransactionUncheckedCreateWithoutUserInput = {
+    id?: number
+    coin_amount: number
+    price: number
+    status?: $Enums.transactionStatus
+    create_at?: Date | string
+    coinId: number
+  }
+
+  export type TransactionCreateOrConnectWithoutUserInput = {
+    where: TransactionWhereUniqueInput
+    create: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput>
+  }
+
+  export type TransactionCreateManyUserInputEnvelope = {
+    data: TransactionCreateManyUserInput | TransactionCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type chapter_unlockCreateWithoutUserInput = {
+    unlock_time?: Date | string
+    chapter: ChapterCreateNestedOneWithoutChapterUnlocksInput
+  }
+
+  export type chapter_unlockUncheckedCreateWithoutUserInput = {
+    id?: number
+    chapterId: number
+    unlock_time?: Date | string
+  }
+
+  export type chapter_unlockCreateOrConnectWithoutUserInput = {
+    where: chapter_unlockWhereUniqueInput
+    create: XOR<chapter_unlockCreateWithoutUserInput, chapter_unlockUncheckedCreateWithoutUserInput>
+  }
+
+  export type chapter_unlockCreateManyUserInputEnvelope = {
+    data: chapter_unlockCreateManyUserInput | chapter_unlockCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type NotificationCreateWithoutUserInput = {
+    message: string
+    seen?: boolean
+    type: $Enums.notifiType
+    create_at?: Date | string
+  }
+
+  export type NotificationUncheckedCreateWithoutUserInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    type: $Enums.notifiType
+    create_at?: Date | string
+  }
+
+  export type NotificationCreateOrConnectWithoutUserInput = {
+    where: NotificationWhereUniqueInput
+    create: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type NotificationCreateManyUserInputEnvelope = {
+    data: NotificationCreateManyUserInput | NotificationCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type comic_followerCreateWithoutUserInput = {
+    comic: ComicCreateNestedOneWithoutComicFollowerInput
+  }
+
+  export type comic_followerUncheckedCreateWithoutUserInput = {
+    id?: number
+    comicId: number
+  }
+
+  export type comic_followerCreateOrConnectWithoutUserInput = {
+    where: comic_followerWhereUniqueInput
+    create: XOR<comic_followerCreateWithoutUserInput, comic_followerUncheckedCreateWithoutUserInput>
+  }
+
+  export type comic_followerCreateManyUserInputEnvelope = {
+    data: comic_followerCreateManyUserInput | comic_followerCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type comic_historyCreateWithoutUserInput = {
+    read_time?: Date | string
+    comic: ComicCreateNestedOneWithoutComicHistoryInput
+    chapter: ChapterCreateNestedOneWithoutComicHistoryInput
+  }
+
+  export type comic_historyUncheckedCreateWithoutUserInput = {
+    id?: number
+    comicId: number
+    chapterId: number
+    read_time?: Date | string
+  }
+
+  export type comic_historyCreateOrConnectWithoutUserInput = {
+    where: comic_historyWhereUniqueInput
+    create: XOR<comic_historyCreateWithoutUserInput, comic_historyUncheckedCreateWithoutUserInput>
+  }
+
+  export type comic_historyCreateManyUserInputEnvelope = {
+    data: comic_historyCreateManyUserInput | comic_historyCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type commentCreateWithoutUserInput = {
+    content: string
+    create_at?: Date | string
+    comic?: ComicCreateNestedOneWithoutCommentsInput
+    chapter?: ChapterCreateNestedOneWithoutCommentsInput
+    parent?: commentCreateNestedOneWithoutRepliesInput
+    replies?: commentCreateNestedManyWithoutParentInput
+  }
+
+  export type commentUncheckedCreateWithoutUserInput = {
+    id?: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+    replies?: commentUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type commentCreateOrConnectWithoutUserInput = {
+    where: commentWhereUniqueInput
+    create: XOR<commentCreateWithoutUserInput, commentUncheckedCreateWithoutUserInput>
+  }
+
+  export type commentCreateManyUserInputEnvelope = {
+    data: commentCreateManyUserInput | commentCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TransactionUpsertWithWhereUniqueWithoutUserInput = {
+    where: TransactionWhereUniqueInput
+    update: XOR<TransactionUpdateWithoutUserInput, TransactionUncheckedUpdateWithoutUserInput>
+    create: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput>
+  }
+
+  export type TransactionUpdateWithWhereUniqueWithoutUserInput = {
+    where: TransactionWhereUniqueInput
+    data: XOR<TransactionUpdateWithoutUserInput, TransactionUncheckedUpdateWithoutUserInput>
+  }
+
+  export type TransactionUpdateManyWithWhereWithoutUserInput = {
+    where: TransactionScalarWhereInput
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type TransactionScalarWhereInput = {
+    AND?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+    OR?: TransactionScalarWhereInput[]
+    NOT?: TransactionScalarWhereInput | TransactionScalarWhereInput[]
+    id?: IntFilter<"Transaction"> | number
+    coin_amount?: IntFilter<"Transaction"> | number
+    price?: FloatFilter<"Transaction"> | number
+    status?: EnumtransactionStatusFilter<"Transaction"> | $Enums.transactionStatus
+    create_at?: DateTimeFilter<"Transaction"> | Date | string
+    userId?: IntFilter<"Transaction"> | number
+    coinId?: IntFilter<"Transaction"> | number
+  }
+
+  export type chapter_unlockUpsertWithWhereUniqueWithoutUserInput = {
+    where: chapter_unlockWhereUniqueInput
+    update: XOR<chapter_unlockUpdateWithoutUserInput, chapter_unlockUncheckedUpdateWithoutUserInput>
+    create: XOR<chapter_unlockCreateWithoutUserInput, chapter_unlockUncheckedCreateWithoutUserInput>
+  }
+
+  export type chapter_unlockUpdateWithWhereUniqueWithoutUserInput = {
+    where: chapter_unlockWhereUniqueInput
+    data: XOR<chapter_unlockUpdateWithoutUserInput, chapter_unlockUncheckedUpdateWithoutUserInput>
+  }
+
+  export type chapter_unlockUpdateManyWithWhereWithoutUserInput = {
+    where: chapter_unlockScalarWhereInput
+    data: XOR<chapter_unlockUpdateManyMutationInput, chapter_unlockUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type chapter_unlockScalarWhereInput = {
+    AND?: chapter_unlockScalarWhereInput | chapter_unlockScalarWhereInput[]
+    OR?: chapter_unlockScalarWhereInput[]
+    NOT?: chapter_unlockScalarWhereInput | chapter_unlockScalarWhereInput[]
+    id?: IntFilter<"chapter_unlock"> | number
+    userId?: IntFilter<"chapter_unlock"> | number
+    chapterId?: IntFilter<"chapter_unlock"> | number
+    unlock_time?: DateTimeFilter<"chapter_unlock"> | Date | string
+  }
+
+  export type NotificationUpsertWithWhereUniqueWithoutUserInput = {
+    where: NotificationWhereUniqueInput
+    update: XOR<NotificationUpdateWithoutUserInput, NotificationUncheckedUpdateWithoutUserInput>
+    create: XOR<NotificationCreateWithoutUserInput, NotificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type NotificationUpdateWithWhereUniqueWithoutUserInput = {
+    where: NotificationWhereUniqueInput
+    data: XOR<NotificationUpdateWithoutUserInput, NotificationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type NotificationUpdateManyWithWhereWithoutUserInput = {
+    where: NotificationScalarWhereInput
+    data: XOR<NotificationUpdateManyMutationInput, NotificationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type NotificationScalarWhereInput = {
+    AND?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    OR?: NotificationScalarWhereInput[]
+    NOT?: NotificationScalarWhereInput | NotificationScalarWhereInput[]
+    id?: IntFilter<"Notification"> | number
+    message?: StringFilter<"Notification"> | string
+    seen?: BoolFilter<"Notification"> | boolean
+    type?: EnumnotifiTypeFilter<"Notification"> | $Enums.notifiType
+    create_at?: DateTimeFilter<"Notification"> | Date | string
+    userId?: IntFilter<"Notification"> | number
+  }
+
+  export type comic_followerUpsertWithWhereUniqueWithoutUserInput = {
+    where: comic_followerWhereUniqueInput
+    update: XOR<comic_followerUpdateWithoutUserInput, comic_followerUncheckedUpdateWithoutUserInput>
+    create: XOR<comic_followerCreateWithoutUserInput, comic_followerUncheckedCreateWithoutUserInput>
+  }
+
+  export type comic_followerUpdateWithWhereUniqueWithoutUserInput = {
+    where: comic_followerWhereUniqueInput
+    data: XOR<comic_followerUpdateWithoutUserInput, comic_followerUncheckedUpdateWithoutUserInput>
+  }
+
+  export type comic_followerUpdateManyWithWhereWithoutUserInput = {
+    where: comic_followerScalarWhereInput
+    data: XOR<comic_followerUpdateManyMutationInput, comic_followerUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type comic_followerScalarWhereInput = {
+    AND?: comic_followerScalarWhereInput | comic_followerScalarWhereInput[]
+    OR?: comic_followerScalarWhereInput[]
+    NOT?: comic_followerScalarWhereInput | comic_followerScalarWhereInput[]
+    id?: IntFilter<"comic_follower"> | number
+    userId?: IntFilter<"comic_follower"> | number
+    comicId?: IntFilter<"comic_follower"> | number
+  }
+
+  export type comic_historyUpsertWithWhereUniqueWithoutUserInput = {
+    where: comic_historyWhereUniqueInput
+    update: XOR<comic_historyUpdateWithoutUserInput, comic_historyUncheckedUpdateWithoutUserInput>
+    create: XOR<comic_historyCreateWithoutUserInput, comic_historyUncheckedCreateWithoutUserInput>
+  }
+
+  export type comic_historyUpdateWithWhereUniqueWithoutUserInput = {
+    where: comic_historyWhereUniqueInput
+    data: XOR<comic_historyUpdateWithoutUserInput, comic_historyUncheckedUpdateWithoutUserInput>
+  }
+
+  export type comic_historyUpdateManyWithWhereWithoutUserInput = {
+    where: comic_historyScalarWhereInput
+    data: XOR<comic_historyUpdateManyMutationInput, comic_historyUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type comic_historyScalarWhereInput = {
+    AND?: comic_historyScalarWhereInput | comic_historyScalarWhereInput[]
+    OR?: comic_historyScalarWhereInput[]
+    NOT?: comic_historyScalarWhereInput | comic_historyScalarWhereInput[]
+    id?: IntFilter<"comic_history"> | number
+    userId?: IntFilter<"comic_history"> | number
+    comicId?: IntFilter<"comic_history"> | number
+    chapterId?: IntFilter<"comic_history"> | number
+    read_time?: DateTimeFilter<"comic_history"> | Date | string
+  }
+
+  export type commentUpsertWithWhereUniqueWithoutUserInput = {
+    where: commentWhereUniqueInput
+    update: XOR<commentUpdateWithoutUserInput, commentUncheckedUpdateWithoutUserInput>
+    create: XOR<commentCreateWithoutUserInput, commentUncheckedCreateWithoutUserInput>
+  }
+
+  export type commentUpdateWithWhereUniqueWithoutUserInput = {
+    where: commentWhereUniqueInput
+    data: XOR<commentUpdateWithoutUserInput, commentUncheckedUpdateWithoutUserInput>
+  }
+
+  export type commentUpdateManyWithWhereWithoutUserInput = {
+    where: commentScalarWhereInput
+    data: XOR<commentUpdateManyMutationInput, commentUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type commentScalarWhereInput = {
+    AND?: commentScalarWhereInput | commentScalarWhereInput[]
+    OR?: commentScalarWhereInput[]
+    NOT?: commentScalarWhereInput | commentScalarWhereInput[]
+    id?: IntFilter<"comment"> | number
+    userId?: IntFilter<"comment"> | number
+    comicId?: IntNullableFilter<"comment"> | number | null
+    chapterId?: IntNullableFilter<"comment"> | number | null
+    content?: StringFilter<"comment"> | string
+    parentId?: IntNullableFilter<"comment"> | number | null
+    create_at?: DateTimeFilter<"comment"> | Date | string
+  }
+
+  export type TransactionCreateWithoutCoinInput = {
+    coin_amount: number
+    price: number
+    status?: $Enums.transactionStatus
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutTransactionsInput
+  }
+
+  export type TransactionUncheckedCreateWithoutCoinInput = {
+    id?: number
+    coin_amount: number
+    price: number
+    status?: $Enums.transactionStatus
+    create_at?: Date | string
+    userId: number
+  }
+
+  export type TransactionCreateOrConnectWithoutCoinInput = {
+    where: TransactionWhereUniqueInput
+    create: XOR<TransactionCreateWithoutCoinInput, TransactionUncheckedCreateWithoutCoinInput>
+  }
+
+  export type TransactionCreateManyCoinInputEnvelope = {
+    data: TransactionCreateManyCoinInput | TransactionCreateManyCoinInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type TransactionUpsertWithWhereUniqueWithoutCoinInput = {
+    where: TransactionWhereUniqueInput
+    update: XOR<TransactionUpdateWithoutCoinInput, TransactionUncheckedUpdateWithoutCoinInput>
+    create: XOR<TransactionCreateWithoutCoinInput, TransactionUncheckedCreateWithoutCoinInput>
+  }
+
+  export type TransactionUpdateWithWhereUniqueWithoutCoinInput = {
+    where: TransactionWhereUniqueInput
+    data: XOR<TransactionUpdateWithoutCoinInput, TransactionUncheckedUpdateWithoutCoinInput>
+  }
+
+  export type TransactionUpdateManyWithWhereWithoutCoinInput = {
+    where: TransactionScalarWhereInput
+    data: XOR<TransactionUpdateManyMutationInput, TransactionUncheckedUpdateManyWithoutCoinInput>
+  }
+
+  export type UserCreateWithoutTransactionsInput = {
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyCreateNestedManyWithoutUserInput
+    comments?: commentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutTransactionsInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
+    comments?: commentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutTransactionsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+  }
+
+  export type CoinCreateWithoutTransactionsInput = {
+    coin_amount: number
+    price: number
+    create_at?: Date | string
+  }
+
+  export type CoinUncheckedCreateWithoutTransactionsInput = {
+    id?: number
+    coin_amount: number
+    price: number
+    create_at?: Date | string
+  }
+
+  export type CoinCreateOrConnectWithoutTransactionsInput = {
+    where: CoinWhereUniqueInput
+    create: XOR<CoinCreateWithoutTransactionsInput, CoinUncheckedCreateWithoutTransactionsInput>
+  }
+
+  export type UserUpsertWithoutTransactionsInput = {
+    update: XOR<UserUpdateWithoutTransactionsInput, UserUncheckedUpdateWithoutTransactionsInput>
+    create: XOR<UserCreateWithoutTransactionsInput, UserUncheckedCreateWithoutTransactionsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutTransactionsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutTransactionsInput, UserUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type UserUpdateWithoutTransactionsInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
+    comments?: commentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutTransactionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
+    comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type CoinUpsertWithoutTransactionsInput = {
+    update: XOR<CoinUpdateWithoutTransactionsInput, CoinUncheckedUpdateWithoutTransactionsInput>
+    create: XOR<CoinCreateWithoutTransactionsInput, CoinUncheckedCreateWithoutTransactionsInput>
+    where?: CoinWhereInput
+  }
+
+  export type CoinUpdateToOneWithWhereWithoutTransactionsInput = {
+    where?: CoinWhereInput
+    data: XOR<CoinUpdateWithoutTransactionsInput, CoinUncheckedUpdateWithoutTransactionsInput>
+  }
+
+  export type CoinUpdateWithoutTransactionsInput = {
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CoinUncheckedUpdateWithoutTransactionsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComicCreateWithoutCountryInput = {
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    categories?: CategoryCreateNestedManyWithoutComicsInput
+    chapters?: ChapterCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyCreateNestedManyWithoutComicInput
+    comments?: commentCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicUncheckedCreateWithoutCountryInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    categories?: CategoryUncheckedCreateNestedManyWithoutComicsInput
+    chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
+    comments?: commentUncheckedCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicCreateOrConnectWithoutCountryInput = {
+    where: ComicWhereUniqueInput
+    create: XOR<ComicCreateWithoutCountryInput, ComicUncheckedCreateWithoutCountryInput>
+  }
+
+  export type ComicCreateManyCountryInputEnvelope = {
+    data: ComicCreateManyCountryInput | ComicCreateManyCountryInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ComicUpsertWithWhereUniqueWithoutCountryInput = {
+    where: ComicWhereUniqueInput
+    update: XOR<ComicUpdateWithoutCountryInput, ComicUncheckedUpdateWithoutCountryInput>
+    create: XOR<ComicCreateWithoutCountryInput, ComicUncheckedCreateWithoutCountryInput>
+  }
+
+  export type ComicUpdateWithWhereUniqueWithoutCountryInput = {
+    where: ComicWhereUniqueInput
+    data: XOR<ComicUpdateWithoutCountryInput, ComicUncheckedUpdateWithoutCountryInput>
+  }
+
+  export type ComicUpdateManyWithWhereWithoutCountryInput = {
+    where: ComicScalarWhereInput
+    data: XOR<ComicUpdateManyMutationInput, ComicUncheckedUpdateManyWithoutCountryInput>
+  }
+
+  export type ComicScalarWhereInput = {
+    AND?: ComicScalarWhereInput | ComicScalarWhereInput[]
+    OR?: ComicScalarWhereInput[]
+    NOT?: ComicScalarWhereInput | ComicScalarWhereInput[]
+    id?: IntFilter<"Comic"> | number
+    title?: StringFilter<"Comic"> | string
+    title_eng?: StringNullableFilter<"Comic"> | string | null
+    slug?: StringFilter<"Comic"> | string
+    description?: StringFilter<"Comic"> | string
+    author?: StringFilter<"Comic"> | string
+    status?: EnumcomicStatusFilter<"Comic"> | $Enums.comicStatus
+    cover_image?: StringFilter<"Comic"> | string
+    views?: IntFilter<"Comic"> | number
+    is_active?: BoolFilter<"Comic"> | boolean
+    create_at?: DateTimeFilter<"Comic"> | Date | string
+    update_at?: DateTimeFilter<"Comic"> | Date | string
+    countryId?: IntFilter<"Comic"> | number
+  }
+
+  export type CountryCreateWithoutComicsInput = {
+    name: string
+    create_at?: Date | string
+    update_at?: Date | string
+  }
+
+  export type CountryUncheckedCreateWithoutComicsInput = {
+    id?: number
+    name: string
+    create_at?: Date | string
+    update_at?: Date | string
+  }
+
+  export type CountryCreateOrConnectWithoutComicsInput = {
+    where: CountryWhereUniqueInput
+    create: XOR<CountryCreateWithoutComicsInput, CountryUncheckedCreateWithoutComicsInput>
+  }
+
+  export type CategoryCreateWithoutComicsInput = {
+    name: string
+    slug: string
+    description: string
+    create_at?: Date | string
+    update_at?: Date | string
+  }
+
+  export type CategoryUncheckedCreateWithoutComicsInput = {
+    id?: number
+    name: string
+    slug: string
+    description: string
+    create_at?: Date | string
+    update_at?: Date | string
+  }
+
+  export type CategoryCreateOrConnectWithoutComicsInput = {
+    where: CategoryWhereUniqueInput
+    create: XOR<CategoryCreateWithoutComicsInput, CategoryUncheckedCreateWithoutComicsInput>
+  }
+
+  export type ChapterCreateWithoutComicInput = {
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    chapterImages?: chapter_imageCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
+    comments?: commentCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterUncheckedCreateWithoutComicInput = {
+    id?: number
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    chapterImages?: chapter_imageUncheckedCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
+    comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterCreateOrConnectWithoutComicInput = {
+    where: ChapterWhereUniqueInput
+    create: XOR<ChapterCreateWithoutComicInput, ChapterUncheckedCreateWithoutComicInput>
+  }
+
+  export type ChapterCreateManyComicInputEnvelope = {
+    data: ChapterCreateManyComicInput | ChapterCreateManyComicInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type comic_followerCreateWithoutComicInput = {
+    user: UserCreateNestedOneWithoutComicFollowerInput
+  }
+
+  export type comic_followerUncheckedCreateWithoutComicInput = {
+    id?: number
+    userId: number
+  }
+
+  export type comic_followerCreateOrConnectWithoutComicInput = {
+    where: comic_followerWhereUniqueInput
+    create: XOR<comic_followerCreateWithoutComicInput, comic_followerUncheckedCreateWithoutComicInput>
+  }
+
+  export type comic_followerCreateManyComicInputEnvelope = {
+    data: comic_followerCreateManyComicInput | comic_followerCreateManyComicInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type comic_historyCreateWithoutComicInput = {
+    read_time?: Date | string
+    user: UserCreateNestedOneWithoutComicHistoryInput
+    chapter: ChapterCreateNestedOneWithoutComicHistoryInput
+  }
+
+  export type comic_historyUncheckedCreateWithoutComicInput = {
+    id?: number
+    userId: number
+    chapterId: number
+    read_time?: Date | string
+  }
+
+  export type comic_historyCreateOrConnectWithoutComicInput = {
+    where: comic_historyWhereUniqueInput
+    create: XOR<comic_historyCreateWithoutComicInput, comic_historyUncheckedCreateWithoutComicInput>
+  }
+
+  export type comic_historyCreateManyComicInputEnvelope = {
+    data: comic_historyCreateManyComicInput | comic_historyCreateManyComicInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type commentCreateWithoutComicInput = {
+    content: string
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    chapter?: ChapterCreateNestedOneWithoutCommentsInput
+    parent?: commentCreateNestedOneWithoutRepliesInput
+    replies?: commentCreateNestedManyWithoutParentInput
+  }
+
+  export type commentUncheckedCreateWithoutComicInput = {
+    id?: number
+    userId: number
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+    replies?: commentUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type commentCreateOrConnectWithoutComicInput = {
+    where: commentWhereUniqueInput
+    create: XOR<commentCreateWithoutComicInput, commentUncheckedCreateWithoutComicInput>
+  }
+
+  export type commentCreateManyComicInputEnvelope = {
+    data: commentCreateManyComicInput | commentCreateManyComicInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type CountryUpsertWithoutComicsInput = {
+    update: XOR<CountryUpdateWithoutComicsInput, CountryUncheckedUpdateWithoutComicsInput>
+    create: XOR<CountryCreateWithoutComicsInput, CountryUncheckedCreateWithoutComicsInput>
+    where?: CountryWhereInput
+  }
+
+  export type CountryUpdateToOneWithWhereWithoutComicsInput = {
+    where?: CountryWhereInput
+    data: XOR<CountryUpdateWithoutComicsInput, CountryUncheckedUpdateWithoutComicsInput>
+  }
+
+  export type CountryUpdateWithoutComicsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CountryUncheckedUpdateWithoutComicsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryUpsertWithWhereUniqueWithoutComicsInput = {
+    where: CategoryWhereUniqueInput
+    update: XOR<CategoryUpdateWithoutComicsInput, CategoryUncheckedUpdateWithoutComicsInput>
+    create: XOR<CategoryCreateWithoutComicsInput, CategoryUncheckedCreateWithoutComicsInput>
+  }
+
+  export type CategoryUpdateWithWhereUniqueWithoutComicsInput = {
+    where: CategoryWhereUniqueInput
+    data: XOR<CategoryUpdateWithoutComicsInput, CategoryUncheckedUpdateWithoutComicsInput>
+  }
+
+  export type CategoryUpdateManyWithWhereWithoutComicsInput = {
+    where: CategoryScalarWhereInput
+    data: XOR<CategoryUpdateManyMutationInput, CategoryUncheckedUpdateManyWithoutComicsInput>
+  }
+
+  export type CategoryScalarWhereInput = {
+    AND?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    OR?: CategoryScalarWhereInput[]
+    NOT?: CategoryScalarWhereInput | CategoryScalarWhereInput[]
+    id?: IntFilter<"Category"> | number
+    name?: StringFilter<"Category"> | string
+    slug?: StringFilter<"Category"> | string
+    description?: StringFilter<"Category"> | string
+    create_at?: DateTimeFilter<"Category"> | Date | string
+    update_at?: DateTimeFilter<"Category"> | Date | string
+  }
+
+  export type ChapterUpsertWithWhereUniqueWithoutComicInput = {
+    where: ChapterWhereUniqueInput
+    update: XOR<ChapterUpdateWithoutComicInput, ChapterUncheckedUpdateWithoutComicInput>
+    create: XOR<ChapterCreateWithoutComicInput, ChapterUncheckedCreateWithoutComicInput>
+  }
+
+  export type ChapterUpdateWithWhereUniqueWithoutComicInput = {
+    where: ChapterWhereUniqueInput
+    data: XOR<ChapterUpdateWithoutComicInput, ChapterUncheckedUpdateWithoutComicInput>
+  }
+
+  export type ChapterUpdateManyWithWhereWithoutComicInput = {
+    where: ChapterScalarWhereInput
+    data: XOR<ChapterUpdateManyMutationInput, ChapterUncheckedUpdateManyWithoutComicInput>
+  }
+
+  export type ChapterScalarWhereInput = {
+    AND?: ChapterScalarWhereInput | ChapterScalarWhereInput[]
+    OR?: ChapterScalarWhereInput[]
+    NOT?: ChapterScalarWhereInput | ChapterScalarWhereInput[]
+    id?: IntFilter<"Chapter"> | number
+    chapter_name?: StringFilter<"Chapter"> | string
+    chapter_title?: StringNullableFilter<"Chapter"> | string | null
+    slug?: StringFilter<"Chapter"> | string
+    is_locked?: BoolFilter<"Chapter"> | boolean
+    price_xu?: IntFilter<"Chapter"> | number
+    auto_unlock_time?: DateTimeFilter<"Chapter"> | Date | string
+    views?: IntFilter<"Chapter"> | number
+    chapter_image_url?: StringNullableFilter<"Chapter"> | string | null
+    create_at?: DateTimeFilter<"Chapter"> | Date | string
+    update_at?: DateTimeFilter<"Chapter"> | Date | string
+    comicId?: IntFilter<"Chapter"> | number
+  }
+
+  export type comic_followerUpsertWithWhereUniqueWithoutComicInput = {
+    where: comic_followerWhereUniqueInput
+    update: XOR<comic_followerUpdateWithoutComicInput, comic_followerUncheckedUpdateWithoutComicInput>
+    create: XOR<comic_followerCreateWithoutComicInput, comic_followerUncheckedCreateWithoutComicInput>
+  }
+
+  export type comic_followerUpdateWithWhereUniqueWithoutComicInput = {
+    where: comic_followerWhereUniqueInput
+    data: XOR<comic_followerUpdateWithoutComicInput, comic_followerUncheckedUpdateWithoutComicInput>
+  }
+
+  export type comic_followerUpdateManyWithWhereWithoutComicInput = {
+    where: comic_followerScalarWhereInput
+    data: XOR<comic_followerUpdateManyMutationInput, comic_followerUncheckedUpdateManyWithoutComicInput>
+  }
+
+  export type comic_historyUpsertWithWhereUniqueWithoutComicInput = {
+    where: comic_historyWhereUniqueInput
+    update: XOR<comic_historyUpdateWithoutComicInput, comic_historyUncheckedUpdateWithoutComicInput>
+    create: XOR<comic_historyCreateWithoutComicInput, comic_historyUncheckedCreateWithoutComicInput>
+  }
+
+  export type comic_historyUpdateWithWhereUniqueWithoutComicInput = {
+    where: comic_historyWhereUniqueInput
+    data: XOR<comic_historyUpdateWithoutComicInput, comic_historyUncheckedUpdateWithoutComicInput>
+  }
+
+  export type comic_historyUpdateManyWithWhereWithoutComicInput = {
+    where: comic_historyScalarWhereInput
+    data: XOR<comic_historyUpdateManyMutationInput, comic_historyUncheckedUpdateManyWithoutComicInput>
+  }
+
+  export type commentUpsertWithWhereUniqueWithoutComicInput = {
+    where: commentWhereUniqueInput
+    update: XOR<commentUpdateWithoutComicInput, commentUncheckedUpdateWithoutComicInput>
+    create: XOR<commentCreateWithoutComicInput, commentUncheckedCreateWithoutComicInput>
+  }
+
+  export type commentUpdateWithWhereUniqueWithoutComicInput = {
+    where: commentWhereUniqueInput
+    data: XOR<commentUpdateWithoutComicInput, commentUncheckedUpdateWithoutComicInput>
+  }
+
+  export type commentUpdateManyWithWhereWithoutComicInput = {
+    where: commentScalarWhereInput
+    data: XOR<commentUpdateManyMutationInput, commentUncheckedUpdateManyWithoutComicInput>
+  }
+
+  export type ComicCreateWithoutCategoriesInput = {
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    country: CountryCreateNestedOneWithoutComicsInput
+    chapters?: ChapterCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyCreateNestedManyWithoutComicInput
+    comments?: commentCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicUncheckedCreateWithoutCategoriesInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    countryId: number
+    chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
+    comments?: commentUncheckedCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicCreateOrConnectWithoutCategoriesInput = {
+    where: ComicWhereUniqueInput
+    create: XOR<ComicCreateWithoutCategoriesInput, ComicUncheckedCreateWithoutCategoriesInput>
+  }
+
+  export type ComicUpsertWithWhereUniqueWithoutCategoriesInput = {
+    where: ComicWhereUniqueInput
+    update: XOR<ComicUpdateWithoutCategoriesInput, ComicUncheckedUpdateWithoutCategoriesInput>
+    create: XOR<ComicCreateWithoutCategoriesInput, ComicUncheckedCreateWithoutCategoriesInput>
+  }
+
+  export type ComicUpdateWithWhereUniqueWithoutCategoriesInput = {
+    where: ComicWhereUniqueInput
+    data: XOR<ComicUpdateWithoutCategoriesInput, ComicUncheckedUpdateWithoutCategoriesInput>
+  }
+
+  export type ComicUpdateManyWithWhereWithoutCategoriesInput = {
+    where: ComicScalarWhereInput
+    data: XOR<ComicUpdateManyMutationInput, ComicUncheckedUpdateManyWithoutCategoriesInput>
+  }
+
+  export type ComicCreateWithoutChaptersInput = {
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    country: CountryCreateNestedOneWithoutComicsInput
+    categories?: CategoryCreateNestedManyWithoutComicsInput
+    comicFollower?: comic_followerCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyCreateNestedManyWithoutComicInput
+    comments?: commentCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicUncheckedCreateWithoutChaptersInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    countryId: number
+    categories?: CategoryUncheckedCreateNestedManyWithoutComicsInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
+    comments?: commentUncheckedCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicCreateOrConnectWithoutChaptersInput = {
+    where: ComicWhereUniqueInput
+    create: XOR<ComicCreateWithoutChaptersInput, ComicUncheckedCreateWithoutChaptersInput>
+  }
+
+  export type chapter_imageCreateWithoutChapterInput = {
+    image_url: string
+  }
+
+  export type chapter_imageUncheckedCreateWithoutChapterInput = {
+    id?: number
+    image_url: string
+  }
+
+  export type chapter_imageCreateOrConnectWithoutChapterInput = {
+    where: chapter_imageWhereUniqueInput
+    create: XOR<chapter_imageCreateWithoutChapterInput, chapter_imageUncheckedCreateWithoutChapterInput>
+  }
+
+  export type chapter_imageCreateManyChapterInputEnvelope = {
+    data: chapter_imageCreateManyChapterInput | chapter_imageCreateManyChapterInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type chapter_unlockCreateWithoutChapterInput = {
+    unlock_time?: Date | string
+    user: UserCreateNestedOneWithoutChapterUnlocksInput
+  }
+
+  export type chapter_unlockUncheckedCreateWithoutChapterInput = {
+    id?: number
+    userId: number
+    unlock_time?: Date | string
+  }
+
+  export type chapter_unlockCreateOrConnectWithoutChapterInput = {
+    where: chapter_unlockWhereUniqueInput
+    create: XOR<chapter_unlockCreateWithoutChapterInput, chapter_unlockUncheckedCreateWithoutChapterInput>
+  }
+
+  export type chapter_unlockCreateManyChapterInputEnvelope = {
+    data: chapter_unlockCreateManyChapterInput | chapter_unlockCreateManyChapterInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type comic_historyCreateWithoutChapterInput = {
+    read_time?: Date | string
+    user: UserCreateNestedOneWithoutComicHistoryInput
+    comic: ComicCreateNestedOneWithoutComicHistoryInput
+  }
+
+  export type comic_historyUncheckedCreateWithoutChapterInput = {
+    id?: number
+    userId: number
+    comicId: number
+    read_time?: Date | string
+  }
+
+  export type comic_historyCreateOrConnectWithoutChapterInput = {
+    where: comic_historyWhereUniqueInput
+    create: XOR<comic_historyCreateWithoutChapterInput, comic_historyUncheckedCreateWithoutChapterInput>
+  }
+
+  export type comic_historyCreateManyChapterInputEnvelope = {
+    data: comic_historyCreateManyChapterInput | comic_historyCreateManyChapterInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type commentCreateWithoutChapterInput = {
+    content: string
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    comic?: ComicCreateNestedOneWithoutCommentsInput
+    parent?: commentCreateNestedOneWithoutRepliesInput
+    replies?: commentCreateNestedManyWithoutParentInput
+  }
+
+  export type commentUncheckedCreateWithoutChapterInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+    replies?: commentUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type commentCreateOrConnectWithoutChapterInput = {
+    where: commentWhereUniqueInput
+    create: XOR<commentCreateWithoutChapterInput, commentUncheckedCreateWithoutChapterInput>
+  }
+
+  export type commentCreateManyChapterInputEnvelope = {
+    data: commentCreateManyChapterInput | commentCreateManyChapterInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ComicUpsertWithoutChaptersInput = {
+    update: XOR<ComicUpdateWithoutChaptersInput, ComicUncheckedUpdateWithoutChaptersInput>
+    create: XOR<ComicCreateWithoutChaptersInput, ComicUncheckedCreateWithoutChaptersInput>
+    where?: ComicWhereInput
+  }
+
+  export type ComicUpdateToOneWithWhereWithoutChaptersInput = {
+    where?: ComicWhereInput
+    data: XOR<ComicUpdateWithoutChaptersInput, ComicUncheckedUpdateWithoutChaptersInput>
+  }
+
+  export type ComicUpdateWithoutChaptersInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: CountryUpdateOneRequiredWithoutComicsNestedInput
+    categories?: CategoryUpdateManyWithoutComicsNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
+    comments?: commentUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateWithoutChaptersInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+    categories?: CategoryUncheckedUpdateManyWithoutComicsNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
+    comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+  }
+
+  export type chapter_imageUpsertWithWhereUniqueWithoutChapterInput = {
+    where: chapter_imageWhereUniqueInput
+    update: XOR<chapter_imageUpdateWithoutChapterInput, chapter_imageUncheckedUpdateWithoutChapterInput>
+    create: XOR<chapter_imageCreateWithoutChapterInput, chapter_imageUncheckedCreateWithoutChapterInput>
+  }
+
+  export type chapter_imageUpdateWithWhereUniqueWithoutChapterInput = {
+    where: chapter_imageWhereUniqueInput
+    data: XOR<chapter_imageUpdateWithoutChapterInput, chapter_imageUncheckedUpdateWithoutChapterInput>
+  }
+
+  export type chapter_imageUpdateManyWithWhereWithoutChapterInput = {
+    where: chapter_imageScalarWhereInput
+    data: XOR<chapter_imageUpdateManyMutationInput, chapter_imageUncheckedUpdateManyWithoutChapterInput>
+  }
+
+  export type chapter_imageScalarWhereInput = {
+    AND?: chapter_imageScalarWhereInput | chapter_imageScalarWhereInput[]
+    OR?: chapter_imageScalarWhereInput[]
+    NOT?: chapter_imageScalarWhereInput | chapter_imageScalarWhereInput[]
+    id?: IntFilter<"chapter_image"> | number
+    image_url?: StringFilter<"chapter_image"> | string
+    chapterId?: IntFilter<"chapter_image"> | number
+  }
+
+  export type chapter_unlockUpsertWithWhereUniqueWithoutChapterInput = {
+    where: chapter_unlockWhereUniqueInput
+    update: XOR<chapter_unlockUpdateWithoutChapterInput, chapter_unlockUncheckedUpdateWithoutChapterInput>
+    create: XOR<chapter_unlockCreateWithoutChapterInput, chapter_unlockUncheckedCreateWithoutChapterInput>
+  }
+
+  export type chapter_unlockUpdateWithWhereUniqueWithoutChapterInput = {
+    where: chapter_unlockWhereUniqueInput
+    data: XOR<chapter_unlockUpdateWithoutChapterInput, chapter_unlockUncheckedUpdateWithoutChapterInput>
+  }
+
+  export type chapter_unlockUpdateManyWithWhereWithoutChapterInput = {
+    where: chapter_unlockScalarWhereInput
+    data: XOR<chapter_unlockUpdateManyMutationInput, chapter_unlockUncheckedUpdateManyWithoutChapterInput>
+  }
+
+  export type comic_historyUpsertWithWhereUniqueWithoutChapterInput = {
+    where: comic_historyWhereUniqueInput
+    update: XOR<comic_historyUpdateWithoutChapterInput, comic_historyUncheckedUpdateWithoutChapterInput>
+    create: XOR<comic_historyCreateWithoutChapterInput, comic_historyUncheckedCreateWithoutChapterInput>
+  }
+
+  export type comic_historyUpdateWithWhereUniqueWithoutChapterInput = {
+    where: comic_historyWhereUniqueInput
+    data: XOR<comic_historyUpdateWithoutChapterInput, comic_historyUncheckedUpdateWithoutChapterInput>
+  }
+
+  export type comic_historyUpdateManyWithWhereWithoutChapterInput = {
+    where: comic_historyScalarWhereInput
+    data: XOR<comic_historyUpdateManyMutationInput, comic_historyUncheckedUpdateManyWithoutChapterInput>
+  }
+
+  export type commentUpsertWithWhereUniqueWithoutChapterInput = {
+    where: commentWhereUniqueInput
+    update: XOR<commentUpdateWithoutChapterInput, commentUncheckedUpdateWithoutChapterInput>
+    create: XOR<commentCreateWithoutChapterInput, commentUncheckedCreateWithoutChapterInput>
+  }
+
+  export type commentUpdateWithWhereUniqueWithoutChapterInput = {
+    where: commentWhereUniqueInput
+    data: XOR<commentUpdateWithoutChapterInput, commentUncheckedUpdateWithoutChapterInput>
+  }
+
+  export type commentUpdateManyWithWhereWithoutChapterInput = {
+    where: commentScalarWhereInput
+    data: XOR<commentUpdateManyMutationInput, commentUncheckedUpdateManyWithoutChapterInput>
+  }
+
+  export type ChapterCreateWithoutChapterImagesInput = {
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comic: ComicCreateNestedOneWithoutChaptersInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
+    comments?: commentCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterUncheckedCreateWithoutChapterImagesInput = {
+    id?: number
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comicId: number
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
+    comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterCreateOrConnectWithoutChapterImagesInput = {
+    where: ChapterWhereUniqueInput
+    create: XOR<ChapterCreateWithoutChapterImagesInput, ChapterUncheckedCreateWithoutChapterImagesInput>
+  }
+
+  export type ChapterUpsertWithoutChapterImagesInput = {
+    update: XOR<ChapterUpdateWithoutChapterImagesInput, ChapterUncheckedUpdateWithoutChapterImagesInput>
+    create: XOR<ChapterCreateWithoutChapterImagesInput, ChapterUncheckedCreateWithoutChapterImagesInput>
+    where?: ChapterWhereInput
+  }
+
+  export type ChapterUpdateToOneWithWhereWithoutChapterImagesInput = {
+    where?: ChapterWhereInput
+    data: XOR<ChapterUpdateWithoutChapterImagesInput, ChapterUncheckedUpdateWithoutChapterImagesInput>
+  }
+
+  export type ChapterUpdateWithoutChapterImagesInput = {
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneRequiredWithoutChaptersNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
+    comments?: commentUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ChapterUncheckedUpdateWithoutChapterImagesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
+    comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+  }
+
+  export type UserCreateWithoutChapterUnlocksInput = {
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyCreateNestedManyWithoutUserInput
+    comments?: commentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutChapterUnlocksInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
+    comments?: commentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutChapterUnlocksInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutChapterUnlocksInput, UserUncheckedCreateWithoutChapterUnlocksInput>
+  }
+
+  export type ChapterCreateWithoutChapterUnlocksInput = {
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comic: ComicCreateNestedOneWithoutChaptersInput
+    chapterImages?: chapter_imageCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
+    comments?: commentCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterUncheckedCreateWithoutChapterUnlocksInput = {
+    id?: number
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comicId: number
+    chapterImages?: chapter_imageUncheckedCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
+    comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterCreateOrConnectWithoutChapterUnlocksInput = {
+    where: ChapterWhereUniqueInput
+    create: XOR<ChapterCreateWithoutChapterUnlocksInput, ChapterUncheckedCreateWithoutChapterUnlocksInput>
+  }
+
+  export type UserUpsertWithoutChapterUnlocksInput = {
+    update: XOR<UserUpdateWithoutChapterUnlocksInput, UserUncheckedUpdateWithoutChapterUnlocksInput>
+    create: XOR<UserCreateWithoutChapterUnlocksInput, UserUncheckedCreateWithoutChapterUnlocksInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutChapterUnlocksInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutChapterUnlocksInput, UserUncheckedUpdateWithoutChapterUnlocksInput>
+  }
+
+  export type UserUpdateWithoutChapterUnlocksInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
+    comments?: commentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutChapterUnlocksInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
+    comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ChapterUpsertWithoutChapterUnlocksInput = {
+    update: XOR<ChapterUpdateWithoutChapterUnlocksInput, ChapterUncheckedUpdateWithoutChapterUnlocksInput>
+    create: XOR<ChapterCreateWithoutChapterUnlocksInput, ChapterUncheckedCreateWithoutChapterUnlocksInput>
+    where?: ChapterWhereInput
+  }
+
+  export type ChapterUpdateToOneWithWhereWithoutChapterUnlocksInput = {
+    where?: ChapterWhereInput
+    data: XOR<ChapterUpdateWithoutChapterUnlocksInput, ChapterUncheckedUpdateWithoutChapterUnlocksInput>
+  }
+
+  export type ChapterUpdateWithoutChapterUnlocksInput = {
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneRequiredWithoutChaptersNestedInput
+    chapterImages?: chapter_imageUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
+    comments?: commentUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ChapterUncheckedUpdateWithoutChapterUnlocksInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterImages?: chapter_imageUncheckedUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
+    comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+  }
+
+  export type UserCreateWithoutNotificationsInput = {
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyCreateNestedManyWithoutUserInput
+    comments?: commentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutNotificationsInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
+    comments?: commentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutNotificationsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+  }
+
+  export type UserUpsertWithoutNotificationsInput = {
+    update: XOR<UserUpdateWithoutNotificationsInput, UserUncheckedUpdateWithoutNotificationsInput>
+    create: XOR<UserCreateWithoutNotificationsInput, UserUncheckedCreateWithoutNotificationsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutNotificationsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutNotificationsInput, UserUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type UserUpdateWithoutNotificationsInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
+    comments?: commentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutNotificationsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
+    comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutComicFollowerInput = {
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyCreateNestedManyWithoutUserInput
+    comments?: commentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutComicFollowerInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
+    comments?: commentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutComicFollowerInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutComicFollowerInput, UserUncheckedCreateWithoutComicFollowerInput>
+  }
+
+  export type ComicCreateWithoutComicFollowerInput = {
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    country: CountryCreateNestedOneWithoutComicsInput
+    categories?: CategoryCreateNestedManyWithoutComicsInput
+    chapters?: ChapterCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyCreateNestedManyWithoutComicInput
+    comments?: commentCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicUncheckedCreateWithoutComicFollowerInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    countryId: number
+    categories?: CategoryUncheckedCreateNestedManyWithoutComicsInput
+    chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
+    comments?: commentUncheckedCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicCreateOrConnectWithoutComicFollowerInput = {
+    where: ComicWhereUniqueInput
+    create: XOR<ComicCreateWithoutComicFollowerInput, ComicUncheckedCreateWithoutComicFollowerInput>
+  }
+
+  export type UserUpsertWithoutComicFollowerInput = {
+    update: XOR<UserUpdateWithoutComicFollowerInput, UserUncheckedUpdateWithoutComicFollowerInput>
+    create: XOR<UserCreateWithoutComicFollowerInput, UserUncheckedCreateWithoutComicFollowerInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutComicFollowerInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutComicFollowerInput, UserUncheckedUpdateWithoutComicFollowerInput>
+  }
+
+  export type UserUpdateWithoutComicFollowerInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
+    comments?: commentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutComicFollowerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
+    comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ComicUpsertWithoutComicFollowerInput = {
+    update: XOR<ComicUpdateWithoutComicFollowerInput, ComicUncheckedUpdateWithoutComicFollowerInput>
+    create: XOR<ComicCreateWithoutComicFollowerInput, ComicUncheckedCreateWithoutComicFollowerInput>
+    where?: ComicWhereInput
+  }
+
+  export type ComicUpdateToOneWithWhereWithoutComicFollowerInput = {
+    where?: ComicWhereInput
+    data: XOR<ComicUpdateWithoutComicFollowerInput, ComicUncheckedUpdateWithoutComicFollowerInput>
+  }
+
+  export type ComicUpdateWithoutComicFollowerInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: CountryUpdateOneRequiredWithoutComicsNestedInput
+    categories?: CategoryUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
+    comments?: commentUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateWithoutComicFollowerInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+    categories?: CategoryUncheckedUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
+    comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+  }
+
+  export type UserCreateWithoutComicHistoryInput = {
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerCreateNestedManyWithoutUserInput
+    comments?: commentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutComicHistoryInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
+    comments?: commentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutComicHistoryInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutComicHistoryInput, UserUncheckedCreateWithoutComicHistoryInput>
+  }
+
+  export type ComicCreateWithoutComicHistoryInput = {
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    country: CountryCreateNestedOneWithoutComicsInput
+    categories?: CategoryCreateNestedManyWithoutComicsInput
+    chapters?: ChapterCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerCreateNestedManyWithoutComicInput
+    comments?: commentCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicUncheckedCreateWithoutComicHistoryInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    countryId: number
+    categories?: CategoryUncheckedCreateNestedManyWithoutComicsInput
+    chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
+    comments?: commentUncheckedCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicCreateOrConnectWithoutComicHistoryInput = {
+    where: ComicWhereUniqueInput
+    create: XOR<ComicCreateWithoutComicHistoryInput, ComicUncheckedCreateWithoutComicHistoryInput>
+  }
+
+  export type ChapterCreateWithoutComicHistoryInput = {
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comic: ComicCreateNestedOneWithoutChaptersInput
+    chapterImages?: chapter_imageCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
+    comments?: commentCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterUncheckedCreateWithoutComicHistoryInput = {
+    id?: number
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comicId: number
+    chapterImages?: chapter_imageUncheckedCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
+    comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterCreateOrConnectWithoutComicHistoryInput = {
+    where: ChapterWhereUniqueInput
+    create: XOR<ChapterCreateWithoutComicHistoryInput, ChapterUncheckedCreateWithoutComicHistoryInput>
+  }
+
+  export type UserUpsertWithoutComicHistoryInput = {
+    update: XOR<UserUpdateWithoutComicHistoryInput, UserUncheckedUpdateWithoutComicHistoryInput>
+    create: XOR<UserCreateWithoutComicHistoryInput, UserUncheckedCreateWithoutComicHistoryInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutComicHistoryInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutComicHistoryInput, UserUncheckedUpdateWithoutComicHistoryInput>
+  }
+
+  export type UserUpdateWithoutComicHistoryInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
+    comments?: commentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutComicHistoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
+    comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ComicUpsertWithoutComicHistoryInput = {
+    update: XOR<ComicUpdateWithoutComicHistoryInput, ComicUncheckedUpdateWithoutComicHistoryInput>
+    create: XOR<ComicCreateWithoutComicHistoryInput, ComicUncheckedCreateWithoutComicHistoryInput>
+    where?: ComicWhereInput
+  }
+
+  export type ComicUpdateToOneWithWhereWithoutComicHistoryInput = {
+    where?: ComicWhereInput
+    data: XOR<ComicUpdateWithoutComicHistoryInput, ComicUncheckedUpdateWithoutComicHistoryInput>
+  }
+
+  export type ComicUpdateWithoutComicHistoryInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: CountryUpdateOneRequiredWithoutComicsNestedInput
+    categories?: CategoryUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
+    comments?: commentUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateWithoutComicHistoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+    categories?: CategoryUncheckedUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
+    comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+  }
+
+  export type ChapterUpsertWithoutComicHistoryInput = {
+    update: XOR<ChapterUpdateWithoutComicHistoryInput, ChapterUncheckedUpdateWithoutComicHistoryInput>
+    create: XOR<ChapterCreateWithoutComicHistoryInput, ChapterUncheckedCreateWithoutComicHistoryInput>
+    where?: ChapterWhereInput
+  }
+
+  export type ChapterUpdateToOneWithWhereWithoutComicHistoryInput = {
+    where?: ChapterWhereInput
+    data: XOR<ChapterUpdateWithoutComicHistoryInput, ChapterUncheckedUpdateWithoutComicHistoryInput>
+  }
+
+  export type ChapterUpdateWithoutComicHistoryInput = {
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneRequiredWithoutChaptersNestedInput
+    chapterImages?: chapter_imageUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
+    comments?: commentUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ChapterUncheckedUpdateWithoutComicHistoryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterImages?: chapter_imageUncheckedUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
+    comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+  }
+
+  export type UserCreateWithoutCommentsInput = {
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutCommentsInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutCommentsInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type ComicCreateWithoutCommentsInput = {
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    country: CountryCreateNestedOneWithoutComicsInput
+    categories?: CategoryCreateNestedManyWithoutComicsInput
+    chapters?: ChapterCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicUncheckedCreateWithoutCommentsInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    countryId: number
+    categories?: CategoryUncheckedCreateNestedManyWithoutComicsInput
+    chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicCreateOrConnectWithoutCommentsInput = {
+    where: ComicWhereUniqueInput
+    create: XOR<ComicCreateWithoutCommentsInput, ComicUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type ChapterCreateWithoutCommentsInput = {
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comic: ComicCreateNestedOneWithoutChaptersInput
+    chapterImages?: chapter_imageCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterUncheckedCreateWithoutCommentsInput = {
+    id?: number
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comicId: number
+    chapterImages?: chapter_imageUncheckedCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterCreateOrConnectWithoutCommentsInput = {
+    where: ChapterWhereUniqueInput
+    create: XOR<ChapterCreateWithoutCommentsInput, ChapterUncheckedCreateWithoutCommentsInput>
+  }
+
+  export type commentCreateWithoutRepliesInput = {
+    content: string
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    comic?: ComicCreateNestedOneWithoutCommentsInput
+    chapter?: ChapterCreateNestedOneWithoutCommentsInput
+    parent?: commentCreateNestedOneWithoutRepliesInput
+  }
+
+  export type commentUncheckedCreateWithoutRepliesInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+  }
+
+  export type commentCreateOrConnectWithoutRepliesInput = {
+    where: commentWhereUniqueInput
+    create: XOR<commentCreateWithoutRepliesInput, commentUncheckedCreateWithoutRepliesInput>
+  }
+
+  export type commentCreateWithoutParentInput = {
+    content: string
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    comic?: ComicCreateNestedOneWithoutCommentsInput
+    chapter?: ChapterCreateNestedOneWithoutCommentsInput
+    replies?: commentCreateNestedManyWithoutParentInput
+  }
+
+  export type commentUncheckedCreateWithoutParentInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    create_at?: Date | string
+    replies?: commentUncheckedCreateNestedManyWithoutParentInput
+  }
+
+  export type commentCreateOrConnectWithoutParentInput = {
+    where: commentWhereUniqueInput
+    create: XOR<commentCreateWithoutParentInput, commentUncheckedCreateWithoutParentInput>
+  }
+
+  export type commentCreateManyParentInputEnvelope = {
+    data: commentCreateManyParentInput | commentCreateManyParentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type UserUpsertWithoutCommentsInput = {
+    update: XOR<UserUpdateWithoutCommentsInput, UserUncheckedUpdateWithoutCommentsInput>
+    create: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutCommentsInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutCommentsInput, UserUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type UserUpdateWithoutCommentsInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutCommentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type ComicUpsertWithoutCommentsInput = {
+    update: XOR<ComicUpdateWithoutCommentsInput, ComicUncheckedUpdateWithoutCommentsInput>
+    create: XOR<ComicCreateWithoutCommentsInput, ComicUncheckedCreateWithoutCommentsInput>
+    where?: ComicWhereInput
+  }
+
+  export type ComicUpdateToOneWithWhereWithoutCommentsInput = {
+    where?: ComicWhereInput
+    data: XOR<ComicUpdateWithoutCommentsInput, ComicUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type ComicUpdateWithoutCommentsInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: CountryUpdateOneRequiredWithoutComicsNestedInput
+    categories?: CategoryUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateWithoutCommentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+    categories?: CategoryUncheckedUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
+  }
+
+  export type ChapterUpsertWithoutCommentsInput = {
+    update: XOR<ChapterUpdateWithoutCommentsInput, ChapterUncheckedUpdateWithoutCommentsInput>
+    create: XOR<ChapterCreateWithoutCommentsInput, ChapterUncheckedCreateWithoutCommentsInput>
+    where?: ChapterWhereInput
+  }
+
+  export type ChapterUpdateToOneWithWhereWithoutCommentsInput = {
+    where?: ChapterWhereInput
+    data: XOR<ChapterUpdateWithoutCommentsInput, ChapterUncheckedUpdateWithoutCommentsInput>
+  }
+
+  export type ChapterUpdateWithoutCommentsInput = {
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneRequiredWithoutChaptersNestedInput
+    chapterImages?: chapter_imageUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ChapterUncheckedUpdateWithoutCommentsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterImages?: chapter_imageUncheckedUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
+  }
+
+  export type commentUpsertWithoutRepliesInput = {
+    update: XOR<commentUpdateWithoutRepliesInput, commentUncheckedUpdateWithoutRepliesInput>
+    create: XOR<commentCreateWithoutRepliesInput, commentUncheckedCreateWithoutRepliesInput>
+    where?: commentWhereInput
+  }
+
+  export type commentUpdateToOneWithWhereWithoutRepliesInput = {
+    where?: commentWhereInput
+    data: XOR<commentUpdateWithoutRepliesInput, commentUncheckedUpdateWithoutRepliesInput>
+  }
+
+  export type commentUpdateWithoutRepliesInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    comic?: ComicUpdateOneWithoutCommentsNestedInput
+    chapter?: ChapterUpdateOneWithoutCommentsNestedInput
+    parent?: commentUpdateOneWithoutRepliesNestedInput
+  }
+
+  export type commentUncheckedUpdateWithoutRepliesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type commentUpsertWithWhereUniqueWithoutParentInput = {
+    where: commentWhereUniqueInput
+    update: XOR<commentUpdateWithoutParentInput, commentUncheckedUpdateWithoutParentInput>
+    create: XOR<commentCreateWithoutParentInput, commentUncheckedCreateWithoutParentInput>
+  }
+
+  export type commentUpdateWithWhereUniqueWithoutParentInput = {
+    where: commentWhereUniqueInput
+    data: XOR<commentUpdateWithoutParentInput, commentUncheckedUpdateWithoutParentInput>
+  }
+
+  export type commentUpdateManyWithWhereWithoutParentInput = {
+    where: commentScalarWhereInput
+    data: XOR<commentUpdateManyMutationInput, commentUncheckedUpdateManyWithoutParentInput>
+  }
+
+  export type TransactionCreateManyUserInput = {
+    id?: number
+    coin_amount: number
+    price: number
+    status?: $Enums.transactionStatus
+    create_at?: Date | string
+    coinId: number
+  }
+
+  export type chapter_unlockCreateManyUserInput = {
+    id?: number
+    chapterId: number
+    unlock_time?: Date | string
+  }
+
+  export type NotificationCreateManyUserInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    type: $Enums.notifiType
+    create_at?: Date | string
+  }
+
+  export type comic_followerCreateManyUserInput = {
+    id?: number
+    comicId: number
+  }
+
+  export type comic_historyCreateManyUserInput = {
+    id?: number
+    comicId: number
+    chapterId: number
+    read_time?: Date | string
+  }
+
+  export type commentCreateManyUserInput = {
+    id?: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+  }
+
+  export type TransactionUpdateWithoutUserInput = {
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    status?: EnumtransactionStatusFieldUpdateOperationsInput | $Enums.transactionStatus
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    coin?: CoinUpdateOneRequiredWithoutTransactionsNestedInput
+  }
+
+  export type TransactionUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    status?: EnumtransactionStatusFieldUpdateOperationsInput | $Enums.transactionStatus
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    coinId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    status?: EnumtransactionStatusFieldUpdateOperationsInput | $Enums.transactionStatus
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    coinId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type chapter_unlockUpdateWithoutUserInput = {
+    unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    chapter?: ChapterUpdateOneRequiredWithoutChapterUnlocksNestedInput
+  }
+
+  export type chapter_unlockUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapterId?: IntFieldUpdateOperationsInput | number
+    unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type chapter_unlockUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapterId?: IntFieldUpdateOperationsInput | number
+    unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUpdateWithoutUserInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumnotifiTypeFieldUpdateOperationsInput | $Enums.notifiType
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumnotifiTypeFieldUpdateOperationsInput | $Enums.notifiType
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type NotificationUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    type?: EnumnotifiTypeFieldUpdateOperationsInput | $Enums.notifiType
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type comic_followerUpdateWithoutUserInput = {
+    comic?: ComicUpdateOneRequiredWithoutComicFollowerNestedInput
+  }
+
+  export type comic_followerUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    comicId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type comic_followerUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    comicId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type comic_historyUpdateWithoutUserInput = {
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneRequiredWithoutComicHistoryNestedInput
+    chapter?: ChapterUpdateOneRequiredWithoutComicHistoryNestedInput
+  }
+
+  export type comic_historyUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterId?: IntFieldUpdateOperationsInput | number
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type comic_historyUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterId?: IntFieldUpdateOperationsInput | number
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type commentUpdateWithoutUserInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneWithoutCommentsNestedInput
+    chapter?: ChapterUpdateOneWithoutCommentsNestedInput
+    parent?: commentUpdateOneWithoutRepliesNestedInput
+    replies?: commentUpdateManyWithoutParentNestedInput
+  }
+
+  export type commentUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type commentUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type TransactionCreateManyCoinInput = {
+    id?: number
+    coin_amount: number
+    price: number
+    status?: $Enums.transactionStatus
+    create_at?: Date | string
+    userId: number
+  }
+
+  export type TransactionUpdateWithoutCoinInput = {
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    status?: EnumtransactionStatusFieldUpdateOperationsInput | $Enums.transactionStatus
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutTransactionsNestedInput
+  }
+
+  export type TransactionUncheckedUpdateWithoutCoinInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    status?: EnumtransactionStatusFieldUpdateOperationsInput | $Enums.transactionStatus
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type TransactionUncheckedUpdateManyWithoutCoinInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    coin_amount?: IntFieldUpdateOperationsInput | number
+    price?: FloatFieldUpdateOperationsInput | number
+    status?: EnumtransactionStatusFieldUpdateOperationsInput | $Enums.transactionStatus
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type ComicCreateManyCountryInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+  }
+
+  export type ComicUpdateWithoutCountryInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    categories?: CategoryUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
+    comments?: commentUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateWithoutCountryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    categories?: CategoryUncheckedUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
+    comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateManyWithoutCountryInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChapterCreateManyComicInput = {
+    id?: number
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+  }
+
+  export type comic_followerCreateManyComicInput = {
+    id?: number
+    userId: number
+  }
+
+  export type comic_historyCreateManyComicInput = {
+    id?: number
+    userId: number
+    chapterId: number
+    read_time?: Date | string
+  }
+
+  export type commentCreateManyComicInput = {
+    id?: number
+    userId: number
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+  }
+
+  export type CategoryUpdateWithoutComicsInput = {
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryUncheckedUpdateWithoutComicsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type CategoryUncheckedUpdateManyWithoutComicsInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    name?: StringFieldUpdateOperationsInput | string
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ChapterUpdateWithoutComicInput = {
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    chapterImages?: chapter_imageUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
+    comments?: commentUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ChapterUncheckedUpdateWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    chapterImages?: chapter_imageUncheckedUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
+    comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ChapterUncheckedUpdateManyWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type comic_followerUpdateWithoutComicInput = {
+    user?: UserUpdateOneRequiredWithoutComicFollowerNestedInput
+  }
+
+  export type comic_followerUncheckedUpdateWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type comic_followerUncheckedUpdateManyWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type comic_historyUpdateWithoutComicInput = {
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutComicHistoryNestedInput
+    chapter?: ChapterUpdateOneRequiredWithoutComicHistoryNestedInput
+  }
+
+  export type comic_historyUncheckedUpdateWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    chapterId?: IntFieldUpdateOperationsInput | number
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type comic_historyUncheckedUpdateManyWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    chapterId?: IntFieldUpdateOperationsInput | number
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type commentUpdateWithoutComicInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    chapter?: ChapterUpdateOneWithoutCommentsNestedInput
+    parent?: commentUpdateOneWithoutRepliesNestedInput
+    replies?: commentUpdateManyWithoutParentNestedInput
+  }
+
+  export type commentUncheckedUpdateWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type commentUncheckedUpdateManyWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ComicUpdateWithoutCategoriesInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: CountryUpdateOneRequiredWithoutComicsNestedInput
+    chapters?: ChapterUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
+    comments?: commentUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateWithoutCategoriesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+    chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
+    comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateManyWithoutCategoriesInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+  }
+
+  export type chapter_imageCreateManyChapterInput = {
+    id?: number
+    image_url: string
+  }
+
+  export type chapter_unlockCreateManyChapterInput = {
+    id?: number
+    userId: number
+    unlock_time?: Date | string
+  }
+
+  export type comic_historyCreateManyChapterInput = {
+    id?: number
+    userId: number
+    comicId: number
+    read_time?: Date | string
+  }
+
+  export type commentCreateManyChapterInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+  }
+
+  export type chapter_imageUpdateWithoutChapterInput = {
+    image_url?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type chapter_imageUncheckedUpdateWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image_url?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type chapter_imageUncheckedUpdateManyWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    image_url?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type chapter_unlockUpdateWithoutChapterInput = {
+    unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutChapterUnlocksNestedInput
+  }
+
+  export type chapter_unlockUncheckedUpdateWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type chapter_unlockUncheckedUpdateManyWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type comic_historyUpdateWithoutChapterInput = {
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutComicHistoryNestedInput
+    comic?: ComicUpdateOneRequiredWithoutComicHistoryNestedInput
+  }
+
+  export type comic_historyUncheckedUpdateWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: IntFieldUpdateOperationsInput | number
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type comic_historyUncheckedUpdateManyWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: IntFieldUpdateOperationsInput | number
+    read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type commentUpdateWithoutChapterInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    comic?: ComicUpdateOneWithoutCommentsNestedInput
+    parent?: commentUpdateOneWithoutRepliesNestedInput
+    replies?: commentUpdateManyWithoutParentNestedInput
+  }
+
+  export type commentUncheckedUpdateWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type commentUncheckedUpdateManyWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type commentCreateManyParentInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    create_at?: Date | string
+  }
+
+  export type commentUpdateWithoutParentInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    comic?: ComicUpdateOneWithoutCommentsNestedInput
+    chapter?: ChapterUpdateOneWithoutCommentsNestedInput
+    replies?: commentUpdateManyWithoutParentNestedInput
+  }
+
+  export type commentUncheckedUpdateWithoutParentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+  }
+
+  export type commentUncheckedUpdateManyWithoutParentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+
+
+  /**
+   * Batch Payload for updateMany & deleteMany & createMany
+   */
+
+  export type BatchPayload = {
+    count: number
+  }
+
+  /**
+   * DMMF
+   */
+  export const dmmf: runtime.BaseDMMF
+}

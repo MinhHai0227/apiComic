@@ -1,0 +1,221 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/prisma"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id             Int              @id @default(autoincrement())
+  username       String
+  email          String           @unique
+  password       String
+  avatar         String?
+  role           userRole         @default(user)
+  total_coin     Int              @default(0)
+  refresh_token  String?
+  create_at      DateTime         @default(now()) @db.DateTime(0)
+  update_at      DateTime         @updatedAt @db.DateTime(0)
+  transactions   Transaction[]
+  chapterUnlocks chapter_unlock[]
+  notifications  Notification[]
+  comicFollower  comic_follower[]
+  comicHistory   comic_history[]
+  comments       comment[]
+
+  @@index([username])
+}
+
+enum userRole {
+  admin
+  editor
+  user
+}
+
+model Coin {
+  id           Int           @id @default(autoincrement())
+  coin_amount  Int
+  price        Float
+  create_at    DateTime      @default(now()) @db.DateTime(0)
+  transactions Transaction[]
+
+  @@index([coin_amount])
+}
+
+model Transaction {
+  id          Int               @id @default(autoincrement())
+  coin_amount Int
+  price       Float
+  status      transactionStatus @default(pending)
+  create_at   DateTime          @default(now()) @db.DateTime(0)
+  userId      Int
+  user        User              @relation(fields: [userId], references: [id], onDelete: Cascade)
+  coinId      Int
+  coin        Coin              @relation(fields: [coinId], references: [id], onDelete: Cascade)
+}
+
+enum transactionStatus {
+  pending
+  completed
+  failed
+}
+
+model Country {
+  id        Int      @id @default(autoincrement())
+  name      String   @unique
+  create_at DateTime @default(now()) @db.DateTime(0)
+  update_at DateTime @updatedAt @db.DateTime(0)
+  comics    Comic[]
+}
+
+model Comic {
+  id            Int              @id @default(autoincrement())
+  title         String           @unique
+  title_eng     String?
+  slug          String           @unique
+  description   String           @db.Text
+  author        String
+  status        comicStatus      @default(onGoing)
+  cover_image   String
+  views         Int              @default(0)
+  is_active     Boolean          @default(false)
+  create_at     DateTime         @default(now()) @db.DateTime(0)
+  update_at     DateTime         @updatedAt @db.DateTime(0)
+  countryId     Int
+  country       Country          @relation(fields: [countryId], references: [id], onDelete: Restrict)
+  categories    Category[]       @relation("comic_category")
+  chapters      Chapter[]
+  comicFollower comic_follower[]
+  comicHistory  comic_history[]
+  comments      comment[]
+
+  @@index([countryId])
+  @@index([title_eng])
+}
+
+enum comicStatus {
+  onGoing  @map("Đang ra")
+  complete @map("Hoàn thành")
+}
+
+model Category {
+  id          Int      @id @default(autoincrement())
+  name        String   @unique
+  slug        String   @unique
+  description String   @db.Text
+  create_at   DateTime @default(now()) @db.DateTime(0)
+  update_at   DateTime @updatedAt @db.DateTime(0)
+  comics      Comic[]  @relation("comic_category")
+}
+
+model Chapter {
+  id                Int              @id @default(autoincrement())
+  chapter_name      String
+  chapter_title     String?
+  slug              String           @unique
+  is_locked         Boolean          @default(true)
+  price_xu          Int              @default(0)
+  auto_unlock_time  DateTime         @default(now()) @db.DateTime(0)
+  views             Int              @default(0)
+  chapter_image_url String?
+  create_at         DateTime         @default(now()) @db.DateTime(0)
+  update_at         DateTime         @updatedAt @db.DateTime(0)
+  comicId           Int
+  comic             Comic            @relation(fields: [comicId], references: [id], onDelete: Restrict)
+  chapterImages     chapter_image[]
+  chapterUnlocks    chapter_unlock[]
+  comicHistory      comic_history[]
+  comments          comment[]
+
+  @@index([is_locked, auto_unlock_time])
+  @@index([comicId])
+}
+
+model chapter_image {
+  id        Int     @id @default(autoincrement())
+  image_url String
+  chapterId Int
+  chapter   Chapter @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@index([chapterId])
+}
+
+model chapter_unlock {
+  id          Int      @id @default(autoincrement())
+  userId      Int
+  chapterId   Int
+  unlock_time DateTime @default(now()) @db.DateTime(0)
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  chapter     Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@index([chapterId, userId])
+}
+
+model Notification {
+  id        Int        @id @default(autoincrement())
+  message   String
+  seen      Boolean    @default(false)
+  type      notifiType
+  create_at DateTime   @default(now()) @db.DateTime(0)
+  userId    Int
+  user      User       @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+enum notifiType {
+  payment
+  unlock
+  reply
+}
+
+model comic_follower {
+  id      Int   @id @default(autoincrement())
+  userId  Int
+  comicId Int
+  user    User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comic   Comic @relation(fields: [comicId], references: [id], onDelete: Cascade)
+
+  @@index([userId, comicId])
+}
+
+model comic_history {
+  id        Int      @id @default(autoincrement())
+  userId    Int
+  comicId   Int
+  chapterId Int
+  read_time DateTime @default(now()) @db.DateTime(0)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comic     Comic    @relation(fields: [comicId], references: [id], onDelete: Cascade)
+  chapter   Chapter  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  @@unique([userId, comicId])
+  @@index([userId])
+}
+
+model comment {
+  id        Int       @id @default(autoincrement())
+  userId    Int
+  comicId   Int?
+  chapterId Int?
+  content   String    @db.Text
+  parentId  Int?
+  create_at DateTime  @default(now()) @db.DateTime(0)
+  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comic     Comic?    @relation(fields: [comicId], references: [id], onDelete: Cascade)
+  chapter   Chapter?  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  parent    comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: SetNull)
+  replies   comment[] @relation("CommentReplies")
+
+  @@index([comicId])
+  @@index([chapterId])
+  @@index([parentId])
+  @@index([userId])
+}
