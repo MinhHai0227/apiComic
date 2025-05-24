@@ -37,7 +37,6 @@ export class UserController {
     return this.userService.createUser(createUserDto);
   }
 
-  @Roles('admin')
   @Patch(':id')
   updateUser(
     @Param('id', ParseIntPipe) id: number,
@@ -53,6 +52,11 @@ export class UserController {
       throw new BadRequestException('Vui lòng chọn file');
     }
     return this.userService.uploadAvatar(req.user.id, file);
+  }
+
+  @Get('profile')
+  findUserById(@Request() req) {
+    return this.userService.findUserById(req.user.id);
   }
 
   @Roles('admin')

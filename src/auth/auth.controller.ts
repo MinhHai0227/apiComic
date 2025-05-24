@@ -90,7 +90,12 @@ export class AuthController {
     const result = await this.authService.login(req.user);
     const { access_token, refresh_token, data } = result;
     this.setCookies(res, access_token, refresh_token);
-    return res.json({ data });
+    return res.send(`
+    <script>
+      window.opener.postMessage(${JSON.stringify({ data })}, "*");
+      window.close();
+    </script>
+  `);
   }
 
   @Patch('change-password')

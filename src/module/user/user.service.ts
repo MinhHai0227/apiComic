@@ -13,6 +13,7 @@ import { PasswordService } from 'src/utils/password.service';
 import * as path from 'path';
 import * as fs from 'fs';
 import { ChangePasswordDto } from 'src/auth/dto/change-password.dto';
+import { User } from 'generated/prisma';
 
 @Injectable()
 export class UserService {
@@ -191,6 +192,19 @@ export class UserService {
       message: 'Update thành công',
       id: id,
     };
+  }
+
+  async findUserById(
+    id: number,
+  ): Promise<
+    Omit<User, 'password' | 'refresh_token' | 'create_at' | 'update_at'>
+  > {
+    const user = await this.checkUserExis(id);
+    if (!user) {
+      throw new NotFoundException('User không tồn tại');
+    }
+    const { password, refresh_token, create_at, update_at, ...result } = user;
+    return result;
   }
 
   async uploadAvatar(id: number, file: Express.Multer.File) {

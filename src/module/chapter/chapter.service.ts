@@ -46,6 +46,13 @@ export class ChapterService {
       where: { slug: slug },
       include: {
         chapterImages: true,
+        comic: {
+          select: {
+            id: true,
+            title: true,
+            slug: true,
+          },
+        },
       },
     });
     if (!chapter) {
@@ -77,8 +84,8 @@ export class ChapterService {
       totalView._sum.views || 0,
     );
 
-    const { create_at, update_at, comicId, ...data } = chapter;
-    return { data };
+    const { update_at, comicId, ...data } = chapter;
+    return data;
   }
 
   async checkChapterExits(id: number) {
