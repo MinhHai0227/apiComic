@@ -97,6 +97,7 @@ model Comic {
   comicFollower comic_follower[]
   comicHistory  comic_history[]
   comments      comment[]
+  viewHistorys  view_history[]
 
   @@index([countryId])
   @@index([title_eng])
@@ -135,6 +136,7 @@ model Chapter {
   chapterUnlocks    chapter_unlock[]
   comicHistory      comic_history[]
   comments          comment[]
+  viewHistorys      view_history[]
 
   @@index([is_locked, auto_unlock_time])
   @@index([comicId])
@@ -198,6 +200,19 @@ model comic_history {
 
   @@unique([userId, comicId])
   @@index([userId])
+}
+
+model view_history {
+  id        Int      @id @default(autoincrement())
+  comicId   Int?
+  comic     Comic?   @relation(fields: [comicId], references: [id], onDelete: Cascade)
+  chapterId Int?
+  chapter   Chapter? @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  views     Int      @default(1)
+  create_at DateTime @default(now()) @db.DateTime(0)
+
+  @@index([comicId, create_at])
+  @@index([chapterId, create_at])
 }
 
 model comment {

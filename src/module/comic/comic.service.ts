@@ -276,15 +276,19 @@ export class ComicService {
   }
 
   async updateViewByComic(comic_id: number, views: number) {
-    await this.checkComicExits(comic_id);
-    const comic = await this.prisma.comic.update({
+    const comic = await this.checkComicExits(comic_id);
+    if (!comic) {
+      throw new NotFoundException('comic không tồn tại');
+    }
+    await this.prisma.comic.update({
       where: {
         id: comic_id,
       },
       data: {
-        views: views,
+        views: {
+          increment: views,
+        },
       },
     });
-    return comic;
   }
 }

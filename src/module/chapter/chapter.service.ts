@@ -6,12 +6,18 @@ import { PrismaService } from 'src/prisma/prisma.service';
 import * as fs from 'fs';
 import * as path from 'path';
 import { Cron, CronExpression } from '@nestjs/schedule';
+import { InjectQueue } from '@nestjs/bull';
+import { Queue } from 'bull';
+import { InjectRedis } from '@nestjs-modules/ioredis';
+import Redis from 'ioredis';
 
 @Injectable()
 export class ChapterService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly comicService: ComicService,
+    @InjectQueue('view') private viewQueue: Queue,
+    @InjectRedis() private redis: Redis,
   ) {}
 
   async create(createChapterDto: CreateChapterDto) {
@@ -41,7 +47,7 @@ export class ChapterService {
     };
   }
 
-  async findOneBySlug(slug: string) {
+  async findOneBySlug(slug: string, clientId: string) {
     const chapter = await this.prisma.chapter.findUnique({
       where: { slug: slug },
       include: {
@@ -59,30 +65,20 @@ export class ChapterService {
       throw new NotFoundException('Chapter Slug không tồn tại');
     }
 
-    const view = await this.prisma.chapter.update({
-      where: {
-        slug: slug,
-      },
-      data: {
-        views: {
-          increment: 1,
-        },
-      },
-    });
+    const sessionKey = `view:chapter:${chapter.id}:client:${clientId}`;
+    const existingSession = await this.redis.get(sessionKey);
 
-    const totalView = await this.prisma.chapter.aggregate({
-      _sum: {
-        views: true,
-      },
-      where: {
-        comicId: view.comicId,
-      },
-    });
+    if (!existingSession) {
+      await this.redis.set(sessionKey, '1', 'EX', 3600);
 
-    await this.comicService.updateViewByComic(
-      view.comicId,
-      totalView._sum.views || 0,
-    );
+      await this.viewQueue.add('record-view', {
+        chapterId: chapter.id,
+        comicId: chapter.comicId,
+      });
+
+      await this.redis.incr(`views:chapter:${chapter.id}`);
+      await this.redis.incr(`views:comic:${chapter.comicId}`);
+    }
 
     const { update_at, comicId, ...data } = chapter;
     return data;
@@ -169,7 +165,7 @@ export class ChapterService {
       return { message: 'Đã mở khóa chapter', data: chapter };
     }
   }
-
+  // unlockChapter
   @Cron(CronExpression.EVERY_HOUR)
   async autoUnlockChapter() {
     let page = 1;
@@ -188,30 +184,60 @@ export class ChapterService {
           take: page_size,
         });
 
-        console.log('chưa mở khóa', chapters.length);
-
         if (chapters.length === 0) {
           break;
         }
-        await Promise.all(
-          chapters.map(async (chapter) => {
-            try {
-              await this.prisma.chapter.update({
-                where: { id: chapter.id },
-                data: {
-                  is_locked: false,
-                },
-              });
-              console.log(`Chapter ${chapter.id} đã được mở khóa.`);
-            } catch (error) {
-              console.error(`Error updating chapter ${chapter.id}:`, error);
-            }
-          }),
-        );
+
+        const chapterIds = chapters.map((c) => c.id);
+        await this.prisma.chapter.updateMany({
+          where: {
+            id: { in: chapterIds },
+          },
+          data: {
+            is_locked: false,
+          },
+        });
         page++;
       }
     } catch (error) {
       console.error('Error during cron job execution:', error);
     }
+  }
+
+  //updateView
+
+  private async processViews(pattern: string, type: 'chapter' | 'comic') {
+    const BATCH_SIZE = 100;
+    const keys = await this.redis.keys(pattern);
+    if (keys.length === 0) {
+      return;
+    }
+    for (let i = 0; i < keys.length; i += BATCH_SIZE) {
+      const batch = keys.slice(i, i + BATCH_SIZE);
+      await Promise.all(
+        batch.map(async (key) => {
+          try {
+            const id = Number(key.split(':')[2]);
+            if (type === 'chapter') {
+              await this.prisma.chapter.update({
+                where: { id },
+                data: { views: { increment: 1 } },
+              });
+            } else {
+              await this.comicService.updateViewByComic(id, 1);
+            }
+            await this.redis.del(key);
+          } catch (error) {
+            console.error(`Error processing key ${key}:`, error);
+          }
+        }),
+      );
+    }
+  }
+
+  @Cron(CronExpression.EVERY_5_MINUTES)
+  async updateViewChapterComic() {
+    await this.processViews('views:chapter:*', 'chapter');
+    await this.processViews('views:comic:*', 'comic');
   }
 }

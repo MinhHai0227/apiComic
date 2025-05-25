@@ -23,9 +23,21 @@ import { ComichistoryModule } from './module/comichistory/comichistory.module';
 import { CommentModule } from './module/comment/comment.module';
 import { MomoModule } from './momo/momo.module';
 import { TransactionModule } from './module/transaction/transaction.module';
+import { BullModule } from '@nestjs/bull';
+import { RedisModule } from '@nestjs-modules/ioredis';
 
 @Module({
   imports: [
+    BullModule.forRoot({
+      redis: {
+        host: 'localhost',
+        port: 6379,
+      },
+    }),
+    RedisModule.forRoot({
+      type: 'single',
+      url: 'redis://localhost:6379',
+    }),
     ServeStaticModule.forRoot({
       rootPath: join(__dirname, '..', 'uploadfile'),
       serveRoot: '/api/v1/uploadfile',

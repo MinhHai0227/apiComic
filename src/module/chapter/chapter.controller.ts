@@ -7,16 +7,20 @@ import {
   ParseIntPipe,
   Patch,
   Post,
+  Req,
 } from '@nestjs/common';
 import { ChapterService } from './chapter.service';
 import { Roles } from 'src/decorator/roles.decorator';
 import { CreateChapterDto } from 'src/module/chapter/dto/create-chapter.dto';
 import { Public } from 'src/decorator/public.decorator';
 import { UpdateChapterDto } from 'src/module/chapter/dto/update-chapter.dto';
+import { Request } from 'express';
 
 @Controller('chapter')
 export class ChapterController {
-  constructor(private readonly chapterService: ChapterService) {}
+  constructor(
+    private readonly chapterService: ChapterService,
+  ) {}
 
   @Roles('admin', 'editor')
   @Post()
@@ -26,8 +30,9 @@ export class ChapterController {
 
   @Public()
   @Get(':slug')
-  findOneBySlug(@Param('slug') slug: string) {
-    return this.chapterService.findOneBySlug(slug);
+  findOneBySlug(@Param('slug') slug: string, @Req() req: Request) {
+    const clientId = req.ip ?? 'unknown-client';
+    return this.chapterService.findOneBySlug(slug, clientId);
   }
 
   @Roles('admin', 'editor')

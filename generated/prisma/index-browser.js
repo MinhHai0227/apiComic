@@ -230,6 +230,14 @@ exports.Prisma.Comic_historyScalarFieldEnum = {
   read_time: 'read_time'
 };
 
+exports.Prisma.View_historyScalarFieldEnum = {
+  id: 'id',
+  comicId: 'comicId',
+  chapterId: 'chapterId',
+  views: 'views',
+  create_at: 'create_at'
+};
+
 exports.Prisma.CommentScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -331,6 +339,7 @@ exports.Prisma.ModelName = {
   Notification: 'Notification',
   comic_follower: 'comic_follower',
   comic_history: 'comic_history',
+  view_history: 'view_history',
   comment: 'comment'
 };
 

@@ -74,6 +74,11 @@ export type comic_follower = $Result.DefaultSelection<Prisma.$comic_followerPayl
  */
 export type comic_history = $Result.DefaultSelection<Prisma.$comic_historyPayload>
 /**
+ * Model view_history
+ * 
+ */
+export type view_history = $Result.DefaultSelection<Prisma.$view_historyPayload>
+/**
  * Model comment
  * 
  */
@@ -379,6 +384,16 @@ export class PrismaClient<
     * ```
     */
   get comic_history(): Prisma.comic_historyDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.view_history`: Exposes CRUD operations for the **view_history** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more View_histories
+    * const view_histories = await prisma.view_history.findMany()
+    * ```
+    */
+  get view_history(): Prisma.view_historyDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.comment`: Exposes CRUD operations for the **comment** model.
@@ -841,6 +856,7 @@ export namespace Prisma {
     Notification: 'Notification',
     comic_follower: 'comic_follower',
     comic_history: 'comic_history',
+    view_history: 'view_history',
     comment: 'comment'
   };
 
@@ -860,7 +876,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "coin" | "transaction" | "country" | "comic" | "category" | "chapter" | "chapter_image" | "chapter_unlock" | "notification" | "comic_follower" | "comic_history" | "comment"
+      modelProps: "user" | "coin" | "transaction" | "country" | "comic" | "category" | "chapter" | "chapter_image" | "chapter_unlock" | "notification" | "comic_follower" | "comic_history" | "view_history" | "comment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1656,6 +1672,72 @@ export namespace Prisma {
           }
         }
       }
+      view_history: {
+        payload: Prisma.$view_historyPayload<ExtArgs>
+        fields: Prisma.view_historyFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.view_historyFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$view_historyPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.view_historyFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$view_historyPayload>
+          }
+          findFirst: {
+            args: Prisma.view_historyFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$view_historyPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.view_historyFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$view_historyPayload>
+          }
+          findMany: {
+            args: Prisma.view_historyFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$view_historyPayload>[]
+          }
+          create: {
+            args: Prisma.view_historyCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$view_historyPayload>
+          }
+          createMany: {
+            args: Prisma.view_historyCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.view_historyDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$view_historyPayload>
+          }
+          update: {
+            args: Prisma.view_historyUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$view_historyPayload>
+          }
+          deleteMany: {
+            args: Prisma.view_historyDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.view_historyUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.view_historyUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$view_historyPayload>
+          }
+          aggregate: {
+            args: Prisma.View_historyAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateView_history>
+          }
+          groupBy: {
+            args: Prisma.view_historyGroupByArgs<ExtArgs>
+            result: $Utils.Optional<View_historyGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.view_historyCountArgs<ExtArgs>
+            result: $Utils.Optional<View_historyCountAggregateOutputType> | number
+          }
+        }
+      }
       comment: {
         payload: Prisma.$commentPayload<ExtArgs>
         fields: Prisma.commentFieldRefs
@@ -1818,6 +1900,7 @@ export namespace Prisma {
     notification?: NotificationOmit
     comic_follower?: comic_followerOmit
     comic_history?: comic_historyOmit
+    view_history?: view_historyOmit
     comment?: commentOmit
   }
 
@@ -2056,6 +2139,7 @@ export namespace Prisma {
     comicFollower: number
     comicHistory: number
     comments: number
+    viewHistorys: number
   }
 
   export type ComicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2064,6 +2148,7 @@ export namespace Prisma {
     comicFollower?: boolean | ComicCountOutputTypeCountComicFollowerArgs
     comicHistory?: boolean | ComicCountOutputTypeCountComicHistoryArgs
     comments?: boolean | ComicCountOutputTypeCountCommentsArgs
+    viewHistorys?: boolean | ComicCountOutputTypeCountViewHistorysArgs
   }
 
   // Custom InputTypes
@@ -2112,6 +2197,13 @@ export namespace Prisma {
     where?: commentWhereInput
   }
 
+  /**
+   * ComicCountOutputType without action
+   */
+  export type ComicCountOutputTypeCountViewHistorysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: view_historyWhereInput
+  }
+
 
   /**
    * Count Type CategoryCountOutputType
@@ -2153,6 +2245,7 @@ export namespace Prisma {
     chapterUnlocks: number
     comicHistory: number
     comments: number
+    viewHistorys: number
   }
 
   export type ChapterCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2160,6 +2253,7 @@ export namespace Prisma {
     chapterUnlocks?: boolean | ChapterCountOutputTypeCountChapterUnlocksArgs
     comicHistory?: boolean | ChapterCountOutputTypeCountComicHistoryArgs
     comments?: boolean | ChapterCountOutputTypeCountCommentsArgs
+    viewHistorys?: boolean | ChapterCountOutputTypeCountViewHistorysArgs
   }
 
   // Custom InputTypes
@@ -2199,6 +2293,13 @@ export namespace Prisma {
    */
   export type ChapterCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: commentWhereInput
+  }
+
+  /**
+   * ChapterCountOutputType without action
+   */
+  export type ChapterCountOutputTypeCountViewHistorysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: view_historyWhereInput
   }
 
 
@@ -6670,6 +6771,7 @@ export namespace Prisma {
     comicFollower?: boolean | Comic$comicFollowerArgs<ExtArgs>
     comicHistory?: boolean | Comic$comicHistoryArgs<ExtArgs>
     comments?: boolean | Comic$commentsArgs<ExtArgs>
+    viewHistorys?: boolean | Comic$viewHistorysArgs<ExtArgs>
     _count?: boolean | ComicCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comic"]>
 
@@ -6699,6 +6801,7 @@ export namespace Prisma {
     comicFollower?: boolean | Comic$comicFollowerArgs<ExtArgs>
     comicHistory?: boolean | Comic$comicHistoryArgs<ExtArgs>
     comments?: boolean | Comic$commentsArgs<ExtArgs>
+    viewHistorys?: boolean | Comic$viewHistorysArgs<ExtArgs>
     _count?: boolean | ComicCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6711,6 +6814,7 @@ export namespace Prisma {
       comicFollower: Prisma.$comic_followerPayload<ExtArgs>[]
       comicHistory: Prisma.$comic_historyPayload<ExtArgs>[]
       comments: Prisma.$commentPayload<ExtArgs>[]
+      viewHistorys: Prisma.$view_historyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -7072,6 +7176,7 @@ export namespace Prisma {
     comicFollower<T extends Comic$comicFollowerArgs<ExtArgs> = {}>(args?: Subset<T, Comic$comicFollowerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comicHistory<T extends Comic$comicHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Comic$comicHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends Comic$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Comic$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    viewHistorys<T extends Comic$viewHistorysArgs<ExtArgs> = {}>(args?: Subset<T, Comic$viewHistorysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7574,6 +7679,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * Comic.viewHistorys
+   */
+  export type Comic$viewHistorysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    where?: view_historyWhereInput
+    orderBy?: view_historyOrderByWithRelationInput | view_historyOrderByWithRelationInput[]
+    cursor?: view_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: View_historyScalarFieldEnum | View_historyScalarFieldEnum[]
   }
 
   /**
@@ -8866,6 +8995,7 @@ export namespace Prisma {
     chapterUnlocks?: boolean | Chapter$chapterUnlocksArgs<ExtArgs>
     comicHistory?: boolean | Chapter$comicHistoryArgs<ExtArgs>
     comments?: boolean | Chapter$commentsArgs<ExtArgs>
+    viewHistorys?: boolean | Chapter$viewHistorysArgs<ExtArgs>
     _count?: boolean | ChapterCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["chapter"]>
 
@@ -8893,6 +9023,7 @@ export namespace Prisma {
     chapterUnlocks?: boolean | Chapter$chapterUnlocksArgs<ExtArgs>
     comicHistory?: boolean | Chapter$comicHistoryArgs<ExtArgs>
     comments?: boolean | Chapter$commentsArgs<ExtArgs>
+    viewHistorys?: boolean | Chapter$viewHistorysArgs<ExtArgs>
     _count?: boolean | ChapterCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -8904,6 +9035,7 @@ export namespace Prisma {
       chapterUnlocks: Prisma.$chapter_unlockPayload<ExtArgs>[]
       comicHistory: Prisma.$comic_historyPayload<ExtArgs>[]
       comments: Prisma.$commentPayload<ExtArgs>[]
+      viewHistorys: Prisma.$view_historyPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -9263,6 +9395,7 @@ export namespace Prisma {
     chapterUnlocks<T extends Chapter$chapterUnlocksArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$chapterUnlocksArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$chapter_unlockPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comicHistory<T extends Chapter$comicHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$comicHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends Chapter$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    viewHistorys<T extends Chapter$viewHistorysArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$viewHistorysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9740,6 +9873,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * Chapter.viewHistorys
+   */
+  export type Chapter$viewHistorysArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    where?: view_historyWhereInput
+    orderBy?: view_historyOrderByWithRelationInput | view_historyOrderByWithRelationInput[]
+    cursor?: view_historyWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: View_historyScalarFieldEnum | View_historyScalarFieldEnum[]
   }
 
   /**
@@ -14585,6 +14742,1023 @@ export namespace Prisma {
 
 
   /**
+   * Model view_history
+   */
+
+  export type AggregateView_history = {
+    _count: View_historyCountAggregateOutputType | null
+    _avg: View_historyAvgAggregateOutputType | null
+    _sum: View_historySumAggregateOutputType | null
+    _min: View_historyMinAggregateOutputType | null
+    _max: View_historyMaxAggregateOutputType | null
+  }
+
+  export type View_historyAvgAggregateOutputType = {
+    id: number | null
+    comicId: number | null
+    chapterId: number | null
+    views: number | null
+  }
+
+  export type View_historySumAggregateOutputType = {
+    id: number | null
+    comicId: number | null
+    chapterId: number | null
+    views: number | null
+  }
+
+  export type View_historyMinAggregateOutputType = {
+    id: number | null
+    comicId: number | null
+    chapterId: number | null
+    views: number | null
+    create_at: Date | null
+  }
+
+  export type View_historyMaxAggregateOutputType = {
+    id: number | null
+    comicId: number | null
+    chapterId: number | null
+    views: number | null
+    create_at: Date | null
+  }
+
+  export type View_historyCountAggregateOutputType = {
+    id: number
+    comicId: number
+    chapterId: number
+    views: number
+    create_at: number
+    _all: number
+  }
+
+
+  export type View_historyAvgAggregateInputType = {
+    id?: true
+    comicId?: true
+    chapterId?: true
+    views?: true
+  }
+
+  export type View_historySumAggregateInputType = {
+    id?: true
+    comicId?: true
+    chapterId?: true
+    views?: true
+  }
+
+  export type View_historyMinAggregateInputType = {
+    id?: true
+    comicId?: true
+    chapterId?: true
+    views?: true
+    create_at?: true
+  }
+
+  export type View_historyMaxAggregateInputType = {
+    id?: true
+    comicId?: true
+    chapterId?: true
+    views?: true
+    create_at?: true
+  }
+
+  export type View_historyCountAggregateInputType = {
+    id?: true
+    comicId?: true
+    chapterId?: true
+    views?: true
+    create_at?: true
+    _all?: true
+  }
+
+  export type View_historyAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which view_history to aggregate.
+     */
+    where?: view_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of view_histories to fetch.
+     */
+    orderBy?: view_historyOrderByWithRelationInput | view_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: view_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` view_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` view_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned view_histories
+    **/
+    _count?: true | View_historyCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: View_historyAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: View_historySumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: View_historyMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: View_historyMaxAggregateInputType
+  }
+
+  export type GetView_historyAggregateType<T extends View_historyAggregateArgs> = {
+        [P in keyof T & keyof AggregateView_history]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateView_history[P]>
+      : GetScalarType<T[P], AggregateView_history[P]>
+  }
+
+
+
+
+  export type view_historyGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: view_historyWhereInput
+    orderBy?: view_historyOrderByWithAggregationInput | view_historyOrderByWithAggregationInput[]
+    by: View_historyScalarFieldEnum[] | View_historyScalarFieldEnum
+    having?: view_historyScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: View_historyCountAggregateInputType | true
+    _avg?: View_historyAvgAggregateInputType
+    _sum?: View_historySumAggregateInputType
+    _min?: View_historyMinAggregateInputType
+    _max?: View_historyMaxAggregateInputType
+  }
+
+  export type View_historyGroupByOutputType = {
+    id: number
+    comicId: number | null
+    chapterId: number | null
+    views: number
+    create_at: Date
+    _count: View_historyCountAggregateOutputType | null
+    _avg: View_historyAvgAggregateOutputType | null
+    _sum: View_historySumAggregateOutputType | null
+    _min: View_historyMinAggregateOutputType | null
+    _max: View_historyMaxAggregateOutputType | null
+  }
+
+  type GetView_historyGroupByPayload<T extends view_historyGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<View_historyGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof View_historyGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], View_historyGroupByOutputType[P]>
+            : GetScalarType<T[P], View_historyGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type view_historySelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    comicId?: boolean
+    chapterId?: boolean
+    views?: boolean
+    create_at?: boolean
+    comic?: boolean | view_history$comicArgs<ExtArgs>
+    chapter?: boolean | view_history$chapterArgs<ExtArgs>
+  }, ExtArgs["result"]["view_history"]>
+
+
+
+  export type view_historySelectScalar = {
+    id?: boolean
+    comicId?: boolean
+    chapterId?: boolean
+    views?: boolean
+    create_at?: boolean
+  }
+
+  export type view_historyOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "comicId" | "chapterId" | "views" | "create_at", ExtArgs["result"]["view_history"]>
+  export type view_historyInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    comic?: boolean | view_history$comicArgs<ExtArgs>
+    chapter?: boolean | view_history$chapterArgs<ExtArgs>
+  }
+
+  export type $view_historyPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "view_history"
+    objects: {
+      comic: Prisma.$ComicPayload<ExtArgs> | null
+      chapter: Prisma.$ChapterPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      comicId: number | null
+      chapterId: number | null
+      views: number
+      create_at: Date
+    }, ExtArgs["result"]["view_history"]>
+    composites: {}
+  }
+
+  type view_historyGetPayload<S extends boolean | null | undefined | view_historyDefaultArgs> = $Result.GetResult<Prisma.$view_historyPayload, S>
+
+  type view_historyCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<view_historyFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: View_historyCountAggregateInputType | true
+    }
+
+  export interface view_historyDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['view_history'], meta: { name: 'view_history' } }
+    /**
+     * Find zero or one View_history that matches the filter.
+     * @param {view_historyFindUniqueArgs} args - Arguments to find a View_history
+     * @example
+     * // Get one View_history
+     * const view_history = await prisma.view_history.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends view_historyFindUniqueArgs>(args: SelectSubset<T, view_historyFindUniqueArgs<ExtArgs>>): Prisma__view_historyClient<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one View_history that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {view_historyFindUniqueOrThrowArgs} args - Arguments to find a View_history
+     * @example
+     * // Get one View_history
+     * const view_history = await prisma.view_history.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends view_historyFindUniqueOrThrowArgs>(args: SelectSubset<T, view_historyFindUniqueOrThrowArgs<ExtArgs>>): Prisma__view_historyClient<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first View_history that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {view_historyFindFirstArgs} args - Arguments to find a View_history
+     * @example
+     * // Get one View_history
+     * const view_history = await prisma.view_history.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends view_historyFindFirstArgs>(args?: SelectSubset<T, view_historyFindFirstArgs<ExtArgs>>): Prisma__view_historyClient<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first View_history that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {view_historyFindFirstOrThrowArgs} args - Arguments to find a View_history
+     * @example
+     * // Get one View_history
+     * const view_history = await prisma.view_history.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends view_historyFindFirstOrThrowArgs>(args?: SelectSubset<T, view_historyFindFirstOrThrowArgs<ExtArgs>>): Prisma__view_historyClient<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more View_histories that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {view_historyFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all View_histories
+     * const view_histories = await prisma.view_history.findMany()
+     * 
+     * // Get first 10 View_histories
+     * const view_histories = await prisma.view_history.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const view_historyWithIdOnly = await prisma.view_history.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends view_historyFindManyArgs>(args?: SelectSubset<T, view_historyFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a View_history.
+     * @param {view_historyCreateArgs} args - Arguments to create a View_history.
+     * @example
+     * // Create one View_history
+     * const View_history = await prisma.view_history.create({
+     *   data: {
+     *     // ... data to create a View_history
+     *   }
+     * })
+     * 
+     */
+    create<T extends view_historyCreateArgs>(args: SelectSubset<T, view_historyCreateArgs<ExtArgs>>): Prisma__view_historyClient<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many View_histories.
+     * @param {view_historyCreateManyArgs} args - Arguments to create many View_histories.
+     * @example
+     * // Create many View_histories
+     * const view_history = await prisma.view_history.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends view_historyCreateManyArgs>(args?: SelectSubset<T, view_historyCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a View_history.
+     * @param {view_historyDeleteArgs} args - Arguments to delete one View_history.
+     * @example
+     * // Delete one View_history
+     * const View_history = await prisma.view_history.delete({
+     *   where: {
+     *     // ... filter to delete one View_history
+     *   }
+     * })
+     * 
+     */
+    delete<T extends view_historyDeleteArgs>(args: SelectSubset<T, view_historyDeleteArgs<ExtArgs>>): Prisma__view_historyClient<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one View_history.
+     * @param {view_historyUpdateArgs} args - Arguments to update one View_history.
+     * @example
+     * // Update one View_history
+     * const view_history = await prisma.view_history.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends view_historyUpdateArgs>(args: SelectSubset<T, view_historyUpdateArgs<ExtArgs>>): Prisma__view_historyClient<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more View_histories.
+     * @param {view_historyDeleteManyArgs} args - Arguments to filter View_histories to delete.
+     * @example
+     * // Delete a few View_histories
+     * const { count } = await prisma.view_history.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends view_historyDeleteManyArgs>(args?: SelectSubset<T, view_historyDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more View_histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {view_historyUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many View_histories
+     * const view_history = await prisma.view_history.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends view_historyUpdateManyArgs>(args: SelectSubset<T, view_historyUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one View_history.
+     * @param {view_historyUpsertArgs} args - Arguments to update or create a View_history.
+     * @example
+     * // Update or create a View_history
+     * const view_history = await prisma.view_history.upsert({
+     *   create: {
+     *     // ... data to create a View_history
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the View_history we want to update
+     *   }
+     * })
+     */
+    upsert<T extends view_historyUpsertArgs>(args: SelectSubset<T, view_historyUpsertArgs<ExtArgs>>): Prisma__view_historyClient<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of View_histories.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {view_historyCountArgs} args - Arguments to filter View_histories to count.
+     * @example
+     * // Count the number of View_histories
+     * const count = await prisma.view_history.count({
+     *   where: {
+     *     // ... the filter for the View_histories we want to count
+     *   }
+     * })
+    **/
+    count<T extends view_historyCountArgs>(
+      args?: Subset<T, view_historyCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], View_historyCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a View_history.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {View_historyAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends View_historyAggregateArgs>(args: Subset<T, View_historyAggregateArgs>): Prisma.PrismaPromise<GetView_historyAggregateType<T>>
+
+    /**
+     * Group by View_history.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {view_historyGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends view_historyGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: view_historyGroupByArgs['orderBy'] }
+        : { orderBy?: view_historyGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, view_historyGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetView_historyGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the view_history model
+   */
+  readonly fields: view_historyFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for view_history.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__view_historyClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    comic<T extends view_history$comicArgs<ExtArgs> = {}>(args?: Subset<T, view_history$comicArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    chapter<T extends view_history$chapterArgs<ExtArgs> = {}>(args?: Subset<T, view_history$chapterArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the view_history model
+   */
+  interface view_historyFieldRefs {
+    readonly id: FieldRef<"view_history", 'Int'>
+    readonly comicId: FieldRef<"view_history", 'Int'>
+    readonly chapterId: FieldRef<"view_history", 'Int'>
+    readonly views: FieldRef<"view_history", 'Int'>
+    readonly create_at: FieldRef<"view_history", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * view_history findUnique
+   */
+  export type view_historyFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which view_history to fetch.
+     */
+    where: view_historyWhereUniqueInput
+  }
+
+  /**
+   * view_history findUniqueOrThrow
+   */
+  export type view_historyFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which view_history to fetch.
+     */
+    where: view_historyWhereUniqueInput
+  }
+
+  /**
+   * view_history findFirst
+   */
+  export type view_historyFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which view_history to fetch.
+     */
+    where?: view_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of view_histories to fetch.
+     */
+    orderBy?: view_historyOrderByWithRelationInput | view_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for view_histories.
+     */
+    cursor?: view_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` view_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` view_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of view_histories.
+     */
+    distinct?: View_historyScalarFieldEnum | View_historyScalarFieldEnum[]
+  }
+
+  /**
+   * view_history findFirstOrThrow
+   */
+  export type view_historyFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which view_history to fetch.
+     */
+    where?: view_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of view_histories to fetch.
+     */
+    orderBy?: view_historyOrderByWithRelationInput | view_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for view_histories.
+     */
+    cursor?: view_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` view_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` view_histories.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of view_histories.
+     */
+    distinct?: View_historyScalarFieldEnum | View_historyScalarFieldEnum[]
+  }
+
+  /**
+   * view_history findMany
+   */
+  export type view_historyFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    /**
+     * Filter, which view_histories to fetch.
+     */
+    where?: view_historyWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of view_histories to fetch.
+     */
+    orderBy?: view_historyOrderByWithRelationInput | view_historyOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing view_histories.
+     */
+    cursor?: view_historyWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` view_histories from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` view_histories.
+     */
+    skip?: number
+    distinct?: View_historyScalarFieldEnum | View_historyScalarFieldEnum[]
+  }
+
+  /**
+   * view_history create
+   */
+  export type view_historyCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    /**
+     * The data needed to create a view_history.
+     */
+    data?: XOR<view_historyCreateInput, view_historyUncheckedCreateInput>
+  }
+
+  /**
+   * view_history createMany
+   */
+  export type view_historyCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many view_histories.
+     */
+    data: view_historyCreateManyInput | view_historyCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * view_history update
+   */
+  export type view_historyUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    /**
+     * The data needed to update a view_history.
+     */
+    data: XOR<view_historyUpdateInput, view_historyUncheckedUpdateInput>
+    /**
+     * Choose, which view_history to update.
+     */
+    where: view_historyWhereUniqueInput
+  }
+
+  /**
+   * view_history updateMany
+   */
+  export type view_historyUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update view_histories.
+     */
+    data: XOR<view_historyUpdateManyMutationInput, view_historyUncheckedUpdateManyInput>
+    /**
+     * Filter which view_histories to update
+     */
+    where?: view_historyWhereInput
+    /**
+     * Limit how many view_histories to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * view_history upsert
+   */
+  export type view_historyUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    /**
+     * The filter to search for the view_history to update in case it exists.
+     */
+    where: view_historyWhereUniqueInput
+    /**
+     * In case the view_history found by the `where` argument doesn't exist, create a new view_history with this data.
+     */
+    create: XOR<view_historyCreateInput, view_historyUncheckedCreateInput>
+    /**
+     * In case the view_history was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<view_historyUpdateInput, view_historyUncheckedUpdateInput>
+  }
+
+  /**
+   * view_history delete
+   */
+  export type view_historyDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+    /**
+     * Filter which view_history to delete.
+     */
+    where: view_historyWhereUniqueInput
+  }
+
+  /**
+   * view_history deleteMany
+   */
+  export type view_historyDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which view_histories to delete
+     */
+    where?: view_historyWhereInput
+    /**
+     * Limit how many view_histories to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * view_history.comic
+   */
+  export type view_history$comicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    where?: ComicWhereInput
+  }
+
+  /**
+   * view_history.chapter
+   */
+  export type view_history$chapterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    where?: ChapterWhereInput
+  }
+
+  /**
+   * view_history without action
+   */
+  export type view_historyDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the view_history
+     */
+    select?: view_historySelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the view_history
+     */
+    omit?: view_historyOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: view_historyInclude<ExtArgs> | null
+  }
+
+
+  /**
    * Model comment
    */
 
@@ -15847,6 +17021,17 @@ export namespace Prisma {
   export type Comic_historyScalarFieldEnum = (typeof Comic_historyScalarFieldEnum)[keyof typeof Comic_historyScalarFieldEnum]
 
 
+  export const View_historyScalarFieldEnum: {
+    id: 'id',
+    comicId: 'comicId',
+    chapterId: 'chapterId',
+    views: 'views',
+    create_at: 'create_at'
+  };
+
+  export type View_historyScalarFieldEnum = (typeof View_historyScalarFieldEnum)[keyof typeof View_historyScalarFieldEnum]
+
+
   export const CommentScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -16313,6 +17498,7 @@ export namespace Prisma {
     comicFollower?: Comic_followerListRelationFilter
     comicHistory?: Comic_historyListRelationFilter
     comments?: CommentListRelationFilter
+    viewHistorys?: View_historyListRelationFilter
   }
 
   export type ComicOrderByWithRelationInput = {
@@ -16335,6 +17521,7 @@ export namespace Prisma {
     comicFollower?: comic_followerOrderByRelationAggregateInput
     comicHistory?: comic_historyOrderByRelationAggregateInput
     comments?: commentOrderByRelationAggregateInput
+    viewHistorys?: view_historyOrderByRelationAggregateInput
     _relevance?: ComicOrderByRelevanceInput
   }
 
@@ -16361,6 +17548,7 @@ export namespace Prisma {
     comicFollower?: Comic_followerListRelationFilter
     comicHistory?: Comic_historyListRelationFilter
     comments?: CommentListRelationFilter
+    viewHistorys?: View_historyListRelationFilter
   }, "id" | "title" | "slug">
 
   export type ComicOrderByWithAggregationInput = {
@@ -16487,6 +17675,7 @@ export namespace Prisma {
     chapterUnlocks?: Chapter_unlockListRelationFilter
     comicHistory?: Comic_historyListRelationFilter
     comments?: CommentListRelationFilter
+    viewHistorys?: View_historyListRelationFilter
   }
 
   export type ChapterOrderByWithRelationInput = {
@@ -16507,6 +17696,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockOrderByRelationAggregateInput
     comicHistory?: comic_historyOrderByRelationAggregateInput
     comments?: commentOrderByRelationAggregateInput
+    viewHistorys?: view_historyOrderByRelationAggregateInput
     _relevance?: ChapterOrderByRelevanceInput
   }
 
@@ -16531,6 +17721,7 @@ export namespace Prisma {
     chapterUnlocks?: Chapter_unlockListRelationFilter
     comicHistory?: Comic_historyListRelationFilter
     comments?: CommentListRelationFilter
+    viewHistorys?: View_historyListRelationFilter
   }, "id" | "slug">
 
   export type ChapterOrderByWithAggregationInput = {
@@ -16849,6 +18040,66 @@ export namespace Prisma {
     comicId?: IntWithAggregatesFilter<"comic_history"> | number
     chapterId?: IntWithAggregatesFilter<"comic_history"> | number
     read_time?: DateTimeWithAggregatesFilter<"comic_history"> | Date | string
+  }
+
+  export type view_historyWhereInput = {
+    AND?: view_historyWhereInput | view_historyWhereInput[]
+    OR?: view_historyWhereInput[]
+    NOT?: view_historyWhereInput | view_historyWhereInput[]
+    id?: IntFilter<"view_history"> | number
+    comicId?: IntNullableFilter<"view_history"> | number | null
+    chapterId?: IntNullableFilter<"view_history"> | number | null
+    views?: IntFilter<"view_history"> | number
+    create_at?: DateTimeFilter<"view_history"> | Date | string
+    comic?: XOR<ComicNullableScalarRelationFilter, ComicWhereInput> | null
+    chapter?: XOR<ChapterNullableScalarRelationFilter, ChapterWhereInput> | null
+  }
+
+  export type view_historyOrderByWithRelationInput = {
+    id?: SortOrder
+    comicId?: SortOrderInput | SortOrder
+    chapterId?: SortOrderInput | SortOrder
+    views?: SortOrder
+    create_at?: SortOrder
+    comic?: ComicOrderByWithRelationInput
+    chapter?: ChapterOrderByWithRelationInput
+  }
+
+  export type view_historyWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: view_historyWhereInput | view_historyWhereInput[]
+    OR?: view_historyWhereInput[]
+    NOT?: view_historyWhereInput | view_historyWhereInput[]
+    comicId?: IntNullableFilter<"view_history"> | number | null
+    chapterId?: IntNullableFilter<"view_history"> | number | null
+    views?: IntFilter<"view_history"> | number
+    create_at?: DateTimeFilter<"view_history"> | Date | string
+    comic?: XOR<ComicNullableScalarRelationFilter, ComicWhereInput> | null
+    chapter?: XOR<ChapterNullableScalarRelationFilter, ChapterWhereInput> | null
+  }, "id">
+
+  export type view_historyOrderByWithAggregationInput = {
+    id?: SortOrder
+    comicId?: SortOrderInput | SortOrder
+    chapterId?: SortOrderInput | SortOrder
+    views?: SortOrder
+    create_at?: SortOrder
+    _count?: view_historyCountOrderByAggregateInput
+    _avg?: view_historyAvgOrderByAggregateInput
+    _max?: view_historyMaxOrderByAggregateInput
+    _min?: view_historyMinOrderByAggregateInput
+    _sum?: view_historySumOrderByAggregateInput
+  }
+
+  export type view_historyScalarWhereWithAggregatesInput = {
+    AND?: view_historyScalarWhereWithAggregatesInput | view_historyScalarWhereWithAggregatesInput[]
+    OR?: view_historyScalarWhereWithAggregatesInput[]
+    NOT?: view_historyScalarWhereWithAggregatesInput | view_historyScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"view_history"> | number
+    comicId?: IntNullableWithAggregatesFilter<"view_history"> | number | null
+    chapterId?: IntNullableWithAggregatesFilter<"view_history"> | number | null
+    views?: IntWithAggregatesFilter<"view_history"> | number
+    create_at?: DateTimeWithAggregatesFilter<"view_history"> | Date | string
   }
 
   export type commentWhereInput = {
@@ -17226,6 +18477,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateInput = {
@@ -17247,6 +18499,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicUpdateInput = {
@@ -17267,6 +18520,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateInput = {
@@ -17288,6 +18542,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ComicCreateManyInput = {
@@ -17416,6 +18671,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateInput = {
@@ -17435,6 +18691,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUpdateInput = {
@@ -17453,6 +18710,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateInput = {
@@ -17472,6 +18730,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterCreateManyInput = {
@@ -17744,6 +19003,57 @@ export namespace Prisma {
     comicId?: IntFieldUpdateOperationsInput | number
     chapterId?: IntFieldUpdateOperationsInput | number
     read_time?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type view_historyCreateInput = {
+    views?: number
+    create_at?: Date | string
+    comic?: ComicCreateNestedOneWithoutViewHistorysInput
+    chapter?: ChapterCreateNestedOneWithoutViewHistorysInput
+  }
+
+  export type view_historyUncheckedCreateInput = {
+    id?: number
+    comicId?: number | null
+    chapterId?: number | null
+    views?: number
+    create_at?: Date | string
+  }
+
+  export type view_historyUpdateInput = {
+    views?: IntFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneWithoutViewHistorysNestedInput
+    chapter?: ChapterUpdateOneWithoutViewHistorysNestedInput
+  }
+
+  export type view_historyUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    views?: IntFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type view_historyCreateManyInput = {
+    id?: number
+    comicId?: number | null
+    chapterId?: number | null
+    views?: number
+    create_at?: Date | string
+  }
+
+  export type view_historyUpdateManyMutationInput = {
+    views?: IntFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type view_historyUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    views?: IntFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type commentCreateInput = {
@@ -18275,11 +19585,21 @@ export namespace Prisma {
     none?: ChapterWhereInput
   }
 
+  export type View_historyListRelationFilter = {
+    every?: view_historyWhereInput
+    some?: view_historyWhereInput
+    none?: view_historyWhereInput
+  }
+
   export type CategoryOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
   export type ChapterOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type view_historyOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -18714,6 +20034,60 @@ export namespace Prisma {
     isNot?: ChapterWhereInput | null
   }
 
+  export type view_historyCountOrderByAggregateInput = {
+    id?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    views?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type view_historyAvgOrderByAggregateInput = {
+    id?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    views?: SortOrder
+  }
+
+  export type view_historyMaxOrderByAggregateInput = {
+    id?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    views?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type view_historyMinOrderByAggregateInput = {
+    id?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    views?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type view_historySumOrderByAggregateInput = {
+    id?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    views?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type CommentNullableScalarRelationFilter = {
     is?: commentWhereInput | null
     isNot?: commentWhereInput | null
@@ -18769,22 +20143,6 @@ export namespace Prisma {
     comicId?: SortOrder
     chapterId?: SortOrder
     parentId?: SortOrder
-  }
-
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
   }
 
   export type TransactionCreateNestedManyWithoutUserInput = {
@@ -19227,6 +20585,13 @@ export namespace Prisma {
     connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
   }
 
+  export type view_historyCreateNestedManyWithoutComicInput = {
+    create?: XOR<view_historyCreateWithoutComicInput, view_historyUncheckedCreateWithoutComicInput> | view_historyCreateWithoutComicInput[] | view_historyUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: view_historyCreateOrConnectWithoutComicInput | view_historyCreateOrConnectWithoutComicInput[]
+    createMany?: view_historyCreateManyComicInputEnvelope
+    connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+  }
+
   export type CategoryUncheckedCreateNestedManyWithoutComicsInput = {
     create?: XOR<CategoryCreateWithoutComicsInput, CategoryUncheckedCreateWithoutComicsInput> | CategoryCreateWithoutComicsInput[] | CategoryUncheckedCreateWithoutComicsInput[]
     connectOrCreate?: CategoryCreateOrConnectWithoutComicsInput | CategoryCreateOrConnectWithoutComicsInput[]
@@ -19259,6 +20624,13 @@ export namespace Prisma {
     connectOrCreate?: commentCreateOrConnectWithoutComicInput | commentCreateOrConnectWithoutComicInput[]
     createMany?: commentCreateManyComicInputEnvelope
     connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type view_historyUncheckedCreateNestedManyWithoutComicInput = {
+    create?: XOR<view_historyCreateWithoutComicInput, view_historyUncheckedCreateWithoutComicInput> | view_historyCreateWithoutComicInput[] | view_historyUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: view_historyCreateOrConnectWithoutComicInput | view_historyCreateOrConnectWithoutComicInput[]
+    createMany?: view_historyCreateManyComicInputEnvelope
+    connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
   }
 
   export type EnumcomicStatusFieldUpdateOperationsInput = {
@@ -19346,6 +20718,20 @@ export namespace Prisma {
     deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
   }
 
+  export type view_historyUpdateManyWithoutComicNestedInput = {
+    create?: XOR<view_historyCreateWithoutComicInput, view_historyUncheckedCreateWithoutComicInput> | view_historyCreateWithoutComicInput[] | view_historyUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: view_historyCreateOrConnectWithoutComicInput | view_historyCreateOrConnectWithoutComicInput[]
+    upsert?: view_historyUpsertWithWhereUniqueWithoutComicInput | view_historyUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: view_historyCreateManyComicInputEnvelope
+    set?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    disconnect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    delete?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    update?: view_historyUpdateWithWhereUniqueWithoutComicInput | view_historyUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: view_historyUpdateManyWithWhereWithoutComicInput | view_historyUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: view_historyScalarWhereInput | view_historyScalarWhereInput[]
+  }
+
   export type CategoryUncheckedUpdateManyWithoutComicsNestedInput = {
     create?: XOR<CategoryCreateWithoutComicsInput, CategoryUncheckedCreateWithoutComicsInput> | CategoryCreateWithoutComicsInput[] | CategoryUncheckedCreateWithoutComicsInput[]
     connectOrCreate?: CategoryCreateOrConnectWithoutComicsInput | CategoryCreateOrConnectWithoutComicsInput[]
@@ -19413,6 +20799,20 @@ export namespace Prisma {
     update?: commentUpdateWithWhereUniqueWithoutComicInput | commentUpdateWithWhereUniqueWithoutComicInput[]
     updateMany?: commentUpdateManyWithWhereWithoutComicInput | commentUpdateManyWithWhereWithoutComicInput[]
     deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type view_historyUncheckedUpdateManyWithoutComicNestedInput = {
+    create?: XOR<view_historyCreateWithoutComicInput, view_historyUncheckedCreateWithoutComicInput> | view_historyCreateWithoutComicInput[] | view_historyUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: view_historyCreateOrConnectWithoutComicInput | view_historyCreateOrConnectWithoutComicInput[]
+    upsert?: view_historyUpsertWithWhereUniqueWithoutComicInput | view_historyUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: view_historyCreateManyComicInputEnvelope
+    set?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    disconnect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    delete?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    update?: view_historyUpdateWithWhereUniqueWithoutComicInput | view_historyUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: view_historyUpdateManyWithWhereWithoutComicInput | view_historyUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: view_historyScalarWhereInput | view_historyScalarWhereInput[]
   }
 
   export type ComicCreateNestedManyWithoutCategoriesInput = {
@@ -19487,6 +20887,13 @@ export namespace Prisma {
     connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
   }
 
+  export type view_historyCreateNestedManyWithoutChapterInput = {
+    create?: XOR<view_historyCreateWithoutChapterInput, view_historyUncheckedCreateWithoutChapterInput> | view_historyCreateWithoutChapterInput[] | view_historyUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: view_historyCreateOrConnectWithoutChapterInput | view_historyCreateOrConnectWithoutChapterInput[]
+    createMany?: view_historyCreateManyChapterInputEnvelope
+    connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+  }
+
   export type chapter_imageUncheckedCreateNestedManyWithoutChapterInput = {
     create?: XOR<chapter_imageCreateWithoutChapterInput, chapter_imageUncheckedCreateWithoutChapterInput> | chapter_imageCreateWithoutChapterInput[] | chapter_imageUncheckedCreateWithoutChapterInput[]
     connectOrCreate?: chapter_imageCreateOrConnectWithoutChapterInput | chapter_imageCreateOrConnectWithoutChapterInput[]
@@ -19513,6 +20920,13 @@ export namespace Prisma {
     connectOrCreate?: commentCreateOrConnectWithoutChapterInput | commentCreateOrConnectWithoutChapterInput[]
     createMany?: commentCreateManyChapterInputEnvelope
     connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type view_historyUncheckedCreateNestedManyWithoutChapterInput = {
+    create?: XOR<view_historyCreateWithoutChapterInput, view_historyUncheckedCreateWithoutChapterInput> | view_historyCreateWithoutChapterInput[] | view_historyUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: view_historyCreateOrConnectWithoutChapterInput | view_historyCreateOrConnectWithoutChapterInput[]
+    createMany?: view_historyCreateManyChapterInputEnvelope
+    connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
   }
 
   export type ComicUpdateOneRequiredWithoutChaptersNestedInput = {
@@ -19579,6 +20993,20 @@ export namespace Prisma {
     deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
   }
 
+  export type view_historyUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<view_historyCreateWithoutChapterInput, view_historyUncheckedCreateWithoutChapterInput> | view_historyCreateWithoutChapterInput[] | view_historyUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: view_historyCreateOrConnectWithoutChapterInput | view_historyCreateOrConnectWithoutChapterInput[]
+    upsert?: view_historyUpsertWithWhereUniqueWithoutChapterInput | view_historyUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: view_historyCreateManyChapterInputEnvelope
+    set?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    disconnect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    delete?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    update?: view_historyUpdateWithWhereUniqueWithoutChapterInput | view_historyUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: view_historyUpdateManyWithWhereWithoutChapterInput | view_historyUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: view_historyScalarWhereInput | view_historyScalarWhereInput[]
+  }
+
   export type chapter_imageUncheckedUpdateManyWithoutChapterNestedInput = {
     create?: XOR<chapter_imageCreateWithoutChapterInput, chapter_imageUncheckedCreateWithoutChapterInput> | chapter_imageCreateWithoutChapterInput[] | chapter_imageUncheckedCreateWithoutChapterInput[]
     connectOrCreate?: chapter_imageCreateOrConnectWithoutChapterInput | chapter_imageCreateOrConnectWithoutChapterInput[]
@@ -19633,6 +21061,20 @@ export namespace Prisma {
     update?: commentUpdateWithWhereUniqueWithoutChapterInput | commentUpdateWithWhereUniqueWithoutChapterInput[]
     updateMany?: commentUpdateManyWithWhereWithoutChapterInput | commentUpdateManyWithWhereWithoutChapterInput[]
     deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type view_historyUncheckedUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<view_historyCreateWithoutChapterInput, view_historyUncheckedCreateWithoutChapterInput> | view_historyCreateWithoutChapterInput[] | view_historyUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: view_historyCreateOrConnectWithoutChapterInput | view_historyCreateOrConnectWithoutChapterInput[]
+    upsert?: view_historyUpsertWithWhereUniqueWithoutChapterInput | view_historyUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: view_historyCreateManyChapterInputEnvelope
+    set?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    disconnect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    delete?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+    update?: view_historyUpdateWithWhereUniqueWithoutChapterInput | view_historyUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: view_historyUpdateManyWithWhereWithoutChapterInput | view_historyUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: view_historyScalarWhereInput | view_historyScalarWhereInput[]
   }
 
   export type ChapterCreateNestedOneWithoutChapterImagesInput = {
@@ -19765,6 +21207,46 @@ export namespace Prisma {
     update?: XOR<XOR<ChapterUpdateToOneWithWhereWithoutComicHistoryInput, ChapterUpdateWithoutComicHistoryInput>, ChapterUncheckedUpdateWithoutComicHistoryInput>
   }
 
+  export type ComicCreateNestedOneWithoutViewHistorysInput = {
+    create?: XOR<ComicCreateWithoutViewHistorysInput, ComicUncheckedCreateWithoutViewHistorysInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutViewHistorysInput
+    connect?: ComicWhereUniqueInput
+  }
+
+  export type ChapterCreateNestedOneWithoutViewHistorysInput = {
+    create?: XOR<ChapterCreateWithoutViewHistorysInput, ChapterUncheckedCreateWithoutViewHistorysInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutViewHistorysInput
+    connect?: ChapterWhereUniqueInput
+  }
+
+  export type ComicUpdateOneWithoutViewHistorysNestedInput = {
+    create?: XOR<ComicCreateWithoutViewHistorysInput, ComicUncheckedCreateWithoutViewHistorysInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutViewHistorysInput
+    upsert?: ComicUpsertWithoutViewHistorysInput
+    disconnect?: ComicWhereInput | boolean
+    delete?: ComicWhereInput | boolean
+    connect?: ComicWhereUniqueInput
+    update?: XOR<XOR<ComicUpdateToOneWithWhereWithoutViewHistorysInput, ComicUpdateWithoutViewHistorysInput>, ComicUncheckedUpdateWithoutViewHistorysInput>
+  }
+
+  export type ChapterUpdateOneWithoutViewHistorysNestedInput = {
+    create?: XOR<ChapterCreateWithoutViewHistorysInput, ChapterUncheckedCreateWithoutViewHistorysInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutViewHistorysInput
+    upsert?: ChapterUpsertWithoutViewHistorysInput
+    disconnect?: ChapterWhereInput | boolean
+    delete?: ChapterWhereInput | boolean
+    connect?: ChapterWhereUniqueInput
+    update?: XOR<XOR<ChapterUpdateToOneWithWhereWithoutViewHistorysInput, ChapterUpdateWithoutViewHistorysInput>, ChapterUncheckedUpdateWithoutViewHistorysInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
+  }
+
   export type UserCreateNestedOneWithoutCommentsInput = {
     create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
@@ -19853,14 +21335,6 @@ export namespace Prisma {
     update?: commentUpdateWithWhereUniqueWithoutParentInput | commentUpdateWithWhereUniqueWithoutParentInput[]
     updateMany?: commentUpdateManyWithWhereWithoutParentInput | commentUpdateManyWithWhereWithoutParentInput[]
     deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
-  }
-
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
   }
 
   export type commentUncheckedUpdateManyWithoutParentNestedInput = {
@@ -20637,6 +22111,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutCountryInput = {
@@ -20657,6 +22132,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutCountryInput = {
@@ -20759,6 +22235,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutComicInput = {
@@ -20777,6 +22254,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutComicInput = {
@@ -20857,6 +22335,29 @@ export namespace Prisma {
 
   export type commentCreateManyComicInputEnvelope = {
     data: commentCreateManyComicInput | commentCreateManyComicInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type view_historyCreateWithoutComicInput = {
+    views?: number
+    create_at?: Date | string
+    chapter?: ChapterCreateNestedOneWithoutViewHistorysInput
+  }
+
+  export type view_historyUncheckedCreateWithoutComicInput = {
+    id?: number
+    chapterId?: number | null
+    views?: number
+    create_at?: Date | string
+  }
+
+  export type view_historyCreateOrConnectWithoutComicInput = {
+    where: view_historyWhereUniqueInput
+    create: XOR<view_historyCreateWithoutComicInput, view_historyUncheckedCreateWithoutComicInput>
+  }
+
+  export type view_historyCreateManyComicInputEnvelope = {
+    data: view_historyCreateManyComicInput | view_historyCreateManyComicInput[]
     skipDuplicates?: boolean
   }
 
@@ -20994,6 +22495,33 @@ export namespace Prisma {
     data: XOR<commentUpdateManyMutationInput, commentUncheckedUpdateManyWithoutComicInput>
   }
 
+  export type view_historyUpsertWithWhereUniqueWithoutComicInput = {
+    where: view_historyWhereUniqueInput
+    update: XOR<view_historyUpdateWithoutComicInput, view_historyUncheckedUpdateWithoutComicInput>
+    create: XOR<view_historyCreateWithoutComicInput, view_historyUncheckedCreateWithoutComicInput>
+  }
+
+  export type view_historyUpdateWithWhereUniqueWithoutComicInput = {
+    where: view_historyWhereUniqueInput
+    data: XOR<view_historyUpdateWithoutComicInput, view_historyUncheckedUpdateWithoutComicInput>
+  }
+
+  export type view_historyUpdateManyWithWhereWithoutComicInput = {
+    where: view_historyScalarWhereInput
+    data: XOR<view_historyUpdateManyMutationInput, view_historyUncheckedUpdateManyWithoutComicInput>
+  }
+
+  export type view_historyScalarWhereInput = {
+    AND?: view_historyScalarWhereInput | view_historyScalarWhereInput[]
+    OR?: view_historyScalarWhereInput[]
+    NOT?: view_historyScalarWhereInput | view_historyScalarWhereInput[]
+    id?: IntFilter<"view_history"> | number
+    comicId?: IntNullableFilter<"view_history"> | number | null
+    chapterId?: IntNullableFilter<"view_history"> | number | null
+    views?: IntFilter<"view_history"> | number
+    create_at?: DateTimeFilter<"view_history"> | Date | string
+  }
+
   export type ComicCreateWithoutCategoriesInput = {
     title: string
     title_eng?: string | null
@@ -21011,6 +22539,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutCategoriesInput = {
@@ -21031,6 +22560,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutCategoriesInput = {
@@ -21071,6 +22601,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutChaptersInput = {
@@ -21091,6 +22622,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutChaptersInput = {
@@ -21190,6 +22722,29 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type view_historyCreateWithoutChapterInput = {
+    views?: number
+    create_at?: Date | string
+    comic?: ComicCreateNestedOneWithoutViewHistorysInput
+  }
+
+  export type view_historyUncheckedCreateWithoutChapterInput = {
+    id?: number
+    comicId?: number | null
+    views?: number
+    create_at?: Date | string
+  }
+
+  export type view_historyCreateOrConnectWithoutChapterInput = {
+    where: view_historyWhereUniqueInput
+    create: XOR<view_historyCreateWithoutChapterInput, view_historyUncheckedCreateWithoutChapterInput>
+  }
+
+  export type view_historyCreateManyChapterInputEnvelope = {
+    data: view_historyCreateManyChapterInput | view_historyCreateManyChapterInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ComicUpsertWithoutChaptersInput = {
     update: XOR<ComicUpdateWithoutChaptersInput, ComicUncheckedUpdateWithoutChaptersInput>
     create: XOR<ComicCreateWithoutChaptersInput, ComicUncheckedCreateWithoutChaptersInput>
@@ -21218,6 +22773,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutChaptersInput = {
@@ -21238,6 +22794,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type chapter_imageUpsertWithWhereUniqueWithoutChapterInput = {
@@ -21313,6 +22870,22 @@ export namespace Prisma {
     data: XOR<commentUpdateManyMutationInput, commentUncheckedUpdateManyWithoutChapterInput>
   }
 
+  export type view_historyUpsertWithWhereUniqueWithoutChapterInput = {
+    where: view_historyWhereUniqueInput
+    update: XOR<view_historyUpdateWithoutChapterInput, view_historyUncheckedUpdateWithoutChapterInput>
+    create: XOR<view_historyCreateWithoutChapterInput, view_historyUncheckedCreateWithoutChapterInput>
+  }
+
+  export type view_historyUpdateWithWhereUniqueWithoutChapterInput = {
+    where: view_historyWhereUniqueInput
+    data: XOR<view_historyUpdateWithoutChapterInput, view_historyUncheckedUpdateWithoutChapterInput>
+  }
+
+  export type view_historyUpdateManyWithWhereWithoutChapterInput = {
+    where: view_historyScalarWhereInput
+    data: XOR<view_historyUpdateManyMutationInput, view_historyUncheckedUpdateManyWithoutChapterInput>
+  }
+
   export type ChapterCreateWithoutChapterImagesInput = {
     chapter_name: string
     chapter_title?: string | null
@@ -21328,6 +22901,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutChapterImagesInput = {
@@ -21346,6 +22920,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutChapterImagesInput = {
@@ -21379,6 +22954,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutChapterImagesInput = {
@@ -21397,6 +22973,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type UserCreateWithoutChapterUnlocksInput = {
@@ -21454,6 +23031,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutChapterUnlocksInput = {
@@ -21472,6 +23050,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageUncheckedCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutChapterUnlocksInput = {
@@ -21551,6 +23130,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutChapterUnlocksInput = {
@@ -21569,6 +23149,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageUncheckedUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -21714,6 +23295,7 @@ export namespace Prisma {
     chapters?: ChapterCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutComicFollowerInput = {
@@ -21734,6 +23316,7 @@ export namespace Prisma {
     chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutComicFollowerInput = {
@@ -21815,6 +23398,7 @@ export namespace Prisma {
     chapters?: ChapterUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutComicFollowerInput = {
@@ -21835,6 +23419,7 @@ export namespace Prisma {
     chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type UserCreateWithoutComicHistoryInput = {
@@ -21894,6 +23479,7 @@ export namespace Prisma {
     chapters?: ChapterCreateNestedManyWithoutComicInput
     comicFollower?: comic_followerCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutComicHistoryInput = {
@@ -21914,6 +23500,7 @@ export namespace Prisma {
     chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutComicHistoryInput = {
@@ -21936,6 +23523,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageCreateNestedManyWithoutChapterInput
     chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutComicHistoryInput = {
@@ -21954,6 +23542,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageUncheckedCreateNestedManyWithoutChapterInput
     chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutComicHistoryInput = {
@@ -22035,6 +23624,7 @@ export namespace Prisma {
     chapters?: ChapterUpdateManyWithoutComicNestedInput
     comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutComicHistoryInput = {
@@ -22055,6 +23645,7 @@ export namespace Prisma {
     chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
     comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ChapterUpsertWithoutComicHistoryInput = {
@@ -22083,6 +23674,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageUpdateManyWithoutChapterNestedInput
     chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutComicHistoryInput = {
@@ -22100,6 +23692,195 @@ export namespace Prisma {
     comicId?: IntFieldUpdateOperationsInput | number
     chapterImages?: chapter_imageUncheckedUpdateManyWithoutChapterNestedInput
     chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
+    comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ComicCreateWithoutViewHistorysInput = {
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    country: CountryCreateNestedOneWithoutComicsInput
+    categories?: CategoryCreateNestedManyWithoutComicsInput
+    chapters?: ChapterCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyCreateNestedManyWithoutComicInput
+    comments?: commentCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicUncheckedCreateWithoutViewHistorysInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    countryId: number
+    categories?: CategoryUncheckedCreateNestedManyWithoutComicsInput
+    chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
+    comments?: commentUncheckedCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicCreateOrConnectWithoutViewHistorysInput = {
+    where: ComicWhereUniqueInput
+    create: XOR<ComicCreateWithoutViewHistorysInput, ComicUncheckedCreateWithoutViewHistorysInput>
+  }
+
+  export type ChapterCreateWithoutViewHistorysInput = {
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comic: ComicCreateNestedOneWithoutChaptersInput
+    chapterImages?: chapter_imageCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
+    comments?: commentCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterUncheckedCreateWithoutViewHistorysInput = {
+    id?: number
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comicId: number
+    chapterImages?: chapter_imageUncheckedCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
+    comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterCreateOrConnectWithoutViewHistorysInput = {
+    where: ChapterWhereUniqueInput
+    create: XOR<ChapterCreateWithoutViewHistorysInput, ChapterUncheckedCreateWithoutViewHistorysInput>
+  }
+
+  export type ComicUpsertWithoutViewHistorysInput = {
+    update: XOR<ComicUpdateWithoutViewHistorysInput, ComicUncheckedUpdateWithoutViewHistorysInput>
+    create: XOR<ComicCreateWithoutViewHistorysInput, ComicUncheckedCreateWithoutViewHistorysInput>
+    where?: ComicWhereInput
+  }
+
+  export type ComicUpdateToOneWithWhereWithoutViewHistorysInput = {
+    where?: ComicWhereInput
+    data: XOR<ComicUpdateWithoutViewHistorysInput, ComicUncheckedUpdateWithoutViewHistorysInput>
+  }
+
+  export type ComicUpdateWithoutViewHistorysInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: CountryUpdateOneRequiredWithoutComicsNestedInput
+    categories?: CategoryUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
+    comments?: commentUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateWithoutViewHistorysInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+    categories?: CategoryUncheckedUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
+    comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+  }
+
+  export type ChapterUpsertWithoutViewHistorysInput = {
+    update: XOR<ChapterUpdateWithoutViewHistorysInput, ChapterUncheckedUpdateWithoutViewHistorysInput>
+    create: XOR<ChapterCreateWithoutViewHistorysInput, ChapterUncheckedCreateWithoutViewHistorysInput>
+    where?: ChapterWhereInput
+  }
+
+  export type ChapterUpdateToOneWithWhereWithoutViewHistorysInput = {
+    where?: ChapterWhereInput
+    data: XOR<ChapterUpdateWithoutViewHistorysInput, ChapterUncheckedUpdateWithoutViewHistorysInput>
+  }
+
+  export type ChapterUpdateWithoutViewHistorysInput = {
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneRequiredWithoutChaptersNestedInput
+    chapterImages?: chapter_imageUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
+    comments?: commentUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ChapterUncheckedUpdateWithoutViewHistorysInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterImages?: chapter_imageUncheckedUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
   }
 
@@ -22160,6 +23941,7 @@ export namespace Prisma {
     chapters?: ChapterCreateNestedManyWithoutComicInput
     comicFollower?: comic_followerCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutCommentsInput = {
@@ -22180,6 +23962,7 @@ export namespace Prisma {
     chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutCommentsInput = {
@@ -22202,6 +23985,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageCreateNestedManyWithoutChapterInput
     chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutCommentsInput = {
@@ -22220,6 +24004,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageUncheckedCreateNestedManyWithoutChapterInput
     chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutCommentsInput = {
@@ -22354,6 +24139,7 @@ export namespace Prisma {
     chapters?: ChapterUpdateManyWithoutComicNestedInput
     comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutCommentsInput = {
@@ -22374,6 +24160,7 @@ export namespace Prisma {
     chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
     comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ChapterUpsertWithoutCommentsInput = {
@@ -22402,6 +24189,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageUpdateManyWithoutChapterNestedInput
     chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutCommentsInput = {
@@ -22420,6 +24208,7 @@ export namespace Prisma {
     chapterImages?: chapter_imageUncheckedUpdateManyWithoutChapterNestedInput
     chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type commentUpsertWithoutRepliesInput = {
@@ -22707,6 +24496,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutCountryInput = {
@@ -22727,6 +24517,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateManyWithoutCountryInput = {
@@ -22779,6 +24570,13 @@ export namespace Prisma {
     create_at?: Date | string
   }
 
+  export type view_historyCreateManyComicInput = {
+    id?: number
+    chapterId?: number | null
+    views?: number
+    create_at?: Date | string
+  }
+
   export type CategoryUpdateWithoutComicsInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
@@ -22820,6 +24618,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutComicInput = {
@@ -22838,6 +24637,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateManyWithoutComicInput = {
@@ -22916,6 +24716,26 @@ export namespace Prisma {
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type view_historyUpdateWithoutComicInput = {
+    views?: IntFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    chapter?: ChapterUpdateOneWithoutViewHistorysNestedInput
+  }
+
+  export type view_historyUncheckedUpdateWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    views?: IntFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type view_historyUncheckedUpdateManyWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    views?: IntFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ComicUpdateWithoutCategoriesInput = {
     title?: StringFieldUpdateOperationsInput | string
     title_eng?: NullableStringFieldUpdateOperationsInput | string | null
@@ -22933,6 +24753,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutCategoriesInput = {
@@ -22953,6 +24774,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateManyWithoutCategoriesInput = {
@@ -22995,6 +24817,13 @@ export namespace Prisma {
     comicId?: number | null
     content: string
     parentId?: number | null
+    create_at?: Date | string
+  }
+
+  export type view_historyCreateManyChapterInput = {
+    id?: number
+    comicId?: number | null
+    views?: number
     create_at?: Date | string
   }
 
@@ -23074,6 +24903,26 @@ export namespace Prisma {
     comicId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type view_historyUpdateWithoutChapterInput = {
+    views?: IntFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneWithoutViewHistorysNestedInput
+  }
+
+  export type view_historyUncheckedUpdateWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    views?: IntFieldUpdateOperationsInput | number
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type view_historyUncheckedUpdateManyWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    views?: IntFieldUpdateOperationsInput | number
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
