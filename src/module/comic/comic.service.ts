@@ -12,6 +12,8 @@ import { CountryService } from 'src/module/country/country.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as path from 'path';
 import * as fs from 'fs';
+import { RedisService } from 'src/prisma/redis.service';
+import { SearchComicDto } from 'src/module/comic/dto/search-comic.dto';
 
 @Injectable()
 export class ComicService {
@@ -20,7 +22,24 @@ export class ComicService {
     private readonly categoryService: CategoryService,
     private readonly countryService: CountryService,
     private readonly configService: ConfigService,
+    private readonly redis: RedisService,
   ) {}
+
+  private async clearComicCache() {
+    await Promise.all([
+      this.redis.clearCacheByPattern('comic:getAll*'),
+      this.redis.clearCacheByPattern('category:getcategoryByslug*'),
+      this.redis.clearCacheByPattern('comic:topFollower*'),
+    ]);
+  }
+  private async clearComicCache2() {
+    await Promise.all([
+      this.redis.clearCacheByPattern('comic:getAll*'),
+      this.redis.clearCacheByPattern('category:getcategoryByslug*'),
+      this.redis.clearCacheByPattern('comicFollower:getAll*'),
+      this.redis.clearCacheByPattern('comicHistory:getAll*'),
+    ]);
+  }
 
   async create(createComicDto: CreateComicDto, file: Express.Multer.File) {
     const comicSlug = await this.prisma.comic.findUnique({
@@ -54,6 +73,7 @@ export class ComicService {
         ...data,
       },
     });
+    await this.clearComicCache();
 
     return {
       message: 'Thêm Comic thành công',
@@ -64,10 +84,15 @@ export class ComicService {
   async findAll(query: PanigationComicDto) {
     const { page, limit, search, status, country, active } = query;
     const skip = (page - 1) * limit;
+    const cacheComic = `comic:getAll:page=${page}:limit=${limit}:search=${search}:status=${status}:country=${country}:active=${active}`;
+    const cacheResult = await this.redis.getcache(cacheComic);
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    }
     const comics = await this.prisma.comic.findMany({
       take: limit,
       skip,
-      orderBy: { create_at: 'desc' },
+      orderBy: [{ create_at: 'desc' }, { chapters: { _count: 'desc' } }],
       where: {
         AND: [
           status ? { status: status } : {},
@@ -80,6 +105,78 @@ export class ComicService {
             ],
           },
         ],
+      },
+      include: {
+        chapters: {
+          orderBy: { create_at: 'desc' },
+          take: 1,
+          select: {
+            id: true,
+            chapter_name: true,
+            chapter_title: true,
+            slug: true,
+            is_locked: true,
+            price_xu: true,
+            auto_unlock_time: true,
+            views: true,
+            chapter_image_url: true,
+            create_at: true,
+          },
+        },
+      },
+    });
+
+    const customComic = comics.map(
+      ({
+        author,
+        views,
+        is_active,
+        create_at,
+        update_at,
+        countryId,
+        ...data
+      }) => data,
+    );
+    const totalItem = await this.prisma.comic.count({
+      where: {
+        is_active: false,
+      },
+    });
+    const totalPage = Math.ceil(totalItem / limit);
+    const totalItemPerPage = limit;
+    const currentPage = page;
+    const prevPage = page > 1 ? page - 1 : 1;
+    const nextPage = page < totalPage ? page + 1 : totalPage;
+
+    const result = {
+      data: customComic,
+      totalItem,
+      totalPage,
+      totalItemPerPage,
+      currentPage,
+      prevPage,
+      nextPage,
+    };
+    await this.redis.setCache(cacheComic, JSON.stringify(result), 3600);
+    return result;
+  }
+
+  async getTopFollowerComic(query: PanigationComicDto) {
+    const { page, limit } = query;
+    const cacheTopFollower = `comic:topFollower:page=${page}:limit=${limit}`;
+    const cacheresult = await this.redis.getcache(cacheTopFollower);
+    if (cacheresult) {
+      return JSON.parse(cacheresult);
+    }
+    const skip = (page - 1) * limit;
+    const comics = await this.prisma.comic.findMany({
+      take: limit,
+      skip,
+      where: {
+        is_active: false,
+      },
+      orderBy: {
+        follower: 'desc',
       },
       include: {
         chapters: {
@@ -121,7 +218,8 @@ export class ComicService {
     const currentPage = page;
     const prevPage = page > 1 ? page - 1 : 1;
     const nextPage = page < totalPage ? page + 1 : totalPage;
-    return {
+
+    const result = {
       data: customComic,
       totalItem,
       totalPage,
@@ -130,6 +228,8 @@ export class ComicService {
       prevPage,
       nextPage,
     };
+    await this.redis.setCache(cacheTopFollower, JSON.stringify(result), 3600);
+    return comics;
   }
 
   async checkComicExits(id: number) {
@@ -179,6 +279,8 @@ export class ComicService {
         ...data,
       },
     });
+    await this.clearComicCache2();
+
     return {
       message: 'Cập nhật Comic thành công',
       data: comic,
@@ -211,12 +313,17 @@ export class ComicService {
       const comic = await this.prisma.comic.delete({
         where: { id: id },
       });
-
+      await this.clearComicCache2();
       return `Xóa thành công Comic có id ${comic.id} `;
     }
   }
 
   async findOne(slug: string) {
+    const cacheComicBySlug = `comic:getComicbySlug:${slug}`;
+    const cacheResult = await this.redis.getcache(cacheComicBySlug);
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    }
     const comic = await this.prisma.comic.findUnique({
       where: { slug: slug },
       include: {
@@ -248,6 +355,7 @@ export class ComicService {
       throw new NotFoundException('Comic Slug không tồn tại');
     }
     const { is_active, create_at, update_at, countryId, ...data } = comic;
+    await this.redis.setCache(cacheComicBySlug, JSON.stringify(data), 3600);
     return data;
   }
 
@@ -263,7 +371,7 @@ export class ComicService {
         is_active: !isActive,
       },
     });
-
+    await this.clearComicCache2();
     if (setComicActive.is_active === false) {
       return {
         message: `set show comic ${setComicActive.title} thành công `,
@@ -290,5 +398,98 @@ export class ComicService {
         },
       },
     });
+  }
+
+  async updateIncreFollowerbyComic(comic_id: number) {
+    await this.prisma.comic.update({
+      where: { id: comic_id },
+      data: {
+        follower: {
+          increment: 1,
+        },
+      },
+    });
+  }
+  async updateDecreFollowerbyComic(comic_id: number) {
+    await this.prisma.comic.update({
+      where: { id: comic_id },
+      data: {
+        follower: {
+          decrement: 1,
+        },
+      },
+    });
+  }
+
+  async searchComic(query: SearchComicDto) {
+    const { page, limit, keyword } = query;
+    const skip = (page - 1) * limit;
+
+    const [comics, totalItem] = await Promise.all([
+      this.prisma.comic.findMany({
+        where: {
+          OR: [
+            { title: { contains: keyword } },
+            { title_eng: { contains: keyword } },
+          ],
+          is_active: false,
+        },
+        take: limit,
+        skip,
+        include: {
+          chapters: {
+            orderBy: { create_at: 'desc' },
+            take: 1,
+            select: {
+              id: true,
+              chapter_name: true,
+              chapter_title: true,
+              slug: true,
+              is_locked: true,
+              price_xu: true,
+              auto_unlock_time: true,
+              views: true,
+              chapter_image_url: true,
+              create_at: true,
+            },
+          },
+        },
+      }),
+
+      this.prisma.comic.count({
+        where: {
+          OR: [
+            { title: { contains: keyword } },
+            { title_eng: { contains: keyword } },
+          ],
+          is_active: false,
+        },
+      }),
+    ]);
+
+    const customComic = comics.map(
+      ({
+        author,
+        views,
+        is_active,
+        create_at,
+        update_at,
+        countryId,
+        ...data
+      }) => data,
+    );
+
+    const totalPage = Math.ceil(totalItem / limit);
+    const result = {
+      data: customComic,
+      totalItem,
+      totalPage,
+      totalItemPerPage: limit,
+      currentPage: page,
+      prevPage: page > 1 ? page - 1 : 1,
+      nextPage: page < totalPage ? page + 1 : totalPage,
+    };
+
+    return result;
   }
 }

@@ -4,6 +4,7 @@ import { ChapterService } from 'src/module/chapter/chapter.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import * as fs from 'fs';
 import * as path from 'path';
+import { RedisService } from 'src/prisma/redis.service';
 
 @Injectable()
 export class ChapterimageService {
@@ -11,12 +12,18 @@ export class ChapterimageService {
     private readonly prisma: PrismaService,
     private readonly chapterService: ChapterService,
     private readonly configService: ConfigService,
+    private readonly redis: RedisService,
   ) {}
+
+  private async clearChapterImagecache(slug: string) {
+    await this.redis.delCache(`chapter:getChapterbySlug:${slug}`);
+  }
   async create(id: number, files: Express.Multer.File[]) {
     const chapter = await this.chapterService.checkChapterExits(id);
     if (!chapter) {
       throw new NotFoundException('Chapter không tồn tại');
     }
+    const slug = chapter.slug;
     const images = files.map((file) => ({
       chapterId: id,
       image_url: `${this.configService.get<string>('FILE_UPLOAD')}/${file.filename}`,
@@ -24,6 +31,7 @@ export class ChapterimageService {
     const chapterImage = await this.prisma.chapter_image.createMany({
       data: images,
     });
+    await this.clearChapterImagecache(slug);
     return {
       message: 'Thêm nhiều ChapterImage thành công',
       data: chapterImage,
@@ -31,6 +39,11 @@ export class ChapterimageService {
   }
 
   async removeAllImageByChapter(id: number) {
+    const chapter = await this.chapterService.checkChapterExits(id);
+    if (!chapter) {
+      throw new NotFoundException('Chapter không tồn tại');
+    }
+    const slug = chapter.slug;
     const images = await this.prisma.chapter_image.findMany({
       where: { chapterId: id },
     });
@@ -54,11 +67,10 @@ export class ChapterimageService {
         }
       }),
     );
-
     await this.prisma.chapter_image.deleteMany({
       where: { chapterId: id },
     });
-
+    await this.clearChapterImagecache(slug);
     return { message: `Xóa thành công All Image By Chapter ${id}` };
   }
 }

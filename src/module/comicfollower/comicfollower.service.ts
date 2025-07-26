@@ -7,6 +7,7 @@ import { ComicService } from 'src/module/comic/comic.service';
 import { PanigationComicfollowerDto } from 'src/module/comicfollower/dto/panigation-comicfollower.dto';
 import { UserService } from 'src/module/user/user.service';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { RedisService } from 'src/prisma/redis.service';
 
 @Injectable()
 export class ComicfollowerService {
@@ -14,7 +15,14 @@ export class ComicfollowerService {
     private readonly prisma: PrismaService,
     private readonly userService: UserService,
     private readonly comicService: ComicService,
+    private readonly redis: RedisService,
   ) {}
+
+  private async clearComicFollowercache(user_id: number) {
+    await this.redis.clearCacheByPattern(
+      `comicFollower:getAll:user=${user_id}*`,
+    );
+  }
 
   async folowwerComic(user_id: number, comic_id: number) {
     const user = await this.userService.checkUserExis(user_id);
@@ -37,6 +45,8 @@ export class ComicfollowerService {
         comicId: comic_id,
       },
     });
+    await this.comicService.updateIncreFollowerbyComic(comic_id);
+    await this.clearComicFollowercache(user_id);
     return {
       message: `Bạn theo dõi thành công Comic có id ${comic_id}`,
       data: follower,
@@ -71,6 +81,8 @@ export class ComicfollowerService {
         id: checkFollowerUserExits.id,
       },
     });
+    await this.clearComicFollowercache(user_id);
+    await this.comicService.updateDecreFollowerbyComic(comic_id);
     return {
       message: `Bạn đã bỏ thoi dõi thành công Comic có id ${comic_id}`,
     };
@@ -81,6 +93,11 @@ export class ComicfollowerService {
     query: PanigationComicfollowerDto,
   ) {
     const { page, limit } = query;
+    const cacheComicFollower = `comicFollower:getAll:user=${user_id}page=${page}:limit=${limit}`;
+    const cacheResult = await this.redis.getcache(cacheComicFollower);
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    }
     const skip = (page - 1) * limit;
 
     const [comics, totalItem] = await this.prisma.$transaction([
@@ -157,7 +174,7 @@ export class ComicfollowerService {
     const prevPage = page > 1 ? page - 1 : 1;
     const nextPage = page < totalPage ? page + 1 : totalPage;
 
-    return {
+    const result = {
       data,
       totalItem,
       totalPage,
@@ -166,5 +183,11 @@ export class ComicfollowerService {
       prevPage,
       nextPage,
     };
+    await this.redis.setCache(
+      cacheComicFollower,
+      JSON.stringify(result),
+      86400,
+    );
+    return result;
   }
 }

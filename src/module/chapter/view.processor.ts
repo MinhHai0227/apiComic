@@ -1,37 +1,16 @@
 import { Processor, Process } from '@nestjs/bull';
 import { Job } from 'bull';
-import { ComicService } from 'src/module/comic/comic.service';
-import { PrismaService } from 'src/prisma/prisma.service';
+import { ViewhistoryService } from 'src/module/viewhistory/viewhistory.service';
 
 @Processor('view')
 export class ViewProcessor {
-  constructor(
-    private readonly prisma: PrismaService,
-    private readonly comicService: ComicService,
-  ) {}
+  constructor(private readonly viewhistoryService: ViewhistoryService) {}
 
   @Process('record-view')
   async handleRecordView(job: Job<{ chapterId: number; comicId: number }>) {
-    await this.prisma.view_history.create({
-      data: {
-        comicId: job.data.comicId,
-        chapterId: job.data.chapterId,
-      },
-    });
+    await this.viewhistoryService.createViewhistory(
+      job.data.comicId,
+      job.data.chapterId,
+    );
   }
-
-  // @Process('update-views')
-  // async handleUpdateComicViews(
-  //   job: Job<{ comicId: number; chapterId: number }>,
-  // ) {
-  //   await this.prisma.chapter.update({
-  //     where: { id: job.data.chapterId },
-  //     data: {
-  //       views: {
-  //         increment: 1,
-  //       },
-  //     },
-  //   });
-  //   await this.comicService.updateViewByComic(job.data.comicId);
-  // }
 }

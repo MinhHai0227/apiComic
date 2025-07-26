@@ -12,6 +12,7 @@ import { UpdateCommentDto } from 'src/module/comment/dto/update-comment.dto';
 import { NotificationService } from 'src/module/notification/notification.service';
 import { UserService } from 'src/module/user/user.service';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { RedisService } from 'src/prisma/redis.service';
 
 @Injectable()
 export class CommentService {
@@ -21,6 +22,7 @@ export class CommentService {
     private readonly comicService: ComicService,
     private readonly chapterService: ChapterService,
     private readonly notificationService: NotificationService,
+    private readonly redis: RedisService,
   ) {}
 
   async getAllCommentByChapter(
@@ -28,6 +30,11 @@ export class CommentService {
     query: PanigationCommentDto,
   ) {
     const { page, limit } = query;
+    const cacheCommentChapterCache = `comment:getCommentByChapter:chapter=${chapter_id}:page=${page}:limit=${limit}`;
+    const cacheResult = await this.redis.getcache(cacheCommentChapterCache);
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    }
     const skip = (page - 1) * limit;
     await this.chapterService.checkChapterExits(chapter_id);
     const [chapterComment, totalItem, totalComment] =
@@ -45,6 +52,7 @@ export class CommentService {
           include: {
             user: {
               select: {
+                id: true,
                 username: true,
                 avatar: true,
               },
@@ -55,6 +63,7 @@ export class CommentService {
                 content: true,
                 user: {
                   select: {
+                    id: true,
                     username: true,
                     avatar: true,
                   },
@@ -81,8 +90,7 @@ export class CommentService {
     const currentPage = page;
     const prevPage = page > 1 ? page - 1 : 1;
     const nextPage = page < totalPage ? page + 1 : totalPage;
-
-    return {
+    const result = {
       data: chapterComment,
       totalComment,
       totalItem,
@@ -92,10 +100,21 @@ export class CommentService {
       prevPage,
       nextPage,
     };
+    await this.redis.setCache(
+      cacheCommentChapterCache,
+      JSON.stringify(result),
+      86400,
+    );
+    return result;
   }
 
   async getAllCommentByComic(comic_id: number, query: PanigationCommentDto) {
     const { page, limit } = query;
+    const cacheCommentComicCache = `comment:getCommentByComic:comic=${comic_id}:page=${page}:limit=${limit}`;
+    const cacheResult = await this.redis.getcache(cacheCommentComicCache);
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    }
     const skip = (page - 1) * limit;
     await this.comicService.checkComicExits(comic_id);
     const [comicComment, totalItem, totalComent] =
@@ -113,6 +132,7 @@ export class CommentService {
           include: {
             user: {
               select: {
+                id: true,
                 username: true,
                 avatar: true,
               },
@@ -123,6 +143,7 @@ export class CommentService {
                 content: true,
                 user: {
                   select: {
+                    id: true,
                     username: true,
                     avatar: true,
                   },
@@ -150,8 +171,7 @@ export class CommentService {
     const currentPage = page;
     const prevPage = page > 1 ? page - 1 : 1;
     const nextPage = page < totalPage ? page + 1 : totalPage;
-
-    return {
+    const result = {
       data: comicComment,
       totalComent,
       totalItem,
@@ -161,6 +181,12 @@ export class CommentService {
       prevPage,
       nextPage,
     };
+    await this.redis.setCache(
+      cacheCommentComicCache,
+      JSON.stringify(result),
+      86400,
+    );
+    return result;
   }
 
   async createComment(user_id: number, createCommentDto: CreateCommentDto) {
@@ -196,6 +222,16 @@ export class CommentService {
         );
       }
     }
+    if (createCommentDto.comic_id) {
+      await this.redis.clearCacheByPattern(
+        `comment:getCommentByComic:comic=${createCommentDto.comic_id}*`,
+      );
+    }
+    if (createCommentDto.chapter_id) {
+      await this.redis.clearCacheByPattern(
+        `comment:getCommentByChapter:chapter=${createCommentDto.chapter_id}*`,
+      );
+    }
 
     return newComment;
   }
@@ -222,6 +258,16 @@ export class CommentService {
     await this.prisma.comment.delete({
       where: { id: comment_id },
     });
+    if (comment.comicId) {
+      await this.redis.clearCacheByPattern(
+        `comment:getCommentByComic:comic=${comment.comicId}*`,
+      );
+    }
+    if (comment.chapterId) {
+      await this.redis.clearCacheByPattern(
+        `comment:getCommentByChapter:chapter=${comment.chapterId}*`,
+      );
+    }
 
     return {
       message: `Xóa thành công comment có id là ${comment_id}`,
@@ -252,6 +298,16 @@ export class CommentService {
         content: updatecommentDto.content,
       },
     });
+    if (comment.comicId) {
+      await this.redis.clearCacheByPattern(
+        `comment:getCommentByComic:comic=${comment.comicId}*`,
+      );
+    }
+    if (comment.chapterId) {
+      await this.redis.clearCacheByPattern(
+        `comment:getCommentByChapter:chapter=${comment.chapterId}*`,
+      );
+    }
 
     return {
       message: 'Update comment thành công',

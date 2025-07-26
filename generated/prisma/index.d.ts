@@ -6510,12 +6510,14 @@ export namespace Prisma {
   export type ComicAvgAggregateOutputType = {
     id: number | null
     views: number | null
+    follower: number | null
     countryId: number | null
   }
 
   export type ComicSumAggregateOutputType = {
     id: number | null
     views: number | null
+    follower: number | null
     countryId: number | null
   }
 
@@ -6529,6 +6531,7 @@ export namespace Prisma {
     status: $Enums.comicStatus | null
     cover_image: string | null
     views: number | null
+    follower: number | null
     is_active: boolean | null
     create_at: Date | null
     update_at: Date | null
@@ -6545,6 +6548,7 @@ export namespace Prisma {
     status: $Enums.comicStatus | null
     cover_image: string | null
     views: number | null
+    follower: number | null
     is_active: boolean | null
     create_at: Date | null
     update_at: Date | null
@@ -6561,6 +6565,7 @@ export namespace Prisma {
     status: number
     cover_image: number
     views: number
+    follower: number
     is_active: number
     create_at: number
     update_at: number
@@ -6572,12 +6577,14 @@ export namespace Prisma {
   export type ComicAvgAggregateInputType = {
     id?: true
     views?: true
+    follower?: true
     countryId?: true
   }
 
   export type ComicSumAggregateInputType = {
     id?: true
     views?: true
+    follower?: true
     countryId?: true
   }
 
@@ -6591,6 +6598,7 @@ export namespace Prisma {
     status?: true
     cover_image?: true
     views?: true
+    follower?: true
     is_active?: true
     create_at?: true
     update_at?: true
@@ -6607,6 +6615,7 @@ export namespace Prisma {
     status?: true
     cover_image?: true
     views?: true
+    follower?: true
     is_active?: true
     create_at?: true
     update_at?: true
@@ -6623,6 +6632,7 @@ export namespace Prisma {
     status?: true
     cover_image?: true
     views?: true
+    follower?: true
     is_active?: true
     create_at?: true
     update_at?: true
@@ -6726,6 +6736,7 @@ export namespace Prisma {
     status: $Enums.comicStatus
     cover_image: string
     views: number
+    follower: number
     is_active: boolean
     create_at: Date
     update_at: Date
@@ -6761,6 +6772,7 @@ export namespace Prisma {
     status?: boolean
     cover_image?: boolean
     views?: boolean
+    follower?: boolean
     is_active?: boolean
     create_at?: boolean
     update_at?: boolean
@@ -6787,13 +6799,14 @@ export namespace Prisma {
     status?: boolean
     cover_image?: boolean
     views?: boolean
+    follower?: boolean
     is_active?: boolean
     create_at?: boolean
     update_at?: boolean
     countryId?: boolean
   }
 
-  export type ComicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "title_eng" | "slug" | "description" | "author" | "status" | "cover_image" | "views" | "is_active" | "create_at" | "update_at" | "countryId", ExtArgs["result"]["comic"]>
+  export type ComicOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "title" | "title_eng" | "slug" | "description" | "author" | "status" | "cover_image" | "views" | "follower" | "is_active" | "create_at" | "update_at" | "countryId", ExtArgs["result"]["comic"]>
   export type ComicInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     country?: boolean | CountryDefaultArgs<ExtArgs>
     categories?: boolean | Comic$categoriesArgs<ExtArgs>
@@ -6826,6 +6839,7 @@ export namespace Prisma {
       status: $Enums.comicStatus
       cover_image: string
       views: number
+      follower: number
       is_active: boolean
       create_at: Date
       update_at: Date
@@ -7215,6 +7229,7 @@ export namespace Prisma {
     readonly status: FieldRef<"Comic", 'comicStatus'>
     readonly cover_image: FieldRef<"Comic", 'String'>
     readonly views: FieldRef<"Comic", 'Int'>
+    readonly follower: FieldRef<"Comic", 'Int'>
     readonly is_active: FieldRef<"Comic", 'Boolean'>
     readonly create_at: FieldRef<"Comic", 'DateTime'>
     readonly update_at: FieldRef<"Comic", 'DateTime'>
@@ -16931,6 +16946,7 @@ export namespace Prisma {
     status: 'status',
     cover_image: 'cover_image',
     views: 'views',
+    follower: 'follower',
     is_active: 'is_active',
     create_at: 'create_at',
     update_at: 'update_at',
@@ -17488,6 +17504,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFilter<"Comic"> | $Enums.comicStatus
     cover_image?: StringFilter<"Comic"> | string
     views?: IntFilter<"Comic"> | number
+    follower?: IntFilter<"Comic"> | number
     is_active?: BoolFilter<"Comic"> | boolean
     create_at?: DateTimeFilter<"Comic"> | Date | string
     update_at?: DateTimeFilter<"Comic"> | Date | string
@@ -17511,6 +17528,7 @@ export namespace Prisma {
     status?: SortOrder
     cover_image?: SortOrder
     views?: SortOrder
+    follower?: SortOrder
     is_active?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
@@ -17538,6 +17556,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFilter<"Comic"> | $Enums.comicStatus
     cover_image?: StringFilter<"Comic"> | string
     views?: IntFilter<"Comic"> | number
+    follower?: IntFilter<"Comic"> | number
     is_active?: BoolFilter<"Comic"> | boolean
     create_at?: DateTimeFilter<"Comic"> | Date | string
     update_at?: DateTimeFilter<"Comic"> | Date | string
@@ -17561,6 +17580,7 @@ export namespace Prisma {
     status?: SortOrder
     cover_image?: SortOrder
     views?: SortOrder
+    follower?: SortOrder
     is_active?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
@@ -17585,6 +17605,7 @@ export namespace Prisma {
     status?: EnumcomicStatusWithAggregatesFilter<"Comic"> | $Enums.comicStatus
     cover_image?: StringWithAggregatesFilter<"Comic"> | string
     views?: IntWithAggregatesFilter<"Comic"> | number
+    follower?: IntWithAggregatesFilter<"Comic"> | number
     is_active?: BoolWithAggregatesFilter<"Comic"> | boolean
     create_at?: DateTimeWithAggregatesFilter<"Comic"> | Date | string
     update_at?: DateTimeWithAggregatesFilter<"Comic"> | Date | string
@@ -18468,6 +18489,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -18490,6 +18512,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -18511,6 +18534,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18533,6 +18557,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18555,6 +18580,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -18570,6 +18596,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -18585,6 +18612,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -19619,6 +19647,7 @@ export namespace Prisma {
     status?: SortOrder
     cover_image?: SortOrder
     views?: SortOrder
+    follower?: SortOrder
     is_active?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
@@ -19628,6 +19657,7 @@ export namespace Prisma {
   export type ComicAvgOrderByAggregateInput = {
     id?: SortOrder
     views?: SortOrder
+    follower?: SortOrder
     countryId?: SortOrder
   }
 
@@ -19641,6 +19671,7 @@ export namespace Prisma {
     status?: SortOrder
     cover_image?: SortOrder
     views?: SortOrder
+    follower?: SortOrder
     is_active?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
@@ -19657,6 +19688,7 @@ export namespace Prisma {
     status?: SortOrder
     cover_image?: SortOrder
     views?: SortOrder
+    follower?: SortOrder
     is_active?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
@@ -19666,6 +19698,7 @@ export namespace Prisma {
   export type ComicSumOrderByAggregateInput = {
     id?: SortOrder
     views?: SortOrder
+    follower?: SortOrder
     countryId?: SortOrder
   }
 
@@ -22103,6 +22136,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -22124,6 +22158,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -22174,6 +22209,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFilter<"Comic"> | $Enums.comicStatus
     cover_image?: StringFilter<"Comic"> | string
     views?: IntFilter<"Comic"> | number
+    follower?: IntFilter<"Comic"> | number
     is_active?: BoolFilter<"Comic"> | boolean
     create_at?: DateTimeFilter<"Comic"> | Date | string
     update_at?: DateTimeFilter<"Comic"> | Date | string
@@ -22531,6 +22567,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -22552,6 +22589,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -22593,6 +22631,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -22614,6 +22653,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -22765,6 +22805,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -22786,6 +22827,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23287,6 +23329,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -23308,6 +23351,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -23390,6 +23434,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23411,6 +23456,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23471,6 +23517,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -23492,6 +23539,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -23616,6 +23664,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23637,6 +23686,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23705,6 +23755,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -23726,6 +23777,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -23804,6 +23856,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23825,6 +23878,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -23933,6 +23987,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -23954,6 +24009,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -24131,6 +24187,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24152,6 +24209,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24474,6 +24532,7 @@ export namespace Prisma {
     status?: $Enums.comicStatus
     cover_image: string
     views?: number
+    follower?: number
     is_active?: boolean
     create_at?: Date | string
     update_at?: Date | string
@@ -24488,6 +24547,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24509,6 +24569,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24530,6 +24591,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24745,6 +24807,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24766,6 +24829,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -24787,6 +24851,7 @@ export namespace Prisma {
     status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
     cover_image?: StringFieldUpdateOperationsInput | string
     views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
     is_active?: BoolFieldUpdateOperationsInput | boolean
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string

@@ -277,7 +277,7 @@ export class UserService {
     if (!user) {
       throw new NotFoundException('User không tồn tại');
     }
-    const checkTotalPrice = user.total_coin > price_coin;
+    const checkTotalPrice = user.total_coin >= price_coin;
     if (!checkTotalPrice) {
       throw new BadRequestException('bạn không đủ xu');
     }

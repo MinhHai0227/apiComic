@@ -9,7 +9,6 @@ import {
   Request,
 } from '@nestjs/common';
 import { ComichistoryService } from './comichistory.service';
-import { Roles } from 'src/decorator/roles.decorator';
 import { CreateHistoryDto } from 'src/module/comichistory/dto/create-history.dto';
 import { PanigationComichistoryDto } from 'src/module/comichistory/dto/panigation-comichistory.dto';
 

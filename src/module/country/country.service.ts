@@ -6,10 +6,22 @@ import {
 import { CreateCountryDto } from 'src/module/country/dto/create-country.dto';
 import { UpdateCountryDto } from 'src/module/country/dto/update-country.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { RedisService } from 'src/prisma/redis.service';
 
 @Injectable()
 export class CountryService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly redis: RedisService,
+  ) {}
+
+  private async clearCountryCache() {
+    await Promise.all([
+      this.redis.delCache('country:getAll'),
+      this.redis.clearCacheByPattern('comic:getAll*'),
+      this.redis.clearCacheByPattern('category:getcategoryByslug*'),
+    ]);
+  }
 
   async checkNameCountryExits(name: string) {
     return await this.prisma.country.findUnique({
@@ -25,6 +37,8 @@ export class CountryService {
     const newCountry = await this.prisma.country.create({
       data: createCountryDto,
     });
+
+    await this.clearCountryCache();
     return {
       message: 'Thêm Country thành công',
       country: newCountry,
@@ -32,7 +46,13 @@ export class CountryService {
   }
 
   async findAll() {
+    const cacheCountry = 'country:getAll';
+    const cacheResult = await this.redis.getcache(cacheCountry);
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    }
     const country = await this.prisma.country.findMany();
+    await this.redis.setCache(cacheCountry, JSON.stringify(country), 604800);
     return country;
   }
 
@@ -51,6 +71,7 @@ export class CountryService {
       where: { id: id },
       data: updateCountryDto,
     });
+    await this.clearCountryCache();
     return {
       message: 'Update Country thành công',
       country,
@@ -65,6 +86,7 @@ export class CountryService {
     await this.prisma.country.delete({
       where: { id: id },
     });
+    await this.clearCountryCache();
     return {
       message: `Xóa thành công country có id ${id}`,
     };

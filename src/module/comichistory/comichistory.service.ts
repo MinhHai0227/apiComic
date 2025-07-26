@@ -9,6 +9,7 @@ import { CreateHistoryDto } from 'src/module/comichistory/dto/create-history.dto
 import { PanigationComichistoryDto } from 'src/module/comichistory/dto/panigation-comichistory.dto';
 import { UserService } from 'src/module/user/user.service';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { RedisService } from 'src/prisma/redis.service';
 
 @Injectable()
 export class ComichistoryService {
@@ -17,7 +18,14 @@ export class ComichistoryService {
     private readonly userService: UserService,
     private readonly comicService: ComicService,
     private readonly chapterService: ChapterService,
+    private readonly redis: RedisService,
   ) {}
+
+  private async clearComicHistoryCache(user_id: number) {
+    await this.redis.clearCacheByPattern(
+      `comicHistory:getAll:user=${user_id}*`,
+    );
+  }
 
   async getChapterlast(user_id: number, comic_id: number) {
     const comic = await this.prisma.comic_history.findUnique({
@@ -104,6 +112,7 @@ export class ComichistoryService {
           read_time: new Date(),
         },
       });
+      await this.clearComicHistoryCache(user_id);
       return {
         message: `Đã cập nhật lịch sử Comic có ID ${dto.comic_id} với chapter có ID là ${dto.chapter_id}`,
       };
@@ -116,6 +125,7 @@ export class ComichistoryService {
         chapterId: dto.chapter_id,
       },
     });
+    await this.clearComicHistoryCache(user_id);
     return {
       message: `Đã lưu lịch sử Comic có ID ${dto.comic_id} với chapter có ID là ${dto.chapter_id}`,
     };
@@ -126,6 +136,11 @@ export class ComichistoryService {
     query: PanigationComichistoryDto,
   ) {
     const { page, limit } = query;
+    const cacheComicHistory = `comicHistory:getAll:user=${user_id}page=${page}:limit=${limit}`;
+    const cacheResult = await this.redis.getcache(cacheComicHistory);
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    }
     const skip = (page - 1) * limit;
     const [totalItem, comicHistory] = await this.prisma.$transaction([
       this.prisma.comic_history.count({
@@ -181,8 +196,7 @@ export class ComichistoryService {
     const currentPage = page;
     const prevPage = page > 1 ? page - 1 : 1;
     const nextPage = page < totalPage ? page + 1 : totalPage;
-
-    return {
+    const result = {
       data: comicHistory,
       totalItem,
       totalPage,
@@ -191,6 +205,8 @@ export class ComichistoryService {
       prevPage,
       nextPage,
     };
+    await this.redis.setCache(cacheComicHistory, JSON.stringify(result), 86400);
+    return result;
   }
 
   async deleteHistoryComic(user_id: number, comic_id: number) {
@@ -210,6 +226,7 @@ export class ComichistoryService {
         id: comic.id,
       },
     });
+    await this.clearComicHistoryCache(user_id);
     return { message: `Xóa thành công comic đã đọc` };
   }
 }

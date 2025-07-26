@@ -25,6 +25,7 @@ import { MomoModule } from './momo/momo.module';
 import { TransactionModule } from './module/transaction/transaction.module';
 import { BullModule } from '@nestjs/bull';
 import { RedisModule } from '@nestjs-modules/ioredis';
+import { ViewhistoryModule } from './module/viewhistory/viewhistory.module';
 
 @Module({
   imports: [
@@ -62,6 +63,7 @@ import { RedisModule } from '@nestjs-modules/ioredis';
     CommentModule,
     MomoModule,
     TransactionModule,
+    ViewhistoryModule,
   ],
   controllers: [],
   providers: [

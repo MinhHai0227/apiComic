@@ -7,10 +7,21 @@ import { CreateCategoryDto } from 'src/module/category/dto/create-category.dto';
 import { PanigationCategoryDto } from 'src/module/category/dto/panigation-category.dto';
 import { UpdateCategoryDto } from 'src/module/category/dto/update-category.dto';
 import { PrismaService } from 'src/prisma/prisma.service';
+import { RedisService } from 'src/prisma/redis.service';
 
 @Injectable()
 export class CategoryService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly redis: RedisService,
+  ) {}
+
+  private async clearCategoryCache() {
+    await Promise.all([
+      this.redis.delCache('category:getAll'),
+      this.redis.clearCacheByPattern('comic:getComicbySlug*'),
+    ]);
+  }
 
   async checkCategoryExits(id: number) {
     return await this.prisma.category.findUnique({
@@ -32,6 +43,7 @@ export class CategoryService {
     const category = await this.prisma.category.create({
       data: createCategoryDto,
     });
+    await this.clearCategoryCache();
 
     return {
       message: 'Thêm Category thành công',
@@ -40,8 +52,14 @@ export class CategoryService {
   }
 
   async findAll() {
+    const cacheCategories = 'category:getAll';
+    const cacheResult = await this.redis.getcache(cacheCategories);
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    }
     const categories = await this.prisma.category.findMany();
     const data = categories.map(({ create_at, update_at, ...data }) => data);
+    await this.redis.setCache(cacheCategories, JSON.stringify(data), 604800);
     return data;
   }
 
@@ -54,6 +72,7 @@ export class CategoryService {
       where: { id: id },
       data: updateCategoryDto,
     });
+    await this.clearCategoryCache();
     return {
       message: 'Update catagory thành công',
       data: category,
@@ -68,12 +87,14 @@ export class CategoryService {
     const catagory = await this.prisma.category.delete({
       where: { id: id },
     });
+    await this.clearCategoryCache();
     return `Xóa thành công category có id ${catagory.id}`;
   }
 
   async checkArrayIdCategoryExits(categoryId: number[]) {
     const categories = await this.prisma.category.findMany({
       where: { id: { in: categoryId } },
+      select: { id: true },
     });
 
     const id = categories.map((category) => category.id);
@@ -86,18 +107,23 @@ export class CategoryService {
         `Không tồn tại Category ${notExitsCategories.join(', ')}`,
       );
     }
-    return notExitsCategories;
+    return id;
   }
 
   async findOne(slug: string, query: PanigationCategoryDto) {
     const { page, limit, status, country, sort } = query;
     const skip = (page - 1) * limit;
+    const cachecategorybySlug = `category:getcategoryByslug:slug=${slug}:page=${page}:limit=${limit}:status=${status}:country=${country}:sort=${sort}`;
+    const cacheResult = await this.redis.getcache(cachecategorybySlug);
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    }
 
     const orderSort = {
       1: { create_at: 'desc' },
       2: { create_at: 'asc' },
-      3: { views: 'desc' },
-      4: { views: 'asc' },
+      3: { views: 'asc' },
+      4: { views: 'desc' },
     };
     const order = orderSort[sort];
     const category = await this.prisma.category.findUnique({
@@ -161,8 +187,7 @@ export class CategoryService {
     const currentPage = page;
     const prevPage = page > 1 ? page - 1 : 1;
     const nextPage = page < totalPage ? page + 1 : totalPage;
-
-    return {
+    const result = {
       data,
       totalItem,
       totalPage,
@@ -171,5 +196,11 @@ export class CategoryService {
       prevPage,
       nextPage,
     };
+    await this.redis.setCache(
+      cachecategorybySlug,
+      JSON.stringify(result),
+      3600,
+    );
+    return result;
   }
 }

@@ -164,6 +164,7 @@ exports.Prisma.ComicScalarFieldEnum = {
   status: 'status',
   cover_image: 'cover_image',
   views: 'views',
+  follower: 'follower',
   is_active: 'is_active',
   create_at: 'create_at',
   update_at: 'update_at',

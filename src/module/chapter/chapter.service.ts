@@ -10,15 +10,25 @@ import { InjectQueue } from '@nestjs/bull';
 import { Queue } from 'bull';
 import { InjectRedis } from '@nestjs-modules/ioredis';
 import Redis from 'ioredis';
+import { RedisService } from 'src/prisma/redis.service';
 
 @Injectable()
 export class ChapterService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly comicService: ComicService,
+    private readonly redisService: RedisService,
     @InjectQueue('view') private viewQueue: Queue,
     @InjectRedis() private redis: Redis,
   ) {}
+
+  private async clearChaptercache(key: string) {
+    await Promise.all([
+      this.redisService.delCache(key),
+      this.redisService.clearCacheByPattern('unlockChapter*'),
+      this.redisService.clearCacheByPattern('comic:getAll*'),
+    ]);
+  }
 
   async create(createChapterDto: CreateChapterDto) {
     const comic = await this.comicService.checkComicExits(
@@ -41,6 +51,15 @@ export class ChapterService {
         chapter_image_url: `chapter/${data.slug}`,
       },
     });
+    await this.prisma.comic.update({
+      where: {
+        id: comic_id,
+      },
+      data: {
+        create_at: data.create_at,
+      },
+    });
+    await this.clearChaptercache(`comic:getComicbySlug:${comic.slug}`);
     return {
       message: 'Thêm Chapter thành công',
       data: newData,
@@ -48,8 +67,13 @@ export class ChapterService {
   }
 
   async findOneBySlug(slug: string, clientId: string) {
+    const cacheChapter = `chapter:getChapterbySlug:${slug}`;
+    const cacheResult = await this.redisService.getcache(cacheChapter);
+    if (cacheResult) {
+      return JSON.parse(cacheResult);
+    }
     const chapter = await this.prisma.chapter.findUnique({
-      where: { slug: slug },
+      where: { slug },
       include: {
         chapterImages: true,
         comic: {
@@ -76,11 +100,12 @@ export class ChapterService {
         comicId: chapter.comicId,
       });
 
-      await this.redis.incr(`views:chapter:${chapter.id}`);
-      await this.redis.incr(`views:comic:${chapter.comicId}`);
+      await this.redis.incrby(`views:chapter:${chapter.id}`, 1);
+      await this.redis.incrby(`views:comic:${chapter.comicId}`, 1);
     }
 
     const { update_at, comicId, ...data } = chapter;
+    await this.redisService.setCache(cacheChapter, JSON.stringify(data), 3600);
     return data;
   }
 
@@ -105,7 +130,7 @@ export class ChapterService {
         ...data,
       },
     });
-
+    await this.clearChaptercache(`comic:getComicbySlug:${comicSlug}`);
     return {
       message: 'Update thành công chapter',
       data: chapter,
@@ -117,7 +142,7 @@ export class ChapterService {
     if (!chapterExits) {
       throw new NotFoundException('Chapter không tồn tại');
     }
-
+    const comicSlug = chapterExits.slug.split('-chap-')[0];
     const images = await this.prisma.chapter_image.findMany({
       where: { chapterId: id },
     });
@@ -144,6 +169,7 @@ export class ChapterService {
     const chapter = await this.prisma.chapter.delete({
       where: { id },
     });
+    await this.clearChaptercache(`comic:getComicbySlug:${comicSlug}`);
     return { message: `Xóa thành công Chapter có id ${chapter.id}` };
   }
 
@@ -152,6 +178,7 @@ export class ChapterService {
     if (!chapterExits) {
       throw new NotFoundException('Chapter không tồn tại');
     }
+    const comicSlug = chapterExits.slug.split('-chap-')[0];
     const isLock = chapterExits.is_locked;
     const chapter = await this.prisma.chapter.update({
       where: { id },
@@ -159,17 +186,52 @@ export class ChapterService {
         is_locked: !isLock,
       },
     });
+    await this.clearChaptercache(`comic:getComicbySlug:${comicSlug}`);
     if (chapter.is_locked === true) {
       return { message: 'Đã khóa chapter', data: chapter };
     } else {
       return { message: 'Đã mở khóa chapter', data: chapter };
     }
   }
+
+  async updateViewByChapter(id: number, views: number) {
+    const chapter = await this.checkChapterExits(id);
+    if (!chapter) {
+      throw new NotFoundException('Chapter không tồn tại');
+    }
+    await this.prisma.chapter.update({
+      where: { id },
+      data: {
+        views: { increment: views },
+      },
+    });
+  }
+
+  async checkArrayChapterExits(chapter_id: number[]) {
+    const chapters = await this.prisma.chapter.findMany({
+      where: { id: { in: chapter_id } },
+      select: {
+        id: true,
+        auto_unlock_time: true,
+        price_xu: true,
+      },
+    });
+    if (!chapters) {
+      throw new NotFoundException('Vui lòng chọn chapter');
+    }
+    const ids = chapters.map((item) => item.id);
+    const notExitsChapter = chapter_id.filter((id) => !ids.includes(id));
+    if (notExitsChapter && notExitsChapter.length > 0) {
+      throw new NotFoundException(
+        `Không tồn tại Chapter ${notExitsChapter.join(', ')}`,
+      );
+    }
+    return chapters;
+  }
   // unlockChapter
   @Cron(CronExpression.EVERY_HOUR)
   async autoUnlockChapter() {
-    let page = 1;
-    const page_size = 50;
+    const page_size = 100;
     const currentTime = new Date();
     try {
       while (true) {
@@ -180,7 +242,7 @@ export class ChapterService {
               lt: currentTime,
             },
           },
-          skip: (page - 1) * page_size,
+          select: { id: true },
           take: page_size,
         });
 
@@ -193,51 +255,63 @@ export class ChapterService {
           where: {
             id: { in: chapterIds },
           },
-          data: {
-            is_locked: false,
-          },
+          data: { is_locked: false },
         });
-        page++;
+        await new Promise((res) => setTimeout(res, 100));
       }
+      await Promise.all([
+        this.redisService.clearCacheByPattern('unlockChapter*'),
+        this.redisService.clearCacheByPattern('comic:getComicbySlug*'),
+      ]);
     } catch (error) {
-      console.error('Error during cron job execution:', error);
+      console.error('Lỗi update unlock chapter:', error);
     }
   }
 
   //updateView
-
   private async processViews(pattern: string, type: 'chapter' | 'comic') {
-    const BATCH_SIZE = 100;
-    const keys = await this.redis.keys(pattern);
-    if (keys.length === 0) {
-      return;
-    }
-    for (let i = 0; i < keys.length; i += BATCH_SIZE) {
-      const batch = keys.slice(i, i + BATCH_SIZE);
-      await Promise.all(
-        batch.map(async (key) => {
-          try {
-            const id = Number(key.split(':')[2]);
-            if (type === 'chapter') {
-              await this.prisma.chapter.update({
-                where: { id },
-                data: { views: { increment: 1 } },
-              });
-            } else {
-              await this.comicService.updateViewByComic(id, 1);
-            }
-            await this.redis.del(key);
-          } catch (error) {
-            console.error(`Error processing key ${key}:`, error);
-          }
-        }),
+    const batchSize = 100;
+    let cursor = 0;
+    do {
+      const [newCursor, keys] = await this.redis.scan(
+        cursor,
+        'MATCH',
+        pattern,
+        'COUNT',
+        batchSize,
       );
-    }
+      cursor = parseInt(newCursor, 10);
+
+      if (keys.length > 0) {
+        try {
+          await Promise.all(
+            keys.map(async (key) => {
+              const id = Number(key.split(':')[2]);
+              const views = await this.redis.get(key);
+              if (!views) return;
+              const viewsCount = Number(views);
+              if (viewsCount === 0) return;
+
+              if (type === 'chapter') {
+                await this.updateViewByChapter(id, viewsCount);
+              } else {
+                await this.comicService.updateViewByComic(id, viewsCount);
+              }
+              await this.redis.del(key);
+            }),
+          );
+        } catch (error) {
+          console.error('Lỗi khi xử lý view:', error);
+        }
+      }
+    } while (cursor !== 0);
   }
 
   @Cron(CronExpression.EVERY_5_MINUTES)
   async updateViewChapterComic() {
-    await this.processViews('views:chapter:*', 'chapter');
-    await this.processViews('views:comic:*', 'comic');
+    await Promise.all([
+      this.processViews('views:chapter:*', 'chapter'),
+      this.processViews('views:comic:*', 'comic'),
+    ]);
   }
 }

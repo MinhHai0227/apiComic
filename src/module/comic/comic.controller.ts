@@ -20,6 +20,7 @@ import { CreateComicDto } from 'src/module/comic/dto/create-comic.dto';
 import { Public } from 'src/decorator/public.decorator';
 import { PanigationComicDto } from 'src/module/comic/dto/panigation_comic.dto';
 import { UpdateComicDto } from 'src/module/comic/dto/update-comic.dto';
+import { SearchComicDto } from 'src/module/comic/dto/search-comic.dto';
 
 @Controller('comic')
 export class ComicController {
@@ -42,6 +43,12 @@ export class ComicController {
   @Public()
   findAll(@Query() query: PanigationComicDto) {
     return this.comicService.findAll(query);
+  }
+
+  @Get('top/top-follower')
+  @Public()
+  getTopFollowerComic(@Query() query: PanigationComicDto) {
+    return this.comicService.getTopFollowerComic(query);
   }
 
   @Roles('admin', 'editor')
@@ -70,5 +77,11 @@ export class ComicController {
   @Patch('active/:id')
   setIsActiveComic(@Param('id', ParseIntPipe) id: number) {
     return this.comicService.setIsActiveComic(id);
+  }
+
+  @Public()
+  @Get('search/hhh')
+  searchComic(@Query() query: SearchComicDto) {
+    return this.comicService.searchComic(query);
   }
 }
