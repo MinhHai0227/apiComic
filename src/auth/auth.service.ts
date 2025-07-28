@@ -1,6 +1,8 @@
+import { MailerService } from '@nestjs-modules/mailer';
 import {
   BadRequestException,
   Injectable,
+  InternalServerErrorException,
   NotFoundException,
   UnauthorizedException,
 } from '@nestjs/common';
@@ -9,7 +11,9 @@ import { JwtService } from '@nestjs/jwt';
 import { User } from 'generated/prisma';
 import { ChangePasswordDto } from 'src/auth/dto/change-password.dto';
 import { CreateRegisterDto } from 'src/auth/dto/create-register.dto';
+import { ResetPasswordDto } from 'src/auth/dto/reset-password.dto';
 import { UserService } from 'src/module/user/user.service';
+import { PrismaService } from 'src/prisma/prisma.service';
 import { PasswordService } from 'src/utils/password.service';
 
 @Injectable()
@@ -19,6 +23,8 @@ export class AuthService {
     private readonly passwordService: PasswordService,
     private readonly jwtService: JwtService,
     private readonly configService: ConfigService,
+    private readonly mailerService: MailerService,
+    private readonly prisma: PrismaService,
   ) {}
 
   async generateToken(user: any) {
@@ -99,5 +105,59 @@ export class AuthService {
 
   async signOut(id: number) {
     return await this.userService.createRefreshToken(id, null);
+  }
+
+  async forgotPassword(email: string) {
+    const user = await this.userService.findUserByEmail(email);
+    if (!user) {
+      throw new NotFoundException('email không tồn tại');
+    }
+    const sendToken = await this.jwtService.sign({ email });
+    const resetLink = `${this.configService.get('FRONTEND_URL')}/reset-password?token=${sendToken}`;
+    await this.mailerService
+      .sendMail({
+        to: email,
+        subject: 'Đặt lại mật khẩu',
+        html: `
+      <p>TruyenDocViet xin chào,</p>
+      <p>Nhấp vào liên kết sau để đặt lại mật khẩu của bạn:</p>
+      <p><a href="${resetLink}">${resetLink}</a></p>
+      <p>Liên kết này sẽ hết hạn sau 2 giờ.</p>
+      <p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.</p>
+    `,
+      })
+      .catch(() => {
+        throw new InternalServerErrorException(
+          'Không thể gửi email đặt lại mật khẩu',
+        );
+      });
+    return {
+      success: 'Gửi email thành công, vui lòng kiểm tra email.',
+    };
+  }
+
+  async resetPassword(data: ResetPasswordDto) {
+    const { token, new_password } = data;
+    let payload;
+    try {
+      payload = await this.jwtService.verify(token);
+    } catch {
+      throw new BadRequestException('Token không hợp lệ hoặc đã hết hạn');
+    }
+    const user = await this.userService.findUserByEmail(payload.email);
+    if (!user) {
+      throw new BadRequestException('Token không hợp lệ hoặc đã hết hạn');
+    }
+
+    const password = await this.passwordService.hasPassword(new_password);
+    await this.prisma.user.update({
+      where: { email: payload.email },
+      data: {
+        password,
+      },
+    });
+    return {
+      success: 'Đặt lại mật khẩu thành công',
+    };
   }
 }

@@ -2369,6 +2369,7 @@ export namespace Prisma {
     role: $Enums.userRole | null
     total_coin: number | null
     refresh_token: string | null
+    resetPasswordToken: string | null
     create_at: Date | null
     update_at: Date | null
   }
@@ -2382,6 +2383,7 @@ export namespace Prisma {
     role: $Enums.userRole | null
     total_coin: number | null
     refresh_token: string | null
+    resetPasswordToken: string | null
     create_at: Date | null
     update_at: Date | null
   }
@@ -2395,6 +2397,7 @@ export namespace Prisma {
     role: number
     total_coin: number
     refresh_token: number
+    resetPasswordToken: number
     create_at: number
     update_at: number
     _all: number
@@ -2420,6 +2423,7 @@ export namespace Prisma {
     role?: true
     total_coin?: true
     refresh_token?: true
+    resetPasswordToken?: true
     create_at?: true
     update_at?: true
   }
@@ -2433,6 +2437,7 @@ export namespace Prisma {
     role?: true
     total_coin?: true
     refresh_token?: true
+    resetPasswordToken?: true
     create_at?: true
     update_at?: true
   }
@@ -2446,6 +2451,7 @@ export namespace Prisma {
     role?: true
     total_coin?: true
     refresh_token?: true
+    resetPasswordToken?: true
     create_at?: true
     update_at?: true
     _all?: true
@@ -2546,6 +2552,7 @@ export namespace Prisma {
     role: $Enums.userRole
     total_coin: number
     refresh_token: string | null
+    resetPasswordToken: string | null
     create_at: Date
     update_at: Date
     _count: UserCountAggregateOutputType | null
@@ -2578,6 +2585,7 @@ export namespace Prisma {
     role?: boolean
     total_coin?: boolean
     refresh_token?: boolean
+    resetPasswordToken?: boolean
     create_at?: boolean
     update_at?: boolean
     transactions?: boolean | User$transactionsArgs<ExtArgs>
@@ -2600,11 +2608,12 @@ export namespace Prisma {
     role?: boolean
     total_coin?: boolean
     refresh_token?: boolean
+    resetPasswordToken?: boolean
     create_at?: boolean
     update_at?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "avatar" | "role" | "total_coin" | "refresh_token" | "create_at" | "update_at", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "avatar" | "role" | "total_coin" | "refresh_token" | "resetPasswordToken" | "create_at" | "update_at", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transactions?: boolean | User$transactionsArgs<ExtArgs>
     chapterUnlocks?: boolean | User$chapterUnlocksArgs<ExtArgs>
@@ -2634,6 +2643,7 @@ export namespace Prisma {
       role: $Enums.userRole
       total_coin: number
       refresh_token: string | null
+      resetPasswordToken: string | null
       create_at: Date
       update_at: Date
     }, ExtArgs["result"]["user"]>
@@ -3019,6 +3029,7 @@ export namespace Prisma {
     readonly role: FieldRef<"User", 'userRole'>
     readonly total_coin: FieldRef<"User", 'Int'>
     readonly refresh_token: FieldRef<"User", 'String'>
+    readonly resetPasswordToken: FieldRef<"User", 'String'>
     readonly create_at: FieldRef<"User", 'DateTime'>
     readonly update_at: FieldRef<"User", 'DateTime'>
   }
@@ -16896,6 +16907,7 @@ export namespace Prisma {
     role: 'role',
     total_coin: 'total_coin',
     refresh_token: 'refresh_token',
+    resetPasswordToken: 'resetPasswordToken',
     create_at: 'create_at',
     update_at: 'update_at'
   };
@@ -17082,7 +17094,8 @@ export namespace Prisma {
     email: 'email',
     password: 'password',
     avatar: 'avatar',
-    refresh_token: 'refresh_token'
+    refresh_token: 'refresh_token',
+    resetPasswordToken: 'resetPasswordToken'
   };
 
   export type UserOrderByRelevanceFieldEnum = (typeof UserOrderByRelevanceFieldEnum)[keyof typeof UserOrderByRelevanceFieldEnum]
@@ -17230,6 +17243,7 @@ export namespace Prisma {
     role?: EnumuserRoleFilter<"User"> | $Enums.userRole
     total_coin?: IntFilter<"User"> | number
     refresh_token?: StringNullableFilter<"User"> | string | null
+    resetPasswordToken?: StringNullableFilter<"User"> | string | null
     create_at?: DateTimeFilter<"User"> | Date | string
     update_at?: DateTimeFilter<"User"> | Date | string
     transactions?: TransactionListRelationFilter
@@ -17249,6 +17263,7 @@ export namespace Prisma {
     role?: SortOrder
     total_coin?: SortOrder
     refresh_token?: SortOrderInput | SortOrder
+    resetPasswordToken?: SortOrderInput | SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
     transactions?: TransactionOrderByRelationAggregateInput
@@ -17272,6 +17287,7 @@ export namespace Prisma {
     role?: EnumuserRoleFilter<"User"> | $Enums.userRole
     total_coin?: IntFilter<"User"> | number
     refresh_token?: StringNullableFilter<"User"> | string | null
+    resetPasswordToken?: StringNullableFilter<"User"> | string | null
     create_at?: DateTimeFilter<"User"> | Date | string
     update_at?: DateTimeFilter<"User"> | Date | string
     transactions?: TransactionListRelationFilter
@@ -17291,6 +17307,7 @@ export namespace Prisma {
     role?: SortOrder
     total_coin?: SortOrder
     refresh_token?: SortOrderInput | SortOrder
+    resetPasswordToken?: SortOrderInput | SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -17312,6 +17329,7 @@ export namespace Prisma {
     role?: EnumuserRoleWithAggregatesFilter<"User"> | $Enums.userRole
     total_coin?: IntWithAggregatesFilter<"User"> | number
     refresh_token?: StringNullableWithAggregatesFilter<"User"> | string | null
+    resetPasswordToken?: StringNullableWithAggregatesFilter<"User"> | string | null
     create_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
     update_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -18211,6 +18229,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -18230,6 +18249,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -18248,6 +18268,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -18267,6 +18288,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -18286,6 +18308,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
   }
@@ -18298,6 +18321,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -18311,6 +18335,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19290,6 +19315,7 @@ export namespace Prisma {
     role?: SortOrder
     total_coin?: SortOrder
     refresh_token?: SortOrder
+    resetPasswordToken?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
   }
@@ -19308,6 +19334,7 @@ export namespace Prisma {
     role?: SortOrder
     total_coin?: SortOrder
     refresh_token?: SortOrder
+    resetPasswordToken?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
   }
@@ -19321,6 +19348,7 @@ export namespace Prisma {
     role?: SortOrder
     total_coin?: SortOrder
     refresh_token?: SortOrder
+    resetPasswordToken?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
   }
@@ -22007,6 +22035,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     chapterUnlocks?: chapter_unlockCreateNestedManyWithoutUserInput
@@ -22025,6 +22054,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutUserInput
@@ -22076,6 +22106,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     chapterUnlocks?: chapter_unlockUpdateManyWithoutUserNestedInput
@@ -22094,6 +22125,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutUserNestedInput
@@ -23026,6 +23058,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -23044,6 +23077,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -23119,6 +23153,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -23137,6 +23172,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -23202,6 +23238,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -23220,6 +23257,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -23253,6 +23291,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -23271,6 +23310,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -23288,6 +23328,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -23306,6 +23347,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -23387,6 +23429,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -23405,6 +23448,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -23476,6 +23520,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -23494,6 +23539,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -23617,6 +23663,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -23635,6 +23682,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -23946,6 +23994,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -23964,6 +24013,7 @@ export namespace Prisma {
     role?: $Enums.userRole
     total_coin?: number
     refresh_token?: string | null
+    resetPasswordToken?: string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -24140,6 +24190,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -24158,6 +24209,7 @@ export namespace Prisma {
     role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput

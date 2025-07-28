@@ -23,6 +23,7 @@ model User {
   role userRole @default(user)
   total_coin Int @default(0)
   refresh_token String?
+  resetPasswordToken String?
   create_at DateTime @default(now()) @db.DateTime(0)
   update_at DateTime @updatedAt @db.DateTime(0)
   transactions Transaction[]
@@ -232,4 +233,3 @@ model comment {
   @@index([parentId])
   @@index([userId])
 }
-

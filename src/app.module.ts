@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './module/user/user.module';
 import { AuthModule } from './auth/auth.module';
@@ -26,6 +26,8 @@ import { TransactionModule } from './module/transaction/transaction.module';
 import { BullModule } from '@nestjs/bull';
 import { RedisModule } from '@nestjs-modules/ioredis';
 import { ViewhistoryModule } from './module/viewhistory/viewhistory.module';
+import { MailerModule } from '@nestjs-modules/mailer';
+import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
 
 @Module({
   imports: [
@@ -45,6 +47,33 @@ import { ViewhistoryModule } from './module/viewhistory/viewhistory.module';
     }),
     ConfigModule.forRoot({
       isGlobal: true,
+    }),
+    MailerModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        transport: {
+          host: 'smtp.gmail.com',
+          port: 465,
+          // ignoreTLS: true,
+          secure: true,
+          auth: {
+            user: configService.get<string>('USER_MAIL'),
+            pass: configService.get<string>('PASSWORD_MAIL'),
+          },
+        },
+        defaults: {
+          from: '"No Reply" <no-reply@localhost>',
+        },
+        preview: true,
+        // template: {
+        //   dir: process.cwd() + '/template/',
+        //   adapter: new HandlebarsAdapter(),
+        //   options: {
+        //     strict: true,
+        //   },
+        // },
+      }),
+      inject: [ConfigService],
     }),
     ScheduleModule.forRoot(),
     PrismaModule,

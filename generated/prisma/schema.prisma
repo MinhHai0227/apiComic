@@ -15,22 +15,23 @@ datasource db {
 }
 
 model User {
-  id             Int              @id @default(autoincrement())
-  username       String
-  email          String           @unique
-  password       String
-  avatar         String?
-  role           userRole         @default(user)
-  total_coin     Int              @default(0)
-  refresh_token  String?
-  create_at      DateTime         @default(now()) @db.DateTime(0)
-  update_at      DateTime         @updatedAt @db.DateTime(0)
-  transactions   Transaction[]
-  chapterUnlocks chapter_unlock[]
-  notifications  Notification[]
-  comicFollower  comic_follower[]
-  comicHistory   comic_history[]
-  comments       comment[]
+  id                 Int              @id @default(autoincrement())
+  username           String
+  email              String           @unique
+  password           String
+  avatar             String?
+  role               userRole         @default(user)
+  total_coin         Int              @default(0)
+  refresh_token      String?
+  resetPasswordToken String?
+  create_at          DateTime         @default(now()) @db.DateTime(0)
+  update_at          DateTime         @updatedAt @db.DateTime(0)
+  transactions       Transaction[]
+  chapterUnlocks     chapter_unlock[]
+  notifications      Notification[]
+  comicFollower      comic_follower[]
+  comicHistory       comic_history[]
+  comments           comment[]
 
   @@index([username])
 }

@@ -16,10 +16,15 @@ import { CreateRegisterDto } from 'src/auth/dto/create-register.dto';
 import { GoogleAuthGuard } from 'src/auth/passport/google-oauth.guard';
 import { Response } from 'express';
 import { ChangePasswordDto } from 'src/auth/dto/change-password.dto';
+import { MailerService } from '@nestjs-modules/mailer';
+import { ResetPasswordDto } from 'src/auth/dto/reset-password.dto';
 
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(
+    private readonly authService: AuthService,
+    private readonly mailerService: MailerService,
+  ) {}
 
   private setCookies(
     res: Response,
@@ -123,5 +128,17 @@ export class AuthController {
   @Get('profile')
   getProfile(@Request() req) {
     return { data: req.user };
+  }
+
+  @Public()
+  @Post('send-mailer')
+  forgotPassword(@Body('email') email: string) {
+    return this.authService.forgotPassword(email);
+  }
+
+  @Public()
+  @Patch('reset-password')
+  resetPassword(@Body() data: ResetPasswordDto) {
+    return this.authService.resetPassword(data);
   }
 }

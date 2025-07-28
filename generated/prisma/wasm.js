@@ -126,6 +126,7 @@ exports.Prisma.UserScalarFieldEnum = {
   role: 'role',
   total_coin: 'total_coin',
   refresh_token: 'refresh_token',
+  resetPasswordToken: 'resetPasswordToken',
   create_at: 'create_at',
   update_at: 'update_at'
 };
@@ -264,7 +265,8 @@ exports.Prisma.UserOrderByRelevanceFieldEnum = {
   email: 'email',
   password: 'password',
   avatar: 'avatar',
-  refresh_token: 'refresh_token'
+  refresh_token: 'refresh_token',
+  resetPasswordToken: 'resetPasswordToken'
 };
 
 exports.Prisma.CountryOrderByRelevanceFieldEnum = {
