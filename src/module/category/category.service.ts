@@ -38,7 +38,7 @@ export class CategoryService {
       where: { name: createCategoryDto.name },
     });
     if (categorySlug || categoryName) {
-      throw new BadRequestException('Category name/slug đã tồn tại');
+      throw new BadRequestException('Tên thể loại đã tồn tại');
     }
     const category = await this.prisma.category.create({
       data: createCategoryDto,

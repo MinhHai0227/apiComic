@@ -218,6 +218,17 @@ exports.Prisma.NotificationScalarFieldEnum = {
   userId: 'userId'
 };
 
+exports.Prisma.ReplyNotificationScalarFieldEnum = {
+  id: 'id',
+  message: 'message',
+  seen: 'seen',
+  userId: 'userId',
+  commentId: 'commentId',
+  comicId: 'comicId',
+  chapterId: 'chapterId',
+  create_at: 'create_at'
+};
+
 exports.Prisma.Comic_followerScalarFieldEnum = {
   id: 'id',
   userId: 'userId',
@@ -247,6 +258,7 @@ exports.Prisma.CommentScalarFieldEnum = {
   chapterId: 'chapterId',
   content: 'content',
   parentId: 'parentId',
+  replyToId: 'replyToId',
   create_at: 'create_at'
 };
 
@@ -303,6 +315,10 @@ exports.Prisma.NotificationOrderByRelevanceFieldEnum = {
   message: 'message'
 };
 
+exports.Prisma.ReplyNotificationOrderByRelevanceFieldEnum = {
+  message: 'message'
+};
+
 exports.Prisma.commentOrderByRelevanceFieldEnum = {
   content: 'content'
 };
@@ -340,6 +356,7 @@ exports.Prisma.ModelName = {
   chapter_image: 'chapter_image',
   chapter_unlock: 'chapter_unlock',
   Notification: 'Notification',
+  ReplyNotification: 'ReplyNotification',
   comic_follower: 'comic_follower',
   comic_history: 'comic_history',
   view_history: 'view_history',

@@ -28,6 +28,7 @@ import { RedisModule } from '@nestjs-modules/ioredis';
 import { ViewhistoryModule } from './module/viewhistory/viewhistory.module';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handlebars.adapter';
+import { ReplynotificationModule } from './module/replynotification/replynotification.module';
 
 @Module({
   imports: [
@@ -93,6 +94,7 @@ import { HandlebarsAdapter } from '@nestjs-modules/mailer/dist/adapters/handleba
     MomoModule,
     TransactionModule,
     ViewhistoryModule,
+    ReplynotificationModule,
   ],
   controllers: [],
   providers: [

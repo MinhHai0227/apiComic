@@ -50,7 +50,7 @@ export class ComicService {
       where: { title: createComicDto.title },
     });
     if (comicSlug || comicTitle) {
-      throw new BadRequestException('Category title/slug đã tồn tại');
+      throw new BadRequestException('Tên truyện đã tồn tại');
     }
 
     const country = await this.countryService.checkCountryExits(

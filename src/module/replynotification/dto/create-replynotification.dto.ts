@@ -1,28 +1,24 @@
 import { Transform } from 'class-transformer';
 import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
-export class CreateCommentDto {
+export class CreateReplynotificationDto {
   @IsInt()
-  @IsOptional()
   @Transform(({ value }) => parseInt(value))
-  comic_id: number;
+  @IsNotEmpty()
+  userId: number;
+
+  @IsInt()
+  @IsNotEmpty()
+  @Transform(({ value }) => parseInt(value))
+  commentId: number;
 
   @IsInt()
   @IsOptional()
   @Transform(({ value }) => parseInt(value))
-  chapter_id: number;
+  comic_id?: number;
 
   @IsInt()
   @IsOptional()
   @Transform(({ value }) => parseInt(value))
-  parent_id: number;
-
-  @IsInt()
-  @IsOptional()
-  @Transform(({ value }) => parseInt(value))
-  replyToId: number;
-
-  @IsString()
-  @IsNotEmpty({ message: 'content không được để trống' })
-  content: string;
+  chapter_id?: number;
 }

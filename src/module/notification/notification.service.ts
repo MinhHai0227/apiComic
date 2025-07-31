@@ -15,18 +15,6 @@ export class NotificationService {
     await this.redis.clearCacheByPattern('notification:getAll*');
   }
 
-  async notifiCommentReplay(user_id: number, username: string) {
-    const message = `${username} đã trả lời bình luận của bạn`;
-    await this.clearComicCache();
-    return await this.prisma.notification.create({
-      data: {
-        userId: user_id,
-        message: message,
-        type: notifiType.reply,
-      },
-    });
-  }
-
   async notifiUnlockChapter(user_id: number, chapter: string) {
     const message = `Bạn đã mở khóa chapter ${chapter} thành công`;
     await this.clearComicCache();
@@ -98,7 +86,7 @@ export class NotificationService {
       return JSON.parse(cacheResult);
     }
 
-    const [notifications, totalItem, unseenCount] = await Promise.all([
+    const [notifications, totalItem] = await Promise.all([
       this.prisma.notification.findMany({
         where: whereCondition,
         orderBy: {
@@ -110,12 +98,6 @@ export class NotificationService {
       this.prisma.notification.count({
         where: whereCondition,
       }),
-      this.prisma.notification.count({
-        where: {
-          ...whereCondition,
-          seen: false,
-        },
-      }),
     ]);
 
     const totalPage = Math.ceil(totalItem / limit);
@@ -125,7 +107,6 @@ export class NotificationService {
     const nextPage = page < totalPage ? page + 1 : totalPage;
     const result = {
       data: notifications,
-      unseenCount,
       totalItem,
       totalPage,
       totalItemPerPage,

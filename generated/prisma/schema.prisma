@@ -15,23 +15,24 @@ datasource db {
 }
 
 model User {
-  id                 Int              @id @default(autoincrement())
+  id                 Int                 @id @default(autoincrement())
   username           String
-  email              String           @unique
+  email              String              @unique
   password           String
   avatar             String?
-  role               userRole         @default(user)
-  total_coin         Int              @default(0)
+  role               userRole            @default(user)
+  total_coin         Int                 @default(0)
   refresh_token      String?
   resetPasswordToken String?
-  create_at          DateTime         @default(now()) @db.DateTime(0)
-  update_at          DateTime         @updatedAt @db.DateTime(0)
+  create_at          DateTime            @default(now()) @db.DateTime(0)
+  update_at          DateTime            @updatedAt @db.DateTime(0)
   transactions       Transaction[]
   chapterUnlocks     chapter_unlock[]
   notifications      Notification[]
   comicFollower      comic_follower[]
   comicHistory       comic_history[]
   comments           comment[]
+  ReplyNotification  ReplyNotification[]
 
   @@index([username])
 }
@@ -79,27 +80,28 @@ model Country {
 }
 
 model Comic {
-  id            Int              @id @default(autoincrement())
-  title         String           @unique
-  title_eng     String?
-  slug          String           @unique
-  description   String           @db.Text
-  author        String
-  status        comicStatus      @default(onGoing)
-  cover_image   String
-  views         Int              @default(0)
-  follower      Int              @default(0)
-  is_active     Boolean          @default(false)
-  create_at     DateTime         @default(now()) @db.DateTime(0)
-  update_at     DateTime         @updatedAt @db.DateTime(0)
-  countryId     Int
-  country       Country          @relation(fields: [countryId], references: [id], onDelete: Restrict)
-  categories    Category[]       @relation("comic_category")
-  chapters      Chapter[]
-  comicFollower comic_follower[]
-  comicHistory  comic_history[]
-  comments      comment[]
-  viewHistorys  view_history[]
+  id                Int                 @id @default(autoincrement())
+  title             String              @unique
+  title_eng         String?
+  slug              String              @unique
+  description       String              @db.Text
+  author            String
+  status            comicStatus         @default(onGoing)
+  cover_image       String
+  views             Int                 @default(0)
+  follower          Int                 @default(0)
+  is_active         Boolean             @default(false)
+  create_at         DateTime            @default(now()) @db.DateTime(0)
+  update_at         DateTime            @updatedAt @db.DateTime(0)
+  countryId         Int
+  country           Country             @relation(fields: [countryId], references: [id], onDelete: Restrict)
+  categories        Category[]          @relation("comic_category")
+  chapters          Chapter[]
+  comicFollower     comic_follower[]
+  comicHistory      comic_history[]
+  comments          comment[]
+  viewHistorys      view_history[]
+  ReplyNotification ReplyNotification[]
 
   @@index([countryId])
   @@index([title_eng])
@@ -121,24 +123,25 @@ model Category {
 }
 
 model Chapter {
-  id                Int              @id @default(autoincrement())
+  id                Int                 @id @default(autoincrement())
   chapter_name      String
   chapter_title     String?
-  slug              String           @unique
-  is_locked         Boolean          @default(true)
-  price_xu          Int              @default(0)
-  auto_unlock_time  DateTime         @default(now()) @db.DateTime(0)
-  views             Int              @default(0)
+  slug              String              @unique
+  is_locked         Boolean             @default(true)
+  price_xu          Int                 @default(0)
+  auto_unlock_time  DateTime            @default(now()) @db.DateTime(0)
+  views             Int                 @default(0)
   chapter_image_url String?
-  create_at         DateTime         @default(now()) @db.DateTime(0)
-  update_at         DateTime         @updatedAt @db.DateTime(0)
+  create_at         DateTime            @default(now()) @db.DateTime(0)
+  update_at         DateTime            @updatedAt @db.DateTime(0)
   comicId           Int
-  comic             Comic            @relation(fields: [comicId], references: [id], onDelete: Restrict)
+  comic             Comic               @relation(fields: [comicId], references: [id], onDelete: Restrict)
   chapterImages     chapter_image[]
   chapterUnlocks    chapter_unlock[]
   comicHistory      comic_history[]
   comments          comment[]
   viewHistorys      view_history[]
+  ReplyNotification ReplyNotification[]
 
   @@index([is_locked, auto_unlock_time])
   @@index([comicId])
@@ -180,6 +183,26 @@ enum notifiType {
   reply
 }
 
+model ReplyNotification {
+  id        Int      @id @default(autoincrement())
+  message   String
+  seen      Boolean  @default(false)
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  commentId Int // Liên kết với comment
+  comment   comment  @relation(fields: [commentId], references: [id], onDelete: Cascade)
+  comicId   Int? // Liên kết với Comic (nếu bình luận trên comic)
+  comic     Comic?   @relation(fields: [comicId], references: [id], onDelete: Cascade)
+  chapterId Int? // Liên kết với Chapter (nếu bình luận trên chapter)
+  chapter   Chapter? @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+  create_at DateTime @default(now()) @db.DateTime(0)
+
+  @@index([userId])
+  @@index([commentId])
+  @@index([comicId])
+  @@index([chapterId])
+}
+
 model comic_follower {
   id      Int   @id @default(autoincrement())
   userId  Int
@@ -218,18 +241,24 @@ model view_history {
 }
 
 model comment {
-  id        Int       @id @default(autoincrement())
+  id        Int      @id @default(autoincrement())
   userId    Int
   comicId   Int?
   chapterId Int?
-  content   String    @db.Text
+  content   String   @db.Text
   parentId  Int?
-  create_at DateTime  @default(now()) @db.DateTime(0)
-  user      User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  comic     Comic?    @relation(fields: [comicId], references: [id], onDelete: Cascade)
-  chapter   Chapter?  @relation(fields: [chapterId], references: [id], onDelete: Cascade)
-  parent    comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: SetNull)
-  replies   comment[] @relation("CommentReplies")
+  replyToId Int?
+  create_at DateTime @default(now()) @db.DateTime(0)
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  comic     Comic?   @relation(fields: [comicId], references: [id], onDelete: Cascade)
+  chapter   Chapter? @relation(fields: [chapterId], references: [id], onDelete: Cascade)
+
+  parent  comment?  @relation("CommentReplies", fields: [parentId], references: [id], onDelete: Cascade)
+  replies comment[] @relation("CommentReplies")
+
+  replyTo           comment?            @relation("ReplyTo", fields: [replyToId], references: [id], onDelete: Cascade)
+  replyToBy         comment[]           @relation("ReplyTo")
+  ReplyNotification ReplyNotification[]
 
   @@index([comicId])
   @@index([chapterId])

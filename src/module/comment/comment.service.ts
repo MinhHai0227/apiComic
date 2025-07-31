@@ -1,4 +1,5 @@
 import {
+  BadRequestException,
   ForbiddenException,
   Injectable,
   NotFoundException,
@@ -9,7 +10,8 @@ import { ComicService } from 'src/module/comic/comic.service';
 import { CreateCommentDto } from 'src/module/comment/dto/create-comment.dto';
 import { PanigationCommentDto } from 'src/module/comment/dto/panigation-comment.dto';
 import { UpdateCommentDto } from 'src/module/comment/dto/update-comment.dto';
-import { NotificationService } from 'src/module/notification/notification.service';
+import { ReplynotificationService } from 'src/module/replynotification/replynotification.service';
+
 import { UserService } from 'src/module/user/user.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { RedisService } from 'src/prisma/redis.service';
@@ -21,7 +23,7 @@ export class CommentService {
     private readonly userService: UserService,
     private readonly comicService: ComicService,
     private readonly chapterService: ChapterService,
-    private readonly notificationService: NotificationService,
+    private readonly notificationService: ReplynotificationService,
     private readonly redis: RedisService,
   ) {}
 
@@ -58,14 +60,16 @@ export class CommentService {
               },
             },
             replies: {
-              select: {
-                id: true,
-                content: true,
-                user: {
+              orderBy: { create_at: 'asc' },
+              include: {
+                user: { select: { id: true, username: true, avatar: true } },
+                replyTo: {
                   select: {
                     id: true,
-                    username: true,
-                    avatar: true,
+                    content: true,
+                    user: {
+                      select: { id: true, username: true, avatar: true },
+                    },
                   },
                 },
               },
@@ -117,7 +121,9 @@ export class CommentService {
     }
     const skip = (page - 1) * limit;
     await this.comicService.checkComicExits(comic_id);
-    const [comicComment, totalItem, totalComent] =
+
+    const [comicComment, totalItem, totalComment] =
+    
       await this.prisma.$transaction([
         this.prisma.comment.findMany({
           where: {
@@ -138,14 +144,14 @@ export class CommentService {
               },
             },
             replies: {
-              select: {
-                id: true,
-                content: true,
-                user: {
+              orderBy: { create_at: 'asc' },
+              include: {
+                user: { select: { id: true, username: true, avatar: true } },
+                replyTo: {
                   select: {
-                    id: true,
-                    username: true,
-                    avatar: true,
+                    user: {
+                      select: { id: true, username: true, avatar: true },
+                    },
                   },
                 },
               },
@@ -173,7 +179,7 @@ export class CommentService {
     const nextPage = page < totalPage ? page + 1 : totalPage;
     const result = {
       data: comicComment,
-      totalComent,
+      totalComment,
       totalItem,
       totalPage,
       totalItemPerPage,
@@ -190,6 +196,31 @@ export class CommentService {
   }
 
   async createComment(user_id: number, createCommentDto: CreateCommentDto) {
+    let parentId = createCommentDto.parent_id;
+    let replyToId = createCommentDto.replyToId;
+    if (replyToId) {
+      const replyToComment = await this.prisma.comment.findUnique({
+        where: { id: replyToId },
+      });
+      if (!replyToComment)
+        throw new NotFoundException('Bình luận mà bạn trả lời không tồn tại');
+
+      parentId = replyToComment.parentId || replyToComment.id;
+    }
+
+    if (parentId) {
+      const parentComment = await this.prisma.comment.findUnique({
+        where: { id: parentId },
+      });
+      if (!parentComment)
+        throw new NotFoundException('Bình luận mà bạn trả lời không tồn tại');
+      if (parentComment.parentId) {
+        throw new BadRequestException(
+          'không thể trả lời của bình luận trả lời được',
+        );
+      }
+    }
+
     const user = await this.userService.checkUserExis(user_id);
     if (!user) {
       throw new NotFoundException('User không tồn tại');
@@ -201,24 +232,30 @@ export class CommentService {
         chapterId: createCommentDto.chapter_id,
         parentId: createCommentDto.parent_id,
         content: createCommentDto.content,
+        replyToId,
       },
       include: {
-        parent: {
-          select: {
-            userId: true,
-          },
+        user: { select: { id: true, username: true } },
+        replyTo: {
+          select: { id: true, user: { select: { id: true, username: true } } },
         },
+        parent: { select: { id: true } },
       },
     });
-    if (createCommentDto.parent_id) {
-      const parentComment = newComment.parent;
-      if (
-        parentComment?.userId != user_id &&
-        parentComment?.userId != undefined
-      ) {
+    if (replyToId) {
+      const replyToComment = await this.prisma.comment.findUnique({
+        where: { id: replyToId },
+        include: { user: { select: { id: true, username: true } } },
+      });
+      if (replyToComment && replyToComment.userId !== user_id) {
         await this.notificationService.notifiCommentReplay(
-          parentComment.userId,
-          user.username,
+          {
+            userId: replyToComment.userId,
+            chapter_id: newComment.chapterId ?? undefined,
+            comic_id: newComment.comicId ?? undefined,
+            commentId: newComment.id,
+          },
+          newComment.user.username,
         );
       }
     }

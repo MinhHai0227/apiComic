@@ -64,6 +64,11 @@ export type chapter_unlock = $Result.DefaultSelection<Prisma.$chapter_unlockPayl
  */
 export type Notification = $Result.DefaultSelection<Prisma.$NotificationPayload>
 /**
+ * Model ReplyNotification
+ * 
+ */
+export type ReplyNotification = $Result.DefaultSelection<Prisma.$ReplyNotificationPayload>
+/**
  * Model comic_follower
  * 
  */
@@ -364,6 +369,16 @@ export class PrismaClient<
     * ```
     */
   get notification(): Prisma.NotificationDelegate<ExtArgs, ClientOptions>;
+
+  /**
+   * `prisma.replyNotification`: Exposes CRUD operations for the **ReplyNotification** model.
+    * Example usage:
+    * ```ts
+    * // Fetch zero or more ReplyNotifications
+    * const replyNotifications = await prisma.replyNotification.findMany()
+    * ```
+    */
+  get replyNotification(): Prisma.ReplyNotificationDelegate<ExtArgs, ClientOptions>;
 
   /**
    * `prisma.comic_follower`: Exposes CRUD operations for the **comic_follower** model.
@@ -854,6 +869,7 @@ export namespace Prisma {
     chapter_image: 'chapter_image',
     chapter_unlock: 'chapter_unlock',
     Notification: 'Notification',
+    ReplyNotification: 'ReplyNotification',
     comic_follower: 'comic_follower',
     comic_history: 'comic_history',
     view_history: 'view_history',
@@ -876,7 +892,7 @@ export namespace Prisma {
       omit: GlobalOmitOptions
     }
     meta: {
-      modelProps: "user" | "coin" | "transaction" | "country" | "comic" | "category" | "chapter" | "chapter_image" | "chapter_unlock" | "notification" | "comic_follower" | "comic_history" | "view_history" | "comment"
+      modelProps: "user" | "coin" | "transaction" | "country" | "comic" | "category" | "chapter" | "chapter_image" | "chapter_unlock" | "notification" | "replyNotification" | "comic_follower" | "comic_history" | "view_history" | "comment"
       txIsolationLevel: Prisma.TransactionIsolationLevel
     }
     model: {
@@ -1540,6 +1556,72 @@ export namespace Prisma {
           }
         }
       }
+      ReplyNotification: {
+        payload: Prisma.$ReplyNotificationPayload<ExtArgs>
+        fields: Prisma.ReplyNotificationFieldRefs
+        operations: {
+          findUnique: {
+            args: Prisma.ReplyNotificationFindUniqueArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReplyNotificationPayload> | null
+          }
+          findUniqueOrThrow: {
+            args: Prisma.ReplyNotificationFindUniqueOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReplyNotificationPayload>
+          }
+          findFirst: {
+            args: Prisma.ReplyNotificationFindFirstArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReplyNotificationPayload> | null
+          }
+          findFirstOrThrow: {
+            args: Prisma.ReplyNotificationFindFirstOrThrowArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReplyNotificationPayload>
+          }
+          findMany: {
+            args: Prisma.ReplyNotificationFindManyArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReplyNotificationPayload>[]
+          }
+          create: {
+            args: Prisma.ReplyNotificationCreateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReplyNotificationPayload>
+          }
+          createMany: {
+            args: Prisma.ReplyNotificationCreateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          delete: {
+            args: Prisma.ReplyNotificationDeleteArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReplyNotificationPayload>
+          }
+          update: {
+            args: Prisma.ReplyNotificationUpdateArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReplyNotificationPayload>
+          }
+          deleteMany: {
+            args: Prisma.ReplyNotificationDeleteManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          updateMany: {
+            args: Prisma.ReplyNotificationUpdateManyArgs<ExtArgs>
+            result: BatchPayload
+          }
+          upsert: {
+            args: Prisma.ReplyNotificationUpsertArgs<ExtArgs>
+            result: $Utils.PayloadToResult<Prisma.$ReplyNotificationPayload>
+          }
+          aggregate: {
+            args: Prisma.ReplyNotificationAggregateArgs<ExtArgs>
+            result: $Utils.Optional<AggregateReplyNotification>
+          }
+          groupBy: {
+            args: Prisma.ReplyNotificationGroupByArgs<ExtArgs>
+            result: $Utils.Optional<ReplyNotificationGroupByOutputType>[]
+          }
+          count: {
+            args: Prisma.ReplyNotificationCountArgs<ExtArgs>
+            result: $Utils.Optional<ReplyNotificationCountAggregateOutputType> | number
+          }
+        }
+      }
       comic_follower: {
         payload: Prisma.$comic_followerPayload<ExtArgs>
         fields: Prisma.comic_followerFieldRefs
@@ -1898,6 +1980,7 @@ export namespace Prisma {
     chapter_image?: chapter_imageOmit
     chapter_unlock?: chapter_unlockOmit
     notification?: NotificationOmit
+    replyNotification?: ReplyNotificationOmit
     comic_follower?: comic_followerOmit
     comic_history?: comic_historyOmit
     view_history?: view_historyOmit
@@ -2002,6 +2085,7 @@ export namespace Prisma {
     comicFollower: number
     comicHistory: number
     comments: number
+    ReplyNotification: number
   }
 
   export type UserCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2011,6 +2095,7 @@ export namespace Prisma {
     comicFollower?: boolean | UserCountOutputTypeCountComicFollowerArgs
     comicHistory?: boolean | UserCountOutputTypeCountComicHistoryArgs
     comments?: boolean | UserCountOutputTypeCountCommentsArgs
+    ReplyNotification?: boolean | UserCountOutputTypeCountReplyNotificationArgs
   }
 
   // Custom InputTypes
@@ -2064,6 +2149,13 @@ export namespace Prisma {
    */
   export type UserCountOutputTypeCountCommentsArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: commentWhereInput
+  }
+
+  /**
+   * UserCountOutputType without action
+   */
+  export type UserCountOutputTypeCountReplyNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReplyNotificationWhereInput
   }
 
 
@@ -2140,6 +2232,7 @@ export namespace Prisma {
     comicHistory: number
     comments: number
     viewHistorys: number
+    ReplyNotification: number
   }
 
   export type ComicCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2149,6 +2242,7 @@ export namespace Prisma {
     comicHistory?: boolean | ComicCountOutputTypeCountComicHistoryArgs
     comments?: boolean | ComicCountOutputTypeCountCommentsArgs
     viewHistorys?: boolean | ComicCountOutputTypeCountViewHistorysArgs
+    ReplyNotification?: boolean | ComicCountOutputTypeCountReplyNotificationArgs
   }
 
   // Custom InputTypes
@@ -2204,6 +2298,13 @@ export namespace Prisma {
     where?: view_historyWhereInput
   }
 
+  /**
+   * ComicCountOutputType without action
+   */
+  export type ComicCountOutputTypeCountReplyNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReplyNotificationWhereInput
+  }
+
 
   /**
    * Count Type CategoryCountOutputType
@@ -2246,6 +2347,7 @@ export namespace Prisma {
     comicHistory: number
     comments: number
     viewHistorys: number
+    ReplyNotification: number
   }
 
   export type ChapterCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2254,6 +2356,7 @@ export namespace Prisma {
     comicHistory?: boolean | ChapterCountOutputTypeCountComicHistoryArgs
     comments?: boolean | ChapterCountOutputTypeCountCommentsArgs
     viewHistorys?: boolean | ChapterCountOutputTypeCountViewHistorysArgs
+    ReplyNotification?: boolean | ChapterCountOutputTypeCountReplyNotificationArgs
   }
 
   // Custom InputTypes
@@ -2302,6 +2405,13 @@ export namespace Prisma {
     where?: view_historyWhereInput
   }
 
+  /**
+   * ChapterCountOutputType without action
+   */
+  export type ChapterCountOutputTypeCountReplyNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReplyNotificationWhereInput
+  }
+
 
   /**
    * Count Type CommentCountOutputType
@@ -2309,10 +2419,14 @@ export namespace Prisma {
 
   export type CommentCountOutputType = {
     replies: number
+    replyToBy: number
+    ReplyNotification: number
   }
 
   export type CommentCountOutputTypeSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     replies?: boolean | CommentCountOutputTypeCountRepliesArgs
+    replyToBy?: boolean | CommentCountOutputTypeCountReplyToByArgs
+    ReplyNotification?: boolean | CommentCountOutputTypeCountReplyNotificationArgs
   }
 
   // Custom InputTypes
@@ -2331,6 +2445,20 @@ export namespace Prisma {
    */
   export type CommentCountOutputTypeCountRepliesArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     where?: commentWhereInput
+  }
+
+  /**
+   * CommentCountOutputType without action
+   */
+  export type CommentCountOutputTypeCountReplyToByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: commentWhereInput
+  }
+
+  /**
+   * CommentCountOutputType without action
+   */
+  export type CommentCountOutputTypeCountReplyNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReplyNotificationWhereInput
   }
 
 
@@ -2594,6 +2722,7 @@ export namespace Prisma {
     comicFollower?: boolean | User$comicFollowerArgs<ExtArgs>
     comicHistory?: boolean | User$comicHistoryArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
+    ReplyNotification?: boolean | User$ReplyNotificationArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["user"]>
 
@@ -2621,6 +2750,7 @@ export namespace Prisma {
     comicFollower?: boolean | User$comicFollowerArgs<ExtArgs>
     comicHistory?: boolean | User$comicHistoryArgs<ExtArgs>
     comments?: boolean | User$commentsArgs<ExtArgs>
+    ReplyNotification?: boolean | User$ReplyNotificationArgs<ExtArgs>
     _count?: boolean | UserCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -2633,6 +2763,7 @@ export namespace Prisma {
       comicFollower: Prisma.$comic_followerPayload<ExtArgs>[]
       comicHistory: Prisma.$comic_historyPayload<ExtArgs>[]
       comments: Prisma.$commentPayload<ExtArgs>[]
+      ReplyNotification: Prisma.$ReplyNotificationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -2992,6 +3123,7 @@ export namespace Prisma {
     comicFollower<T extends User$comicFollowerArgs<ExtArgs> = {}>(args?: Subset<T, User$comicFollowerArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_followerPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comicHistory<T extends User$comicHistoryArgs<ExtArgs> = {}>(args?: Subset<T, User$comicHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends User$commentsArgs<ExtArgs> = {}>(args?: Subset<T, User$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ReplyNotification<T extends User$ReplyNotificationArgs<ExtArgs> = {}>(args?: Subset<T, User$ReplyNotificationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3516,6 +3648,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * User.ReplyNotification
+   */
+  export type User$ReplyNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    where?: ReplyNotificationWhereInput
+    orderBy?: ReplyNotificationOrderByWithRelationInput | ReplyNotificationOrderByWithRelationInput[]
+    cursor?: ReplyNotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReplyNotificationScalarFieldEnum | ReplyNotificationScalarFieldEnum[]
   }
 
   /**
@@ -6795,6 +6951,7 @@ export namespace Prisma {
     comicHistory?: boolean | Comic$comicHistoryArgs<ExtArgs>
     comments?: boolean | Comic$commentsArgs<ExtArgs>
     viewHistorys?: boolean | Comic$viewHistorysArgs<ExtArgs>
+    ReplyNotification?: boolean | Comic$ReplyNotificationArgs<ExtArgs>
     _count?: boolean | ComicCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comic"]>
 
@@ -6826,6 +6983,7 @@ export namespace Prisma {
     comicHistory?: boolean | Comic$comicHistoryArgs<ExtArgs>
     comments?: boolean | Comic$commentsArgs<ExtArgs>
     viewHistorys?: boolean | Comic$viewHistorysArgs<ExtArgs>
+    ReplyNotification?: boolean | Comic$ReplyNotificationArgs<ExtArgs>
     _count?: boolean | ComicCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -6839,6 +6997,7 @@ export namespace Prisma {
       comicHistory: Prisma.$comic_historyPayload<ExtArgs>[]
       comments: Prisma.$commentPayload<ExtArgs>[]
       viewHistorys: Prisma.$view_historyPayload<ExtArgs>[]
+      ReplyNotification: Prisma.$ReplyNotificationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -7202,6 +7361,7 @@ export namespace Prisma {
     comicHistory<T extends Comic$comicHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Comic$comicHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends Comic$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Comic$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     viewHistorys<T extends Comic$viewHistorysArgs<ExtArgs> = {}>(args?: Subset<T, Comic$viewHistorysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ReplyNotification<T extends Comic$ReplyNotificationArgs<ExtArgs> = {}>(args?: Subset<T, Comic$ReplyNotificationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -7729,6 +7889,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: View_historyScalarFieldEnum | View_historyScalarFieldEnum[]
+  }
+
+  /**
+   * Comic.ReplyNotification
+   */
+  export type Comic$ReplyNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    where?: ReplyNotificationWhereInput
+    orderBy?: ReplyNotificationOrderByWithRelationInput | ReplyNotificationOrderByWithRelationInput[]
+    cursor?: ReplyNotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReplyNotificationScalarFieldEnum | ReplyNotificationScalarFieldEnum[]
   }
 
   /**
@@ -9022,6 +9206,7 @@ export namespace Prisma {
     comicHistory?: boolean | Chapter$comicHistoryArgs<ExtArgs>
     comments?: boolean | Chapter$commentsArgs<ExtArgs>
     viewHistorys?: boolean | Chapter$viewHistorysArgs<ExtArgs>
+    ReplyNotification?: boolean | Chapter$ReplyNotificationArgs<ExtArgs>
     _count?: boolean | ChapterCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["chapter"]>
 
@@ -9050,6 +9235,7 @@ export namespace Prisma {
     comicHistory?: boolean | Chapter$comicHistoryArgs<ExtArgs>
     comments?: boolean | Chapter$commentsArgs<ExtArgs>
     viewHistorys?: boolean | Chapter$viewHistorysArgs<ExtArgs>
+    ReplyNotification?: boolean | Chapter$ReplyNotificationArgs<ExtArgs>
     _count?: boolean | ChapterCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -9062,6 +9248,7 @@ export namespace Prisma {
       comicHistory: Prisma.$comic_historyPayload<ExtArgs>[]
       comments: Prisma.$commentPayload<ExtArgs>[]
       viewHistorys: Prisma.$view_historyPayload<ExtArgs>[]
+      ReplyNotification: Prisma.$ReplyNotificationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -9422,6 +9609,7 @@ export namespace Prisma {
     comicHistory<T extends Chapter$comicHistoryArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$comicHistoryArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$comic_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     comments<T extends Chapter$commentsArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$commentsArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     viewHistorys<T extends Chapter$viewHistorysArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$viewHistorysArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$view_historyPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ReplyNotification<T extends Chapter$ReplyNotificationArgs<ExtArgs> = {}>(args?: Subset<T, Chapter$ReplyNotificationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -9923,6 +10111,30 @@ export namespace Prisma {
     take?: number
     skip?: number
     distinct?: View_historyScalarFieldEnum | View_historyScalarFieldEnum[]
+  }
+
+  /**
+   * Chapter.ReplyNotification
+   */
+  export type Chapter$ReplyNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    where?: ReplyNotificationWhereInput
+    orderBy?: ReplyNotificationOrderByWithRelationInput | ReplyNotificationOrderByWithRelationInput[]
+    cursor?: ReplyNotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReplyNotificationScalarFieldEnum | ReplyNotificationScalarFieldEnum[]
   }
 
   /**
@@ -12828,6 +13040,1068 @@ export namespace Prisma {
      * Choose, which related nodes to fetch as well
      */
     include?: NotificationInclude<ExtArgs> | null
+  }
+
+
+  /**
+   * Model ReplyNotification
+   */
+
+  export type AggregateReplyNotification = {
+    _count: ReplyNotificationCountAggregateOutputType | null
+    _avg: ReplyNotificationAvgAggregateOutputType | null
+    _sum: ReplyNotificationSumAggregateOutputType | null
+    _min: ReplyNotificationMinAggregateOutputType | null
+    _max: ReplyNotificationMaxAggregateOutputType | null
+  }
+
+  export type ReplyNotificationAvgAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    commentId: number | null
+    comicId: number | null
+    chapterId: number | null
+  }
+
+  export type ReplyNotificationSumAggregateOutputType = {
+    id: number | null
+    userId: number | null
+    commentId: number | null
+    comicId: number | null
+    chapterId: number | null
+  }
+
+  export type ReplyNotificationMinAggregateOutputType = {
+    id: number | null
+    message: string | null
+    seen: boolean | null
+    userId: number | null
+    commentId: number | null
+    comicId: number | null
+    chapterId: number | null
+    create_at: Date | null
+  }
+
+  export type ReplyNotificationMaxAggregateOutputType = {
+    id: number | null
+    message: string | null
+    seen: boolean | null
+    userId: number | null
+    commentId: number | null
+    comicId: number | null
+    chapterId: number | null
+    create_at: Date | null
+  }
+
+  export type ReplyNotificationCountAggregateOutputType = {
+    id: number
+    message: number
+    seen: number
+    userId: number
+    commentId: number
+    comicId: number
+    chapterId: number
+    create_at: number
+    _all: number
+  }
+
+
+  export type ReplyNotificationAvgAggregateInputType = {
+    id?: true
+    userId?: true
+    commentId?: true
+    comicId?: true
+    chapterId?: true
+  }
+
+  export type ReplyNotificationSumAggregateInputType = {
+    id?: true
+    userId?: true
+    commentId?: true
+    comicId?: true
+    chapterId?: true
+  }
+
+  export type ReplyNotificationMinAggregateInputType = {
+    id?: true
+    message?: true
+    seen?: true
+    userId?: true
+    commentId?: true
+    comicId?: true
+    chapterId?: true
+    create_at?: true
+  }
+
+  export type ReplyNotificationMaxAggregateInputType = {
+    id?: true
+    message?: true
+    seen?: true
+    userId?: true
+    commentId?: true
+    comicId?: true
+    chapterId?: true
+    create_at?: true
+  }
+
+  export type ReplyNotificationCountAggregateInputType = {
+    id?: true
+    message?: true
+    seen?: true
+    userId?: true
+    commentId?: true
+    comicId?: true
+    chapterId?: true
+    create_at?: true
+    _all?: true
+  }
+
+  export type ReplyNotificationAggregateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReplyNotification to aggregate.
+     */
+    where?: ReplyNotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReplyNotifications to fetch.
+     */
+    orderBy?: ReplyNotificationOrderByWithRelationInput | ReplyNotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the start position
+     */
+    cursor?: ReplyNotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReplyNotifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReplyNotifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Count returned ReplyNotifications
+    **/
+    _count?: true | ReplyNotificationCountAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to average
+    **/
+    _avg?: ReplyNotificationAvgAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to sum
+    **/
+    _sum?: ReplyNotificationSumAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the minimum value
+    **/
+    _min?: ReplyNotificationMinAggregateInputType
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/aggregations Aggregation Docs}
+     * 
+     * Select which fields to find the maximum value
+    **/
+    _max?: ReplyNotificationMaxAggregateInputType
+  }
+
+  export type GetReplyNotificationAggregateType<T extends ReplyNotificationAggregateArgs> = {
+        [P in keyof T & keyof AggregateReplyNotification]: P extends '_count' | 'count'
+      ? T[P] extends true
+        ? number
+        : GetScalarType<T[P], AggregateReplyNotification[P]>
+      : GetScalarType<T[P], AggregateReplyNotification[P]>
+  }
+
+
+
+
+  export type ReplyNotificationGroupByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    where?: ReplyNotificationWhereInput
+    orderBy?: ReplyNotificationOrderByWithAggregationInput | ReplyNotificationOrderByWithAggregationInput[]
+    by: ReplyNotificationScalarFieldEnum[] | ReplyNotificationScalarFieldEnum
+    having?: ReplyNotificationScalarWhereWithAggregatesInput
+    take?: number
+    skip?: number
+    _count?: ReplyNotificationCountAggregateInputType | true
+    _avg?: ReplyNotificationAvgAggregateInputType
+    _sum?: ReplyNotificationSumAggregateInputType
+    _min?: ReplyNotificationMinAggregateInputType
+    _max?: ReplyNotificationMaxAggregateInputType
+  }
+
+  export type ReplyNotificationGroupByOutputType = {
+    id: number
+    message: string
+    seen: boolean
+    userId: number
+    commentId: number
+    comicId: number | null
+    chapterId: number | null
+    create_at: Date
+    _count: ReplyNotificationCountAggregateOutputType | null
+    _avg: ReplyNotificationAvgAggregateOutputType | null
+    _sum: ReplyNotificationSumAggregateOutputType | null
+    _min: ReplyNotificationMinAggregateOutputType | null
+    _max: ReplyNotificationMaxAggregateOutputType | null
+  }
+
+  type GetReplyNotificationGroupByPayload<T extends ReplyNotificationGroupByArgs> = Prisma.PrismaPromise<
+    Array<
+      PickEnumerable<ReplyNotificationGroupByOutputType, T['by']> &
+        {
+          [P in ((keyof T) & (keyof ReplyNotificationGroupByOutputType))]: P extends '_count'
+            ? T[P] extends boolean
+              ? number
+              : GetScalarType<T[P], ReplyNotificationGroupByOutputType[P]>
+            : GetScalarType<T[P], ReplyNotificationGroupByOutputType[P]>
+        }
+      >
+    >
+
+
+  export type ReplyNotificationSelect<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetSelect<{
+    id?: boolean
+    message?: boolean
+    seen?: boolean
+    userId?: boolean
+    commentId?: boolean
+    comicId?: boolean
+    chapterId?: boolean
+    create_at?: boolean
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | commentDefaultArgs<ExtArgs>
+    comic?: boolean | ReplyNotification$comicArgs<ExtArgs>
+    chapter?: boolean | ReplyNotification$chapterArgs<ExtArgs>
+  }, ExtArgs["result"]["replyNotification"]>
+
+
+
+  export type ReplyNotificationSelectScalar = {
+    id?: boolean
+    message?: boolean
+    seen?: boolean
+    userId?: boolean
+    commentId?: boolean
+    comicId?: boolean
+    chapterId?: boolean
+    create_at?: boolean
+  }
+
+  export type ReplyNotificationOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "message" | "seen" | "userId" | "commentId" | "comicId" | "chapterId" | "create_at", ExtArgs["result"]["replyNotification"]>
+  export type ReplyNotificationInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    user?: boolean | UserDefaultArgs<ExtArgs>
+    comment?: boolean | commentDefaultArgs<ExtArgs>
+    comic?: boolean | ReplyNotification$comicArgs<ExtArgs>
+    chapter?: boolean | ReplyNotification$chapterArgs<ExtArgs>
+  }
+
+  export type $ReplyNotificationPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    name: "ReplyNotification"
+    objects: {
+      user: Prisma.$UserPayload<ExtArgs>
+      comment: Prisma.$commentPayload<ExtArgs>
+      comic: Prisma.$ComicPayload<ExtArgs> | null
+      chapter: Prisma.$ChapterPayload<ExtArgs> | null
+    }
+    scalars: $Extensions.GetPayloadResult<{
+      id: number
+      message: string
+      seen: boolean
+      userId: number
+      commentId: number
+      comicId: number | null
+      chapterId: number | null
+      create_at: Date
+    }, ExtArgs["result"]["replyNotification"]>
+    composites: {}
+  }
+
+  type ReplyNotificationGetPayload<S extends boolean | null | undefined | ReplyNotificationDefaultArgs> = $Result.GetResult<Prisma.$ReplyNotificationPayload, S>
+
+  type ReplyNotificationCountArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> =
+    Omit<ReplyNotificationFindManyArgs, 'select' | 'include' | 'distinct' | 'omit'> & {
+      select?: ReplyNotificationCountAggregateInputType | true
+    }
+
+  export interface ReplyNotificationDelegate<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> {
+    [K: symbol]: { types: Prisma.TypeMap<ExtArgs>['model']['ReplyNotification'], meta: { name: 'ReplyNotification' } }
+    /**
+     * Find zero or one ReplyNotification that matches the filter.
+     * @param {ReplyNotificationFindUniqueArgs} args - Arguments to find a ReplyNotification
+     * @example
+     * // Get one ReplyNotification
+     * const replyNotification = await prisma.replyNotification.findUnique({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUnique<T extends ReplyNotificationFindUniqueArgs>(args: SelectSubset<T, ReplyNotificationFindUniqueArgs<ExtArgs>>): Prisma__ReplyNotificationClient<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "findUnique", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find one ReplyNotification that matches the filter or throw an error with `error.code='P2025'`
+     * if no matches were found.
+     * @param {ReplyNotificationFindUniqueOrThrowArgs} args - Arguments to find a ReplyNotification
+     * @example
+     * // Get one ReplyNotification
+     * const replyNotification = await prisma.replyNotification.findUniqueOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findUniqueOrThrow<T extends ReplyNotificationFindUniqueOrThrowArgs>(args: SelectSubset<T, ReplyNotificationFindUniqueOrThrowArgs<ExtArgs>>): Prisma__ReplyNotificationClient<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ReplyNotification that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReplyNotificationFindFirstArgs} args - Arguments to find a ReplyNotification
+     * @example
+     * // Get one ReplyNotification
+     * const replyNotification = await prisma.replyNotification.findFirst({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirst<T extends ReplyNotificationFindFirstArgs>(args?: SelectSubset<T, ReplyNotificationFindFirstArgs<ExtArgs>>): Prisma__ReplyNotificationClient<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "findFirst", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find the first ReplyNotification that matches the filter or
+     * throw `PrismaKnownClientError` with `P2025` code if no matches were found.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReplyNotificationFindFirstOrThrowArgs} args - Arguments to find a ReplyNotification
+     * @example
+     * // Get one ReplyNotification
+     * const replyNotification = await prisma.replyNotification.findFirstOrThrow({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     */
+    findFirstOrThrow<T extends ReplyNotificationFindFirstOrThrowArgs>(args?: SelectSubset<T, ReplyNotificationFindFirstOrThrowArgs<ExtArgs>>): Prisma__ReplyNotificationClient<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "findFirstOrThrow", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Find zero or more ReplyNotifications that matches the filter.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReplyNotificationFindManyArgs} args - Arguments to filter and select certain fields only.
+     * @example
+     * // Get all ReplyNotifications
+     * const replyNotifications = await prisma.replyNotification.findMany()
+     * 
+     * // Get first 10 ReplyNotifications
+     * const replyNotifications = await prisma.replyNotification.findMany({ take: 10 })
+     * 
+     * // Only select the `id`
+     * const replyNotificationWithIdOnly = await prisma.replyNotification.findMany({ select: { id: true } })
+     * 
+     */
+    findMany<T extends ReplyNotificationFindManyArgs>(args?: SelectSubset<T, ReplyNotificationFindManyArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions>>
+
+    /**
+     * Create a ReplyNotification.
+     * @param {ReplyNotificationCreateArgs} args - Arguments to create a ReplyNotification.
+     * @example
+     * // Create one ReplyNotification
+     * const ReplyNotification = await prisma.replyNotification.create({
+     *   data: {
+     *     // ... data to create a ReplyNotification
+     *   }
+     * })
+     * 
+     */
+    create<T extends ReplyNotificationCreateArgs>(args: SelectSubset<T, ReplyNotificationCreateArgs<ExtArgs>>): Prisma__ReplyNotificationClient<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "create", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Create many ReplyNotifications.
+     * @param {ReplyNotificationCreateManyArgs} args - Arguments to create many ReplyNotifications.
+     * @example
+     * // Create many ReplyNotifications
+     * const replyNotification = await prisma.replyNotification.createMany({
+     *   data: [
+     *     // ... provide data here
+     *   ]
+     * })
+     *     
+     */
+    createMany<T extends ReplyNotificationCreateManyArgs>(args?: SelectSubset<T, ReplyNotificationCreateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Delete a ReplyNotification.
+     * @param {ReplyNotificationDeleteArgs} args - Arguments to delete one ReplyNotification.
+     * @example
+     * // Delete one ReplyNotification
+     * const ReplyNotification = await prisma.replyNotification.delete({
+     *   where: {
+     *     // ... filter to delete one ReplyNotification
+     *   }
+     * })
+     * 
+     */
+    delete<T extends ReplyNotificationDeleteArgs>(args: SelectSubset<T, ReplyNotificationDeleteArgs<ExtArgs>>): Prisma__ReplyNotificationClient<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "delete", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Update one ReplyNotification.
+     * @param {ReplyNotificationUpdateArgs} args - Arguments to update one ReplyNotification.
+     * @example
+     * // Update one ReplyNotification
+     * const replyNotification = await prisma.replyNotification.update({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    update<T extends ReplyNotificationUpdateArgs>(args: SelectSubset<T, ReplyNotificationUpdateArgs<ExtArgs>>): Prisma__ReplyNotificationClient<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "update", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+    /**
+     * Delete zero or more ReplyNotifications.
+     * @param {ReplyNotificationDeleteManyArgs} args - Arguments to filter ReplyNotifications to delete.
+     * @example
+     * // Delete a few ReplyNotifications
+     * const { count } = await prisma.replyNotification.deleteMany({
+     *   where: {
+     *     // ... provide filter here
+     *   }
+     * })
+     * 
+     */
+    deleteMany<T extends ReplyNotificationDeleteManyArgs>(args?: SelectSubset<T, ReplyNotificationDeleteManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Update zero or more ReplyNotifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReplyNotificationUpdateManyArgs} args - Arguments to update one or more rows.
+     * @example
+     * // Update many ReplyNotifications
+     * const replyNotification = await prisma.replyNotification.updateMany({
+     *   where: {
+     *     // ... provide filter here
+     *   },
+     *   data: {
+     *     // ... provide data here
+     *   }
+     * })
+     * 
+     */
+    updateMany<T extends ReplyNotificationUpdateManyArgs>(args: SelectSubset<T, ReplyNotificationUpdateManyArgs<ExtArgs>>): Prisma.PrismaPromise<BatchPayload>
+
+    /**
+     * Create or update one ReplyNotification.
+     * @param {ReplyNotificationUpsertArgs} args - Arguments to update or create a ReplyNotification.
+     * @example
+     * // Update or create a ReplyNotification
+     * const replyNotification = await prisma.replyNotification.upsert({
+     *   create: {
+     *     // ... data to create a ReplyNotification
+     *   },
+     *   update: {
+     *     // ... in case it already exists, update
+     *   },
+     *   where: {
+     *     // ... the filter for the ReplyNotification we want to update
+     *   }
+     * })
+     */
+    upsert<T extends ReplyNotificationUpsertArgs>(args: SelectSubset<T, ReplyNotificationUpsertArgs<ExtArgs>>): Prisma__ReplyNotificationClient<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "upsert", GlobalOmitOptions>, never, ExtArgs, GlobalOmitOptions>
+
+
+    /**
+     * Count the number of ReplyNotifications.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReplyNotificationCountArgs} args - Arguments to filter ReplyNotifications to count.
+     * @example
+     * // Count the number of ReplyNotifications
+     * const count = await prisma.replyNotification.count({
+     *   where: {
+     *     // ... the filter for the ReplyNotifications we want to count
+     *   }
+     * })
+    **/
+    count<T extends ReplyNotificationCountArgs>(
+      args?: Subset<T, ReplyNotificationCountArgs>,
+    ): Prisma.PrismaPromise<
+      T extends $Utils.Record<'select', any>
+        ? T['select'] extends true
+          ? number
+          : GetScalarType<T['select'], ReplyNotificationCountAggregateOutputType>
+        : number
+    >
+
+    /**
+     * Allows you to perform aggregations operations on a ReplyNotification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReplyNotificationAggregateArgs} args - Select which aggregations you would like to apply and on what fields.
+     * @example
+     * // Ordered by age ascending
+     * // Where email contains prisma.io
+     * // Limited to the 10 users
+     * const aggregations = await prisma.user.aggregate({
+     *   _avg: {
+     *     age: true,
+     *   },
+     *   where: {
+     *     email: {
+     *       contains: "prisma.io",
+     *     },
+     *   },
+     *   orderBy: {
+     *     age: "asc",
+     *   },
+     *   take: 10,
+     * })
+    **/
+    aggregate<T extends ReplyNotificationAggregateArgs>(args: Subset<T, ReplyNotificationAggregateArgs>): Prisma.PrismaPromise<GetReplyNotificationAggregateType<T>>
+
+    /**
+     * Group by ReplyNotification.
+     * Note, that providing `undefined` is treated as the value not being there.
+     * Read more here: https://pris.ly/d/null-undefined
+     * @param {ReplyNotificationGroupByArgs} args - Group by arguments.
+     * @example
+     * // Group by city, order by createdAt, get count
+     * const result = await prisma.user.groupBy({
+     *   by: ['city', 'createdAt'],
+     *   orderBy: {
+     *     createdAt: true
+     *   },
+     *   _count: {
+     *     _all: true
+     *   },
+     * })
+     * 
+    **/
+    groupBy<
+      T extends ReplyNotificationGroupByArgs,
+      HasSelectOrTake extends Or<
+        Extends<'skip', Keys<T>>,
+        Extends<'take', Keys<T>>
+      >,
+      OrderByArg extends True extends HasSelectOrTake
+        ? { orderBy: ReplyNotificationGroupByArgs['orderBy'] }
+        : { orderBy?: ReplyNotificationGroupByArgs['orderBy'] },
+      OrderFields extends ExcludeUnderscoreKeys<Keys<MaybeTupleToUnion<T['orderBy']>>>,
+      ByFields extends MaybeTupleToUnion<T['by']>,
+      ByValid extends Has<ByFields, OrderFields>,
+      HavingFields extends GetHavingFields<T['having']>,
+      HavingValid extends Has<ByFields, HavingFields>,
+      ByEmpty extends T['by'] extends never[] ? True : False,
+      InputErrors extends ByEmpty extends True
+      ? `Error: "by" must not be empty.`
+      : HavingValid extends False
+      ? {
+          [P in HavingFields]: P extends ByFields
+            ? never
+            : P extends string
+            ? `Error: Field "${P}" used in "having" needs to be provided in "by".`
+            : [
+                Error,
+                'Field ',
+                P,
+                ` in "having" needs to be provided in "by"`,
+              ]
+        }[HavingFields]
+      : 'take' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "take", you also need to provide "orderBy"'
+      : 'skip' extends Keys<T>
+      ? 'orderBy' extends Keys<T>
+        ? ByValid extends True
+          ? {}
+          : {
+              [P in OrderFields]: P extends ByFields
+                ? never
+                : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+            }[OrderFields]
+        : 'Error: If you provide "skip", you also need to provide "orderBy"'
+      : ByValid extends True
+      ? {}
+      : {
+          [P in OrderFields]: P extends ByFields
+            ? never
+            : `Error: Field "${P}" in "orderBy" needs to be provided in "by"`
+        }[OrderFields]
+    >(args: SubsetIntersection<T, ReplyNotificationGroupByArgs, OrderByArg> & InputErrors): {} extends InputErrors ? GetReplyNotificationGroupByPayload<T> : Prisma.PrismaPromise<InputErrors>
+  /**
+   * Fields of the ReplyNotification model
+   */
+  readonly fields: ReplyNotificationFieldRefs;
+  }
+
+  /**
+   * The delegate class that acts as a "Promise-like" for ReplyNotification.
+   * Why is this prefixed with `Prisma__`?
+   * Because we want to prevent naming conflicts as mentioned in
+   * https://github.com/prisma/prisma-client-js/issues/707
+   */
+  export interface Prisma__ReplyNotificationClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
+    readonly [Symbol.toStringTag]: "PrismaPromise"
+    user<T extends UserDefaultArgs<ExtArgs> = {}>(args?: Subset<T, UserDefaultArgs<ExtArgs>>): Prisma__UserClient<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    comment<T extends commentDefaultArgs<ExtArgs> = {}>(args?: Subset<T, commentDefaultArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    comic<T extends ReplyNotification$comicArgs<ExtArgs> = {}>(args?: Subset<T, ReplyNotification$comicArgs<ExtArgs>>): Prisma__ComicClient<$Result.GetResult<Prisma.$ComicPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    chapter<T extends ReplyNotification$chapterArgs<ExtArgs> = {}>(args?: Subset<T, ReplyNotification$chapterArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    /**
+     * Attaches callbacks for the resolution and/or rejection of the Promise.
+     * @param onfulfilled The callback to execute when the Promise is resolved.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of which ever callback is executed.
+     */
+    then<TResult1 = T, TResult2 = never>(onfulfilled?: ((value: T) => TResult1 | PromiseLike<TResult1>) | undefined | null, onrejected?: ((reason: any) => TResult2 | PromiseLike<TResult2>) | undefined | null): $Utils.JsPromise<TResult1 | TResult2>
+    /**
+     * Attaches a callback for only the rejection of the Promise.
+     * @param onrejected The callback to execute when the Promise is rejected.
+     * @returns A Promise for the completion of the callback.
+     */
+    catch<TResult = never>(onrejected?: ((reason: any) => TResult | PromiseLike<TResult>) | undefined | null): $Utils.JsPromise<T | TResult>
+    /**
+     * Attaches a callback that is invoked when the Promise is settled (fulfilled or rejected). The
+     * resolved value cannot be modified from the callback.
+     * @param onfinally The callback to execute when the Promise is settled (fulfilled or rejected).
+     * @returns A Promise for the completion of the callback.
+     */
+    finally(onfinally?: (() => void) | undefined | null): $Utils.JsPromise<T>
+  }
+
+
+
+
+  /**
+   * Fields of the ReplyNotification model
+   */
+  interface ReplyNotificationFieldRefs {
+    readonly id: FieldRef<"ReplyNotification", 'Int'>
+    readonly message: FieldRef<"ReplyNotification", 'String'>
+    readonly seen: FieldRef<"ReplyNotification", 'Boolean'>
+    readonly userId: FieldRef<"ReplyNotification", 'Int'>
+    readonly commentId: FieldRef<"ReplyNotification", 'Int'>
+    readonly comicId: FieldRef<"ReplyNotification", 'Int'>
+    readonly chapterId: FieldRef<"ReplyNotification", 'Int'>
+    readonly create_at: FieldRef<"ReplyNotification", 'DateTime'>
+  }
+    
+
+  // Custom InputTypes
+  /**
+   * ReplyNotification findUnique
+   */
+  export type ReplyNotificationFindUniqueArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which ReplyNotification to fetch.
+     */
+    where: ReplyNotificationWhereUniqueInput
+  }
+
+  /**
+   * ReplyNotification findUniqueOrThrow
+   */
+  export type ReplyNotificationFindUniqueOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which ReplyNotification to fetch.
+     */
+    where: ReplyNotificationWhereUniqueInput
+  }
+
+  /**
+   * ReplyNotification findFirst
+   */
+  export type ReplyNotificationFindFirstArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which ReplyNotification to fetch.
+     */
+    where?: ReplyNotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReplyNotifications to fetch.
+     */
+    orderBy?: ReplyNotificationOrderByWithRelationInput | ReplyNotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReplyNotifications.
+     */
+    cursor?: ReplyNotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReplyNotifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReplyNotifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReplyNotifications.
+     */
+    distinct?: ReplyNotificationScalarFieldEnum | ReplyNotificationScalarFieldEnum[]
+  }
+
+  /**
+   * ReplyNotification findFirstOrThrow
+   */
+  export type ReplyNotificationFindFirstOrThrowArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which ReplyNotification to fetch.
+     */
+    where?: ReplyNotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReplyNotifications to fetch.
+     */
+    orderBy?: ReplyNotificationOrderByWithRelationInput | ReplyNotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for searching for ReplyNotifications.
+     */
+    cursor?: ReplyNotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReplyNotifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReplyNotifications.
+     */
+    skip?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/distinct Distinct Docs}
+     * 
+     * Filter by unique combinations of ReplyNotifications.
+     */
+    distinct?: ReplyNotificationScalarFieldEnum | ReplyNotificationScalarFieldEnum[]
+  }
+
+  /**
+   * ReplyNotification findMany
+   */
+  export type ReplyNotificationFindManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    /**
+     * Filter, which ReplyNotifications to fetch.
+     */
+    where?: ReplyNotificationWhereInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/sorting Sorting Docs}
+     * 
+     * Determine the order of ReplyNotifications to fetch.
+     */
+    orderBy?: ReplyNotificationOrderByWithRelationInput | ReplyNotificationOrderByWithRelationInput[]
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination#cursor-based-pagination Cursor Docs}
+     * 
+     * Sets the position for listing ReplyNotifications.
+     */
+    cursor?: ReplyNotificationWhereUniqueInput
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Take `±n` ReplyNotifications from the position of the cursor.
+     */
+    take?: number
+    /**
+     * {@link https://www.prisma.io/docs/concepts/components/prisma-client/pagination Pagination Docs}
+     * 
+     * Skip the first `n` ReplyNotifications.
+     */
+    skip?: number
+    distinct?: ReplyNotificationScalarFieldEnum | ReplyNotificationScalarFieldEnum[]
+  }
+
+  /**
+   * ReplyNotification create
+   */
+  export type ReplyNotificationCreateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to create a ReplyNotification.
+     */
+    data: XOR<ReplyNotificationCreateInput, ReplyNotificationUncheckedCreateInput>
+  }
+
+  /**
+   * ReplyNotification createMany
+   */
+  export type ReplyNotificationCreateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to create many ReplyNotifications.
+     */
+    data: ReplyNotificationCreateManyInput | ReplyNotificationCreateManyInput[]
+    skipDuplicates?: boolean
+  }
+
+  /**
+   * ReplyNotification update
+   */
+  export type ReplyNotificationUpdateArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    /**
+     * The data needed to update a ReplyNotification.
+     */
+    data: XOR<ReplyNotificationUpdateInput, ReplyNotificationUncheckedUpdateInput>
+    /**
+     * Choose, which ReplyNotification to update.
+     */
+    where: ReplyNotificationWhereUniqueInput
+  }
+
+  /**
+   * ReplyNotification updateMany
+   */
+  export type ReplyNotificationUpdateManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * The data used to update ReplyNotifications.
+     */
+    data: XOR<ReplyNotificationUpdateManyMutationInput, ReplyNotificationUncheckedUpdateManyInput>
+    /**
+     * Filter which ReplyNotifications to update
+     */
+    where?: ReplyNotificationWhereInput
+    /**
+     * Limit how many ReplyNotifications to update.
+     */
+    limit?: number
+  }
+
+  /**
+   * ReplyNotification upsert
+   */
+  export type ReplyNotificationUpsertArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    /**
+     * The filter to search for the ReplyNotification to update in case it exists.
+     */
+    where: ReplyNotificationWhereUniqueInput
+    /**
+     * In case the ReplyNotification found by the `where` argument doesn't exist, create a new ReplyNotification with this data.
+     */
+    create: XOR<ReplyNotificationCreateInput, ReplyNotificationUncheckedCreateInput>
+    /**
+     * In case the ReplyNotification was found with the provided `where` argument, update it with this data.
+     */
+    update: XOR<ReplyNotificationUpdateInput, ReplyNotificationUncheckedUpdateInput>
+  }
+
+  /**
+   * ReplyNotification delete
+   */
+  export type ReplyNotificationDeleteArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    /**
+     * Filter which ReplyNotification to delete.
+     */
+    where: ReplyNotificationWhereUniqueInput
+  }
+
+  /**
+   * ReplyNotification deleteMany
+   */
+  export type ReplyNotificationDeleteManyArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Filter which ReplyNotifications to delete
+     */
+    where?: ReplyNotificationWhereInput
+    /**
+     * Limit how many ReplyNotifications to delete.
+     */
+    limit?: number
+  }
+
+  /**
+   * ReplyNotification.comic
+   */
+  export type ReplyNotification$comicArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Comic
+     */
+    select?: ComicSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Comic
+     */
+    omit?: ComicOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ComicInclude<ExtArgs> | null
+    where?: ComicWhereInput
+  }
+
+  /**
+   * ReplyNotification.chapter
+   */
+  export type ReplyNotification$chapterArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the Chapter
+     */
+    select?: ChapterSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the Chapter
+     */
+    omit?: ChapterOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ChapterInclude<ExtArgs> | null
+    where?: ChapterWhereInput
+  }
+
+  /**
+   * ReplyNotification without action
+   */
+  export type ReplyNotificationDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
   }
 
 
@@ -15802,6 +17076,7 @@ export namespace Prisma {
     comicId: number | null
     chapterId: number | null
     parentId: number | null
+    replyToId: number | null
   }
 
   export type CommentSumAggregateOutputType = {
@@ -15810,6 +17085,7 @@ export namespace Prisma {
     comicId: number | null
     chapterId: number | null
     parentId: number | null
+    replyToId: number | null
   }
 
   export type CommentMinAggregateOutputType = {
@@ -15819,6 +17095,7 @@ export namespace Prisma {
     chapterId: number | null
     content: string | null
     parentId: number | null
+    replyToId: number | null
     create_at: Date | null
   }
 
@@ -15829,6 +17106,7 @@ export namespace Prisma {
     chapterId: number | null
     content: string | null
     parentId: number | null
+    replyToId: number | null
     create_at: Date | null
   }
 
@@ -15839,6 +17117,7 @@ export namespace Prisma {
     chapterId: number
     content: number
     parentId: number
+    replyToId: number
     create_at: number
     _all: number
   }
@@ -15850,6 +17129,7 @@ export namespace Prisma {
     comicId?: true
     chapterId?: true
     parentId?: true
+    replyToId?: true
   }
 
   export type CommentSumAggregateInputType = {
@@ -15858,6 +17138,7 @@ export namespace Prisma {
     comicId?: true
     chapterId?: true
     parentId?: true
+    replyToId?: true
   }
 
   export type CommentMinAggregateInputType = {
@@ -15867,6 +17148,7 @@ export namespace Prisma {
     chapterId?: true
     content?: true
     parentId?: true
+    replyToId?: true
     create_at?: true
   }
 
@@ -15877,6 +17159,7 @@ export namespace Prisma {
     chapterId?: true
     content?: true
     parentId?: true
+    replyToId?: true
     create_at?: true
   }
 
@@ -15887,6 +17170,7 @@ export namespace Prisma {
     chapterId?: true
     content?: true
     parentId?: true
+    replyToId?: true
     create_at?: true
     _all?: true
   }
@@ -15984,6 +17268,7 @@ export namespace Prisma {
     chapterId: number | null
     content: string
     parentId: number | null
+    replyToId: number | null
     create_at: Date
     _count: CommentCountAggregateOutputType | null
     _avg: CommentAvgAggregateOutputType | null
@@ -16013,12 +17298,16 @@ export namespace Prisma {
     chapterId?: boolean
     content?: boolean
     parentId?: boolean
+    replyToId?: boolean
     create_at?: boolean
     user?: boolean | UserDefaultArgs<ExtArgs>
     comic?: boolean | comment$comicArgs<ExtArgs>
     chapter?: boolean | comment$chapterArgs<ExtArgs>
     parent?: boolean | comment$parentArgs<ExtArgs>
     replies?: boolean | comment$repliesArgs<ExtArgs>
+    replyTo?: boolean | comment$replyToArgs<ExtArgs>
+    replyToBy?: boolean | comment$replyToByArgs<ExtArgs>
+    ReplyNotification?: boolean | comment$ReplyNotificationArgs<ExtArgs>
     _count?: boolean | CommentCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["comment"]>
 
@@ -16031,16 +17320,20 @@ export namespace Prisma {
     chapterId?: boolean
     content?: boolean
     parentId?: boolean
+    replyToId?: boolean
     create_at?: boolean
   }
 
-  export type commentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "comicId" | "chapterId" | "content" | "parentId" | "create_at", ExtArgs["result"]["comment"]>
+  export type commentOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "userId" | "comicId" | "chapterId" | "content" | "parentId" | "replyToId" | "create_at", ExtArgs["result"]["comment"]>
   export type commentInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     user?: boolean | UserDefaultArgs<ExtArgs>
     comic?: boolean | comment$comicArgs<ExtArgs>
     chapter?: boolean | comment$chapterArgs<ExtArgs>
     parent?: boolean | comment$parentArgs<ExtArgs>
     replies?: boolean | comment$repliesArgs<ExtArgs>
+    replyTo?: boolean | comment$replyToArgs<ExtArgs>
+    replyToBy?: boolean | comment$replyToByArgs<ExtArgs>
+    ReplyNotification?: boolean | comment$ReplyNotificationArgs<ExtArgs>
     _count?: boolean | CommentCountOutputTypeDefaultArgs<ExtArgs>
   }
 
@@ -16052,6 +17345,9 @@ export namespace Prisma {
       chapter: Prisma.$ChapterPayload<ExtArgs> | null
       parent: Prisma.$commentPayload<ExtArgs> | null
       replies: Prisma.$commentPayload<ExtArgs>[]
+      replyTo: Prisma.$commentPayload<ExtArgs> | null
+      replyToBy: Prisma.$commentPayload<ExtArgs>[]
+      ReplyNotification: Prisma.$ReplyNotificationPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: number
@@ -16060,6 +17356,7 @@ export namespace Prisma {
       chapterId: number | null
       content: string
       parentId: number | null
+      replyToId: number | null
       create_at: Date
     }, ExtArgs["result"]["comment"]>
     composites: {}
@@ -16406,6 +17703,9 @@ export namespace Prisma {
     chapter<T extends comment$chapterArgs<ExtArgs> = {}>(args?: Subset<T, comment$chapterArgs<ExtArgs>>): Prisma__ChapterClient<$Result.GetResult<Prisma.$ChapterPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     parent<T extends comment$parentArgs<ExtArgs> = {}>(args?: Subset<T, comment$parentArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
     replies<T extends comment$repliesArgs<ExtArgs> = {}>(args?: Subset<T, comment$repliesArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    replyTo<T extends comment$replyToArgs<ExtArgs> = {}>(args?: Subset<T, comment$replyToArgs<ExtArgs>>): Prisma__commentClient<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | null, null, ExtArgs, GlobalOmitOptions>
+    replyToBy<T extends comment$replyToByArgs<ExtArgs> = {}>(args?: Subset<T, comment$replyToByArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$commentPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
+    ReplyNotification<T extends comment$ReplyNotificationArgs<ExtArgs> = {}>(args?: Subset<T, comment$ReplyNotificationArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$ReplyNotificationPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -16441,6 +17741,7 @@ export namespace Prisma {
     readonly chapterId: FieldRef<"comment", 'Int'>
     readonly content: FieldRef<"comment", 'String'>
     readonly parentId: FieldRef<"comment", 'Int'>
+    readonly replyToId: FieldRef<"comment", 'Int'>
     readonly create_at: FieldRef<"comment", 'DateTime'>
   }
     
@@ -16866,6 +18167,73 @@ export namespace Prisma {
   }
 
   /**
+   * comment.replyTo
+   */
+  export type comment$replyToArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    where?: commentWhereInput
+  }
+
+  /**
+   * comment.replyToBy
+   */
+  export type comment$replyToByArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the comment
+     */
+    select?: commentSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the comment
+     */
+    omit?: commentOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: commentInclude<ExtArgs> | null
+    where?: commentWhereInput
+    orderBy?: commentOrderByWithRelationInput | commentOrderByWithRelationInput[]
+    cursor?: commentWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: CommentScalarFieldEnum | CommentScalarFieldEnum[]
+  }
+
+  /**
+   * comment.ReplyNotification
+   */
+  export type comment$ReplyNotificationArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
+    /**
+     * Select specific fields to fetch from the ReplyNotification
+     */
+    select?: ReplyNotificationSelect<ExtArgs> | null
+    /**
+     * Omit specific fields from the ReplyNotification
+     */
+    omit?: ReplyNotificationOmit<ExtArgs> | null
+    /**
+     * Choose, which related nodes to fetch as well
+     */
+    include?: ReplyNotificationInclude<ExtArgs> | null
+    where?: ReplyNotificationWhereInput
+    orderBy?: ReplyNotificationOrderByWithRelationInput | ReplyNotificationOrderByWithRelationInput[]
+    cursor?: ReplyNotificationWhereUniqueInput
+    take?: number
+    skip?: number
+    distinct?: ReplyNotificationScalarFieldEnum | ReplyNotificationScalarFieldEnum[]
+  }
+
+  /**
    * comment without action
    */
   export type commentDefaultArgs<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -17029,6 +18397,20 @@ export namespace Prisma {
   export type NotificationScalarFieldEnum = (typeof NotificationScalarFieldEnum)[keyof typeof NotificationScalarFieldEnum]
 
 
+  export const ReplyNotificationScalarFieldEnum: {
+    id: 'id',
+    message: 'message',
+    seen: 'seen',
+    userId: 'userId',
+    commentId: 'commentId',
+    comicId: 'comicId',
+    chapterId: 'chapterId',
+    create_at: 'create_at'
+  };
+
+  export type ReplyNotificationScalarFieldEnum = (typeof ReplyNotificationScalarFieldEnum)[keyof typeof ReplyNotificationScalarFieldEnum]
+
+
   export const Comic_followerScalarFieldEnum: {
     id: 'id',
     userId: 'userId',
@@ -17067,6 +18449,7 @@ export namespace Prisma {
     chapterId: 'chapterId',
     content: 'content',
     parentId: 'parentId',
+    replyToId: 'replyToId',
     create_at: 'create_at'
   };
 
@@ -17151,6 +18534,13 @@ export namespace Prisma {
   };
 
   export type NotificationOrderByRelevanceFieldEnum = (typeof NotificationOrderByRelevanceFieldEnum)[keyof typeof NotificationOrderByRelevanceFieldEnum]
+
+
+  export const ReplyNotificationOrderByRelevanceFieldEnum: {
+    message: 'message'
+  };
+
+  export type ReplyNotificationOrderByRelevanceFieldEnum = (typeof ReplyNotificationOrderByRelevanceFieldEnum)[keyof typeof ReplyNotificationOrderByRelevanceFieldEnum]
 
 
   export const commentOrderByRelevanceFieldEnum: {
@@ -17252,6 +18642,7 @@ export namespace Prisma {
     comicFollower?: Comic_followerListRelationFilter
     comicHistory?: Comic_historyListRelationFilter
     comments?: CommentListRelationFilter
+    ReplyNotification?: ReplyNotificationListRelationFilter
   }
 
   export type UserOrderByWithRelationInput = {
@@ -17272,6 +18663,7 @@ export namespace Prisma {
     comicFollower?: comic_followerOrderByRelationAggregateInput
     comicHistory?: comic_historyOrderByRelationAggregateInput
     comments?: commentOrderByRelationAggregateInput
+    ReplyNotification?: ReplyNotificationOrderByRelationAggregateInput
     _relevance?: UserOrderByRelevanceInput
   }
 
@@ -17296,6 +18688,7 @@ export namespace Prisma {
     comicFollower?: Comic_followerListRelationFilter
     comicHistory?: Comic_historyListRelationFilter
     comments?: CommentListRelationFilter
+    ReplyNotification?: ReplyNotificationListRelationFilter
   }, "id" | "email">
 
   export type UserOrderByWithAggregationInput = {
@@ -17534,6 +18927,7 @@ export namespace Prisma {
     comicHistory?: Comic_historyListRelationFilter
     comments?: CommentListRelationFilter
     viewHistorys?: View_historyListRelationFilter
+    ReplyNotification?: ReplyNotificationListRelationFilter
   }
 
   export type ComicOrderByWithRelationInput = {
@@ -17558,6 +18952,7 @@ export namespace Prisma {
     comicHistory?: comic_historyOrderByRelationAggregateInput
     comments?: commentOrderByRelationAggregateInput
     viewHistorys?: view_historyOrderByRelationAggregateInput
+    ReplyNotification?: ReplyNotificationOrderByRelationAggregateInput
     _relevance?: ComicOrderByRelevanceInput
   }
 
@@ -17586,6 +18981,7 @@ export namespace Prisma {
     comicHistory?: Comic_historyListRelationFilter
     comments?: CommentListRelationFilter
     viewHistorys?: View_historyListRelationFilter
+    ReplyNotification?: ReplyNotificationListRelationFilter
   }, "id" | "title" | "slug">
 
   export type ComicOrderByWithAggregationInput = {
@@ -17715,6 +19111,7 @@ export namespace Prisma {
     comicHistory?: Comic_historyListRelationFilter
     comments?: CommentListRelationFilter
     viewHistorys?: View_historyListRelationFilter
+    ReplyNotification?: ReplyNotificationListRelationFilter
   }
 
   export type ChapterOrderByWithRelationInput = {
@@ -17736,6 +19133,7 @@ export namespace Prisma {
     comicHistory?: comic_historyOrderByRelationAggregateInput
     comments?: commentOrderByRelationAggregateInput
     viewHistorys?: view_historyOrderByRelationAggregateInput
+    ReplyNotification?: ReplyNotificationOrderByRelationAggregateInput
     _relevance?: ChapterOrderByRelevanceInput
   }
 
@@ -17761,6 +19159,7 @@ export namespace Prisma {
     comicHistory?: Comic_historyListRelationFilter
     comments?: CommentListRelationFilter
     viewHistorys?: View_historyListRelationFilter
+    ReplyNotification?: ReplyNotificationListRelationFilter
   }, "id" | "slug">
 
   export type ChapterOrderByWithAggregationInput = {
@@ -17967,6 +19366,88 @@ export namespace Prisma {
     userId?: IntWithAggregatesFilter<"Notification"> | number
   }
 
+  export type ReplyNotificationWhereInput = {
+    AND?: ReplyNotificationWhereInput | ReplyNotificationWhereInput[]
+    OR?: ReplyNotificationWhereInput[]
+    NOT?: ReplyNotificationWhereInput | ReplyNotificationWhereInput[]
+    id?: IntFilter<"ReplyNotification"> | number
+    message?: StringFilter<"ReplyNotification"> | string
+    seen?: BoolFilter<"ReplyNotification"> | boolean
+    userId?: IntFilter<"ReplyNotification"> | number
+    commentId?: IntFilter<"ReplyNotification"> | number
+    comicId?: IntNullableFilter<"ReplyNotification"> | number | null
+    chapterId?: IntNullableFilter<"ReplyNotification"> | number | null
+    create_at?: DateTimeFilter<"ReplyNotification"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    comment?: XOR<CommentScalarRelationFilter, commentWhereInput>
+    comic?: XOR<ComicNullableScalarRelationFilter, ComicWhereInput> | null
+    chapter?: XOR<ChapterNullableScalarRelationFilter, ChapterWhereInput> | null
+  }
+
+  export type ReplyNotificationOrderByWithRelationInput = {
+    id?: SortOrder
+    message?: SortOrder
+    seen?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    comicId?: SortOrderInput | SortOrder
+    chapterId?: SortOrderInput | SortOrder
+    create_at?: SortOrder
+    user?: UserOrderByWithRelationInput
+    comment?: commentOrderByWithRelationInput
+    comic?: ComicOrderByWithRelationInput
+    chapter?: ChapterOrderByWithRelationInput
+    _relevance?: ReplyNotificationOrderByRelevanceInput
+  }
+
+  export type ReplyNotificationWhereUniqueInput = Prisma.AtLeast<{
+    id?: number
+    AND?: ReplyNotificationWhereInput | ReplyNotificationWhereInput[]
+    OR?: ReplyNotificationWhereInput[]
+    NOT?: ReplyNotificationWhereInput | ReplyNotificationWhereInput[]
+    message?: StringFilter<"ReplyNotification"> | string
+    seen?: BoolFilter<"ReplyNotification"> | boolean
+    userId?: IntFilter<"ReplyNotification"> | number
+    commentId?: IntFilter<"ReplyNotification"> | number
+    comicId?: IntNullableFilter<"ReplyNotification"> | number | null
+    chapterId?: IntNullableFilter<"ReplyNotification"> | number | null
+    create_at?: DateTimeFilter<"ReplyNotification"> | Date | string
+    user?: XOR<UserScalarRelationFilter, UserWhereInput>
+    comment?: XOR<CommentScalarRelationFilter, commentWhereInput>
+    comic?: XOR<ComicNullableScalarRelationFilter, ComicWhereInput> | null
+    chapter?: XOR<ChapterNullableScalarRelationFilter, ChapterWhereInput> | null
+  }, "id">
+
+  export type ReplyNotificationOrderByWithAggregationInput = {
+    id?: SortOrder
+    message?: SortOrder
+    seen?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    comicId?: SortOrderInput | SortOrder
+    chapterId?: SortOrderInput | SortOrder
+    create_at?: SortOrder
+    _count?: ReplyNotificationCountOrderByAggregateInput
+    _avg?: ReplyNotificationAvgOrderByAggregateInput
+    _max?: ReplyNotificationMaxOrderByAggregateInput
+    _min?: ReplyNotificationMinOrderByAggregateInput
+    _sum?: ReplyNotificationSumOrderByAggregateInput
+  }
+
+  export type ReplyNotificationScalarWhereWithAggregatesInput = {
+    AND?: ReplyNotificationScalarWhereWithAggregatesInput | ReplyNotificationScalarWhereWithAggregatesInput[]
+    OR?: ReplyNotificationScalarWhereWithAggregatesInput[]
+    NOT?: ReplyNotificationScalarWhereWithAggregatesInput | ReplyNotificationScalarWhereWithAggregatesInput[]
+    id?: IntWithAggregatesFilter<"ReplyNotification"> | number
+    message?: StringWithAggregatesFilter<"ReplyNotification"> | string
+    seen?: BoolWithAggregatesFilter<"ReplyNotification"> | boolean
+    userId?: IntWithAggregatesFilter<"ReplyNotification"> | number
+    commentId?: IntWithAggregatesFilter<"ReplyNotification"> | number
+    comicId?: IntNullableWithAggregatesFilter<"ReplyNotification"> | number | null
+    chapterId?: IntNullableWithAggregatesFilter<"ReplyNotification"> | number | null
+    create_at?: DateTimeWithAggregatesFilter<"ReplyNotification"> | Date | string
+  }
+
   export type comic_followerWhereInput = {
     AND?: comic_followerWhereInput | comic_followerWhereInput[]
     OR?: comic_followerWhereInput[]
@@ -18151,12 +19632,16 @@ export namespace Prisma {
     chapterId?: IntNullableFilter<"comment"> | number | null
     content?: StringFilter<"comment"> | string
     parentId?: IntNullableFilter<"comment"> | number | null
+    replyToId?: IntNullableFilter<"comment"> | number | null
     create_at?: DateTimeFilter<"comment"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     comic?: XOR<ComicNullableScalarRelationFilter, ComicWhereInput> | null
     chapter?: XOR<ChapterNullableScalarRelationFilter, ChapterWhereInput> | null
     parent?: XOR<CommentNullableScalarRelationFilter, commentWhereInput> | null
     replies?: CommentListRelationFilter
+    replyTo?: XOR<CommentNullableScalarRelationFilter, commentWhereInput> | null
+    replyToBy?: CommentListRelationFilter
+    ReplyNotification?: ReplyNotificationListRelationFilter
   }
 
   export type commentOrderByWithRelationInput = {
@@ -18166,12 +19651,16 @@ export namespace Prisma {
     chapterId?: SortOrderInput | SortOrder
     content?: SortOrder
     parentId?: SortOrderInput | SortOrder
+    replyToId?: SortOrderInput | SortOrder
     create_at?: SortOrder
     user?: UserOrderByWithRelationInput
     comic?: ComicOrderByWithRelationInput
     chapter?: ChapterOrderByWithRelationInput
     parent?: commentOrderByWithRelationInput
     replies?: commentOrderByRelationAggregateInput
+    replyTo?: commentOrderByWithRelationInput
+    replyToBy?: commentOrderByRelationAggregateInput
+    ReplyNotification?: ReplyNotificationOrderByRelationAggregateInput
     _relevance?: commentOrderByRelevanceInput
   }
 
@@ -18185,12 +19674,16 @@ export namespace Prisma {
     chapterId?: IntNullableFilter<"comment"> | number | null
     content?: StringFilter<"comment"> | string
     parentId?: IntNullableFilter<"comment"> | number | null
+    replyToId?: IntNullableFilter<"comment"> | number | null
     create_at?: DateTimeFilter<"comment"> | Date | string
     user?: XOR<UserScalarRelationFilter, UserWhereInput>
     comic?: XOR<ComicNullableScalarRelationFilter, ComicWhereInput> | null
     chapter?: XOR<ChapterNullableScalarRelationFilter, ChapterWhereInput> | null
     parent?: XOR<CommentNullableScalarRelationFilter, commentWhereInput> | null
     replies?: CommentListRelationFilter
+    replyTo?: XOR<CommentNullableScalarRelationFilter, commentWhereInput> | null
+    replyToBy?: CommentListRelationFilter
+    ReplyNotification?: ReplyNotificationListRelationFilter
   }, "id">
 
   export type commentOrderByWithAggregationInput = {
@@ -18200,6 +19693,7 @@ export namespace Prisma {
     chapterId?: SortOrderInput | SortOrder
     content?: SortOrder
     parentId?: SortOrderInput | SortOrder
+    replyToId?: SortOrderInput | SortOrder
     create_at?: SortOrder
     _count?: commentCountOrderByAggregateInput
     _avg?: commentAvgOrderByAggregateInput
@@ -18218,6 +19712,7 @@ export namespace Prisma {
     chapterId?: IntNullableWithAggregatesFilter<"comment"> | number | null
     content?: StringWithAggregatesFilter<"comment"> | string
     parentId?: IntNullableWithAggregatesFilter<"comment"> | number | null
+    replyToId?: IntNullableWithAggregatesFilter<"comment"> | number | null
     create_at?: DateTimeWithAggregatesFilter<"comment"> | Date | string
   }
 
@@ -18238,6 +19733,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyCreateNestedManyWithoutUserInput
     comments?: commentCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateInput = {
@@ -18258,6 +19754,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
     comments?: commentUncheckedCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserUpdateInput = {
@@ -18277,6 +19774,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
     comments?: commentUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateInput = {
@@ -18297,6 +19795,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
     comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type UserCreateManyInput = {
@@ -18525,6 +20024,7 @@ export namespace Prisma {
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateInput = {
@@ -18548,6 +20048,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicUpdateInput = {
@@ -18570,6 +20071,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateInput = {
@@ -18593,6 +20095,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ComicCreateManyInput = {
@@ -18725,6 +20228,7 @@ export namespace Prisma {
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateInput = {
@@ -18745,6 +20249,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUpdateInput = {
@@ -18764,6 +20269,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateInput = {
@@ -18784,6 +20290,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterCreateManyInput = {
@@ -18970,6 +20477,76 @@ export namespace Prisma {
     userId?: IntFieldUpdateOperationsInput | number
   }
 
+  export type ReplyNotificationCreateInput = {
+    message: string
+    seen?: boolean
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutReplyNotificationInput
+    comment: commentCreateNestedOneWithoutReplyNotificationInput
+    comic?: ComicCreateNestedOneWithoutReplyNotificationInput
+    chapter?: ChapterCreateNestedOneWithoutReplyNotificationInput
+  }
+
+  export type ReplyNotificationUncheckedCreateInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    userId: number
+    commentId: number
+    comicId?: number | null
+    chapterId?: number | null
+    create_at?: Date | string
+  }
+
+  export type ReplyNotificationUpdateInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutReplyNotificationNestedInput
+    comment?: commentUpdateOneRequiredWithoutReplyNotificationNestedInput
+    comic?: ComicUpdateOneWithoutReplyNotificationNestedInput
+    chapter?: ChapterUpdateOneWithoutReplyNotificationNestedInput
+  }
+
+  export type ReplyNotificationUncheckedUpdateInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    userId?: IntFieldUpdateOperationsInput | number
+    commentId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReplyNotificationCreateManyInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    userId: number
+    commentId: number
+    comicId?: number | null
+    chapterId?: number | null
+    create_at?: Date | string
+  }
+
+  export type ReplyNotificationUpdateManyMutationInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReplyNotificationUncheckedUpdateManyInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    userId?: IntFieldUpdateOperationsInput | number
+    commentId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type comic_followerCreateInput = {
     user: UserCreateNestedOneWithoutComicFollowerInput
     comic: ComicCreateNestedOneWithoutComicFollowerInput
@@ -19117,6 +20694,9 @@ export namespace Prisma {
     chapter?: ChapterCreateNestedOneWithoutCommentsInput
     parent?: commentCreateNestedOneWithoutRepliesInput
     replies?: commentCreateNestedManyWithoutParentInput
+    replyTo?: commentCreateNestedOneWithoutReplyToByInput
+    replyToBy?: commentCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutCommentInput
   }
 
   export type commentUncheckedCreateInput = {
@@ -19126,8 +20706,11 @@ export namespace Prisma {
     chapterId?: number | null
     content: string
     parentId?: number | null
+    replyToId?: number | null
     create_at?: Date | string
     replies?: commentUncheckedCreateNestedManyWithoutParentInput
+    replyToBy?: commentUncheckedCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutCommentInput
   }
 
   export type commentUpdateInput = {
@@ -19138,6 +20721,9 @@ export namespace Prisma {
     chapter?: ChapterUpdateOneWithoutCommentsNestedInput
     parent?: commentUpdateOneWithoutRepliesNestedInput
     replies?: commentUpdateManyWithoutParentNestedInput
+    replyTo?: commentUpdateOneWithoutReplyToByNestedInput
+    replyToBy?: commentUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUncheckedUpdateInput = {
@@ -19147,8 +20733,11 @@ export namespace Prisma {
     chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+    replyToBy?: commentUncheckedUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutCommentNestedInput
   }
 
   export type commentCreateManyInput = {
@@ -19158,6 +20747,7 @@ export namespace Prisma {
     chapterId?: number | null
     content: string
     parentId?: number | null
+    replyToId?: number | null
     create_at?: Date | string
   }
 
@@ -19173,6 +20763,7 @@ export namespace Prisma {
     chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -19271,6 +20862,12 @@ export namespace Prisma {
     none?: commentWhereInput
   }
 
+  export type ReplyNotificationListRelationFilter = {
+    every?: ReplyNotificationWhereInput
+    some?: ReplyNotificationWhereInput
+    none?: ReplyNotificationWhereInput
+  }
+
   export type SortOrderInput = {
     sort: SortOrder
     nulls?: NullsOrder
@@ -19297,6 +20894,10 @@ export namespace Prisma {
   }
 
   export type commentOrderByRelationAggregateInput = {
+    _count?: SortOrder
+  }
+
+  export type ReplyNotificationOrderByRelationAggregateInput = {
     _count?: SortOrder
   }
 
@@ -20001,6 +21602,103 @@ export namespace Prisma {
     _max?: NestedEnumnotifiTypeFilter<$PrismaModel>
   }
 
+  export type IntNullableFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type CommentScalarRelationFilter = {
+    is?: commentWhereInput
+    isNot?: commentWhereInput
+  }
+
+  export type ComicNullableScalarRelationFilter = {
+    is?: ComicWhereInput | null
+    isNot?: ComicWhereInput | null
+  }
+
+  export type ChapterNullableScalarRelationFilter = {
+    is?: ChapterWhereInput | null
+    isNot?: ChapterWhereInput | null
+  }
+
+  export type ReplyNotificationOrderByRelevanceInput = {
+    fields: ReplyNotificationOrderByRelevanceFieldEnum | ReplyNotificationOrderByRelevanceFieldEnum[]
+    sort: SortOrder
+    search: string
+  }
+
+  export type ReplyNotificationCountOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    seen?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type ReplyNotificationAvgOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type ReplyNotificationMaxOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    seen?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type ReplyNotificationMinOrderByAggregateInput = {
+    id?: SortOrder
+    message?: SortOrder
+    seen?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+    create_at?: SortOrder
+  }
+
+  export type ReplyNotificationSumOrderByAggregateInput = {
+    id?: SortOrder
+    userId?: SortOrder
+    commentId?: SortOrder
+    comicId?: SortOrder
+    chapterId?: SortOrder
+  }
+
+  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: number | IntFieldRefInput<$PrismaModel> | null
+    in?: number[] | null
+    notIn?: number[] | null
+    lt?: number | IntFieldRefInput<$PrismaModel>
+    lte?: number | IntFieldRefInput<$PrismaModel>
+    gt?: number | IntFieldRefInput<$PrismaModel>
+    gte?: number | IntFieldRefInput<$PrismaModel>
+    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _avg?: NestedFloatNullableFilter<$PrismaModel>
+    _sum?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedIntNullableFilter<$PrismaModel>
+    _max?: NestedIntNullableFilter<$PrismaModel>
+  }
+
   export type comic_followerCountOrderByAggregateInput = {
     id?: SortOrder
     userId?: SortOrder
@@ -20074,27 +21772,6 @@ export namespace Prisma {
     chapterId?: SortOrder
   }
 
-  export type IntNullableFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableFilter<$PrismaModel> | number | null
-  }
-
-  export type ComicNullableScalarRelationFilter = {
-    is?: ComicWhereInput | null
-    isNot?: ComicWhereInput | null
-  }
-
-  export type ChapterNullableScalarRelationFilter = {
-    is?: ChapterWhereInput | null
-    isNot?: ChapterWhereInput | null
-  }
-
   export type view_historyCountOrderByAggregateInput = {
     id?: SortOrder
     comicId?: SortOrder
@@ -20133,22 +21810,6 @@ export namespace Prisma {
     views?: SortOrder
   }
 
-  export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: number | IntFieldRefInput<$PrismaModel> | null
-    in?: number[] | null
-    notIn?: number[] | null
-    lt?: number | IntFieldRefInput<$PrismaModel>
-    lte?: number | IntFieldRefInput<$PrismaModel>
-    gt?: number | IntFieldRefInput<$PrismaModel>
-    gte?: number | IntFieldRefInput<$PrismaModel>
-    not?: NestedIntNullableWithAggregatesFilter<$PrismaModel> | number | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _avg?: NestedFloatNullableFilter<$PrismaModel>
-    _sum?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedIntNullableFilter<$PrismaModel>
-    _max?: NestedIntNullableFilter<$PrismaModel>
-  }
-
   export type CommentNullableScalarRelationFilter = {
     is?: commentWhereInput | null
     isNot?: commentWhereInput | null
@@ -20167,6 +21828,7 @@ export namespace Prisma {
     chapterId?: SortOrder
     content?: SortOrder
     parentId?: SortOrder
+    replyToId?: SortOrder
     create_at?: SortOrder
   }
 
@@ -20176,6 +21838,7 @@ export namespace Prisma {
     comicId?: SortOrder
     chapterId?: SortOrder
     parentId?: SortOrder
+    replyToId?: SortOrder
   }
 
   export type commentMaxOrderByAggregateInput = {
@@ -20185,6 +21848,7 @@ export namespace Prisma {
     chapterId?: SortOrder
     content?: SortOrder
     parentId?: SortOrder
+    replyToId?: SortOrder
     create_at?: SortOrder
   }
 
@@ -20195,6 +21859,7 @@ export namespace Prisma {
     chapterId?: SortOrder
     content?: SortOrder
     parentId?: SortOrder
+    replyToId?: SortOrder
     create_at?: SortOrder
   }
 
@@ -20204,6 +21869,7 @@ export namespace Prisma {
     comicId?: SortOrder
     chapterId?: SortOrder
     parentId?: SortOrder
+    replyToId?: SortOrder
   }
 
   export type TransactionCreateNestedManyWithoutUserInput = {
@@ -20248,6 +21914,13 @@ export namespace Prisma {
     connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
   }
 
+  export type ReplyNotificationCreateNestedManyWithoutUserInput = {
+    create?: XOR<ReplyNotificationCreateWithoutUserInput, ReplyNotificationUncheckedCreateWithoutUserInput> | ReplyNotificationCreateWithoutUserInput[] | ReplyNotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutUserInput | ReplyNotificationCreateOrConnectWithoutUserInput[]
+    createMany?: ReplyNotificationCreateManyUserInputEnvelope
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+  }
+
   export type TransactionUncheckedCreateNestedManyWithoutUserInput = {
     create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
@@ -20288,6 +21961,13 @@ export namespace Prisma {
     connectOrCreate?: commentCreateOrConnectWithoutUserInput | commentCreateOrConnectWithoutUserInput[]
     createMany?: commentCreateManyUserInputEnvelope
     connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type ReplyNotificationUncheckedCreateNestedManyWithoutUserInput = {
+    create?: XOR<ReplyNotificationCreateWithoutUserInput, ReplyNotificationUncheckedCreateWithoutUserInput> | ReplyNotificationCreateWithoutUserInput[] | ReplyNotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutUserInput | ReplyNotificationCreateOrConnectWithoutUserInput[]
+    createMany?: ReplyNotificationCreateManyUserInputEnvelope
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
   }
 
   export type StringFieldUpdateOperationsInput = {
@@ -20398,6 +22078,20 @@ export namespace Prisma {
     deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
   }
 
+  export type ReplyNotificationUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ReplyNotificationCreateWithoutUserInput, ReplyNotificationUncheckedCreateWithoutUserInput> | ReplyNotificationCreateWithoutUserInput[] | ReplyNotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutUserInput | ReplyNotificationCreateOrConnectWithoutUserInput[]
+    upsert?: ReplyNotificationUpsertWithWhereUniqueWithoutUserInput | ReplyNotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ReplyNotificationCreateManyUserInputEnvelope
+    set?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    disconnect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    delete?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    update?: ReplyNotificationUpdateWithWhereUniqueWithoutUserInput | ReplyNotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ReplyNotificationUpdateManyWithWhereWithoutUserInput | ReplyNotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ReplyNotificationScalarWhereInput | ReplyNotificationScalarWhereInput[]
+  }
+
   export type TransactionUncheckedUpdateManyWithoutUserNestedInput = {
     create?: XOR<TransactionCreateWithoutUserInput, TransactionUncheckedCreateWithoutUserInput> | TransactionCreateWithoutUserInput[] | TransactionUncheckedCreateWithoutUserInput[]
     connectOrCreate?: TransactionCreateOrConnectWithoutUserInput | TransactionCreateOrConnectWithoutUserInput[]
@@ -20480,6 +22174,20 @@ export namespace Prisma {
     update?: commentUpdateWithWhereUniqueWithoutUserInput | commentUpdateWithWhereUniqueWithoutUserInput[]
     updateMany?: commentUpdateManyWithWhereWithoutUserInput | commentUpdateManyWithWhereWithoutUserInput[]
     deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type ReplyNotificationUncheckedUpdateManyWithoutUserNestedInput = {
+    create?: XOR<ReplyNotificationCreateWithoutUserInput, ReplyNotificationUncheckedCreateWithoutUserInput> | ReplyNotificationCreateWithoutUserInput[] | ReplyNotificationUncheckedCreateWithoutUserInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutUserInput | ReplyNotificationCreateOrConnectWithoutUserInput[]
+    upsert?: ReplyNotificationUpsertWithWhereUniqueWithoutUserInput | ReplyNotificationUpsertWithWhereUniqueWithoutUserInput[]
+    createMany?: ReplyNotificationCreateManyUserInputEnvelope
+    set?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    disconnect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    delete?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    update?: ReplyNotificationUpdateWithWhereUniqueWithoutUserInput | ReplyNotificationUpdateWithWhereUniqueWithoutUserInput[]
+    updateMany?: ReplyNotificationUpdateManyWithWhereWithoutUserInput | ReplyNotificationUpdateManyWithWhereWithoutUserInput[]
+    deleteMany?: ReplyNotificationScalarWhereInput | ReplyNotificationScalarWhereInput[]
   }
 
   export type TransactionCreateNestedManyWithoutCoinInput = {
@@ -20653,6 +22361,13 @@ export namespace Prisma {
     connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
   }
 
+  export type ReplyNotificationCreateNestedManyWithoutComicInput = {
+    create?: XOR<ReplyNotificationCreateWithoutComicInput, ReplyNotificationUncheckedCreateWithoutComicInput> | ReplyNotificationCreateWithoutComicInput[] | ReplyNotificationUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutComicInput | ReplyNotificationCreateOrConnectWithoutComicInput[]
+    createMany?: ReplyNotificationCreateManyComicInputEnvelope
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+  }
+
   export type CategoryUncheckedCreateNestedManyWithoutComicsInput = {
     create?: XOR<CategoryCreateWithoutComicsInput, CategoryUncheckedCreateWithoutComicsInput> | CategoryCreateWithoutComicsInput[] | CategoryUncheckedCreateWithoutComicsInput[]
     connectOrCreate?: CategoryCreateOrConnectWithoutComicsInput | CategoryCreateOrConnectWithoutComicsInput[]
@@ -20692,6 +22407,13 @@ export namespace Prisma {
     connectOrCreate?: view_historyCreateOrConnectWithoutComicInput | view_historyCreateOrConnectWithoutComicInput[]
     createMany?: view_historyCreateManyComicInputEnvelope
     connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+  }
+
+  export type ReplyNotificationUncheckedCreateNestedManyWithoutComicInput = {
+    create?: XOR<ReplyNotificationCreateWithoutComicInput, ReplyNotificationUncheckedCreateWithoutComicInput> | ReplyNotificationCreateWithoutComicInput[] | ReplyNotificationUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutComicInput | ReplyNotificationCreateOrConnectWithoutComicInput[]
+    createMany?: ReplyNotificationCreateManyComicInputEnvelope
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
   }
 
   export type EnumcomicStatusFieldUpdateOperationsInput = {
@@ -20793,6 +22515,20 @@ export namespace Prisma {
     deleteMany?: view_historyScalarWhereInput | view_historyScalarWhereInput[]
   }
 
+  export type ReplyNotificationUpdateManyWithoutComicNestedInput = {
+    create?: XOR<ReplyNotificationCreateWithoutComicInput, ReplyNotificationUncheckedCreateWithoutComicInput> | ReplyNotificationCreateWithoutComicInput[] | ReplyNotificationUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutComicInput | ReplyNotificationCreateOrConnectWithoutComicInput[]
+    upsert?: ReplyNotificationUpsertWithWhereUniqueWithoutComicInput | ReplyNotificationUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: ReplyNotificationCreateManyComicInputEnvelope
+    set?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    disconnect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    delete?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    update?: ReplyNotificationUpdateWithWhereUniqueWithoutComicInput | ReplyNotificationUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: ReplyNotificationUpdateManyWithWhereWithoutComicInput | ReplyNotificationUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: ReplyNotificationScalarWhereInput | ReplyNotificationScalarWhereInput[]
+  }
+
   export type CategoryUncheckedUpdateManyWithoutComicsNestedInput = {
     create?: XOR<CategoryCreateWithoutComicsInput, CategoryUncheckedCreateWithoutComicsInput> | CategoryCreateWithoutComicsInput[] | CategoryUncheckedCreateWithoutComicsInput[]
     connectOrCreate?: CategoryCreateOrConnectWithoutComicsInput | CategoryCreateOrConnectWithoutComicsInput[]
@@ -20876,6 +22612,20 @@ export namespace Prisma {
     deleteMany?: view_historyScalarWhereInput | view_historyScalarWhereInput[]
   }
 
+  export type ReplyNotificationUncheckedUpdateManyWithoutComicNestedInput = {
+    create?: XOR<ReplyNotificationCreateWithoutComicInput, ReplyNotificationUncheckedCreateWithoutComicInput> | ReplyNotificationCreateWithoutComicInput[] | ReplyNotificationUncheckedCreateWithoutComicInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutComicInput | ReplyNotificationCreateOrConnectWithoutComicInput[]
+    upsert?: ReplyNotificationUpsertWithWhereUniqueWithoutComicInput | ReplyNotificationUpsertWithWhereUniqueWithoutComicInput[]
+    createMany?: ReplyNotificationCreateManyComicInputEnvelope
+    set?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    disconnect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    delete?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    update?: ReplyNotificationUpdateWithWhereUniqueWithoutComicInput | ReplyNotificationUpdateWithWhereUniqueWithoutComicInput[]
+    updateMany?: ReplyNotificationUpdateManyWithWhereWithoutComicInput | ReplyNotificationUpdateManyWithWhereWithoutComicInput[]
+    deleteMany?: ReplyNotificationScalarWhereInput | ReplyNotificationScalarWhereInput[]
+  }
+
   export type ComicCreateNestedManyWithoutCategoriesInput = {
     create?: XOR<ComicCreateWithoutCategoriesInput, ComicUncheckedCreateWithoutCategoriesInput> | ComicCreateWithoutCategoriesInput[] | ComicUncheckedCreateWithoutCategoriesInput[]
     connectOrCreate?: ComicCreateOrConnectWithoutCategoriesInput | ComicCreateOrConnectWithoutCategoriesInput[]
@@ -20955,6 +22705,13 @@ export namespace Prisma {
     connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
   }
 
+  export type ReplyNotificationCreateNestedManyWithoutChapterInput = {
+    create?: XOR<ReplyNotificationCreateWithoutChapterInput, ReplyNotificationUncheckedCreateWithoutChapterInput> | ReplyNotificationCreateWithoutChapterInput[] | ReplyNotificationUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutChapterInput | ReplyNotificationCreateOrConnectWithoutChapterInput[]
+    createMany?: ReplyNotificationCreateManyChapterInputEnvelope
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+  }
+
   export type chapter_imageUncheckedCreateNestedManyWithoutChapterInput = {
     create?: XOR<chapter_imageCreateWithoutChapterInput, chapter_imageUncheckedCreateWithoutChapterInput> | chapter_imageCreateWithoutChapterInput[] | chapter_imageUncheckedCreateWithoutChapterInput[]
     connectOrCreate?: chapter_imageCreateOrConnectWithoutChapterInput | chapter_imageCreateOrConnectWithoutChapterInput[]
@@ -20988,6 +22745,13 @@ export namespace Prisma {
     connectOrCreate?: view_historyCreateOrConnectWithoutChapterInput | view_historyCreateOrConnectWithoutChapterInput[]
     createMany?: view_historyCreateManyChapterInputEnvelope
     connect?: view_historyWhereUniqueInput | view_historyWhereUniqueInput[]
+  }
+
+  export type ReplyNotificationUncheckedCreateNestedManyWithoutChapterInput = {
+    create?: XOR<ReplyNotificationCreateWithoutChapterInput, ReplyNotificationUncheckedCreateWithoutChapterInput> | ReplyNotificationCreateWithoutChapterInput[] | ReplyNotificationUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutChapterInput | ReplyNotificationCreateOrConnectWithoutChapterInput[]
+    createMany?: ReplyNotificationCreateManyChapterInputEnvelope
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
   }
 
   export type ComicUpdateOneRequiredWithoutChaptersNestedInput = {
@@ -21068,6 +22832,20 @@ export namespace Prisma {
     deleteMany?: view_historyScalarWhereInput | view_historyScalarWhereInput[]
   }
 
+  export type ReplyNotificationUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<ReplyNotificationCreateWithoutChapterInput, ReplyNotificationUncheckedCreateWithoutChapterInput> | ReplyNotificationCreateWithoutChapterInput[] | ReplyNotificationUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutChapterInput | ReplyNotificationCreateOrConnectWithoutChapterInput[]
+    upsert?: ReplyNotificationUpsertWithWhereUniqueWithoutChapterInput | ReplyNotificationUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: ReplyNotificationCreateManyChapterInputEnvelope
+    set?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    disconnect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    delete?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    update?: ReplyNotificationUpdateWithWhereUniqueWithoutChapterInput | ReplyNotificationUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: ReplyNotificationUpdateManyWithWhereWithoutChapterInput | ReplyNotificationUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: ReplyNotificationScalarWhereInput | ReplyNotificationScalarWhereInput[]
+  }
+
   export type chapter_imageUncheckedUpdateManyWithoutChapterNestedInput = {
     create?: XOR<chapter_imageCreateWithoutChapterInput, chapter_imageUncheckedCreateWithoutChapterInput> | chapter_imageCreateWithoutChapterInput[] | chapter_imageUncheckedCreateWithoutChapterInput[]
     connectOrCreate?: chapter_imageCreateOrConnectWithoutChapterInput | chapter_imageCreateOrConnectWithoutChapterInput[]
@@ -21138,6 +22916,20 @@ export namespace Prisma {
     deleteMany?: view_historyScalarWhereInput | view_historyScalarWhereInput[]
   }
 
+  export type ReplyNotificationUncheckedUpdateManyWithoutChapterNestedInput = {
+    create?: XOR<ReplyNotificationCreateWithoutChapterInput, ReplyNotificationUncheckedCreateWithoutChapterInput> | ReplyNotificationCreateWithoutChapterInput[] | ReplyNotificationUncheckedCreateWithoutChapterInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutChapterInput | ReplyNotificationCreateOrConnectWithoutChapterInput[]
+    upsert?: ReplyNotificationUpsertWithWhereUniqueWithoutChapterInput | ReplyNotificationUpsertWithWhereUniqueWithoutChapterInput[]
+    createMany?: ReplyNotificationCreateManyChapterInputEnvelope
+    set?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    disconnect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    delete?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    update?: ReplyNotificationUpdateWithWhereUniqueWithoutChapterInput | ReplyNotificationUpdateWithWhereUniqueWithoutChapterInput[]
+    updateMany?: ReplyNotificationUpdateManyWithWhereWithoutChapterInput | ReplyNotificationUpdateManyWithWhereWithoutChapterInput[]
+    deleteMany?: ReplyNotificationScalarWhereInput | ReplyNotificationScalarWhereInput[]
+  }
+
   export type ChapterCreateNestedOneWithoutChapterImagesInput = {
     create?: XOR<ChapterCreateWithoutChapterImagesInput, ChapterUncheckedCreateWithoutChapterImagesInput>
     connectOrCreate?: ChapterCreateOrConnectWithoutChapterImagesInput
@@ -21196,6 +22988,74 @@ export namespace Prisma {
     upsert?: UserUpsertWithoutNotificationsInput
     connect?: UserWhereUniqueInput
     update?: XOR<XOR<UserUpdateToOneWithWhereWithoutNotificationsInput, UserUpdateWithoutNotificationsInput>, UserUncheckedUpdateWithoutNotificationsInput>
+  }
+
+  export type UserCreateNestedOneWithoutReplyNotificationInput = {
+    create?: XOR<UserCreateWithoutReplyNotificationInput, UserUncheckedCreateWithoutReplyNotificationInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReplyNotificationInput
+    connect?: UserWhereUniqueInput
+  }
+
+  export type commentCreateNestedOneWithoutReplyNotificationInput = {
+    create?: XOR<commentCreateWithoutReplyNotificationInput, commentUncheckedCreateWithoutReplyNotificationInput>
+    connectOrCreate?: commentCreateOrConnectWithoutReplyNotificationInput
+    connect?: commentWhereUniqueInput
+  }
+
+  export type ComicCreateNestedOneWithoutReplyNotificationInput = {
+    create?: XOR<ComicCreateWithoutReplyNotificationInput, ComicUncheckedCreateWithoutReplyNotificationInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutReplyNotificationInput
+    connect?: ComicWhereUniqueInput
+  }
+
+  export type ChapterCreateNestedOneWithoutReplyNotificationInput = {
+    create?: XOR<ChapterCreateWithoutReplyNotificationInput, ChapterUncheckedCreateWithoutReplyNotificationInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutReplyNotificationInput
+    connect?: ChapterWhereUniqueInput
+  }
+
+  export type UserUpdateOneRequiredWithoutReplyNotificationNestedInput = {
+    create?: XOR<UserCreateWithoutReplyNotificationInput, UserUncheckedCreateWithoutReplyNotificationInput>
+    connectOrCreate?: UserCreateOrConnectWithoutReplyNotificationInput
+    upsert?: UserUpsertWithoutReplyNotificationInput
+    connect?: UserWhereUniqueInput
+    update?: XOR<XOR<UserUpdateToOneWithWhereWithoutReplyNotificationInput, UserUpdateWithoutReplyNotificationInput>, UserUncheckedUpdateWithoutReplyNotificationInput>
+  }
+
+  export type commentUpdateOneRequiredWithoutReplyNotificationNestedInput = {
+    create?: XOR<commentCreateWithoutReplyNotificationInput, commentUncheckedCreateWithoutReplyNotificationInput>
+    connectOrCreate?: commentCreateOrConnectWithoutReplyNotificationInput
+    upsert?: commentUpsertWithoutReplyNotificationInput
+    connect?: commentWhereUniqueInput
+    update?: XOR<XOR<commentUpdateToOneWithWhereWithoutReplyNotificationInput, commentUpdateWithoutReplyNotificationInput>, commentUncheckedUpdateWithoutReplyNotificationInput>
+  }
+
+  export type ComicUpdateOneWithoutReplyNotificationNestedInput = {
+    create?: XOR<ComicCreateWithoutReplyNotificationInput, ComicUncheckedCreateWithoutReplyNotificationInput>
+    connectOrCreate?: ComicCreateOrConnectWithoutReplyNotificationInput
+    upsert?: ComicUpsertWithoutReplyNotificationInput
+    disconnect?: ComicWhereInput | boolean
+    delete?: ComicWhereInput | boolean
+    connect?: ComicWhereUniqueInput
+    update?: XOR<XOR<ComicUpdateToOneWithWhereWithoutReplyNotificationInput, ComicUpdateWithoutReplyNotificationInput>, ComicUncheckedUpdateWithoutReplyNotificationInput>
+  }
+
+  export type ChapterUpdateOneWithoutReplyNotificationNestedInput = {
+    create?: XOR<ChapterCreateWithoutReplyNotificationInput, ChapterUncheckedCreateWithoutReplyNotificationInput>
+    connectOrCreate?: ChapterCreateOrConnectWithoutReplyNotificationInput
+    upsert?: ChapterUpsertWithoutReplyNotificationInput
+    disconnect?: ChapterWhereInput | boolean
+    delete?: ChapterWhereInput | boolean
+    connect?: ChapterWhereUniqueInput
+    update?: XOR<XOR<ChapterUpdateToOneWithWhereWithoutReplyNotificationInput, ChapterUpdateWithoutReplyNotificationInput>, ChapterUncheckedUpdateWithoutReplyNotificationInput>
+  }
+
+  export type NullableIntFieldUpdateOperationsInput = {
+    set?: number | null
+    increment?: number
+    decrement?: number
+    multiply?: number
+    divide?: number
   }
 
   export type UserCreateNestedOneWithoutComicFollowerInput = {
@@ -21300,14 +23160,6 @@ export namespace Prisma {
     update?: XOR<XOR<ChapterUpdateToOneWithWhereWithoutViewHistorysInput, ChapterUpdateWithoutViewHistorysInput>, ChapterUncheckedUpdateWithoutViewHistorysInput>
   }
 
-  export type NullableIntFieldUpdateOperationsInput = {
-    set?: number | null
-    increment?: number
-    decrement?: number
-    multiply?: number
-    divide?: number
-  }
-
   export type UserCreateNestedOneWithoutCommentsInput = {
     create?: XOR<UserCreateWithoutCommentsInput, UserUncheckedCreateWithoutCommentsInput>
     connectOrCreate?: UserCreateOrConnectWithoutCommentsInput
@@ -21339,11 +23191,45 @@ export namespace Prisma {
     connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
   }
 
+  export type commentCreateNestedOneWithoutReplyToByInput = {
+    create?: XOR<commentCreateWithoutReplyToByInput, commentUncheckedCreateWithoutReplyToByInput>
+    connectOrCreate?: commentCreateOrConnectWithoutReplyToByInput
+    connect?: commentWhereUniqueInput
+  }
+
+  export type commentCreateNestedManyWithoutReplyToInput = {
+    create?: XOR<commentCreateWithoutReplyToInput, commentUncheckedCreateWithoutReplyToInput> | commentCreateWithoutReplyToInput[] | commentUncheckedCreateWithoutReplyToInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutReplyToInput | commentCreateOrConnectWithoutReplyToInput[]
+    createMany?: commentCreateManyReplyToInputEnvelope
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type ReplyNotificationCreateNestedManyWithoutCommentInput = {
+    create?: XOR<ReplyNotificationCreateWithoutCommentInput, ReplyNotificationUncheckedCreateWithoutCommentInput> | ReplyNotificationCreateWithoutCommentInput[] | ReplyNotificationUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutCommentInput | ReplyNotificationCreateOrConnectWithoutCommentInput[]
+    createMany?: ReplyNotificationCreateManyCommentInputEnvelope
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+  }
+
   export type commentUncheckedCreateNestedManyWithoutParentInput = {
     create?: XOR<commentCreateWithoutParentInput, commentUncheckedCreateWithoutParentInput> | commentCreateWithoutParentInput[] | commentUncheckedCreateWithoutParentInput[]
     connectOrCreate?: commentCreateOrConnectWithoutParentInput | commentCreateOrConnectWithoutParentInput[]
     createMany?: commentCreateManyParentInputEnvelope
     connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type commentUncheckedCreateNestedManyWithoutReplyToInput = {
+    create?: XOR<commentCreateWithoutReplyToInput, commentUncheckedCreateWithoutReplyToInput> | commentCreateWithoutReplyToInput[] | commentUncheckedCreateWithoutReplyToInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutReplyToInput | commentCreateOrConnectWithoutReplyToInput[]
+    createMany?: commentCreateManyReplyToInputEnvelope
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+  }
+
+  export type ReplyNotificationUncheckedCreateNestedManyWithoutCommentInput = {
+    create?: XOR<ReplyNotificationCreateWithoutCommentInput, ReplyNotificationUncheckedCreateWithoutCommentInput> | ReplyNotificationCreateWithoutCommentInput[] | ReplyNotificationUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutCommentInput | ReplyNotificationCreateOrConnectWithoutCommentInput[]
+    createMany?: ReplyNotificationCreateManyCommentInputEnvelope
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
   }
 
   export type UserUpdateOneRequiredWithoutCommentsNestedInput = {
@@ -21398,6 +23284,44 @@ export namespace Prisma {
     deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
   }
 
+  export type commentUpdateOneWithoutReplyToByNestedInput = {
+    create?: XOR<commentCreateWithoutReplyToByInput, commentUncheckedCreateWithoutReplyToByInput>
+    connectOrCreate?: commentCreateOrConnectWithoutReplyToByInput
+    upsert?: commentUpsertWithoutReplyToByInput
+    disconnect?: commentWhereInput | boolean
+    delete?: commentWhereInput | boolean
+    connect?: commentWhereUniqueInput
+    update?: XOR<XOR<commentUpdateToOneWithWhereWithoutReplyToByInput, commentUpdateWithoutReplyToByInput>, commentUncheckedUpdateWithoutReplyToByInput>
+  }
+
+  export type commentUpdateManyWithoutReplyToNestedInput = {
+    create?: XOR<commentCreateWithoutReplyToInput, commentUncheckedCreateWithoutReplyToInput> | commentCreateWithoutReplyToInput[] | commentUncheckedCreateWithoutReplyToInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutReplyToInput | commentCreateOrConnectWithoutReplyToInput[]
+    upsert?: commentUpsertWithWhereUniqueWithoutReplyToInput | commentUpsertWithWhereUniqueWithoutReplyToInput[]
+    createMany?: commentCreateManyReplyToInputEnvelope
+    set?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    disconnect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    delete?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    update?: commentUpdateWithWhereUniqueWithoutReplyToInput | commentUpdateWithWhereUniqueWithoutReplyToInput[]
+    updateMany?: commentUpdateManyWithWhereWithoutReplyToInput | commentUpdateManyWithWhereWithoutReplyToInput[]
+    deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type ReplyNotificationUpdateManyWithoutCommentNestedInput = {
+    create?: XOR<ReplyNotificationCreateWithoutCommentInput, ReplyNotificationUncheckedCreateWithoutCommentInput> | ReplyNotificationCreateWithoutCommentInput[] | ReplyNotificationUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutCommentInput | ReplyNotificationCreateOrConnectWithoutCommentInput[]
+    upsert?: ReplyNotificationUpsertWithWhereUniqueWithoutCommentInput | ReplyNotificationUpsertWithWhereUniqueWithoutCommentInput[]
+    createMany?: ReplyNotificationCreateManyCommentInputEnvelope
+    set?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    disconnect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    delete?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    update?: ReplyNotificationUpdateWithWhereUniqueWithoutCommentInput | ReplyNotificationUpdateWithWhereUniqueWithoutCommentInput[]
+    updateMany?: ReplyNotificationUpdateManyWithWhereWithoutCommentInput | ReplyNotificationUpdateManyWithWhereWithoutCommentInput[]
+    deleteMany?: ReplyNotificationScalarWhereInput | ReplyNotificationScalarWhereInput[]
+  }
+
   export type commentUncheckedUpdateManyWithoutParentNestedInput = {
     create?: XOR<commentCreateWithoutParentInput, commentUncheckedCreateWithoutParentInput> | commentCreateWithoutParentInput[] | commentUncheckedCreateWithoutParentInput[]
     connectOrCreate?: commentCreateOrConnectWithoutParentInput | commentCreateOrConnectWithoutParentInput[]
@@ -21410,6 +23334,34 @@ export namespace Prisma {
     update?: commentUpdateWithWhereUniqueWithoutParentInput | commentUpdateWithWhereUniqueWithoutParentInput[]
     updateMany?: commentUpdateManyWithWhereWithoutParentInput | commentUpdateManyWithWhereWithoutParentInput[]
     deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type commentUncheckedUpdateManyWithoutReplyToNestedInput = {
+    create?: XOR<commentCreateWithoutReplyToInput, commentUncheckedCreateWithoutReplyToInput> | commentCreateWithoutReplyToInput[] | commentUncheckedCreateWithoutReplyToInput[]
+    connectOrCreate?: commentCreateOrConnectWithoutReplyToInput | commentCreateOrConnectWithoutReplyToInput[]
+    upsert?: commentUpsertWithWhereUniqueWithoutReplyToInput | commentUpsertWithWhereUniqueWithoutReplyToInput[]
+    createMany?: commentCreateManyReplyToInputEnvelope
+    set?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    disconnect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    delete?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    connect?: commentWhereUniqueInput | commentWhereUniqueInput[]
+    update?: commentUpdateWithWhereUniqueWithoutReplyToInput | commentUpdateWithWhereUniqueWithoutReplyToInput[]
+    updateMany?: commentUpdateManyWithWhereWithoutReplyToInput | commentUpdateManyWithWhereWithoutReplyToInput[]
+    deleteMany?: commentScalarWhereInput | commentScalarWhereInput[]
+  }
+
+  export type ReplyNotificationUncheckedUpdateManyWithoutCommentNestedInput = {
+    create?: XOR<ReplyNotificationCreateWithoutCommentInput, ReplyNotificationUncheckedCreateWithoutCommentInput> | ReplyNotificationCreateWithoutCommentInput[] | ReplyNotificationUncheckedCreateWithoutCommentInput[]
+    connectOrCreate?: ReplyNotificationCreateOrConnectWithoutCommentInput | ReplyNotificationCreateOrConnectWithoutCommentInput[]
+    upsert?: ReplyNotificationUpsertWithWhereUniqueWithoutCommentInput | ReplyNotificationUpsertWithWhereUniqueWithoutCommentInput[]
+    createMany?: ReplyNotificationCreateManyCommentInputEnvelope
+    set?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    disconnect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    delete?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    connect?: ReplyNotificationWhereUniqueInput | ReplyNotificationWhereUniqueInput[]
+    update?: ReplyNotificationUpdateWithWhereUniqueWithoutCommentInput | ReplyNotificationUpdateWithWhereUniqueWithoutCommentInput[]
+    updateMany?: ReplyNotificationUpdateManyWithWhereWithoutCommentInput | ReplyNotificationUpdateManyWithWhereWithoutCommentInput[]
+    deleteMany?: ReplyNotificationScalarWhereInput | ReplyNotificationScalarWhereInput[]
   }
 
   export type NestedIntFilter<$PrismaModel = never> = {
@@ -21798,6 +23750,9 @@ export namespace Prisma {
     chapter?: ChapterCreateNestedOneWithoutCommentsInput
     parent?: commentCreateNestedOneWithoutRepliesInput
     replies?: commentCreateNestedManyWithoutParentInput
+    replyTo?: commentCreateNestedOneWithoutReplyToByInput
+    replyToBy?: commentCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutCommentInput
   }
 
   export type commentUncheckedCreateWithoutUserInput = {
@@ -21806,8 +23761,11 @@ export namespace Prisma {
     chapterId?: number | null
     content: string
     parentId?: number | null
+    replyToId?: number | null
     create_at?: Date | string
     replies?: commentUncheckedCreateNestedManyWithoutParentInput
+    replyToBy?: commentUncheckedCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutCommentInput
   }
 
   export type commentCreateOrConnectWithoutUserInput = {
@@ -21817,6 +23775,35 @@ export namespace Prisma {
 
   export type commentCreateManyUserInputEnvelope = {
     data: commentCreateManyUserInput | commentCreateManyUserInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReplyNotificationCreateWithoutUserInput = {
+    message: string
+    seen?: boolean
+    create_at?: Date | string
+    comment: commentCreateNestedOneWithoutReplyNotificationInput
+    comic?: ComicCreateNestedOneWithoutReplyNotificationInput
+    chapter?: ChapterCreateNestedOneWithoutReplyNotificationInput
+  }
+
+  export type ReplyNotificationUncheckedCreateWithoutUserInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    commentId: number
+    comicId?: number | null
+    chapterId?: number | null
+    create_at?: Date | string
+  }
+
+  export type ReplyNotificationCreateOrConnectWithoutUserInput = {
+    where: ReplyNotificationWhereUniqueInput
+    create: XOR<ReplyNotificationCreateWithoutUserInput, ReplyNotificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type ReplyNotificationCreateManyUserInputEnvelope = {
+    data: ReplyNotificationCreateManyUserInput | ReplyNotificationCreateManyUserInput[]
     skipDuplicates?: boolean
   }
 
@@ -21981,7 +23968,38 @@ export namespace Prisma {
     chapterId?: IntNullableFilter<"comment"> | number | null
     content?: StringFilter<"comment"> | string
     parentId?: IntNullableFilter<"comment"> | number | null
+    replyToId?: IntNullableFilter<"comment"> | number | null
     create_at?: DateTimeFilter<"comment"> | Date | string
+  }
+
+  export type ReplyNotificationUpsertWithWhereUniqueWithoutUserInput = {
+    where: ReplyNotificationWhereUniqueInput
+    update: XOR<ReplyNotificationUpdateWithoutUserInput, ReplyNotificationUncheckedUpdateWithoutUserInput>
+    create: XOR<ReplyNotificationCreateWithoutUserInput, ReplyNotificationUncheckedCreateWithoutUserInput>
+  }
+
+  export type ReplyNotificationUpdateWithWhereUniqueWithoutUserInput = {
+    where: ReplyNotificationWhereUniqueInput
+    data: XOR<ReplyNotificationUpdateWithoutUserInput, ReplyNotificationUncheckedUpdateWithoutUserInput>
+  }
+
+  export type ReplyNotificationUpdateManyWithWhereWithoutUserInput = {
+    where: ReplyNotificationScalarWhereInput
+    data: XOR<ReplyNotificationUpdateManyMutationInput, ReplyNotificationUncheckedUpdateManyWithoutUserInput>
+  }
+
+  export type ReplyNotificationScalarWhereInput = {
+    AND?: ReplyNotificationScalarWhereInput | ReplyNotificationScalarWhereInput[]
+    OR?: ReplyNotificationScalarWhereInput[]
+    NOT?: ReplyNotificationScalarWhereInput | ReplyNotificationScalarWhereInput[]
+    id?: IntFilter<"ReplyNotification"> | number
+    message?: StringFilter<"ReplyNotification"> | string
+    seen?: BoolFilter<"ReplyNotification"> | boolean
+    userId?: IntFilter<"ReplyNotification"> | number
+    commentId?: IntFilter<"ReplyNotification"> | number
+    comicId?: IntNullableFilter<"ReplyNotification"> | number | null
+    chapterId?: IntNullableFilter<"ReplyNotification"> | number | null
+    create_at?: DateTimeFilter<"ReplyNotification"> | Date | string
   }
 
   export type TransactionCreateWithoutCoinInput = {
@@ -22043,6 +24061,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyCreateNestedManyWithoutUserInput
     comments?: commentCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutTransactionsInput = {
@@ -22062,6 +24081,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
     comments?: commentUncheckedCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutTransactionsInput = {
@@ -22114,6 +24134,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
     comments?: commentUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutTransactionsInput = {
@@ -22133,6 +24154,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
     comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type CoinUpsertWithoutTransactionsInput = {
@@ -22178,6 +24200,7 @@ export namespace Prisma {
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutCountryInput = {
@@ -22200,6 +24223,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutCountryInput = {
@@ -22304,6 +24328,7 @@ export namespace Prisma {
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutComicInput = {
@@ -22323,6 +24348,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutComicInput = {
@@ -22384,6 +24410,9 @@ export namespace Prisma {
     chapter?: ChapterCreateNestedOneWithoutCommentsInput
     parent?: commentCreateNestedOneWithoutRepliesInput
     replies?: commentCreateNestedManyWithoutParentInput
+    replyTo?: commentCreateNestedOneWithoutReplyToByInput
+    replyToBy?: commentCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutCommentInput
   }
 
   export type commentUncheckedCreateWithoutComicInput = {
@@ -22392,8 +24421,11 @@ export namespace Prisma {
     chapterId?: number | null
     content: string
     parentId?: number | null
+    replyToId?: number | null
     create_at?: Date | string
     replies?: commentUncheckedCreateNestedManyWithoutParentInput
+    replyToBy?: commentUncheckedCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutCommentInput
   }
 
   export type commentCreateOrConnectWithoutComicInput = {
@@ -22426,6 +24458,35 @@ export namespace Prisma {
 
   export type view_historyCreateManyComicInputEnvelope = {
     data: view_historyCreateManyComicInput | view_historyCreateManyComicInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReplyNotificationCreateWithoutComicInput = {
+    message: string
+    seen?: boolean
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutReplyNotificationInput
+    comment: commentCreateNestedOneWithoutReplyNotificationInput
+    chapter?: ChapterCreateNestedOneWithoutReplyNotificationInput
+  }
+
+  export type ReplyNotificationUncheckedCreateWithoutComicInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    userId: number
+    commentId: number
+    chapterId?: number | null
+    create_at?: Date | string
+  }
+
+  export type ReplyNotificationCreateOrConnectWithoutComicInput = {
+    where: ReplyNotificationWhereUniqueInput
+    create: XOR<ReplyNotificationCreateWithoutComicInput, ReplyNotificationUncheckedCreateWithoutComicInput>
+  }
+
+  export type ReplyNotificationCreateManyComicInputEnvelope = {
+    data: ReplyNotificationCreateManyComicInput | ReplyNotificationCreateManyComicInput[]
     skipDuplicates?: boolean
   }
 
@@ -22590,6 +24651,22 @@ export namespace Prisma {
     create_at?: DateTimeFilter<"view_history"> | Date | string
   }
 
+  export type ReplyNotificationUpsertWithWhereUniqueWithoutComicInput = {
+    where: ReplyNotificationWhereUniqueInput
+    update: XOR<ReplyNotificationUpdateWithoutComicInput, ReplyNotificationUncheckedUpdateWithoutComicInput>
+    create: XOR<ReplyNotificationCreateWithoutComicInput, ReplyNotificationUncheckedCreateWithoutComicInput>
+  }
+
+  export type ReplyNotificationUpdateWithWhereUniqueWithoutComicInput = {
+    where: ReplyNotificationWhereUniqueInput
+    data: XOR<ReplyNotificationUpdateWithoutComicInput, ReplyNotificationUncheckedUpdateWithoutComicInput>
+  }
+
+  export type ReplyNotificationUpdateManyWithWhereWithoutComicInput = {
+    where: ReplyNotificationScalarWhereInput
+    data: XOR<ReplyNotificationUpdateManyMutationInput, ReplyNotificationUncheckedUpdateManyWithoutComicInput>
+  }
+
   export type ComicCreateWithoutCategoriesInput = {
     title: string
     title_eng?: string | null
@@ -22609,6 +24686,7 @@ export namespace Prisma {
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutCategoriesInput = {
@@ -22631,6 +24709,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutCategoriesInput = {
@@ -22673,6 +24752,7 @@ export namespace Prisma {
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutChaptersInput = {
@@ -22695,6 +24775,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutChaptersInput = {
@@ -22772,6 +24853,9 @@ export namespace Prisma {
     comic?: ComicCreateNestedOneWithoutCommentsInput
     parent?: commentCreateNestedOneWithoutRepliesInput
     replies?: commentCreateNestedManyWithoutParentInput
+    replyTo?: commentCreateNestedOneWithoutReplyToByInput
+    replyToBy?: commentCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutCommentInput
   }
 
   export type commentUncheckedCreateWithoutChapterInput = {
@@ -22780,8 +24864,11 @@ export namespace Prisma {
     comicId?: number | null
     content: string
     parentId?: number | null
+    replyToId?: number | null
     create_at?: Date | string
     replies?: commentUncheckedCreateNestedManyWithoutParentInput
+    replyToBy?: commentUncheckedCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutCommentInput
   }
 
   export type commentCreateOrConnectWithoutChapterInput = {
@@ -22817,6 +24904,35 @@ export namespace Prisma {
     skipDuplicates?: boolean
   }
 
+  export type ReplyNotificationCreateWithoutChapterInput = {
+    message: string
+    seen?: boolean
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutReplyNotificationInput
+    comment: commentCreateNestedOneWithoutReplyNotificationInput
+    comic?: ComicCreateNestedOneWithoutReplyNotificationInput
+  }
+
+  export type ReplyNotificationUncheckedCreateWithoutChapterInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    userId: number
+    commentId: number
+    comicId?: number | null
+    create_at?: Date | string
+  }
+
+  export type ReplyNotificationCreateOrConnectWithoutChapterInput = {
+    where: ReplyNotificationWhereUniqueInput
+    create: XOR<ReplyNotificationCreateWithoutChapterInput, ReplyNotificationUncheckedCreateWithoutChapterInput>
+  }
+
+  export type ReplyNotificationCreateManyChapterInputEnvelope = {
+    data: ReplyNotificationCreateManyChapterInput | ReplyNotificationCreateManyChapterInput[]
+    skipDuplicates?: boolean
+  }
+
   export type ComicUpsertWithoutChaptersInput = {
     update: XOR<ComicUpdateWithoutChaptersInput, ComicUncheckedUpdateWithoutChaptersInput>
     create: XOR<ComicCreateWithoutChaptersInput, ComicUncheckedCreateWithoutChaptersInput>
@@ -22847,6 +24963,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutChaptersInput = {
@@ -22869,6 +24986,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type chapter_imageUpsertWithWhereUniqueWithoutChapterInput = {
@@ -22960,6 +25078,22 @@ export namespace Prisma {
     data: XOR<view_historyUpdateManyMutationInput, view_historyUncheckedUpdateManyWithoutChapterInput>
   }
 
+  export type ReplyNotificationUpsertWithWhereUniqueWithoutChapterInput = {
+    where: ReplyNotificationWhereUniqueInput
+    update: XOR<ReplyNotificationUpdateWithoutChapterInput, ReplyNotificationUncheckedUpdateWithoutChapterInput>
+    create: XOR<ReplyNotificationCreateWithoutChapterInput, ReplyNotificationUncheckedCreateWithoutChapterInput>
+  }
+
+  export type ReplyNotificationUpdateWithWhereUniqueWithoutChapterInput = {
+    where: ReplyNotificationWhereUniqueInput
+    data: XOR<ReplyNotificationUpdateWithoutChapterInput, ReplyNotificationUncheckedUpdateWithoutChapterInput>
+  }
+
+  export type ReplyNotificationUpdateManyWithWhereWithoutChapterInput = {
+    where: ReplyNotificationScalarWhereInput
+    data: XOR<ReplyNotificationUpdateManyMutationInput, ReplyNotificationUncheckedUpdateManyWithoutChapterInput>
+  }
+
   export type ChapterCreateWithoutChapterImagesInput = {
     chapter_name: string
     chapter_title?: string | null
@@ -22976,6 +25110,7 @@ export namespace Prisma {
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutChapterImagesInput = {
@@ -22995,6 +25130,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutChapterImagesInput = {
@@ -23029,6 +25165,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutChapterImagesInput = {
@@ -23048,6 +25185,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type UserCreateWithoutChapterUnlocksInput = {
@@ -23066,6 +25204,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyCreateNestedManyWithoutUserInput
     comments?: commentCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutChapterUnlocksInput = {
@@ -23085,6 +25224,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
     comments?: commentUncheckedCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutChapterUnlocksInput = {
@@ -23108,6 +25248,7 @@ export namespace Prisma {
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutChapterUnlocksInput = {
@@ -23127,6 +25268,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutChapterUnlocksInput = {
@@ -23161,6 +25303,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
     comments?: commentUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutChapterUnlocksInput = {
@@ -23180,6 +25323,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
     comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ChapterUpsertWithoutChapterUnlocksInput = {
@@ -23209,6 +25353,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutChapterUnlocksInput = {
@@ -23228,6 +25373,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type UserCreateWithoutNotificationsInput = {
@@ -23246,6 +25392,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyCreateNestedManyWithoutUserInput
     comments?: commentCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutNotificationsInput = {
@@ -23265,6 +25412,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
     comments?: commentUncheckedCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutNotificationsInput = {
@@ -23299,6 +25447,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
     comments?: commentUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutNotificationsInput = {
@@ -23318,6 +25467,367 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
     comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserCreateWithoutReplyNotificationInput = {
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    resetPasswordToken?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutUserInput
+    notifications?: NotificationCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyCreateNestedManyWithoutUserInput
+    comments?: commentCreateNestedManyWithoutUserInput
+  }
+
+  export type UserUncheckedCreateWithoutReplyNotificationInput = {
+    id?: number
+    username: string
+    email: string
+    password: string
+    avatar?: string | null
+    role?: $Enums.userRole
+    total_coin?: number
+    refresh_token?: string | null
+    resetPasswordToken?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutUserInput
+    notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
+    comments?: commentUncheckedCreateNestedManyWithoutUserInput
+  }
+
+  export type UserCreateOrConnectWithoutReplyNotificationInput = {
+    where: UserWhereUniqueInput
+    create: XOR<UserCreateWithoutReplyNotificationInput, UserUncheckedCreateWithoutReplyNotificationInput>
+  }
+
+  export type commentCreateWithoutReplyNotificationInput = {
+    content: string
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    comic?: ComicCreateNestedOneWithoutCommentsInput
+    chapter?: ChapterCreateNestedOneWithoutCommentsInput
+    parent?: commentCreateNestedOneWithoutRepliesInput
+    replies?: commentCreateNestedManyWithoutParentInput
+    replyTo?: commentCreateNestedOneWithoutReplyToByInput
+    replyToBy?: commentCreateNestedManyWithoutReplyToInput
+  }
+
+  export type commentUncheckedCreateWithoutReplyNotificationInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    replyToId?: number | null
+    create_at?: Date | string
+    replies?: commentUncheckedCreateNestedManyWithoutParentInput
+    replyToBy?: commentUncheckedCreateNestedManyWithoutReplyToInput
+  }
+
+  export type commentCreateOrConnectWithoutReplyNotificationInput = {
+    where: commentWhereUniqueInput
+    create: XOR<commentCreateWithoutReplyNotificationInput, commentUncheckedCreateWithoutReplyNotificationInput>
+  }
+
+  export type ComicCreateWithoutReplyNotificationInput = {
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    follower?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    country: CountryCreateNestedOneWithoutComicsInput
+    categories?: CategoryCreateNestedManyWithoutComicsInput
+    chapters?: ChapterCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyCreateNestedManyWithoutComicInput
+    comments?: commentCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicUncheckedCreateWithoutReplyNotificationInput = {
+    id?: number
+    title: string
+    title_eng?: string | null
+    slug: string
+    description: string
+    author: string
+    status?: $Enums.comicStatus
+    cover_image: string
+    views?: number
+    follower?: number
+    is_active?: boolean
+    create_at?: Date | string
+    update_at?: Date | string
+    countryId: number
+    categories?: CategoryUncheckedCreateNestedManyWithoutComicsInput
+    chapters?: ChapterUncheckedCreateNestedManyWithoutComicInput
+    comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
+    comments?: commentUncheckedCreateNestedManyWithoutComicInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
+  }
+
+  export type ComicCreateOrConnectWithoutReplyNotificationInput = {
+    where: ComicWhereUniqueInput
+    create: XOR<ComicCreateWithoutReplyNotificationInput, ComicUncheckedCreateWithoutReplyNotificationInput>
+  }
+
+  export type ChapterCreateWithoutReplyNotificationInput = {
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comic: ComicCreateNestedOneWithoutChaptersInput
+    chapterImages?: chapter_imageCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
+    comments?: commentCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterUncheckedCreateWithoutReplyNotificationInput = {
+    id?: number
+    chapter_name: string
+    chapter_title?: string | null
+    slug: string
+    is_locked?: boolean
+    price_xu?: number
+    auto_unlock_time?: Date | string
+    views?: number
+    chapter_image_url?: string | null
+    create_at?: Date | string
+    update_at?: Date | string
+    comicId: number
+    chapterImages?: chapter_imageUncheckedCreateNestedManyWithoutChapterInput
+    chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
+    comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
+    comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+    viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
+  }
+
+  export type ChapterCreateOrConnectWithoutReplyNotificationInput = {
+    where: ChapterWhereUniqueInput
+    create: XOR<ChapterCreateWithoutReplyNotificationInput, ChapterUncheckedCreateWithoutReplyNotificationInput>
+  }
+
+  export type UserUpsertWithoutReplyNotificationInput = {
+    update: XOR<UserUpdateWithoutReplyNotificationInput, UserUncheckedUpdateWithoutReplyNotificationInput>
+    create: XOR<UserCreateWithoutReplyNotificationInput, UserUncheckedCreateWithoutReplyNotificationInput>
+    where?: UserWhereInput
+  }
+
+  export type UserUpdateToOneWithWhereWithoutReplyNotificationInput = {
+    where?: UserWhereInput
+    data: XOR<UserUpdateWithoutReplyNotificationInput, UserUncheckedUpdateWithoutReplyNotificationInput>
+  }
+
+  export type UserUpdateWithoutReplyNotificationInput = {
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
+    comments?: commentUpdateManyWithoutUserNestedInput
+  }
+
+  export type UserUncheckedUpdateWithoutReplyNotificationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    username?: StringFieldUpdateOperationsInput | string
+    email?: StringFieldUpdateOperationsInput | string
+    password?: StringFieldUpdateOperationsInput | string
+    avatar?: NullableStringFieldUpdateOperationsInput | string | null
+    role?: EnumuserRoleFieldUpdateOperationsInput | $Enums.userRole
+    total_coin?: IntFieldUpdateOperationsInput | number
+    refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
+    resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutUserNestedInput
+    notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
+    comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+  }
+
+  export type commentUpsertWithoutReplyNotificationInput = {
+    update: XOR<commentUpdateWithoutReplyNotificationInput, commentUncheckedUpdateWithoutReplyNotificationInput>
+    create: XOR<commentCreateWithoutReplyNotificationInput, commentUncheckedCreateWithoutReplyNotificationInput>
+    where?: commentWhereInput
+  }
+
+  export type commentUpdateToOneWithWhereWithoutReplyNotificationInput = {
+    where?: commentWhereInput
+    data: XOR<commentUpdateWithoutReplyNotificationInput, commentUncheckedUpdateWithoutReplyNotificationInput>
+  }
+
+  export type commentUpdateWithoutReplyNotificationInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    comic?: ComicUpdateOneWithoutCommentsNestedInput
+    chapter?: ChapterUpdateOneWithoutCommentsNestedInput
+    parent?: commentUpdateOneWithoutRepliesNestedInput
+    replies?: commentUpdateManyWithoutParentNestedInput
+    replyTo?: commentUpdateOneWithoutReplyToByNestedInput
+    replyToBy?: commentUpdateManyWithoutReplyToNestedInput
+  }
+
+  export type commentUncheckedUpdateWithoutReplyNotificationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+    replyToBy?: commentUncheckedUpdateManyWithoutReplyToNestedInput
+  }
+
+  export type ComicUpsertWithoutReplyNotificationInput = {
+    update: XOR<ComicUpdateWithoutReplyNotificationInput, ComicUncheckedUpdateWithoutReplyNotificationInput>
+    create: XOR<ComicCreateWithoutReplyNotificationInput, ComicUncheckedCreateWithoutReplyNotificationInput>
+    where?: ComicWhereInput
+  }
+
+  export type ComicUpdateToOneWithWhereWithoutReplyNotificationInput = {
+    where?: ComicWhereInput
+    data: XOR<ComicUpdateWithoutReplyNotificationInput, ComicUncheckedUpdateWithoutReplyNotificationInput>
+  }
+
+  export type ComicUpdateWithoutReplyNotificationInput = {
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    country?: CountryUpdateOneRequiredWithoutComicsNestedInput
+    categories?: CategoryUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
+    comments?: commentUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
+  }
+
+  export type ComicUncheckedUpdateWithoutReplyNotificationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    title?: StringFieldUpdateOperationsInput | string
+    title_eng?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    description?: StringFieldUpdateOperationsInput | string
+    author?: StringFieldUpdateOperationsInput | string
+    status?: EnumcomicStatusFieldUpdateOperationsInput | $Enums.comicStatus
+    cover_image?: StringFieldUpdateOperationsInput | string
+    views?: IntFieldUpdateOperationsInput | number
+    follower?: IntFieldUpdateOperationsInput | number
+    is_active?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    countryId?: IntFieldUpdateOperationsInput | number
+    categories?: CategoryUncheckedUpdateManyWithoutComicsNestedInput
+    chapters?: ChapterUncheckedUpdateManyWithoutComicNestedInput
+    comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
+    comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
+  }
+
+  export type ChapterUpsertWithoutReplyNotificationInput = {
+    update: XOR<ChapterUpdateWithoutReplyNotificationInput, ChapterUncheckedUpdateWithoutReplyNotificationInput>
+    create: XOR<ChapterCreateWithoutReplyNotificationInput, ChapterUncheckedCreateWithoutReplyNotificationInput>
+    where?: ChapterWhereInput
+  }
+
+  export type ChapterUpdateToOneWithWhereWithoutReplyNotificationInput = {
+    where?: ChapterWhereInput
+    data: XOR<ChapterUpdateWithoutReplyNotificationInput, ChapterUncheckedUpdateWithoutReplyNotificationInput>
+  }
+
+  export type ChapterUpdateWithoutReplyNotificationInput = {
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comic?: ComicUpdateOneRequiredWithoutChaptersNestedInput
+    chapterImages?: chapter_imageUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
+    comments?: commentUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
+  }
+
+  export type ChapterUncheckedUpdateWithoutReplyNotificationInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    chapter_name?: StringFieldUpdateOperationsInput | string
+    chapter_title?: NullableStringFieldUpdateOperationsInput | string | null
+    slug?: StringFieldUpdateOperationsInput | string
+    is_locked?: BoolFieldUpdateOperationsInput | boolean
+    price_xu?: IntFieldUpdateOperationsInput | number
+    auto_unlock_time?: DateTimeFieldUpdateOperationsInput | Date | string
+    views?: IntFieldUpdateOperationsInput | number
+    chapter_image_url?: NullableStringFieldUpdateOperationsInput | string | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    update_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comicId?: IntFieldUpdateOperationsInput | number
+    chapterImages?: chapter_imageUncheckedUpdateManyWithoutChapterNestedInput
+    chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
+    comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
+    comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+    viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type UserCreateWithoutComicFollowerInput = {
@@ -23336,6 +25846,7 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyCreateNestedManyWithoutUserInput
     comments?: commentCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutComicFollowerInput = {
@@ -23355,6 +25866,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
     comments?: commentUncheckedCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutComicFollowerInput = {
@@ -23381,6 +25893,7 @@ export namespace Prisma {
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutComicFollowerInput = {
@@ -23403,6 +25916,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutComicFollowerInput = {
@@ -23437,6 +25951,7 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
     comments?: commentUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutComicFollowerInput = {
@@ -23456,6 +25971,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
     comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ComicUpsertWithoutComicFollowerInput = {
@@ -23488,6 +26004,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutComicFollowerInput = {
@@ -23510,6 +26027,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type UserCreateWithoutComicHistoryInput = {
@@ -23528,6 +26046,7 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     comicFollower?: comic_followerCreateNestedManyWithoutUserInput
     comments?: commentCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutComicHistoryInput = {
@@ -23547,6 +26066,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
     comments?: commentUncheckedCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutComicHistoryInput = {
@@ -23573,6 +26093,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutComicHistoryInput = {
@@ -23595,6 +26116,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutComicHistoryInput = {
@@ -23618,6 +26140,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutComicHistoryInput = {
@@ -23637,6 +26160,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutComicHistoryInput = {
@@ -23671,6 +26195,7 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
     comments?: commentUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutComicHistoryInput = {
@@ -23690,6 +26215,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
     comments?: commentUncheckedUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ComicUpsertWithoutComicHistoryInput = {
@@ -23722,6 +26248,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutComicHistoryInput = {
@@ -23744,6 +26271,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ChapterUpsertWithoutComicHistoryInput = {
@@ -23773,6 +26301,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutComicHistoryInput = {
@@ -23792,6 +26321,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type ComicCreateWithoutViewHistorysInput = {
@@ -23813,6 +26343,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     comments?: commentCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutViewHistorysInput = {
@@ -23835,6 +26366,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     comments?: commentUncheckedCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutViewHistorysInput = {
@@ -23858,6 +26390,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
     comments?: commentCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutViewHistorysInput = {
@@ -23877,6 +26410,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
     comments?: commentUncheckedCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutViewHistorysInput = {
@@ -23914,6 +26448,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutViewHistorysInput = {
@@ -23936,6 +26471,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ChapterUpsertWithoutViewHistorysInput = {
@@ -23965,6 +26501,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutViewHistorysInput = {
@@ -23984,6 +26521,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type UserCreateWithoutCommentsInput = {
@@ -24002,6 +26540,7 @@ export namespace Prisma {
     notifications?: NotificationCreateNestedManyWithoutUserInput
     comicFollower?: comic_followerCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutUserInput
   }
 
   export type UserUncheckedCreateWithoutCommentsInput = {
@@ -24021,6 +26560,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedCreateNestedManyWithoutUserInput
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutUserInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutUserInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutUserInput
   }
 
   export type UserCreateOrConnectWithoutCommentsInput = {
@@ -24047,6 +26587,7 @@ export namespace Prisma {
     comicFollower?: comic_followerCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutComicInput
   }
 
   export type ComicUncheckedCreateWithoutCommentsInput = {
@@ -24069,6 +26610,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedCreateNestedManyWithoutComicInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutComicInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutComicInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutComicInput
   }
 
   export type ComicCreateOrConnectWithoutCommentsInput = {
@@ -24092,6 +26634,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterUncheckedCreateWithoutCommentsInput = {
@@ -24111,6 +26654,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutChapterInput
     comicHistory?: comic_historyUncheckedCreateNestedManyWithoutChapterInput
     viewHistorys?: view_historyUncheckedCreateNestedManyWithoutChapterInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutChapterInput
   }
 
   export type ChapterCreateOrConnectWithoutCommentsInput = {
@@ -24125,6 +26669,9 @@ export namespace Prisma {
     comic?: ComicCreateNestedOneWithoutCommentsInput
     chapter?: ChapterCreateNestedOneWithoutCommentsInput
     parent?: commentCreateNestedOneWithoutRepliesInput
+    replyTo?: commentCreateNestedOneWithoutReplyToByInput
+    replyToBy?: commentCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutCommentInput
   }
 
   export type commentUncheckedCreateWithoutRepliesInput = {
@@ -24134,7 +26681,10 @@ export namespace Prisma {
     chapterId?: number | null
     content: string
     parentId?: number | null
+    replyToId?: number | null
     create_at?: Date | string
+    replyToBy?: commentUncheckedCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutCommentInput
   }
 
   export type commentCreateOrConnectWithoutRepliesInput = {
@@ -24149,6 +26699,9 @@ export namespace Prisma {
     comic?: ComicCreateNestedOneWithoutCommentsInput
     chapter?: ChapterCreateNestedOneWithoutCommentsInput
     replies?: commentCreateNestedManyWithoutParentInput
+    replyTo?: commentCreateNestedOneWithoutReplyToByInput
+    replyToBy?: commentCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutCommentInput
   }
 
   export type commentUncheckedCreateWithoutParentInput = {
@@ -24157,8 +26710,11 @@ export namespace Prisma {
     comicId?: number | null
     chapterId?: number | null
     content: string
+    replyToId?: number | null
     create_at?: Date | string
     replies?: commentUncheckedCreateNestedManyWithoutParentInput
+    replyToBy?: commentUncheckedCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutCommentInput
   }
 
   export type commentCreateOrConnectWithoutParentInput = {
@@ -24168,6 +26724,100 @@ export namespace Prisma {
 
   export type commentCreateManyParentInputEnvelope = {
     data: commentCreateManyParentInput | commentCreateManyParentInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type commentCreateWithoutReplyToByInput = {
+    content: string
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    comic?: ComicCreateNestedOneWithoutCommentsInput
+    chapter?: ChapterCreateNestedOneWithoutCommentsInput
+    parent?: commentCreateNestedOneWithoutRepliesInput
+    replies?: commentCreateNestedManyWithoutParentInput
+    replyTo?: commentCreateNestedOneWithoutReplyToByInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutCommentInput
+  }
+
+  export type commentUncheckedCreateWithoutReplyToByInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    replyToId?: number | null
+    create_at?: Date | string
+    replies?: commentUncheckedCreateNestedManyWithoutParentInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutCommentInput
+  }
+
+  export type commentCreateOrConnectWithoutReplyToByInput = {
+    where: commentWhereUniqueInput
+    create: XOR<commentCreateWithoutReplyToByInput, commentUncheckedCreateWithoutReplyToByInput>
+  }
+
+  export type commentCreateWithoutReplyToInput = {
+    content: string
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutCommentsInput
+    comic?: ComicCreateNestedOneWithoutCommentsInput
+    chapter?: ChapterCreateNestedOneWithoutCommentsInput
+    parent?: commentCreateNestedOneWithoutRepliesInput
+    replies?: commentCreateNestedManyWithoutParentInput
+    replyToBy?: commentCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationCreateNestedManyWithoutCommentInput
+  }
+
+  export type commentUncheckedCreateWithoutReplyToInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+    replies?: commentUncheckedCreateNestedManyWithoutParentInput
+    replyToBy?: commentUncheckedCreateNestedManyWithoutReplyToInput
+    ReplyNotification?: ReplyNotificationUncheckedCreateNestedManyWithoutCommentInput
+  }
+
+  export type commentCreateOrConnectWithoutReplyToInput = {
+    where: commentWhereUniqueInput
+    create: XOR<commentCreateWithoutReplyToInput, commentUncheckedCreateWithoutReplyToInput>
+  }
+
+  export type commentCreateManyReplyToInputEnvelope = {
+    data: commentCreateManyReplyToInput | commentCreateManyReplyToInput[]
+    skipDuplicates?: boolean
+  }
+
+  export type ReplyNotificationCreateWithoutCommentInput = {
+    message: string
+    seen?: boolean
+    create_at?: Date | string
+    user: UserCreateNestedOneWithoutReplyNotificationInput
+    comic?: ComicCreateNestedOneWithoutReplyNotificationInput
+    chapter?: ChapterCreateNestedOneWithoutReplyNotificationInput
+  }
+
+  export type ReplyNotificationUncheckedCreateWithoutCommentInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
+    create_at?: Date | string
+  }
+
+  export type ReplyNotificationCreateOrConnectWithoutCommentInput = {
+    where: ReplyNotificationWhereUniqueInput
+    create: XOR<ReplyNotificationCreateWithoutCommentInput, ReplyNotificationUncheckedCreateWithoutCommentInput>
+  }
+
+  export type ReplyNotificationCreateManyCommentInputEnvelope = {
+    data: ReplyNotificationCreateManyCommentInput | ReplyNotificationCreateManyCommentInput[]
     skipDuplicates?: boolean
   }
 
@@ -24198,6 +26848,7 @@ export namespace Prisma {
     notifications?: NotificationUpdateManyWithoutUserNestedInput
     comicFollower?: comic_followerUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutUserNestedInput
   }
 
   export type UserUncheckedUpdateWithoutCommentsInput = {
@@ -24217,6 +26868,7 @@ export namespace Prisma {
     notifications?: NotificationUncheckedUpdateManyWithoutUserNestedInput
     comicFollower?: comic_followerUncheckedUpdateManyWithoutUserNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutUserNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutUserNestedInput
   }
 
   export type ComicUpsertWithoutCommentsInput = {
@@ -24249,6 +26901,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutCommentsInput = {
@@ -24271,6 +26924,7 @@ export namespace Prisma {
     comicFollower?: comic_followerUncheckedUpdateManyWithoutComicNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ChapterUpsertWithoutCommentsInput = {
@@ -24300,6 +26954,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutCommentsInput = {
@@ -24319,6 +26974,7 @@ export namespace Prisma {
     chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutChapterNestedInput
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type commentUpsertWithoutRepliesInput = {
@@ -24339,6 +26995,9 @@ export namespace Prisma {
     comic?: ComicUpdateOneWithoutCommentsNestedInput
     chapter?: ChapterUpdateOneWithoutCommentsNestedInput
     parent?: commentUpdateOneWithoutRepliesNestedInput
+    replyTo?: commentUpdateOneWithoutReplyToByNestedInput
+    replyToBy?: commentUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUncheckedUpdateWithoutRepliesInput = {
@@ -24348,7 +27007,10 @@ export namespace Prisma {
     chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    replyToBy?: commentUncheckedUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUpsertWithWhereUniqueWithoutParentInput = {
@@ -24365,6 +27027,74 @@ export namespace Prisma {
   export type commentUpdateManyWithWhereWithoutParentInput = {
     where: commentScalarWhereInput
     data: XOR<commentUpdateManyMutationInput, commentUncheckedUpdateManyWithoutParentInput>
+  }
+
+  export type commentUpsertWithoutReplyToByInput = {
+    update: XOR<commentUpdateWithoutReplyToByInput, commentUncheckedUpdateWithoutReplyToByInput>
+    create: XOR<commentCreateWithoutReplyToByInput, commentUncheckedCreateWithoutReplyToByInput>
+    where?: commentWhereInput
+  }
+
+  export type commentUpdateToOneWithWhereWithoutReplyToByInput = {
+    where?: commentWhereInput
+    data: XOR<commentUpdateWithoutReplyToByInput, commentUncheckedUpdateWithoutReplyToByInput>
+  }
+
+  export type commentUpdateWithoutReplyToByInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    comic?: ComicUpdateOneWithoutCommentsNestedInput
+    chapter?: ChapterUpdateOneWithoutCommentsNestedInput
+    parent?: commentUpdateOneWithoutRepliesNestedInput
+    replies?: commentUpdateManyWithoutParentNestedInput
+    replyTo?: commentUpdateOneWithoutReplyToByNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutCommentNestedInput
+  }
+
+  export type commentUncheckedUpdateWithoutReplyToByInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutCommentNestedInput
+  }
+
+  export type commentUpsertWithWhereUniqueWithoutReplyToInput = {
+    where: commentWhereUniqueInput
+    update: XOR<commentUpdateWithoutReplyToInput, commentUncheckedUpdateWithoutReplyToInput>
+    create: XOR<commentCreateWithoutReplyToInput, commentUncheckedCreateWithoutReplyToInput>
+  }
+
+  export type commentUpdateWithWhereUniqueWithoutReplyToInput = {
+    where: commentWhereUniqueInput
+    data: XOR<commentUpdateWithoutReplyToInput, commentUncheckedUpdateWithoutReplyToInput>
+  }
+
+  export type commentUpdateManyWithWhereWithoutReplyToInput = {
+    where: commentScalarWhereInput
+    data: XOR<commentUpdateManyMutationInput, commentUncheckedUpdateManyWithoutReplyToInput>
+  }
+
+  export type ReplyNotificationUpsertWithWhereUniqueWithoutCommentInput = {
+    where: ReplyNotificationWhereUniqueInput
+    update: XOR<ReplyNotificationUpdateWithoutCommentInput, ReplyNotificationUncheckedUpdateWithoutCommentInput>
+    create: XOR<ReplyNotificationCreateWithoutCommentInput, ReplyNotificationUncheckedCreateWithoutCommentInput>
+  }
+
+  export type ReplyNotificationUpdateWithWhereUniqueWithoutCommentInput = {
+    where: ReplyNotificationWhereUniqueInput
+    data: XOR<ReplyNotificationUpdateWithoutCommentInput, ReplyNotificationUncheckedUpdateWithoutCommentInput>
+  }
+
+  export type ReplyNotificationUpdateManyWithWhereWithoutCommentInput = {
+    where: ReplyNotificationScalarWhereInput
+    data: XOR<ReplyNotificationUpdateManyMutationInput, ReplyNotificationUncheckedUpdateManyWithoutCommentInput>
   }
 
   export type TransactionCreateManyUserInput = {
@@ -24408,6 +27138,17 @@ export namespace Prisma {
     chapterId?: number | null
     content: string
     parentId?: number | null
+    replyToId?: number | null
+    create_at?: Date | string
+  }
+
+  export type ReplyNotificationCreateManyUserInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    commentId: number
+    comicId?: number | null
+    chapterId?: number | null
     create_at?: Date | string
   }
 
@@ -24518,6 +27259,9 @@ export namespace Prisma {
     chapter?: ChapterUpdateOneWithoutCommentsNestedInput
     parent?: commentUpdateOneWithoutRepliesNestedInput
     replies?: commentUpdateManyWithoutParentNestedInput
+    replyTo?: commentUpdateOneWithoutReplyToByNestedInput
+    replyToBy?: commentUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUncheckedUpdateWithoutUserInput = {
@@ -24526,8 +27270,11 @@ export namespace Prisma {
     chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+    replyToBy?: commentUncheckedUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUncheckedUpdateManyWithoutUserInput = {
@@ -24536,6 +27283,36 @@ export namespace Prisma {
     chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReplyNotificationUpdateWithoutUserInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    comment?: commentUpdateOneRequiredWithoutReplyNotificationNestedInput
+    comic?: ComicUpdateOneWithoutReplyNotificationNestedInput
+    chapter?: ChapterUpdateOneWithoutReplyNotificationNestedInput
+  }
+
+  export type ReplyNotificationUncheckedUpdateWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    commentId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReplyNotificationUncheckedUpdateManyWithoutUserInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    commentId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24609,6 +27386,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutCountryInput = {
@@ -24631,6 +27409,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateManyWithoutCountryInput = {
@@ -24681,6 +27460,7 @@ export namespace Prisma {
     chapterId?: number | null
     content: string
     parentId?: number | null
+    replyToId?: number | null
     create_at?: Date | string
   }
 
@@ -24688,6 +27468,16 @@ export namespace Prisma {
     id?: number
     chapterId?: number | null
     views?: number
+    create_at?: Date | string
+  }
+
+  export type ReplyNotificationCreateManyComicInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    userId: number
+    commentId: number
+    chapterId?: number | null
     create_at?: Date | string
   }
 
@@ -24733,6 +27523,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUpdateManyWithoutChapterNestedInput
     comments?: commentUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateWithoutComicInput = {
@@ -24752,6 +27543,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedUpdateManyWithoutChapterNestedInput
     comments?: commentUncheckedUpdateManyWithoutChapterNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutChapterNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutChapterNestedInput
   }
 
   export type ChapterUncheckedUpdateManyWithoutComicInput = {
@@ -24809,6 +27601,9 @@ export namespace Prisma {
     chapter?: ChapterUpdateOneWithoutCommentsNestedInput
     parent?: commentUpdateOneWithoutRepliesNestedInput
     replies?: commentUpdateManyWithoutParentNestedInput
+    replyTo?: commentUpdateOneWithoutReplyToByNestedInput
+    replyToBy?: commentUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUncheckedUpdateWithoutComicInput = {
@@ -24817,8 +27612,11 @@ export namespace Prisma {
     chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+    replyToBy?: commentUncheckedUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUncheckedUpdateManyWithoutComicInput = {
@@ -24827,6 +27625,7 @@ export namespace Prisma {
     chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -24850,6 +27649,35 @@ export namespace Prisma {
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ReplyNotificationUpdateWithoutComicInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutReplyNotificationNestedInput
+    comment?: commentUpdateOneRequiredWithoutReplyNotificationNestedInput
+    chapter?: ChapterUpdateOneWithoutReplyNotificationNestedInput
+  }
+
+  export type ReplyNotificationUncheckedUpdateWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    userId?: IntFieldUpdateOperationsInput | number
+    commentId?: IntFieldUpdateOperationsInput | number
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReplyNotificationUncheckedUpdateManyWithoutComicInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    userId?: IntFieldUpdateOperationsInput | number
+    commentId?: IntFieldUpdateOperationsInput | number
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type ComicUpdateWithoutCategoriesInput = {
     title?: StringFieldUpdateOperationsInput | string
     title_eng?: NullableStringFieldUpdateOperationsInput | string | null
@@ -24869,6 +27697,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUpdateManyWithoutComicNestedInput
     comments?: commentUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateWithoutCategoriesInput = {
@@ -24891,6 +27720,7 @@ export namespace Prisma {
     comicHistory?: comic_historyUncheckedUpdateManyWithoutComicNestedInput
     comments?: commentUncheckedUpdateManyWithoutComicNestedInput
     viewHistorys?: view_historyUncheckedUpdateManyWithoutComicNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutComicNestedInput
   }
 
   export type ComicUncheckedUpdateManyWithoutCategoriesInput = {
@@ -24934,6 +27764,7 @@ export namespace Prisma {
     comicId?: number | null
     content: string
     parentId?: number | null
+    replyToId?: number | null
     create_at?: Date | string
   }
 
@@ -24941,6 +27772,16 @@ export namespace Prisma {
     id?: number
     comicId?: number | null
     views?: number
+    create_at?: Date | string
+  }
+
+  export type ReplyNotificationCreateManyChapterInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    userId: number
+    commentId: number
+    comicId?: number | null
     create_at?: Date | string
   }
 
@@ -25002,6 +27843,9 @@ export namespace Prisma {
     comic?: ComicUpdateOneWithoutCommentsNestedInput
     parent?: commentUpdateOneWithoutRepliesNestedInput
     replies?: commentUpdateManyWithoutParentNestedInput
+    replyTo?: commentUpdateOneWithoutReplyToByNestedInput
+    replyToBy?: commentUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUncheckedUpdateWithoutChapterInput = {
@@ -25010,8 +27854,11 @@ export namespace Prisma {
     comicId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+    replyToBy?: commentUncheckedUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUncheckedUpdateManyWithoutChapterInput = {
@@ -25020,6 +27867,7 @@ export namespace Prisma {
     comicId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
     parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
@@ -25043,12 +27891,62 @@ export namespace Prisma {
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
+  export type ReplyNotificationUpdateWithoutChapterInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutReplyNotificationNestedInput
+    comment?: commentUpdateOneRequiredWithoutReplyNotificationNestedInput
+    comic?: ComicUpdateOneWithoutReplyNotificationNestedInput
+  }
+
+  export type ReplyNotificationUncheckedUpdateWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    userId?: IntFieldUpdateOperationsInput | number
+    commentId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReplyNotificationUncheckedUpdateManyWithoutChapterInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    userId?: IntFieldUpdateOperationsInput | number
+    commentId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
   export type commentCreateManyParentInput = {
     id?: number
     userId: number
     comicId?: number | null
     chapterId?: number | null
     content: string
+    replyToId?: number | null
+    create_at?: Date | string
+  }
+
+  export type commentCreateManyReplyToInput = {
+    id?: number
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
+    content: string
+    parentId?: number | null
+    create_at?: Date | string
+  }
+
+  export type ReplyNotificationCreateManyCommentInput = {
+    id?: number
+    message: string
+    seen?: boolean
+    userId: number
+    comicId?: number | null
+    chapterId?: number | null
     create_at?: Date | string
   }
 
@@ -25059,6 +27957,9 @@ export namespace Prisma {
     comic?: ComicUpdateOneWithoutCommentsNestedInput
     chapter?: ChapterUpdateOneWithoutCommentsNestedInput
     replies?: commentUpdateManyWithoutParentNestedInput
+    replyTo?: commentUpdateOneWithoutReplyToByNestedInput
+    replyToBy?: commentUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUncheckedUpdateWithoutParentInput = {
@@ -25067,8 +27968,11 @@ export namespace Prisma {
     comicId?: NullableIntFieldUpdateOperationsInput | number | null
     chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+    replyToBy?: commentUncheckedUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutCommentNestedInput
   }
 
   export type commentUncheckedUpdateManyWithoutParentInput = {
@@ -25077,6 +27981,71 @@ export namespace Prisma {
     comicId?: NullableIntFieldUpdateOperationsInput | number | null
     chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     content?: StringFieldUpdateOperationsInput | string
+    replyToId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type commentUpdateWithoutReplyToInput = {
+    content?: StringFieldUpdateOperationsInput | string
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutCommentsNestedInput
+    comic?: ComicUpdateOneWithoutCommentsNestedInput
+    chapter?: ChapterUpdateOneWithoutCommentsNestedInput
+    parent?: commentUpdateOneWithoutRepliesNestedInput
+    replies?: commentUpdateManyWithoutParentNestedInput
+    replyToBy?: commentUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUpdateManyWithoutCommentNestedInput
+  }
+
+  export type commentUncheckedUpdateWithoutReplyToInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    replies?: commentUncheckedUpdateManyWithoutParentNestedInput
+    replyToBy?: commentUncheckedUpdateManyWithoutReplyToNestedInput
+    ReplyNotification?: ReplyNotificationUncheckedUpdateManyWithoutCommentNestedInput
+  }
+
+  export type commentUncheckedUpdateManyWithoutReplyToInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    content?: StringFieldUpdateOperationsInput | string
+    parentId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReplyNotificationUpdateWithoutCommentInput = {
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+    user?: UserUpdateOneRequiredWithoutReplyNotificationNestedInput
+    comic?: ComicUpdateOneWithoutReplyNotificationNestedInput
+    chapter?: ChapterUpdateOneWithoutReplyNotificationNestedInput
+  }
+
+  export type ReplyNotificationUncheckedUpdateWithoutCommentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
+    create_at?: DateTimeFieldUpdateOperationsInput | Date | string
+  }
+
+  export type ReplyNotificationUncheckedUpdateManyWithoutCommentInput = {
+    id?: IntFieldUpdateOperationsInput | number
+    message?: StringFieldUpdateOperationsInput | string
+    seen?: BoolFieldUpdateOperationsInput | boolean
+    userId?: IntFieldUpdateOperationsInput | number
+    comicId?: NullableIntFieldUpdateOperationsInput | number | null
+    chapterId?: NullableIntFieldUpdateOperationsInput | number | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
