@@ -2481,11 +2481,13 @@ export namespace Prisma {
   export type UserAvgAggregateOutputType = {
     id: number | null
     total_coin: number | null
+    resetAttempts: number | null
   }
 
   export type UserSumAggregateOutputType = {
     id: number | null
     total_coin: number | null
+    resetAttempts: number | null
   }
 
   export type UserMinAggregateOutputType = {
@@ -2498,6 +2500,8 @@ export namespace Prisma {
     total_coin: number | null
     refresh_token: string | null
     resetPasswordToken: string | null
+    resetAttempts: number | null
+    lastResetAttempt: Date | null
     create_at: Date | null
     update_at: Date | null
   }
@@ -2512,6 +2516,8 @@ export namespace Prisma {
     total_coin: number | null
     refresh_token: string | null
     resetPasswordToken: string | null
+    resetAttempts: number | null
+    lastResetAttempt: Date | null
     create_at: Date | null
     update_at: Date | null
   }
@@ -2526,6 +2532,8 @@ export namespace Prisma {
     total_coin: number
     refresh_token: number
     resetPasswordToken: number
+    resetAttempts: number
+    lastResetAttempt: number
     create_at: number
     update_at: number
     _all: number
@@ -2535,11 +2543,13 @@ export namespace Prisma {
   export type UserAvgAggregateInputType = {
     id?: true
     total_coin?: true
+    resetAttempts?: true
   }
 
   export type UserSumAggregateInputType = {
     id?: true
     total_coin?: true
+    resetAttempts?: true
   }
 
   export type UserMinAggregateInputType = {
@@ -2552,6 +2562,8 @@ export namespace Prisma {
     total_coin?: true
     refresh_token?: true
     resetPasswordToken?: true
+    resetAttempts?: true
+    lastResetAttempt?: true
     create_at?: true
     update_at?: true
   }
@@ -2566,6 +2578,8 @@ export namespace Prisma {
     total_coin?: true
     refresh_token?: true
     resetPasswordToken?: true
+    resetAttempts?: true
+    lastResetAttempt?: true
     create_at?: true
     update_at?: true
   }
@@ -2580,6 +2594,8 @@ export namespace Prisma {
     total_coin?: true
     refresh_token?: true
     resetPasswordToken?: true
+    resetAttempts?: true
+    lastResetAttempt?: true
     create_at?: true
     update_at?: true
     _all?: true
@@ -2681,6 +2697,8 @@ export namespace Prisma {
     total_coin: number
     refresh_token: string | null
     resetPasswordToken: string | null
+    resetAttempts: number
+    lastResetAttempt: Date | null
     create_at: Date
     update_at: Date
     _count: UserCountAggregateOutputType | null
@@ -2714,6 +2732,8 @@ export namespace Prisma {
     total_coin?: boolean
     refresh_token?: boolean
     resetPasswordToken?: boolean
+    resetAttempts?: boolean
+    lastResetAttempt?: boolean
     create_at?: boolean
     update_at?: boolean
     transactions?: boolean | User$transactionsArgs<ExtArgs>
@@ -2738,11 +2758,13 @@ export namespace Prisma {
     total_coin?: boolean
     refresh_token?: boolean
     resetPasswordToken?: boolean
+    resetAttempts?: boolean
+    lastResetAttempt?: boolean
     create_at?: boolean
     update_at?: boolean
   }
 
-  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "avatar" | "role" | "total_coin" | "refresh_token" | "resetPasswordToken" | "create_at" | "update_at", ExtArgs["result"]["user"]>
+  export type UserOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "username" | "email" | "password" | "avatar" | "role" | "total_coin" | "refresh_token" | "resetPasswordToken" | "resetAttempts" | "lastResetAttempt" | "create_at" | "update_at", ExtArgs["result"]["user"]>
   export type UserInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     transactions?: boolean | User$transactionsArgs<ExtArgs>
     chapterUnlocks?: boolean | User$chapterUnlocksArgs<ExtArgs>
@@ -2775,6 +2797,8 @@ export namespace Prisma {
       total_coin: number
       refresh_token: string | null
       resetPasswordToken: string | null
+      resetAttempts: number
+      lastResetAttempt: Date | null
       create_at: Date
       update_at: Date
     }, ExtArgs["result"]["user"]>
@@ -3162,6 +3186,8 @@ export namespace Prisma {
     readonly total_coin: FieldRef<"User", 'Int'>
     readonly refresh_token: FieldRef<"User", 'String'>
     readonly resetPasswordToken: FieldRef<"User", 'String'>
+    readonly resetAttempts: FieldRef<"User", 'Int'>
+    readonly lastResetAttempt: FieldRef<"User", 'DateTime'>
     readonly create_at: FieldRef<"User", 'DateTime'>
     readonly update_at: FieldRef<"User", 'DateTime'>
   }
@@ -18276,6 +18302,8 @@ export namespace Prisma {
     total_coin: 'total_coin',
     refresh_token: 'refresh_token',
     resetPasswordToken: 'resetPasswordToken',
+    resetAttempts: 'resetAttempts',
+    lastResetAttempt: 'lastResetAttempt',
     create_at: 'create_at',
     update_at: 'update_at'
   };
@@ -18634,6 +18662,8 @@ export namespace Prisma {
     total_coin?: IntFilter<"User"> | number
     refresh_token?: StringNullableFilter<"User"> | string | null
     resetPasswordToken?: StringNullableFilter<"User"> | string | null
+    resetAttempts?: IntFilter<"User"> | number
+    lastResetAttempt?: DateTimeNullableFilter<"User"> | Date | string | null
     create_at?: DateTimeFilter<"User"> | Date | string
     update_at?: DateTimeFilter<"User"> | Date | string
     transactions?: TransactionListRelationFilter
@@ -18655,6 +18685,8 @@ export namespace Prisma {
     total_coin?: SortOrder
     refresh_token?: SortOrderInput | SortOrder
     resetPasswordToken?: SortOrderInput | SortOrder
+    resetAttempts?: SortOrder
+    lastResetAttempt?: SortOrderInput | SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
     transactions?: TransactionOrderByRelationAggregateInput
@@ -18680,6 +18712,8 @@ export namespace Prisma {
     total_coin?: IntFilter<"User"> | number
     refresh_token?: StringNullableFilter<"User"> | string | null
     resetPasswordToken?: StringNullableFilter<"User"> | string | null
+    resetAttempts?: IntFilter<"User"> | number
+    lastResetAttempt?: DateTimeNullableFilter<"User"> | Date | string | null
     create_at?: DateTimeFilter<"User"> | Date | string
     update_at?: DateTimeFilter<"User"> | Date | string
     transactions?: TransactionListRelationFilter
@@ -18701,6 +18735,8 @@ export namespace Prisma {
     total_coin?: SortOrder
     refresh_token?: SortOrderInput | SortOrder
     resetPasswordToken?: SortOrderInput | SortOrder
+    resetAttempts?: SortOrder
+    lastResetAttempt?: SortOrderInput | SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -18723,6 +18759,8 @@ export namespace Prisma {
     total_coin?: IntWithAggregatesFilter<"User"> | number
     refresh_token?: StringNullableWithAggregatesFilter<"User"> | string | null
     resetPasswordToken?: StringNullableWithAggregatesFilter<"User"> | string | null
+    resetAttempts?: IntWithAggregatesFilter<"User"> | number
+    lastResetAttempt?: DateTimeNullableWithAggregatesFilter<"User"> | Date | string | null
     create_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
     update_at?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -19725,6 +19763,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -19746,6 +19786,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -19766,6 +19808,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -19787,6 +19831,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -19808,6 +19854,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
   }
@@ -19821,6 +19869,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -19835,6 +19885,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -20815,6 +20867,17 @@ export namespace Prisma {
     not?: NestedEnumuserRoleFilter<$PrismaModel> | $Enums.userRole
   }
 
+  export type DateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type DateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -20917,6 +20980,8 @@ export namespace Prisma {
     total_coin?: SortOrder
     refresh_token?: SortOrder
     resetPasswordToken?: SortOrder
+    resetAttempts?: SortOrder
+    lastResetAttempt?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
   }
@@ -20924,6 +20989,7 @@ export namespace Prisma {
   export type UserAvgOrderByAggregateInput = {
     id?: SortOrder
     total_coin?: SortOrder
+    resetAttempts?: SortOrder
   }
 
   export type UserMaxOrderByAggregateInput = {
@@ -20936,6 +21002,8 @@ export namespace Prisma {
     total_coin?: SortOrder
     refresh_token?: SortOrder
     resetPasswordToken?: SortOrder
+    resetAttempts?: SortOrder
+    lastResetAttempt?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
   }
@@ -20950,6 +21018,8 @@ export namespace Prisma {
     total_coin?: SortOrder
     refresh_token?: SortOrder
     resetPasswordToken?: SortOrder
+    resetAttempts?: SortOrder
+    lastResetAttempt?: SortOrder
     create_at?: SortOrder
     update_at?: SortOrder
   }
@@ -20957,6 +21027,7 @@ export namespace Prisma {
   export type UserSumOrderByAggregateInput = {
     id?: SortOrder
     total_coin?: SortOrder
+    resetAttempts?: SortOrder
   }
 
   export type IntWithAggregatesFilter<$PrismaModel = never> = {
@@ -21019,6 +21090,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumuserRoleFilter<$PrismaModel>
     _max?: NestedEnumuserRoleFilter<$PrismaModel>
+  }
+
+  export type DateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -21988,6 +22073,10 @@ export namespace Prisma {
     decrement?: number
     multiply?: number
     divide?: number
+  }
+
+  export type NullableDateTimeFieldUpdateOperationsInput = {
+    set?: Date | string | null
   }
 
   export type DateTimeFieldUpdateOperationsInput = {
@@ -23412,6 +23501,17 @@ export namespace Prisma {
     not?: NestedEnumuserRoleFilter<$PrismaModel> | $Enums.userRole
   }
 
+  export type NestedDateTimeNullableFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableFilter<$PrismaModel> | Date | string | null
+  }
+
   export type NestedDateTimeFilter<$PrismaModel = never> = {
     equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
     in?: Date[] | string[]
@@ -23505,6 +23605,20 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumuserRoleFilter<$PrismaModel>
     _max?: NestedEnumuserRoleFilter<$PrismaModel>
+  }
+
+  export type NestedDateTimeNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel> | null
+    in?: Date[] | string[] | null
+    notIn?: Date[] | string[] | null
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeNullableWithAggregatesFilter<$PrismaModel> | Date | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedDateTimeNullableFilter<$PrismaModel>
+    _max?: NestedDateTimeNullableFilter<$PrismaModel>
   }
 
   export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
@@ -24054,6 +24168,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     chapterUnlocks?: chapter_unlockCreateNestedManyWithoutUserInput
@@ -24074,6 +24190,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     chapterUnlocks?: chapter_unlockUncheckedCreateNestedManyWithoutUserInput
@@ -24127,6 +24245,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     chapterUnlocks?: chapter_unlockUpdateManyWithoutUserNestedInput
@@ -24147,6 +24267,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     chapterUnlocks?: chapter_unlockUncheckedUpdateManyWithoutUserNestedInput
@@ -25197,6 +25319,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -25217,6 +25341,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -25296,6 +25422,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -25316,6 +25444,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -25385,6 +25515,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -25405,6 +25537,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -25440,6 +25574,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -25460,6 +25596,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -25479,6 +25617,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -25499,6 +25639,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -25658,6 +25800,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -25678,6 +25822,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -25839,6 +25985,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -25859,6 +26007,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -25944,6 +26094,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -25964,6 +26116,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -26039,6 +26193,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -26059,6 +26215,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -26188,6 +26346,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -26208,6 +26368,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput
@@ -26533,6 +26695,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionCreateNestedManyWithoutUserInput
@@ -26553,6 +26717,8 @@ export namespace Prisma {
     total_coin?: number
     refresh_token?: string | null
     resetPasswordToken?: string | null
+    resetAttempts?: number
+    lastResetAttempt?: Date | string | null
     create_at?: Date | string
     update_at?: Date | string
     transactions?: TransactionUncheckedCreateNestedManyWithoutUserInput
@@ -26841,6 +27007,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUpdateManyWithoutUserNestedInput
@@ -26861,6 +27029,8 @@ export namespace Prisma {
     total_coin?: IntFieldUpdateOperationsInput | number
     refresh_token?: NullableStringFieldUpdateOperationsInput | string | null
     resetPasswordToken?: NullableStringFieldUpdateOperationsInput | string | null
+    resetAttempts?: IntFieldUpdateOperationsInput | number
+    lastResetAttempt?: NullableDateTimeFieldUpdateOperationsInput | Date | string | null
     create_at?: DateTimeFieldUpdateOperationsInput | Date | string
     update_at?: DateTimeFieldUpdateOperationsInput | Date | string
     transactions?: TransactionUncheckedUpdateManyWithoutUserNestedInput

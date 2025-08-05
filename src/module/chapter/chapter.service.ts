@@ -229,7 +229,7 @@ export class ChapterService {
     return chapters;
   }
   // unlockChapter
-  @Cron(CronExpression.EVERY_HOUR)
+  @Cron(CronExpression.EVERY_MINUTE)
   async autoUnlockChapter() {
     const page_size = 100;
     const currentTime = new Date();

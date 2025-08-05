@@ -1,5 +1,5 @@
 import { Transform } from 'class-transformer';
-import { IsInt, IsNotEmpty, IsOptional, IsString } from 'class-validator';
+import { IsInt, IsNotEmpty, IsOptional, IsString, MaxLength } from 'class-validator';
 
 export class CreateCommentDto {
   @IsInt()
@@ -24,5 +24,6 @@ export class CreateCommentDto {
 
   @IsString()
   @IsNotEmpty({ message: 'content không được để trống' })
+  @MaxLength(500, { message: 'Nội dung không vượt quá 500 ký tự' })
   content: string;
 }

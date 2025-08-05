@@ -74,13 +74,7 @@ export class NotificationService {
   ) {
     const { page, limit, type } = query;
     const skip = (page - 1) * limit;
-
-    const whereCondition = {
-      userId: user_id,
-      ...(type && { type }),
-    };
-
-    const notifiCache = `notification:getAll:page=${page}:limit=${limit}:type=${type}`;
+    const notifiCache = `notification:getAll:user=${user_id}:page=${page}:limit=${limit}:type=${type}`;
     const cacheResult = await this.redis.getcache(notifiCache);
     if (cacheResult) {
       return JSON.parse(cacheResult);
@@ -88,7 +82,10 @@ export class NotificationService {
 
     const [notifications, totalItem] = await Promise.all([
       this.prisma.notification.findMany({
-        where: whereCondition,
+        where: {
+          userId: user_id,
+          type,
+        },
         orderBy: {
           create_at: 'desc',
         },
@@ -96,7 +93,10 @@ export class NotificationService {
         skip,
       }),
       this.prisma.notification.count({
-        where: whereCondition,
+        where: {
+          userId: user_id,
+          type,
+        },
       }),
     ]);
 

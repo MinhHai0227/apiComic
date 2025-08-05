@@ -127,6 +127,8 @@ exports.Prisma.UserScalarFieldEnum = {
   total_coin: 'total_coin',
   refresh_token: 'refresh_token',
   resetPasswordToken: 'resetPasswordToken',
+  resetAttempts: 'resetAttempts',
+  lastResetAttempt: 'lastResetAttempt',
   create_at: 'create_at',
   update_at: 'update_at'
 };

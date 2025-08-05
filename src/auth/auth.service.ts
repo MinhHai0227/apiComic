@@ -110,27 +110,62 @@ export class AuthService {
   async forgotPassword(email: string) {
     const user = await this.userService.findUserByEmail(email);
     if (!user) {
-      throw new NotFoundException('email không tồn tại');
+      throw new NotFoundException('Email không tồn tại');
+    }
+    const now = new Date();
+    const startOfDay = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate(),
+    );
+    const MAX_RESET_ATTEMPTS = 3;
+
+    if (!user.lastResetAttempt || user.lastResetAttempt < startOfDay) {
+      await this.prisma.user.update({
+        where: { email },
+        data: {
+          resetAttempts: 0,
+          lastResetAttempt: now,
+        },
+      });
+    }
+
+    if (user.resetAttempts >= MAX_RESET_ATTEMPTS) {
+      throw new BadRequestException(
+        'Bạn đã vượt quá số lần yêu cầu đặt lại mật khẩu trong ngày',
+      );
     }
     const sendToken = await this.jwtService.sign({ email });
     const resetLink = `${this.configService.get('FRONTEND_URL')}/reset-password?token=${sendToken}`;
+
+    await this.prisma.user.update({
+      where: { email },
+      data: {
+        resetPasswordToken: sendToken,
+        resetAttempts: user.resetAttempts + 1,
+        lastResetAttempt: now,
+      },
+    });
+
     await this.mailerService
       .sendMail({
         to: email,
         subject: 'Đặt lại mật khẩu',
         html: `
-      <p>TruyenDocViet xin chào,</p>
-      <p>Nhấp vào liên kết sau để đặt lại mật khẩu của bạn:</p>
-      <p><a href="${resetLink}">${resetLink}</a></p>
-      <p>Liên kết này sẽ hết hạn sau 2 giờ.</p>
-      <p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.</p>
-    `,
+        <p>TruyenDocViet xin chào,</p>
+        <p>Nhấp vào liên kết sau để đặt lại mật khẩu của bạn:</p>
+        <p><a href="${resetLink}">${resetLink}</a></p>
+        <p>Liên kết này sẽ hết hạn sau 2 giờ.</p>
+        <p>Liên kết này chỉ sử dụng được một lần duy nhất.</p>
+        <p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.</p>
+      `,
       })
       .catch(() => {
         throw new InternalServerErrorException(
           'Không thể gửi email đặt lại mật khẩu',
         );
       });
+
     return {
       success: 'Gửi email thành công, vui lòng kiểm tra email.',
     };
@@ -139,23 +174,29 @@ export class AuthService {
   async resetPassword(data: ResetPasswordDto) {
     const { token, new_password } = data;
     let payload;
+
     try {
       payload = await this.jwtService.verify(token);
     } catch {
       throw new BadRequestException('Token không hợp lệ hoặc đã hết hạn');
     }
+
     const user = await this.userService.findUserByEmail(payload.email);
-    if (!user) {
+    if (!user || user.resetPasswordToken !== token) {
       throw new BadRequestException('Token không hợp lệ hoặc đã hết hạn');
     }
 
     const password = await this.passwordService.hasPassword(new_password);
+
+    // Cập nhật mật khẩu và xóa resetToken
     await this.prisma.user.update({
       where: { email: payload.email },
       data: {
         password,
+        resetPasswordToken: null,
       },
     });
+
     return {
       success: 'Đặt lại mật khẩu thành công',
     };

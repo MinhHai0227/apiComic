@@ -19,6 +19,7 @@ export class NotificationController {
     @Request() req,
     @Query() query: PanigationNotificationDto,
   ) {
+    
     return this.notificationService.getAllNotificationByUser(
       req.user.id,
       query,

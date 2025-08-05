@@ -11,10 +11,14 @@ import { CreateCommentDto } from 'src/module/comment/dto/create-comment.dto';
 import { PanigationCommentDto } from 'src/module/comment/dto/panigation-comment.dto';
 import { UpdateCommentDto } from 'src/module/comment/dto/update-comment.dto';
 import { ReplynotificationService } from 'src/module/replynotification/replynotification.service';
-
+import * as leoProfanity from 'leo-profanity';
 import { UserService } from 'src/module/user/user.service';
 import { PrismaService } from 'src/prisma/prisma.service';
 import { RedisService } from 'src/prisma/redis.service';
+import { badwords } from 'src/module/comment/dto/badwords-vi';
+
+leoProfanity.clearList();
+leoProfanity.add(badwords);
 
 @Injectable()
 export class CommentService {
@@ -123,7 +127,6 @@ export class CommentService {
     await this.comicService.checkComicExits(comic_id);
 
     const [comicComment, totalItem, totalComment] =
-    
       await this.prisma.$transaction([
         this.prisma.comment.findMany({
           where: {
@@ -196,6 +199,15 @@ export class CommentService {
   }
 
   async createComment(user_id: number, createCommentDto: CreateCommentDto) {
+    const redisKey = `user_comment_limit:${user_id}`;
+    const isSpamming = await this.redis.getcache(redisKey);
+    if (isSpamming) {
+      throw new BadRequestException(
+        'Bạn đang bình luận quá nhanh. Vui lòng chờ vài giây.',
+      );
+    }
+    await this.redis.setCache(redisKey, '1', 15);
+
     let parentId = createCommentDto.parent_id;
     let replyToId = createCommentDto.replyToId;
     if (replyToId) {
@@ -225,13 +237,14 @@ export class CommentService {
     if (!user) {
       throw new NotFoundException('User không tồn tại');
     }
+    const cleanContent = leoProfanity.clean(createCommentDto.content);
     const newComment = await this.prisma.comment.create({
       data: {
         userId: user_id,
         comicId: createCommentDto.comic_id,
         chapterId: createCommentDto.chapter_id,
         parentId: createCommentDto.parent_id,
-        content: createCommentDto.content,
+        content: cleanContent,
         replyToId,
       },
       include: {

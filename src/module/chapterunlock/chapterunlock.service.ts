@@ -141,7 +141,7 @@ export class ChapterunlockService {
       });
     }
     if (unlockRecords.length === 0) {
-      throw new BadRequestException('Không có chapter nào hợp lệ để mở khóa');
+      throw new BadRequestException('Các chương này bạn đã mở rồi');
     }
     await this.userService.updatetotalPrice(user_id, totalPrice);
     await this.notificationService.notifiUnlockChapter(
